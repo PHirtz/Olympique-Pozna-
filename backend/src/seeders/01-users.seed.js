@@ -1,0 +1,105 @@
+import argon2 from 'argon2';
+import User from '../models/user.model.js';
+
+export const seedUsers = async () => {
+  console.log('🌱 Seeding Users...');
+
+  const hashedPassword = await argon2.hash('Password123!');
+
+  const users = [
+    {
+      username: 'admin',
+      email: 'admin@olympiquepoznan.com',
+      password: hashedPassword,
+      firstName: 'Admin',
+      lastName: 'Olympique',
+      role: 'admin',
+      isActive: true,
+      preferredLanguage: 'fr',
+      membershipStatus: 'active'
+    },
+    {
+      username: 'coach_pierre',
+      email: 'pierre.kowalski@olympiquepoznan.com',
+      password: hashedPassword,
+      firstName: 'Pierre',
+      lastName: 'Kowalski',
+      role: 'coach',
+      phoneNumber: '+48 123 456 789',
+      dateOfBirth: '1985-03-15',
+      nationality: 'Polonaise',
+      bio: 'Entraîneur principal avec 15 ans d\'expérience',
+      isActive: true,
+      preferredLanguage: 'pl',
+      membershipStatus: 'active',
+      membershipStartDate: '2020-01-01'
+    },
+    {
+      username: 'player_lucas',
+      email: 'lucas.nowak@olympiquepoznan.com',
+      password: hashedPassword,
+      firstName: 'Lucas',
+      lastName: 'Nowak',
+      role: 'player',
+      phoneNumber: '+48 234 567 890',
+      dateOfBirth: '2005-07-20',
+      nationality: 'Polonaise',
+      playerNumber: 10,
+      position: 'Attaquant',
+      bio: 'Jeune talent prometteur de l\'académie',
+      isActive: true,
+      preferredLanguage: 'pl',
+      membershipStatus: 'active',
+      membershipStartDate: '2018-09-01'
+    },
+    {
+      username: 'player_adam',
+      email: 'adam.wisniewski@olympiquepoznan.com',
+      password: hashedPassword,
+      firstName: 'Adam',
+      lastName: 'Wiśniewski',
+      role: 'player',
+      phoneNumber: '+48 345 678 901',
+      dateOfBirth: '2004-11-12',
+      nationality: 'Polonaise',
+      playerNumber: 7,
+      position: 'Milieu',
+      bio: 'Milieu de terrain créatif',
+      isActive: true,
+      preferredLanguage: 'pl',
+      membershipStatus: 'active',
+      membershipStartDate: '2019-01-15'
+    },
+    {
+      username: 'member_marie',
+      email: 'marie.dubois@olympiquepoznan.com',
+      password: hashedPassword,
+      firstName: 'Marie',
+      lastName: 'Dubois',
+      role: 'member',
+      phoneNumber: '+33 6 12 34 56 78',
+      dateOfBirth: '1990-05-25',
+      nationality: 'Française',
+      bio: 'Membre actif et supportrice passionnée',
+      isActive: true,
+      preferredLanguage: 'fr',
+      membershipStatus: 'active',
+      membershipStartDate: '2021-03-10'
+    }
+  ];
+
+  for (const userData of users) {
+    const [user, created] = await User.findOrCreate({
+      where: { email: userData.email },
+      defaults: userData
+    });
+    
+    if (created) {
+      console.log(`   ✓ Created user: ${user.username}`);
+    } else {
+      console.log(`   - User already exists: ${user.username}`);
+    }
+  }
+
+  console.log('✅ Users seeded successfully\n');
+};

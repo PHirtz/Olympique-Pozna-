@@ -1,0 +1,6 @@
+--2025-12-01 16:31:14--  https://code.visualstudio.com/sha/download?build=stable
+Résolution de code.visualstudio.com (code.visualstudio.com)… 2620:1ec:bdf::42, 2620:1ec:46::42, 13.107.246.42, ...
+Connexion à code.visualstudio.com (code.visualstudio.com)|2620:1ec:bdf::42|:443… connecté.
+requête HTTP transmise, en attente de la réponse… 404 Not Found
+2025-12-01 16:31:14 erreur 404 : Not Found.
+
