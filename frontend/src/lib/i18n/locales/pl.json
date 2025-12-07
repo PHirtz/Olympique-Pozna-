@@ -1,0 +1,31 @@
+{
+  "nav": {
+    "home": "Strona główna",
+    "news": "Aktualności",
+    "shop": "Sklep",
+    "club": "Klub",
+    "teams": "Nasze drużyny",
+    "camps": "Obóz Olimpijski",
+    "contact": "Kontakt"
+  },
+  "userMenu": {
+    "hello": "Cześć",
+    "logout": "Wyloguj",
+    "myProfile": "Mój profil",
+    "login": "Zaloguj się",
+    "register": "Dołącz"
+  },
+  "hero": {
+    "title": "Witamy na stronie Olympique Poznan",
+    "subtitle": "Klub piłkarski Poznania",
+    "description": "Pasja i dzielenie się to nasz motor"
+  },
+  "common": {
+    "loading": "Ładowanie...",
+    "error": "Wystąpił błąd",
+    "noData": "Brak danych",
+    "back": "Powrót",
+    "readMore": "Czytaj więcej",
+    "close": "Zamknij"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "news": "News",
+    "shop": "Shop",
+    "club": "Le Club",
+    "teams": "Nos Équipes",
+    "camps": "Le Camp Olympique",
+    "contact": "Contact"
+  },
+  "userMenu": {
+    "hello": "Bonjour",
+    "logout": "Déconnexion",
+    "myProfile": "Mon profil",
+    "login": "Me connecter",
+    "register": "Rejoindre"
+  },
+  "hero": {
+    "title": "Bienvenue sur le site d'Olympique Poznan",
+    "subtitle": "Club de football de Poznań",
+    "description": "Passion et partage sont nos moteurs"
+  },
+  "footer": {
+    "description": "Olympique Poznan, club de football passionné basé à Poznań. Nous cultivons les valeurs du sport et de l'esprit d'équipe.",
+    "quickLinks": "Liens rapides",
+    "contact": "Contact",
+    "newsletter": "Newsletter",
+    "newsletterText": "Restez informé de nos actualités et événements",
+    "emailPlaceholder": "Votre email",
+    "subscribe": "S'abonner",
+    "sponsors": "Nos partenaires",
+    "rights": "Tous droits réservés.",
+    "legalNotice": "Mentions légales",
+    "privacy": "Politique de confidentialité",
+    "terms": "CGV"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur est survenue",
+    "noData": "Aucune donnée disponible"
+  }
+}

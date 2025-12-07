@@ -7,6 +7,7 @@
   import Hero from '$lib/components/ui/Hero.svelte';
   import NewsSection from '$lib/components/NewsSection.svelte';
   import MatchesSection from '$lib/components/MatchesSection.svelte';
+  import Footer from '$lib/components/ui/Footer.svelte'
   
   /** @type {import('./$types').PageData} */
   export let data;
@@ -22,3 +23,6 @@
 <NewsSection news={data?.news || []} />
 
 <MatchesSection matches={data?.matches || []} />
+
+<Footer />
+

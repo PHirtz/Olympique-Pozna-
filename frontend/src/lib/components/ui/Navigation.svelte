@@ -1,5 +1,6 @@
 <script>
   import UserMenu from '../UserMenu.svelte';
+  import Language from './Langage.svelte';
   import { Menu, X } from 'lucide-svelte';
   import { onMount } from 'svelte';
 
@@ -46,9 +47,12 @@
       <a href="/contact" class="nav-link" style="animation-delay: 0.6s">Contact</a>
     </div>
 
-    <!-- UserMenu à droite (desktop) -->
+    <!-- Actions à droite (desktop) -->
     <div class="desktop-user-menu">
-      <UserMenu />
+      <div class="nav-actions">
+        <Language />
+        <UserMenu />
+      </div>
     </div>
 
     <!-- Burger (mobile) -->
@@ -92,6 +96,7 @@
     </nav>
 
     <div class="mobile-user-menu">
+      <Language />
       <UserMenu />
     </div>
   </div>
@@ -158,7 +163,7 @@
      ======================================== */
 
   .nav-links {
-    display: none; /* Caché sur mobile */
+    display: none;
     flex: 1;
     justify-content: center;
     align-items: center;
@@ -175,8 +180,6 @@
     border-radius: 8px;
     white-space: nowrap;
     position: relative;
-    
-    /* Animation en cascade */
     opacity: 0;
     transform: translateY(-10px);
   }
@@ -222,12 +225,18 @@
   }
 
   /* ========================================
-     USER MENU (à droite)
+     ACTIONS DROITE (Language + UserMenu)
      ======================================== */
 
   .desktop-user-menu {
-    display: none; /* Caché sur mobile */
+    display: none;
     flex-shrink: 0;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 
   /* ========================================
@@ -341,6 +350,9 @@
   }
 
   .mobile-user-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     margin-top: 2rem;
     padding-top: 2rem;
     border-top: 1px solid rgba(0, 0, 0, 0.1);

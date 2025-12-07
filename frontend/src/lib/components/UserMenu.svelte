@@ -1,4 +1,5 @@
 <script>
+  import { _ } from 'svelte-i18n';
   import { user } from '$lib/stores/auth.js';
   import { logout } from '$lib/api/auth';
   import { goto } from '$app/navigation';
@@ -12,54 +13,48 @@
 </script>
 
 {#if $user}
-  <!-- Utilisateur connecté -->
   <div class="user-menu">
-    <!-- Version desktop -->
     <div class="user-menu-desktop">
       <div class="user-info">
         <User size={18} />
-        <span>Bonjour, {$user.firstName} !</span>
+        <span>{$_('userMenu.hello')}, {$user.firstName} !</span>
       </div>
       <button class="btn-logout" on:click={handleLogout}>
         <LogOut size={18} />
-        <span>Déconnexion</span>
+        <span>{$_('userMenu.logout')}</span>
       </button>
     </div>
 
-    <!-- Version mobile : icône profil + logout -->
     <div class="user-menu-mobile">
-      <a href="/profile" class="icon-button profile-icon" aria-label="Mon profil">
+      <a href="/profile" class="icon-button profile-icon" aria-label={$_('userMenu.myProfile')}>
         <User size={20} />
       </a>
-      <button class="icon-button logout-icon" on:click={handleLogout} aria-label="Déconnexion">
+      <button class="icon-button logout-icon" on:click={handleLogout} aria-label={$_('userMenu.logout')}>
         <LogOut size={20} />
       </button>
     </div>
   </div>
 {:else}
-  <!-- Utilisateur non connecté -->
   <div class="auth-menu">
-    <!-- Version desktop : Boutons texte -->
     <div class="desktop-actions">
-      <Button href="/login" variant="primary">Me connecter</Button>
-      <Button href="/register" variant="secondary">Rejoindre</Button>
+      <Button href="/login" variant="primary">{$_('userMenu.login')}</Button>
+      <Button href="/register" variant="secondary">{$_('userMenu.register')}</Button>
     </div>
 
-    <!-- Version mobile : Icônes -->
     <div class="mobile-actions">
       <a 
         href="/login" 
         class="icon-button login-icon" 
-        aria-label="Se connecter" 
-        title="Se connecter"
+        aria-label={$_('userMenu.login')}
+        title={$_('userMenu.login')}
       >
         <LogIn size={20} />
       </a>
       <a 
         href="/register" 
         class="icon-button signup-icon" 
-        aria-label="Rejoindre" 
-        title="Rejoindre"
+        aria-label={$_('userMenu.register')}
+        title={$_('userMenu.register')}
       >
         <UserPlus size={20} />
       </a>
