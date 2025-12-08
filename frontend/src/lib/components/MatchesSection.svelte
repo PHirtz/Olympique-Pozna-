@@ -18,7 +18,7 @@
             })}
           </time>
           <div class="teams">
-            <span class="team-home">{match.team?.name || 'Olympique Poznan'}</span>
+            <span class="team-home">{match.team?.name || 'Olympique Poznań'}</span>
             <span class="vs">VS</span>
             <span class="team-away">{match.opponentName}</span>
           </div>

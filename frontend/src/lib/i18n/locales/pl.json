@@ -72,12 +72,59 @@
       "passwordPlaceholder": "Moje hasło",
       "submit": "Utwórz konto",
       "loading": "Rejestracja...",
-      "success": "Rejestracja udana! Witamy w Olympique Poznan!",
+      "success": "Rejestracja udana! Witamy w Olympique Poznań!",
       "errorAllFields": "Proszę wypełnić wszystkie pola",
       "errorGeneral": "Błąd podczas rejestracji",
       "hasAccount": "Masz już konto?",
       "loginLink": "Zaloguj się",
       "required": "*"
+    }
+  },
+  "club": {
+    "about": "Kim jesteśmy",
+    "coaches": "Nasi trenerzy",
+    "support": "Wsparcie Olimpijskie",
+    "status": "Statut klubu",
+    "documents": {
+      "title": "Ważne dokumenty",
+      "cgv": "Regulamin",
+      "statutes": "Statut",
+      "regulations": "Przepisy"
+    }
+  },
+  "teams": {
+    "seniors": {
+      "title": "Seniorzy",
+      "women": "Seniorki Kobiety",
+      "men": "Seniorzy Mężczyźni"
+    },
+    "youth": {
+      "title": "Drużyny młodzieżowe",
+      "ladies": "Panie",
+      "blues": "Niebiescy",
+      "giroud": "Olivier Giroud (2010/2011)",
+      "doue": {
+        "title": "Désiré Doué (2012)",
+        "players": {
+          "craczyk": "54 - CRACZYK",
+          "wutezi": "10 - WUTEZI",
+          "gartecki": "21 - GARTECKI",
+          "zok": "3 - ZOK",
+          "bielecki": "11 - BIELECKI",
+          "ceglowski": "40 - CEGLOWSKI",
+          "namysl": "7 - NAMYSL",
+          "wesolowski": "85 - WESOLOWSKI",
+          "wegner": "4 - WEGNER",
+          "majchrowicz": "12 - MAJCHROWICZ",
+          "pyzalka": "42 - PYZALKA"
+        }
+      },
+      "griezmann": "Antoine Griezmann (2013)",
+      "coman": "Kingsley Coman (2014)",
+      "diani": "Kadidiatou Diani (Junior)",
+      "renard": "Wendie Renard (Trampkarki)",
+      "lesommer": "Eugénie Le Sommer (Mlodziczki)",
+      "henry": "Amandine Henry (Orliczki)"
     }
   },
   "common": {

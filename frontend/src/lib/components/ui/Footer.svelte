@@ -10,7 +10,7 @@
     
     <!-- Section 1: À propos du club -->
     <div class="footer-section">
-      <img src="/logo.png" alt="Logo Olympique Poznan" class="footer-logo" />
+      <img src="/logo.png" alt="Logo Olympique Poznań" class="footer-logo" />
       <p class="footer-description">
         {$_('footer.description')}
       </p>
@@ -54,7 +54,7 @@
         </li>
         <li>
           <Mail size={18} />
-          <span>contact@olympique-poznan.pl</span>
+          <span>contact@olympique-poznań.pl</span>
         </li>
       </ul>
     </div>
@@ -171,7 +171,7 @@
   }
 
   .footer-logo {
-    height: 100px;
+    height: 130px;
     width: 100px;
     margin-bottom: 0.5rem;
   }

@@ -33,7 +33,7 @@
 
 <div class='menu-logo'>
   <a href="/">
-    <img src="/logo.png" alt="Logo Olympique Poznan" class="logo" />
+    <img src="/logo.png" alt="Logo Olympique Poznań" class="logo" />
   </a>
 </div>
 

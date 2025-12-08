@@ -1,6 +1,6 @@
 <svelte:head>
-  <title>Home - Olympique Poznan</title>
-  <meta name="description" content="Olympique Poznan - Club de football" />
+  <title>Home - Olympique Poznań</title>
+  <meta name="description" content="Olympique Poznań - Club de football" />
 </svelte:head>
 
 <script>
@@ -9,6 +9,6 @@
 </script>
 
 <section class="hero">
-  <h1>Bienvenue à Olympique Poznan</h1>
+  <h1>Bienvenue à Olympique Poznań</h1>
   <p>Club de football de Poznań</p>
 </section>

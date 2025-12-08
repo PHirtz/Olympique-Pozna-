@@ -5,7 +5,7 @@
   /** @type {string} */
   export let image = '/victory.jpg';
   /** @type {string} */
-  export let title = 'Bienvenue sur le site d\'Olympique Poznan';
+  export let title = 'Bienvenue sur le site d\'Olympique Poznań';
   /** @type {string} */
   export let subtitle = 'Club de football de Poznań';
   /** @type {string} */

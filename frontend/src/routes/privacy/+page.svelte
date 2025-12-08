@@ -63,13 +63,13 @@
 </script>
 
 <svelte:head>
-  <title>Contact - Olympique Poznan</title>
-  <meta name="description" content="Contactez Olympique Poznan" />
+  <title>Contact - Olympique Poznań</title>
+  <meta name="description" content="Contactez Olympique Poznań" />
 </svelte:head>
 
 <div class="menu-logo">
   <a href="/" class="logo-card">
-    <img src="/logo.png" alt="Logo Olympique Poznan" class="logo" />
+    <img src="/logo.png" alt="Logo Olympique Poznań" class="logo" />
   </a>
 </div>
 
