@@ -654,50 +654,7 @@
     color: #1a4d7a;
   }
 
-  /* MOBILE SUBSUBSUBMENU (Joueurs) */
-  .mobile-subsubsubmenu-trigger {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 0.6rem 0.875rem;
-    background: none;
-    border: none;
-    color: #666;
-    font-size: 0.85rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: inherit;
-    text-align: left;
-  }
-
-  .mobile-subsubsubmenu-trigger:hover {
-    background: rgba(26, 77, 122, 0.08);
-    color: #1a4d7a;
-  }
-
-  .mobile-subsubsubmenu-list {
-    list-style: none;
-    padding: 0;
-    margin: 0.25rem 0 0 1rem;
-  }
-
-  .mobile-subsubsubmenu-list a {
-    display: block;
-    padding: 0.5rem 0.75rem;
-    color: #777;
-    text-decoration: none;
-    font-size: 0.8rem;
-    border-radius: 4px;
-  }
-
-  .mobile-subsubsubmenu-list a:hover {
-    background: rgba(26, 77, 122, 0.06);
-    color: #1a4d7a;
-  }
-
-  /* MOBILE USER MENU */
+    /* MOBILE USER MENU */
   .mobile-user-menu {
     display: flex;
     flex-direction: column;
@@ -890,61 +847,6 @@
     .submenu-item:hover {
       background: rgba(26, 77, 122, 0.08);
       color: #1a4d7a;
-    }
-
-    .rotate-icon {
-      transform: rotate(-90deg);
-      transition: transform 0.3s;
-    }
-
-    /* SUBSUBMENU (Niveau 3 - Joueurs) */
-    .subsubmenu {
-      position: relative;
-    }
-
-    .subsubmenu-trigger {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 500;
-    }
-
-    .subsubmenu:hover .subsubmenu-content {
-      display: block;
-    }
-
-    .subsubmenu-content {
-      display: none;
-      position: absolute;
-      left: 100%;
-      top: 0;
-      min-width: 250px;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-      padding: 0.5rem 0;
-      margin-left: 0.5rem;
-      animation: fadeInDropdown 0.2s;
-      z-index: 400;
-    }
-
-    .subsubmenu-item {
-      display: block;
-      padding: 0.6rem 0.875rem;
-      color: #666;
-      text-decoration: none;
-      transition: all 0.2s;
-      font-size: 0.9rem;
-    }
-
-    .subsubmenu-item:hover {
-      background: rgba(26, 77, 122, 0.08);
-      color: #1a4d7a;
-    }
-
-    .rotate-icon-small {
-      transform: rotate(-90deg);
-      transition: transform 0.3s;
     }
   }
 
