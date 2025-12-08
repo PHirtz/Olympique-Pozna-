@@ -1,6 +1,7 @@
 <script>
   import UserMenu from '../UserMenu.svelte';
   import Language from './Langage.svelte';
+  import { _ } from 'svelte-i18n';
   import { Menu, X } from 'lucide-svelte';
   import { onMount } from 'svelte';
 
@@ -39,12 +40,11 @@
 
     <!-- Liens au centre (desktop uniquement) -->
     <div class="nav-links">
-      <a href="/news" class="nav-link" style="animation-delay: 0.1s">News</a>
-      <a href="/shop" class="nav-link" style="animation-delay: 0.2s">Shop</a>
-      <a href="/club" class="nav-link" style="animation-delay: 0.3s">Le Club</a>
-      <a href="/teams" class="nav-link" style="animation-delay: 0.4s">Nos Équipes</a>
-      <a href="/camps" class="nav-link" style="animation-delay: 0.5s">Le Camp Olympique</a>
-      <a href="/contact" class="nav-link" style="animation-delay: 0.6s">Contact</a>
+      <a href="/news" class="nav-link" style="animation-delay: 0.1s">{$_('nav.news')}</a>
+      <a href="/shop" class="nav-link" style="animation-delay: 0.2s">{$_('nav.shop')}</a>
+      <a href="/club" class="nav-link" style="animation-delay: 0.3s">{$_('nav.club')}</a>
+      <a href="/teams" class="nav-link" style="animation-delay: 0.4s">{$_('nav.teams')}</a>
+      <a href="/camps" class="nav-link" style="animation-delay: 0.5s">{$_('nav.camps')}</a>
     </div>
 
     <!-- Actions à droite (desktop) -->
@@ -56,7 +56,7 @@
     </div>
 
     <!-- Burger (mobile) -->
-    <button class="menu-toggle" on:click={toggleMenu} aria-label="Menu" aria-expanded={open}>
+    <button class="menu-toggle" on:click={toggleMenu} aria-label={$_('nav.menu')} aria-expanded={open}>
       {#if open}
         <X size={28} />
       {:else}
@@ -72,26 +72,25 @@
   class:open 
   role="dialog" 
   aria-modal="true"
-  aria-label="Menu de navigation"
+  aria-label={$_('nav.mobileMenu')}
 >
   <div class="drawer-content">
     <button 
       class="close-btn" 
       on:click={close} 
-      aria-label="Fermer le menu"
+      aria-label={$_('common.close')}
     >
       <X size={24} />
     </button>
 
-    <nav aria-label="Navigation principale mobile">
+    <nav aria-label={$_('nav.mainNavigation')}>
       <ul class="mobile-menu">
-        <li><a href="/" on:click={close}>Accueil</a></li>
-        <li><a href="/news" on:click={close}>News</a></li>
-        <li><a href="/shop" on:click={close}>Shop</a></li>
-        <li><a href="/club" on:click={close}>Le Club</a></li>
-        <li><a href="/teams" on:click={close}>Nos Équipes</a></li>
-        <li><a href="/camps" on:click={close}>Le Camp Olympique</a></li>
-        <li><a href="/contact" on:click={close}>Contact</a></li>
+        <li><a href="/" on:click={close}>{$_('nav.home')}</a></li>
+        <li><a href="/news" on:click={close}>{$_('nav.news')}</a></li>
+        <li><a href="/shop" on:click={close}>{$_('nav.shop')}</a></li>
+        <li><a href="/club" on:click={close}>{$_('nav.club')}</a></li>
+        <li><a href="/teams" on:click={close}>{$_('nav.teams')}</a></li>
+        <li><a href="/camps" on:click={close}>{$_('nav.camps')}</a></li>
       </ul>
     </nav>
 
@@ -110,11 +109,13 @@
     on:keydown={handleKeydown}
     role="button"
     tabindex="0"
-    aria-label="Fermer le menu"
+    aria-label={$_('common.close')}
   ></div>
 {/if}
 
 <style>
+  /* Garde tous tes styles existants */
+  
   /* ========================================
      NAVIGATION PRINCIPALE
      ======================================== */
@@ -139,10 +140,6 @@
     gap: 2rem;
   }
 
-  /* ========================================
-     LOGO (à gauche)
-     ======================================== */
-
   .logo-container {
     display: flex;
     align-items: center;
@@ -157,10 +154,6 @@
   .logo-olympique-poznan {
     height: 60px;
   }
-
-  /* ========================================
-     LIENS (au centre - desktop uniquement)
-     ======================================== */
 
   .nav-links {
     display: none;
@@ -203,30 +196,26 @@
     transform: translateX(-50%);
     width: 0;
     height: 2px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1a4d7a 0%, #2563a8 100%);
     border-radius: 2px;
     transition: width 0.3s;
   }
 
   .nav-link:hover,
   .nav-link:focus {
-    color: #667eea;
-    background: rgba(102, 126, 234, 0.08);
+    color: #1a4d7a;
+    background: rgba(26, 77, 122, 0.08);
     outline: 2px solid transparent;
   }
 
   .nav-link:focus-visible {
-    outline: 2px solid #667eea;
+    outline: 2px solid #1a4d7a;
     outline-offset: 2px;
   }
 
   .nav-link:hover::after {
     width: 70%;
   }
-
-  /* ========================================
-     ACTIONS DROITE (Language + UserMenu)
-     ======================================== */
 
   .desktop-user-menu {
     display: none;
@@ -238,10 +227,6 @@
     align-items: center;
     gap: 1rem;
   }
-
-  /* ========================================
-     BURGER MENU (mobile)
-     ======================================== */
 
   .menu-toggle {
     display: flex;
@@ -257,18 +242,14 @@
 
   .menu-toggle:hover,
   .menu-toggle:focus {
-    color: #667eea;
+    color: #1a4d7a;
   }
 
   .menu-toggle:focus-visible {
-    outline: 2px solid #667eea;
+    outline: 2px solid #1a4d7a;
     outline-offset: 2px;
     border-radius: 4px;
   }
-
-  /* ========================================
-     MENU MOBILE (DRAWER)
-     ======================================== */
 
   .mobile-drawer {
     position: fixed;
@@ -306,11 +287,11 @@
 
   .close-btn:hover,
   .close-btn:focus {
-    color: #667eea;
+    color: #1a4d7a;
   }
 
   .close-btn:focus-visible {
-    outline: 2px solid #667eea;
+    outline: 2px solid #1a4d7a;
     outline-offset: 2px;
     border-radius: 4px;
   }
@@ -340,12 +321,12 @@
 
   .mobile-menu a:hover,
   .mobile-menu a:focus {
-    background: rgba(102, 126, 234, 0.15);
-    color: #667eea;
+    background: rgba(26, 77, 122, 0.15);
+    color: #1a4d7a;
   }
 
   .mobile-menu a:focus-visible {
-    outline: 2px solid #667eea;
+    outline: 2px solid #1a4d7a;
     outline-offset: 2px;
   }
 
@@ -358,7 +339,6 @@
     border-top: 1px solid rgba(0, 0, 0, 0.1);
   }
 
-  /* Overlay */
   .overlay {
     position: fixed;
     top: 0;
@@ -384,10 +364,6 @@
     }
   }
 
-  /* ========================================
-     RESPONSIVE : TABLETTE (768px+)
-     ======================================== */
-
   @media (min-width: 768px) {
     .logo-olympique-poznan {
       height: 70px;
@@ -410,10 +386,6 @@
     }
   }
 
-  /* ========================================
-     DESKTOP (1024px+)
-     ======================================== */
-
   @media (min-width: 1024px) {
     .logo-olympique-poznan {
       height: 80px;
@@ -429,10 +401,6 @@
     }
   }
 
-  /* ========================================
-     GRAND DESKTOP (1200px+)
-     ======================================== */
-
   @media (min-width: 1200px) {
     .logo-olympique-poznan {
       height: 90px;
@@ -443,10 +411,6 @@
       padding: 1rem 1.75rem;
     }
   }
-
-  /* ========================================
-     TRÈS GRAND DESKTOP (1400px+)
-     ======================================== */
 
   @media (min-width: 1400px) {
     .nav-links {

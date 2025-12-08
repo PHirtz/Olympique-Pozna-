@@ -1,29 +1,29 @@
 <script>
+  import { _ } from 'svelte-i18n';
   import { goto } from '$app/navigation';
   import { login } from '$lib/api/auth';
-
+  
   let username = '';
   let password = '';
   let loading = false;
   let error = '';
 
-  /**
+    /**
    * @param {Event & { currentTarget: HTMLFormElement }} e
    */
+  
   async function handleLogin(e) {
     e.preventDefault();
-    
     loading = true;
     error = '';
 
     try {
       const response = await login({ username, password });
-      
       if (response.success) {
         goto("/");
       }
-    } catch (/** @type {any} */ err) {
-      error = err.message || "Username ou mot de passe incorrect";
+    } catch (err) {
+      error = $_('auth.login.error');
       console.error("Erreur login:", err);
     } finally {
       loading = false;
@@ -32,32 +32,32 @@
 </script>
 
 <div class='menu-logo'>
-    <a href="/" class="logo-card">
-      <img src="/logo.png" alt="Logo Olympique Poznan" class="logo" />
-    </a>
+  <a href="/">
+    <img src="/logo.png" alt="Logo Olympique Poznan" class="logo" />
+  </a>
 </div>
 
 <section class="login-page">
   <div class="login-card">
-    <h1>Connexion</h1>
-
+    <h1>{$_('auth.login.title')}</h1>
+    
     <form on:submit={handleLogin}>
       <label>
-        Pseudo
+        {$_('auth.login.username')}
         <input 
           type="text" 
           bind:value={username} 
-          placeholder="Votre pseudo"
+          placeholder={$_('auth.login.usernamePlaceholder')}
           required 
         />
       </label>
 
       <label>
-        Mot de passe
+        {$_('auth.login.password')}
         <input 
           type="password" 
           bind:value={password} 
-          placeholder="Votre mot de passe"
+          placeholder={$_('auth.login.passwordPlaceholder')}
           required 
         />
       </label>
@@ -67,12 +67,12 @@
       {/if}
 
       <button type="submit" disabled={loading}>
-        {loading ? 'Connexion...' : 'Se connecter'}
+        {loading ? $_('auth.login.loading') : $_('auth.login.submit')}
       </button>
     </form>
 
     <p class="register-link">
-      Pas encore inscrit ? <a href="/register">Créer un compte</a>
+      {$_('auth.login.noAccount')} <a href="/register">{$_('auth.login.createAccount')}</a>
     </p>
   </div>
 </section>

@@ -1,9 +1,20 @@
 <script>
-  export let variant = 'primary'; // 'primary' | 'secondary'
-  export let size = 'md'; // 'sm' | 'md' | 'lg'
+  /** @type {'primary' | 'secondary'} */
+  export let variant = 'primary';
+  
+  /** @type {'sm' | 'md' | 'lg'} */
+  export let size = 'md';
+  
+  /** @type {string | undefined} */
   export let href = undefined;
+  
+  /** @type {boolean} */
   export let disabled = false;
+  
+  /** @type {boolean} */
   export let loading = false;
+  
+  /** @type {'button' | 'submit' | 'reset'} */
   export let type = 'button';
 
   $: classes = [
@@ -34,11 +45,11 @@
      =================================== */
 
   .btn {
-    padding: 0.875rem 1.75rem;
+    padding: 0.5rem 0.75rem;
     border: none;
-    border-radius: 15px;
+    border-radius: 0.5rem;
     cursor: pointer;
-    font-size: 0.95rem;
+    font-size: 0.8rem;
     font-weight: 600;
     font-family: 'Poppins', sans-serif;
     text-decoration: none;
@@ -49,7 +60,6 @@
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    margin-top: 4px;
     text-align: center;
     white-space: nowrap;
   }
@@ -61,7 +71,7 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
     transition: left 0.5s;
   }
 
@@ -69,55 +79,103 @@
     left: 100%;
   }
 
-  /* Variants */
+  /* ===================================
+     VARIANT PRIMARY - Bleu Royal
+     =================================== */
+
   .btn-primary {
-    background-color: transparent;
-    color: #F7B267;
-    border: 2px solid #F7B267;
+    background: linear-gradient(135deg, #1a4d7a 0%, #2563a8 100%);
+    color: white;
+    border: 2px solid transparent;
+    box-shadow: 0 2px 8px rgba(26, 77, 122, 0.2);
   }
 
   .btn-primary:hover:not(:disabled) {
-    background-color: #F7B267;
-    color: white;
-    box-shadow: 0 8px 25px rgba(44, 62, 48, 0.4);
+    background: linear-gradient(135deg, #2563a8 0%, #1a4d7a 100%);
+    box-shadow: 0 4px 16px rgba(26, 77, 122, 0.4);
     transform: translateY(-2px);
   }
 
   .btn-primary:active:not(:disabled) {
     transform: translateY(0);
-    box-shadow: 0 4px 15px rgba(44, 62, 48, 0.3);
+    box-shadow: 0 2px 8px rgba(26, 77, 122, 0.3);
   }
 
+  /* ===================================
+     VARIANT SECONDARY - Or Champagne
+     =================================== */
+
   .btn-secondary {
-    background-color: transparent;
-    color: #2C3E30;
-    border: 2px solid #2C3E30;
+    background: linear-gradient(135deg, #c9a961 0%, #ddc184 100%);
+    color: #1a4d7a;
+    border: 2px solid transparent;
+    box-shadow: 0 2px 8px rgba(201, 169, 97, 0.2);
   }
 
   .btn-secondary:hover:not(:disabled) {
-    background-color: #2C3E30;
-    color: white;
-    box-shadow: 0 8px 25px rgba(44, 62, 48, 0.4);
+    background: linear-gradient(135deg, #ddc184 0%, #c9a961 100%);
+    box-shadow: 0 4px 16px rgba(201, 169, 97, 0.4);
     transform: translateY(-2px);
   }
 
   .btn-secondary:active:not(:disabled) {
     transform: translateY(0);
-    box-shadow: 0 4px 15px rgba(44, 62, 48, 0.3);
+    box-shadow: 0 2px 8px rgba(201, 169, 97, 0.3);
   }
 
-  /* Sizes - Mobile */
+  /* ===================================
+     VARIANT OUTLINE (optionnel)
+     =================================== */
+
+  .btn-outline-primary {
+    background: transparent;
+    color: #1a4d7a;
+    border: 2px solid #1a4d7a;
+  }
+
+  .btn-outline-primary:hover:not(:disabled) {
+    background: #1a4d7a;
+    color: white;
+    box-shadow: 0 4px 12px rgba(26, 77, 122, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline-secondary {
+    background: transparent;
+    color: #c9a961;
+    border: 2px solid #c9a961;
+  }
+
+  .btn-outline-secondary:hover:not(:disabled) {
+    background: #c9a961;
+    color: white;
+    box-shadow: 0 4px 12px rgba(201, 169, 97, 0.3);
+    transform: translateY(-2px);
+  }
+
+  /* ===================================
+     SIZES - Mobile
+     =================================== */
+
   .btn-sm {
-    padding: 0.625rem 1.25rem;
-    font-size: 0.85rem;
+    padding: 0.375rem 0.625rem;
+    font-size: 0.75rem;
+  }
+
+  .btn-md {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
   }
 
   .btn-lg {
-    padding: 1rem 2rem;
-    font-size: 1.05rem;
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
   }
 
-  /* States */
+  /* ===================================
+     STATES
+     =================================== */
+
   .btn-disabled {
     opacity: 0.5;
     cursor: not-allowed;
@@ -130,8 +188,8 @@
   }
 
   .spinner {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
     border: 2px solid currentColor;
     border-top: 2px solid transparent;
     border-radius: 50%;
@@ -150,23 +208,23 @@
      =================================== */
   @media (min-width: 480px) {
     .btn {
-      padding: 0.95rem 1.85rem;
-      font-size: 1rem;
+      padding: 0.625rem 1rem;
+      font-size: 0.875rem;
     }
 
     .btn-sm {
-      padding: 0.7rem 1.35rem;
-      font-size: 0.9rem;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.8rem;
     }
 
     .btn-lg {
-      padding: 1.1rem 2.2rem;
-      font-size: 1.1rem;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.95rem;
     }
 
     .spinner {
-      width: 16px;
-      height: 16px;
+      width: 14px;
+      height: 14px;
     }
   }
 
@@ -175,29 +233,34 @@
      =================================== */
   @media (min-width: 768px) {
     .btn {
-      padding: 1rem 2rem;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.95rem;
     }
 
     .btn-sm {
-      padding: 0.75rem 1.5rem;
-      font-size: 0.9rem;
+      padding: 0.625rem 1rem;
+      font-size: 0.875rem;
     }
 
     .btn-lg {
-      padding: 1.25rem 2.5rem;
-      font-size: 1.125rem;
+      padding: 0.875rem 1.5rem;
+      font-size: 1.05rem;
     }
 
     .btn-primary {
-      box-shadow: 0 8px 25px rgba(247, 178, 103, 0.3);
+      box-shadow: 0 4px 15px rgba(26, 77, 122, 0.2);
     }
 
     .btn-primary:hover:not(:disabled) {
-      box-shadow: 0 12px 35px rgba(247, 178, 103, 0.4);
+      box-shadow: 0 8px 25px rgba(26, 77, 122, 0.4);
+    }
+
+    .btn-secondary {
+      box-shadow: 0 4px 15px rgba(201, 169, 97, 0.2);
     }
 
     .btn-secondary:hover:not(:disabled) {
-      box-shadow: 0 12px 35px rgba(44, 62, 48, 0.4);
+      box-shadow: 0 8px 25px rgba(201, 169, 97, 0.4);
     }
   }
 

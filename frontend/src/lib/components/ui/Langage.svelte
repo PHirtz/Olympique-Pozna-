@@ -54,12 +54,12 @@
   }
 
   .lang-btn:hover {
-    color: #667eea;
+    color: #F7B267;
     background: rgba(102, 126, 234, 0.1);
   }
 
   .lang-btn.active {
-    color: #667eea;
+    color: #F7B267;
     background: rgba(102, 126, 234, 0.15);
     font-weight: 700;
   }

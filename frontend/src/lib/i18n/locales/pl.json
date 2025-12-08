@@ -6,7 +6,10 @@
     "club": "Klub",
     "teams": "Nasze drużyny",
     "camps": "Obóz Olimpijski",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "menu": "Menu",
+    "mobileMenu": "Menu nawigacji",
+    "mainNavigation": "Główna nawigacja mobilna"
   },
   "userMenu": {
     "hello": "Cześć",
@@ -20,12 +23,73 @@
     "subtitle": "Klub piłkarski Poznania",
     "description": "Pasja i dzielenie się to nasz motor"
   },
+  "facebook": {
+    "latestPosts": "Śledź nas na Facebooku",
+    "followDescription": "Bądź na bieżąco z naszymi aktualnościami",
+    "pageLink": "Olympique Poznan na Facebooku",
+    "viewOnFacebook": "Zobacz na Facebooku",
+    "noPosts": "Brak postów",
+    "errorLoading": "Błąd podczas ładowania postów z Facebooka"
+  },
+  "footer": {
+    "description": "Francusko-polski klub piłkarski z siedzibą w Poznaniu. Dołącz do nas, aby przeżyć swoją pasję do piłki nożnej!",
+    "quickLinks": "Szybkie linki",
+    "contact": "Kontakt",
+    "newsletter": "Newsletter",
+    "newsletterText": "Zapisz się, aby otrzymywać nasze najnowsze wiadomości",
+    "emailPlaceholder": "Twój email",
+    "subscribe": "Zapisz się",
+    "sponsors": "Nasi partnerzy",
+    "rights": "Wszelkie prawa zastrzeżone",
+    "legalNotice": "Informacje prawne",
+    "privacy": "Polityka prywatności",
+    "terms": "Regulamin"
+  },
+  "auth": {
+    "login": {
+      "title": "Logowanie",
+      "username": "Nazwa użytkownika",
+      "usernamePlaceholder": "Twoja nazwa użytkownika",
+      "password": "Hasło",
+      "passwordPlaceholder": "Twoje hasło",
+      "submit": "Zaloguj się",
+      "loading": "Logowanie...",
+      "error": "Nieprawidłowa nazwa użytkownika lub hasło",
+      "noAccount": "Nie masz jeszcze konta?",
+      "createAccount": "Utwórz konto"
+    },
+    "register": {
+      "title": "Rejestracja",
+      "firstName": "Imię",
+      "firstNamePlaceholder": "Anna",
+      "lastName": "Nazwisko",
+      "lastNamePlaceholder": "Kowalska",
+      "username": "Nazwa użytkownika",
+      "usernamePlaceholder": "ania_k",
+      "email": "Email",
+      "emailPlaceholder": "anna@example.pl",
+      "password": "Hasło",
+      "passwordPlaceholder": "Moje hasło",
+      "submit": "Utwórz konto",
+      "loading": "Rejestracja...",
+      "success": "Rejestracja udana! Witamy w Olympique Poznan!",
+      "errorAllFields": "Proszę wypełnić wszystkie pola",
+      "errorGeneral": "Błąd podczas rejestracji",
+      "hasAccount": "Masz już konto?",
+      "loginLink": "Zaloguj się",
+      "required": "*"
+    }
+  },
   "common": {
     "loading": "Ładowanie...",
     "error": "Wystąpił błąd",
     "noData": "Brak danych",
-    "back": "Powrót",
-    "readMore": "Czytaj więcej",
-    "close": "Zamknij"
+    "back": "Wstecz",
+    "close": "Zamknij",
+    "save": "Zapisz",
+    "cancel": "Anuluj",
+    "confirm": "Potwierdź",
+    "delete": "Usuń",
+    "edit": "Edytuj"
   }
 }

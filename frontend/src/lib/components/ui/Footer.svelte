@@ -1,6 +1,8 @@
 <script>
   import { _ } from 'svelte-i18n';
   import { Facebook, Instagram, Twitter, Mail, MapPin, Phone } from 'lucide-svelte';
+	import { goto } from '$app/navigation';
+  import Button from './Button.svelte';
 </script>
 
 <footer class="footer">
@@ -67,47 +69,71 @@
           placeholder={$_('footer.emailPlaceholder')}
           aria-label={$_('footer.emailPlaceholder')}
         />
-        <button type="submit">{$_('footer.subscribe')}</button>
+        <Button variant="primary">{$_('footer.subscribe')}</Button>
       </form>
     </div>
   </div>
 
-  <!-- Section Sponsors -->
-  <div class="sponsors-section">
-    <div class="sponsors-container">
-      <h3 class="sponsors-title">{$_('footer.sponsors')}</h3>
-      <div class="sponsors-grid">
-        <a href="#" class="sponsor-item" target="_blank" rel="noopener noreferrer">
-          <img src="/sponsors/sponsor1.png" alt="Sponsor 1" />
-        </a>
-        <a href="#" class="sponsor-item" target="_blank" rel="noopener noreferrer">
-          <img src="/sponsors/sponsor2.png" alt="Sponsor 2" />
-        </a>
-        <a href="#" class="sponsor-item" target="_blank" rel="noopener noreferrer">
-          <img src="/sponsors/sponsor3.png" alt="Sponsor 3" />
-        </a>
-        <a href="#" class="sponsor-item" target="_blank" rel="noopener noreferrer">
-          <img src="/sponsors/sponsor4.png" alt="Sponsor 4" />
-        </a>
-        <a href="#" class="sponsor-item" target="_blank" rel="noopener noreferrer">
-          <img src="/sponsors/sponsor5.png" alt="Sponsor 5" />
-        </a>
-        <a href="#" class="sponsor-item" target="_blank" rel="noopener noreferrer">
-          <img src="/sponsors/sponsor6.png" alt="Sponsor 6" />
-        </a>
-      </div>
+<!-- Section Sponsors -->
+<div class="sponsors-section">
+  <div class="sponsors-container">
+    <h3 class="sponsors-title">{$_('footer.sponsors')}</h3>
+    <div class="sponsors-grid">
+
+      <!-- Sponsor 1 : Le Petit Paris -->
+      <a 
+        href="https://www.petitparis.com.pl" 
+        class="sponsor-item" 
+        target="_blank" 
+        rel="noopener noreferrer"
+      >
+        <img src="/sponsors/petit-black.svg" alt="Le Petit Paris" />
+      </a>
+      
+      <!-- Sponsor 2 : endo design -->
+      <a 
+        href="https://www.endodesign.pl/" 
+        class="sponsor-item" 
+        target="_blank" 
+        rel="noopener noreferrer"
+      >
+        <img src="/sponsors/endodesign.png" alt="endo design" />
+      </a>
+      
+      <!-- Sponsor 3 : EXCO A2A Polska -->
+      <a 
+        href="https://exco.pl/" 
+        class="sponsor-item" 
+        target="_blank" 
+        rel="noopener noreferrer"
+      >
+        <img src="/sponsors/logo-exco.jpg" alt="EXCO A2A Polska" />
+      </a>
+      
+      <!-- Sponsor 4 : uzdrowisko -->
+      <a 
+        href="https://uzdrowisko.org/" 
+        class="sponsor-item" 
+        target="_blank" 
+        rel="noopener noreferrer"
+      >
+        <img src="/sponsors/uzdrowisko.png" alt="uzdrowisko" />
+      </a>
+      
     </div>
   </div>
+</div>
 
   <!-- Barre de copyright -->
   <div class="footer-bottom">
     <div class="footer-bottom-container">
-      <p>&copy; {new Date().getFullYear()} Olympique Poznan. {$_('footer.rights')}</p>
+      <p>&copy; {new Date().getFullYear()} Kamiicode & Olympique Poznań. {$_('footer.rights')}</p>
       <div class="footer-legal">
         <a href="/mentions-legales">{$_('footer.legalNotice')}</a>
         <span>•</span>
-        <a href="/politique-confidentialite">{$_('footer.privacy')}</a>
-        <span>•</span>
+        <button type="button" on:click={() => goto('/privacy')}>
+          Politique de confidentialité
+        </button>        <span>•</span>
         <a href="/cgv">{$_('footer.terms')}</a>
       </div>
     </div>
@@ -145,8 +171,8 @@
   }
 
   .footer-logo {
-    height: 60px;
-    width: auto;
+    height: 100px;
+    width: 100px;
     margin-bottom: 0.5rem;
   }
 
@@ -172,7 +198,7 @@
     left: 0;
     width: 40px;
     height: 3px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #c9a961 0%, #1a4d7a 50%, #0f2d4a 100%);
     border-radius: 2px;
   }
 
@@ -195,12 +221,12 @@
     background: rgba(102, 126, 234, 0.1);
     border: 1px solid rgba(102, 126, 234, 0.3);
     border-radius: 50%;
-    color: #667eea;
+    color: #c9a961;
     transition: all 0.3s;
   }
 
   .social-links a:hover {
-    background: #667eea;
+    background: #c9a961;
     color: white;
     transform: translateY(-3px);
     box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
@@ -227,7 +253,7 @@
   }
 
   .footer-links a:hover {
-    color: #667eea;
+    color: #c9a961;
     transform: translateX(5px);
   }
 
@@ -252,7 +278,7 @@
   }
 
   .footer-contact li :global(svg) {
-    color: #667eea;
+    color: #c9a961;
     flex-shrink: 0;
   }
 

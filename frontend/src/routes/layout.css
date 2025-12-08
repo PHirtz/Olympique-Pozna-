@@ -14,17 +14,60 @@
 :root {
   /* Typographie */
   --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, 
-    Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   --font-mono: 'Fira Mono', monospace;
+
+  /* Palette Olympique Poznan - Luxe & Sport */
   
-  /* Couleurs Olympique Poznan */
-  --color-primary: #e6c334;
-  --color-secondary: #764ba2;
-  --color-danger: #e63946;
-  --color-text: #333;
-  --color-text-light: #666;
+  /* Couleurs principales - Inspirées des clubs prestigieux */
+  --color-primary: #1a4d7a;          /* Bleu royal profond (confiance, excellence) */
+  --color-primary-light: #2563a8;    /* Bleu plus clair */
+  --color-primary-dark: #0f2d4a;     /* Bleu marine profond */
+  
+  --color-secondary: #c9a961;        /* Or champagne (luxe, victoire) */
+  --color-secondary-light: #ddc184;  /* Or clair */
+  --color-secondary-dark: #a8884d;   /* Or foncé */
+  
+  --color-accent: #d32f2f;           /* Rouge passion (énergie, détermination) */
+  --color-accent-light: #e57373;     /* Rouge clair */
+  
+  /* Couleurs neutres - Élégance */
+  --color-white: #ffffff;
+  --color-off-white: #f8f9fa;
+  --color-gray-light: #e8ecef;
+  --color-gray: #6c757d;
+  --color-gray-dark: #343a40;
+  --color-black: #1a1a1a;
+  
+  /* Couleurs fonctionnelles */
+  --color-success: #2e7d32;          /* Vert victoire */
+  --color-warning: #ed6c02;          /* Orange alerte */
+  --color-danger: #d32f2f;           /* Rouge erreur */
+  --color-info: #0288d1;             /* Bleu info */
+  
+  /* Texte */
+  --color-text: #1a1a1a;
+  --color-text-light: #6c757d;
+  --color-text-lighter: #adb5bd;
+  
+  /* Backgrounds */
   --color-bg: #ffffff;
-  --color-bg-light: #f5f5f5;
+  --color-bg-light: #f8f9fa;
+  --color-bg-dark: #1a1a1a;
+  
+  /* Gradients luxueux */
+  --gradient-primary: linear-gradient(135deg, #1a4d7a 0%, #2563a8 100%);
+  --gradient-secondary: linear-gradient(135deg, #c9a961 0%, #ddc184 100%);
+  --gradient-hero: linear-gradient(135deg, #1a4d7a 0%, #0f2d4a 100%);
+  --gradient-luxury: linear-gradient(135deg, #c9a961 0%, #1a4d7a 50%, #0f2d4a 100%);
+  
+  /* Ombres élégantes */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 12px 40px rgba(0, 0, 0, 0.15);
+  --shadow-gold: 0 4px 20px rgba(201, 169, 97, 0.3);
+  --shadow-blue: 0 4px 20px rgba(26, 77, 122, 0.3);
 }
 
 body {
@@ -45,6 +88,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   line-height: 1.2;
   margin: 0;
+  color: var(--color-text);
 }
 
 h1 {
@@ -75,6 +119,42 @@ a:hover {
 }
 
 /* ========================================
+   CLASSES UTILITAIRES COULEURS
+   ======================================== */
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-secondary {
+  color: var(--color-secondary);
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-secondary {
+  background-color: var(--color-secondary);
+}
+
+.bg-gradient-primary {
+  background: var(--gradient-primary);
+}
+
+.bg-gradient-secondary {
+  background: var(--gradient-secondary);
+}
+
+.bg-gradient-luxury {
+  background: var(--gradient-luxury);
+}
+
+/* ========================================
    UTILITAIRES
    ======================================== */
 
@@ -100,15 +180,15 @@ pre, code {
 }
 
 pre {
-  background-color: #f5f5f5;
+  background-color: var(--color-bg-light);
   border-radius: 8px;
   padding: 1rem;
   overflow-x: auto;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--color-gray-light);
 }
 
 code {
-  background-color: #f5f5f5;
+  background-color: var(--color-bg-light);
   padding: 0.2rem 0.4rem;
   border-radius: 4px;
 }
@@ -141,7 +221,7 @@ button:focus:not(:focus-visible) {
   h1 {
     font-size: 2rem;
   }
-
+  
   h2 {
     font-size: 1.5rem;
   }

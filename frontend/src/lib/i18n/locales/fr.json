@@ -6,7 +6,10 @@
     "club": "Le Club",
     "teams": "Nos Équipes",
     "camps": "Le Camp Olympique",
-    "contact": "Contact"
+    "contact": "Contact",
+    "menu": "Menu",
+    "mobileMenu": "Menu de navigation",
+    "mainNavigation": "Navigation principale mobile"
   },
   "userMenu": {
     "hello": "Bonjour",
@@ -20,23 +23,73 @@
     "subtitle": "Club de football de Poznań",
     "description": "Passion et partage sont nos moteurs"
   },
+  "facebook": {
+    "latestPosts": "Suivez-nous sur Facebook",
+    "followDescription": "Restez informés de toutes nos actualités",
+    "pageLink": "Olympique Poznan sur Facebook",
+    "viewOnFacebook": "Voir sur Facebook",
+    "noPosts": "Aucun post pour le moment",
+    "errorLoading": "Erreur lors du chargement des posts Facebook"
+  },
   "footer": {
-    "description": "Olympique Poznan, club de football passionné basé à Poznań. Nous cultivons les valeurs du sport et de l'esprit d'équipe.",
+    "description": "Club de football franco-polonais basé à Poznań. Rejoignez-nous pour vivre votre passion du football !",
     "quickLinks": "Liens rapides",
     "contact": "Contact",
     "newsletter": "Newsletter",
-    "newsletterText": "Restez informé de nos actualités et événements",
+    "newsletterText": "Inscrivez-vous pour recevoir nos dernières actualités",
     "emailPlaceholder": "Votre email",
     "subscribe": "S'abonner",
     "sponsors": "Nos partenaires",
-    "rights": "Tous droits réservés.",
+    "rights": "Tous droits réservés",
     "legalNotice": "Mentions légales",
     "privacy": "Politique de confidentialité",
     "terms": "CGV"
   },
+  "auth": {
+    "login": {
+      "title": "Connexion",
+      "username": "Pseudo",
+      "usernamePlaceholder": "Votre pseudo",
+      "password": "Mot de passe",
+      "passwordPlaceholder": "Votre mot de passe",
+      "submit": "Se connecter",
+      "loading": "Connexion...",
+      "error": "Pseudo ou mot de passe incorrect",
+      "noAccount": "Pas encore inscrit ?",
+      "createAccount": "Créer un compte"
+    },
+    "register": {
+      "title": "Inscription",
+      "firstName": "Prénom",
+      "firstNamePlaceholder": "Pauline",
+      "lastName": "Nom",
+      "lastNamePlaceholder": "Hirtz",
+      "username": "Pseudo",
+      "usernamePlaceholder": "Kàmii",
+      "email": "Email",
+      "emailPlaceholder": "pauline@kamiicode.com",
+      "password": "Mot de passe",
+      "passwordPlaceholder": "Mon mot de passe",
+      "submit": "Créer mon compte",
+      "loading": "Inscription en cours...",
+      "success": "Inscription réussie ! Bienvenue sur Olympique Poznan !",
+      "errorAllFields": "Veuillez remplir tous les champs",
+      "errorGeneral": "Erreur lors de l'inscription",
+      "hasAccount": "Déjà inscrit ?",
+      "loginLink": "Se connecter",
+      "required": "*"
+    }
+  },
   "common": {
     "loading": "Chargement...",
     "error": "Une erreur est survenue",
-    "noData": "Aucune donnée disponible"
+    "noData": "Aucune donnée disponible",
+    "back": "Retour",
+    "close": "Fermer",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "delete": "Supprimer",
+    "edit": "Modifier"
   }
 }

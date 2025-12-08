@@ -1,5 +1,6 @@
 <script>
   import Navigation from './Navigation.svelte';
+  import { _ } from 'svelte-i18n';
   
   /** @type {string} */
   export let image = '/victory.jpg';
@@ -25,9 +26,9 @@
 
   <!-- Contenu -->
   <div class="hero-content">
-    <h1>{title}</h1>
-    <p class="hero-subtitle">{subtitle}</p>
-    <p class="hero-description">{description}</p>
+    <h1>{$_('hero.title')}</h1>
+    <p class="hero-subtitle">{$_('hero.subtitle')}</p>
+    <p class="hero-description">{$_('hero.description')}</p>
   </div>
 </section>
 

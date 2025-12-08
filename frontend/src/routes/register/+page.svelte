@@ -1,4 +1,5 @@
 <script>
+  import { _ } from 'svelte-i18n';
   import { goto } from '$app/navigation';
   import { register } from '$lib/api/auth';
   
@@ -10,14 +11,15 @@
   let loading = false;
   let error = '';
 
-  /**
+    /**
    * @param {Event & { currentTarget: HTMLFormElement }} e
    */
+
   async function handleRegister(e) {
     e.preventDefault();
     
     if (!firstName || !lastName || !username || !email || !password) {
-      error = "Veuillez remplir tous les champs";
+      error = $_('auth.register.errorAllFields');
       return;
     }
 
@@ -38,11 +40,11 @@
       const response = await register(userData);
       
       if (response.success) {
-        alert("Inscription réussie ! Bienvenue sur Olympique Poznan !");
+        alert($_('auth.register.success'));
         goto("/");
       }
-    } catch (/** @type {any} */ err) {
-      error = err.message || "Erreur lors de l'inscription";
+    } catch (err) {
+      error = $_('auth.register.errorGeneral');
       console.error("Erreur inscription:", err);
     } finally {
       loading = false;
@@ -51,39 +53,39 @@
 </script>
 
 <div class='menu-logo'>
-    <a href="/" class="logo-card">
-      <img src="/logo.png" alt="Logo Olympique Poznan" class="logo" />
-    </a>
+  <a href="/">
+    <img src="/logo.png" alt="Logo Olympique Poznan" class="logo" />
+  </a>
 </div>
 
 <div class="register-page">
   <div class="register-card">
-    <h1>Inscription</h1>
+    <h1>{$_('auth.register.title')}</h1>
 
     <form on:submit={handleRegister}>
       <label>
-        Prénom *
-        <input type="text" bind:value={firstName} placeholder="Pauline" required />
+        {$_('auth.register.firstName')} {$_('auth.register.required')}
+        <input type="text" bind:value={firstName} placeholder={$_('auth.register.firstNamePlaceholder')} required />
       </label>
 
       <label>
-        Nom *
-        <input type="text" bind:value={lastName} placeholder="Hirtz" required />
+        {$_('auth.register.lastName')} {$_('auth.register.required')}
+        <input type="text" bind:value={lastName} placeholder={$_('auth.register.lastNamePlaceholder')} required />
       </label>
 
       <label>
-        Pseudo *
-        <input type="text" bind:value={username} placeholder="Kàmii" required />
+        {$_('auth.register.username')} {$_('auth.register.required')}
+        <input type="text" bind:value={username} placeholder={$_('auth.register.usernamePlaceholder')} required />
       </label>
 
       <label>
-        Email *
-        <input type="email" bind:value={email} placeholder="pauline@kamiicode.com" required />
+        {$_('auth.register.email')} {$_('auth.register.required')}
+        <input type="email" bind:value={email} placeholder={$_('auth.register.emailPlaceholder')} required />
       </label>
 
       <label>
-        Mot de passe *
-        <input type="password" bind:value={password} placeholder="Mon mot de passe" required />
+        {$_('auth.register.password')} {$_('auth.register.required')}
+        <input type="password" bind:value={password} placeholder={$_('auth.register.passwordPlaceholder')} required />
       </label>
 
       {#if error}
@@ -91,12 +93,12 @@
       {/if}
 
       <button type="submit" disabled={loading}>
-        {loading ? 'Inscription en cours...' : 'Créer mon compte'}
+        {loading ? $_('auth.register.loading') : $_('auth.register.submit')}
       </button>
     </form>
 
     <p class="login-link">
-      Déjà inscrit ? <a href="/login">Se connecter</a>
+      {$_('auth.register.hasAccount')} <a href="/login">{$_('auth.register.loginLink')}</a>
     </p>
   </div>
 </div>

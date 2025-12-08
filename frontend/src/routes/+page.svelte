@@ -5,9 +5,8 @@
 
 <script>
   import Hero from '$lib/components/ui/Hero.svelte';
-  import NewsSection from '$lib/components/NewsSection.svelte';
-  import MatchesSection from '$lib/components/MatchesSection.svelte';
   import Footer from '$lib/components/ui/Footer.svelte'
+  import FacebookFeed from '$lib/components/FacebookFeed.svelte';
   
   /** @type {import('./$types').PageData} */
   export let data;
@@ -20,9 +19,7 @@
   description="Passion et partage sont nos moteurs"
 />
 
-<NewsSection news={data?.news || []} />
-
-<MatchesSection matches={data?.matches || []} />
+<FacebookFeed pageUrl="https://www.facebook.com/OlympiquePoz/" />
 
 <Footer />
 
