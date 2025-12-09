@@ -145,8 +145,8 @@
 
   .logo {
     display: block;
-    height: 150px; 
-    padding: 2rem;
+    height: 60px; 
+    padding: 1rem;
   }
 
   h1 {

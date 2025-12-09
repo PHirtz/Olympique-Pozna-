@@ -98,34 +98,31 @@
       "women": "Seniors Femmes",
       "men": "Seniors Hommes"
     },
-    "youth": {
-      "title": "Équipes Jeunes",
-      "ladies": "Les Dames",
-      "blues": "Les Bleus",
-      "giroud": "Olivier Giroud (2010/2011)",
-      "doue": {
-        "title": "Désiré Doué (2012)",
-        "players": {
-          "craczyk": "54 - CRACZYK",
-          "wutezi": "10 - WUTEZI",
-          "gartecki": "21 - GARTECKI",
-          "zok": "3 - ZOK",
-          "bielecki": "11 - BIELECKI",
-          "ceglowski": "40 - CEGLOWSKI",
-          "namysl": "7 - NAMYSL",
-          "wesolowski": "85 - WESOLOWSKI",
-          "wegner": "4 - WEGNER",
-          "majchrowicz": "12 - MAJCHROWICZ",
-          "pyzalka": "42 - PYZALKA"
-        }
-      },
-      "griezmann": "Antoine Griezmann (2013)",
-      "coman": "Kingsley Coman (2014)",
-      "diani": "Kadidiatou Diani (Junior)",
-      "renard": "Wendie Renard (Trampkarki)",
-      "lesommer": "Eugénie Le Sommer (Mlodziczki)",
-      "henry": "Amandine Henry (Orliczki)"
-    }
+    "ladies": "Les Dames",
+    "blues": "Les Bleus",
+    "giroud": "Olivier Giroud (2010/2011)",
+    "doue": {
+      "title": "Désiré Doué (2012)",
+      "players": {
+        "craczyk": "54 - CRACZYK",
+        "wutezi": "10 - WUTEZI",
+        "gartecki": "21 - GARTECKI",
+        "zok": "3 - ZOK",
+        "bielecki": "11 - BIELECKI",
+        "ceglowski": "40 - CEGLOWSKI",
+        "namysl": "7 - NAMYSL",
+        "wesolowski": "85 - WESOLOWSKI",
+        "wegner": "4 - WEGNER",
+        "majchrowicz": "12 - MAJCHROWICZ",
+        "pyzalka": "42 - PYZALKA"
+      }
+    },
+    "griezmann": "Antoine Griezmann (2013)",
+    "coman": "Kingsley Coman (2014)",
+    "diani": "Kadidiatou Diani (Junior)",
+    "renard": "Wendie Renard (Trampkarki)",
+    "lesommer": "Eugénie Le Sommer (Mlodziczki)",
+    "henry": "Amandine Henry (Orliczki)"
   },
   "common": {
     "loading": "Chargement...",

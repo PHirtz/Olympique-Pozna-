@@ -91,11 +91,12 @@
   align-items: center;
 }
 
-.logo {
-  height: 150px; 
-  padding: 2rem;
-  display: block;
-}
+  .logo {
+    display: block;
+    height: 60px; 
+    padding: 1rem;
+  }
+
 
 /* Section login */
 .login-page {
@@ -107,18 +108,6 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  padding-top: 80px; /* Pour laisser de la place au menu transparent */
-}
-
-/* Pour avoir une barre de navigation transparente en haut */
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0); /* Transparence */
-  padding: 1rem;
-  z-index: 5; /* Garde la barre au-dessus du fond */
 }
 
 /* Style du formulaire de connexion */

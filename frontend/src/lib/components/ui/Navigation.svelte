@@ -17,8 +17,26 @@
   /** @type {string | null} */
   let openSubSubmenu = null; // Pour les joueurs de Désiré Doué
 
+  /** @type {ReturnType<typeof setTimeout> | null} */
+  let closeTimeout = null;
+
   const toggleMenu = () => {
     open = !open;
+  };
+
+  const closeDropdownWithDelay = () => {
+    closeTimeout = setTimeout(() => {
+      openDropdown = null;
+      openSubmenu = null;
+      openSubSubmenu = null;
+    }, 300);
+  };
+
+  const cancelClose = () => {
+    if (closeTimeout) {
+      clearTimeout(closeTimeout);
+      closeTimeout = null;
+    }
   };
 
   const close = () => {
@@ -104,14 +122,14 @@
             <a href="/club/support" class="dropdown-item" role="menuitem">{$_('club.support')}</a>
             <a href="/club/status" class="dropdown-item" role="menuitem">{$_('club.status')}</a>
             
-            <div class="submenu">
+            <div class="submenu" on:mouseenter={cancelClose} on:mouseleave={closeDropdownWithDelay} role="group">
               <button class="dropdown-item submenu-trigger" role="menuitem" aria-haspopup="true">
                 {$_('club.documents.title')}
                 <span class="icon-rotate-90">
                   <ChevronDown size={14} />
                 </span>
               </button>
-              <div class="submenu-content" role="menu">
+              <div class="submenu-content" role="menu" tabindex="-1" on:mouseenter={cancelClose} on:mouseleave={closeDropdownWithDelay}>
                 <a href="/club/documents/cgv" class="submenu-item" role="menuitem">{$_('club.documents.cgv')}</a>
                 <a href="/club/documents/statutes" class="submenu-item" role="menuitem">{$_('club.documents.statutes')}</a>
                 <a href="/club/documents/regulations" class="submenu-item" role="menuitem">{$_('club.documents.regulations')}</a>
@@ -153,71 +171,71 @@
           </a>
           
           <!-- Les Dames -->
-          <a href="/teams/youth/ladies" class="dropdown-item" role="menuitem" tabindex="0">
-            {$_('teams.youth.ladies')}
+          <a href="/teams/ladies" class="dropdown-item" role="menuitem" tabindex="0">
+            {$_('teams.ladies')}
           </a>
           
           <!-- Les Bleus -->
-          <a href="/teams/youth/blues" class="dropdown-item" role="menuitem" tabindex="0">
-            {$_('teams.youth.blues')}
+          <a href="/teams/blues" class="dropdown-item" role="menuitem" tabindex="0">
+            {$_('teams.blues')}
           </a>
           
           <!-- Olivier Giroud -->
-          <a href="/teams/youth/giroud" class="dropdown-item" role="menuitem" tabindex="0">
-            {$_('teams.youth.giroud')}
+          <a href="/teams/giroud" class="dropdown-item" role="menuitem" tabindex="0">
+            {$_('teams.giroud')}
           </a>
           
           <!-- Désiré Doué avec sous-menu joueurs -->
-          <div class="submenu">
+          <div class="submenu" on:mouseenter={cancelClose} on:mouseleave={closeDropdownWithDelay} role="group">
             <button class="dropdown-item submenu-trigger" role="menuitem" aria-haspopup="true" tabindex="0">
-              {$_('teams.youth.doue.title')}
+              {$_('teams.doue.title')}
               <span class="icon-rotate-90">
                 <ChevronDown size={14} />
               </span>
             </button>
-            <div class="submenu-content" role="menu" tabindex="-1">
-              <a href="/teams/youth/doue/players/craczyk" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.youth.doue.players.craczyk')}</a>
-              <a href="/teams/youth/doue/players/wutezi" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.youth.doue.players.wutezi')}</a>
-              <a href="/teams/youth/doue/players/gartecki" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.youth.doue.players.gartecki')}</a>
-              <a href="/teams/youth/doue/players/zok" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.youth.doue.players.zok')}</a>
-              <a href="/teams/youth/doue/players/bielecki" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.youth.doue.players.bielecki')}</a>
-              <a href="/teams/youth/doue/players/ceglowski" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.youth.doue.players.ceglowski')}</a>
-              <a href="/teams/youth/doue/players/namysl" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.youth.doue.players.namysl')}</a>
-              <a href="/teams/youth/doue/players/wesolowski" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.youth.doue.players.wesolowski')}</a>
-              <a href="/teams/youth/doue/players/wegner" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.youth.doue.players.wegner')}</a>
-              <a href="/teams/youth/doue/players/majchrowicz" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.youth.doue.players.majchrowicz')}</a>
-              <a href="/teams/youth/doue/players/pyzalka" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.youth.doue.players.pyzalka')}</a>
+            <div class="submenu-content" role="menu" tabindex="-1" on:mouseenter={cancelClose} on:mouseleave={closeDropdownWithDelay}>
+              <a href="/teams/doue/players/craczyk" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.craczyk')}</a>
+              <a href="/teams/doue/players/wutezi" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.wutezi')}</a>
+              <a href="/teams/doue/players/gartecki" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.gartecki')}</a>
+              <a href="/teams/doue/players/zok" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.zok')}</a>
+              <a href="/teams/doue/players/bielecki" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.bielecki')}</a>
+              <a href="/teams/doue/players/ceglowski" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.ceglowski')}</a>
+              <a href="/teams/doue/players/namysl" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.namysl')}</a>
+              <a href="/teams/doue/players/wesolowski" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.wesolowski')}</a>
+              <a href="/teams/doue/players/wegner" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.wegner')}</a>
+              <a href="/teams/doue/players/majchrowicz" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.majchrowicz')}</a>
+              <a href="/teams/doue/players/pyzalka" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.pyzalka')}</a>
             </div>
           </div>
           
           <!-- Antoine Griezmann -->
-          <a href="/teams/youth/griezmann" class="dropdown-item" role="menuitem" tabindex="0">
-            {$_('teams.youth.griezmann')}
+          <a href="/teams/griezmann" class="dropdown-item" role="menuitem" tabindex="0">
+            {$_('teams.griezmann')}
           </a>
           
           <!-- Kingsley Coman -->
-          <a href="/teams/youth/coman" class="dropdown-item" role="menuitem" tabindex="0">
-            {$_('teams.youth.coman')}
+          <a href="/teams/coman" class="dropdown-item" role="menuitem" tabindex="0">
+            {$_('teams.coman')}
           </a>
           
           <!-- Kadidiatou Diani -->
-          <a href="/teams/youth/diani" class="dropdown-item" role="menuitem" tabindex="0">
-            {$_('teams.youth.diani')}
+          <a href="/teams/diani" class="dropdown-item" role="menuitem" tabindex="0">
+            {$_('teams.diani')}
           </a>
           
           <!-- Wendie Renard -->
-          <a href="/teams/youth/renard" class="dropdown-item" role="menuitem" tabindex="0">
-            {$_('teams.youth.renard')}
+          <a href="/teams/renard" class="dropdown-item" role="menuitem" tabindex="0">
+            {$_('teams.renard')}
           </a>
           
           <!-- Eugénie Le Sommer -->
-          <a href="/teams/youth/lesommer" class="dropdown-item" role="menuitem" tabindex="0">
-            {$_('teams.youth.lesommer')}
+          <a href="/teams/lesommer" class="dropdown-item" role="menuitem" tabindex="0">
+            {$_('teams.lesommer')}
           </a>
           
           <!-- Thierry Henry -->
-          <a href="/teams/youth/henry" class="dropdown-item" role="menuitem" tabindex="0">
-            {$_('teams.youth.henry')}
+          <a href="/teams/henry" class="dropdown-item" role="menuitem" tabindex="0">
+            {$_('teams.henry')}
           </a>
         </div>
       {/if}
@@ -317,14 +335,14 @@
             <ul class="mobile-submenu">
               <li><a href="/teams/seniors/women" on:click={close}>{$_('teams.seniors.women')}</a></li>
               <li><a href="/teams/seniors/men" on:click={close}>{$_('teams.seniors.men')}</a></li>
-              <li><a href="/teams/youth/ladies" on:click={close}>{$_('teams.youth.ladies')}</a></li>
-              <li><a href="/teams/youth/blues" on:click={close}>{$_('teams.youth.blues')}</a></li>
-              <li><a href="/teams/youth/giroud" on:click={close}>{$_('teams.youth.giroud')}</a></li>
+              <li><a href="/teams/ladies" on:click={close}>{$_('teams.ladies')}</a></li>
+              <li><a href="/teams/blues" on:click={close}>{$_('teams.blues')}</a></li>
+              <li><a href="/teams/giroud" on:click={close}>{$_('teams.giroud')}</a></li>
               
               <!-- Désiré Doué avec joueurs -->
               <li class="mobile-subsubmenu">
                 <button class="mobile-subsubmenu-trigger" on:click={() => toggleSubmenu('doue-mobile')}>
-                  {$_('teams.youth.doue.title')}
+                  {$_('teams.doue.title')}
                   <span class="icon-wrapper" class:rotate={openSubmenu === 'doue-mobile'}>
                     <ChevronDown size={14} />
                   </span>
@@ -332,27 +350,27 @@
                 
                 {#if openSubmenu === 'doue-mobile'}
                   <ul class="mobile-subsubmenu-list">
-                    <li><a href="/teams/youth/doue/players/craczyk" on:click={close}>{$_('teams.youth.doue.players.craczyk')}</a></li>
-                    <li><a href="/teams/youth/doue/players/wutezi" on:click={close}>{$_('teams.youth.doue.players.wutezi')}</a></li>
-                    <li><a href="/teams/youth/doue/players/gartecki" on:click={close}>{$_('teams.youth.doue.players.gartecki')}</a></li>
-                    <li><a href="/teams/youth/doue/players/zok" on:click={close}>{$_('teams.youth.doue.players.zok')}</a></li>
-                    <li><a href="/teams/youth/doue/players/bielecki" on:click={close}>{$_('teams.youth.doue.players.bielecki')}</a></li>
-                    <li><a href="/teams/youth/doue/players/ceglowski" on:click={close}>{$_('teams.youth.doue.players.ceglowski')}</a></li>
-                    <li><a href="/teams/youth/doue/players/namysl" on:click={close}>{$_('teams.youth.doue.players.namysl')}</a></li>
-                    <li><a href="/teams/youth/doue/players/wesolowski" on:click={close}>{$_('teams.youth.doue.players.wesolowski')}</a></li>
-                    <li><a href="/teams/youth/doue/players/wegner" on:click={close}>{$_('teams.youth.doue.players.wegner')}</a></li>
-                    <li><a href="/teams/youth/doue/players/majchrowicz" on:click={close}>{$_('teams.youth.doue.players.majchrowicz')}</a></li>
-                    <li><a href="/teams/youth/doue/players/pyzalka" on:click={close}>{$_('teams.youth.doue.players.pyzalka')}</a></li>
+                    <li><a href="/teams/doue/players/craczyk" on:click={close}>{$_('teams.doue.players.craczyk')}</a></li>
+                    <li><a href="/teams/doue/players/wutezi" on:click={close}>{$_('teams.doue.players.wutezi')}</a></li>
+                    <li><a href="/teams/doue/players/gartecki" on:click={close}>{$_('teams.doue.players.gartecki')}</a></li>
+                    <li><a href="/teams/doue/players/zok" on:click={close}>{$_('teams.doue.players.zok')}</a></li>
+                    <li><a href="/teams/doue/players/bielecki" on:click={close}>{$_('teams.doue.players.bielecki')}</a></li>
+                    <li><a href="/teams/doue/players/ceglowski" on:click={close}>{$_('teams.doue.players.ceglowski')}</a></li>
+                    <li><a href="/teams/doue/players/namysl" on:click={close}>{$_('teams.doue.players.namysl')}</a></li>
+                    <li><a href="/teams/doue/players/wesolowski" on:click={close}>{$_('teams.doue.players.wesolowski')}</a></li>
+                    <li><a href="/teams/doue/players/wegner" on:click={close}>{$_('teams.doue.players.wegner')}</a></li>
+                    <li><a href="/teams/doue/players/majchrowicz" on:click={close}>{$_('teams.doue.players.majchrowicz')}</a></li>
+                    <li><a href="/teams/doue/players/pyzalka" on:click={close}>{$_('teams.doue.players.pyzalka')}</a></li>
                   </ul>
                 {/if}
               </li>
               
-              <li><a href="/teams/youth/griezmann" on:click={close}>{$_('teams.youth.griezmann')}</a></li>
-              <li><a href="/teams/youth/coman" on:click={close}>{$_('teams.youth.coman')}</a></li>
-              <li><a href="/teams/youth/diani" on:click={close}>{$_('teams.youth.diani')}</a></li>
-              <li><a href="/teams/youth/renard" on:click={close}>{$_('teams.youth.renard')}</a></li>
-              <li><a href="/teams/youth/lesommer" on:click={close}>{$_('teams.youth.lesommer')}</a></li>
-              <li><a href="/teams/youth/henry" on:click={close}>{$_('teams.youth.henry')}</a></li>
+              <li><a href="/teams/griezmann" on:click={close}>{$_('teams.griezmann')}</a></li>
+              <li><a href="/teams/coman" on:click={close}>{$_('teams.coman')}</a></li>
+              <li><a href="/teams/diani" on:click={close}>{$_('teams.diani')}</a></li>
+              <li><a href="/teams/renard" on:click={close}>{$_('teams.renard')}</a></li>
+              <li><a href="/teams/lesommer" on:click={close}>{$_('teams.lesommer')}</a></li>
+              <li><a href="/teams/henry" on:click={close}>{$_('teams.henry')}</a></li>
             </ul>
           {/if}
         </li>
@@ -712,9 +730,8 @@
     .nav-links {
       display: flex;
       flex: 1;
-      justify-content: center;
+      justify-content: space-evenly;
       align-items: center;
-      gap: 0.5rem;
     }
 
     .nav-link {
@@ -894,7 +911,7 @@
     }
 
     .nav-links {
-      gap: 1rem;
+      gap: 1.5rem;
     }
   }
 </style>

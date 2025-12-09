@@ -128,7 +128,7 @@
   .mobile-actions {
     display: flex;
     position: absolute;
-    right: 0.75rem;
+    top: 0.75rem;
     gap: 0.5rem;
   }
 
