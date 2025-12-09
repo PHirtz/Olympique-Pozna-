@@ -319,22 +319,6 @@
     background: rgba(255, 255, 255, 0.08);
   }
 
-  .newsletter-form button {
-    padding: 0.875rem 1.5rem;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    border: none;
-    border-radius: 0.5rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-
-  .newsletter-form button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-  }
-
   /* ========================================
      SECTION SPONSORS
      ======================================== */

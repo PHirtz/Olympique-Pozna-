@@ -124,6 +124,62 @@
     "lesommer": "Eugénie Le Sommer (Mlodziczki)",
     "henry": "Amandine Henry (Orliczki)"
   },
+  "about": {
+    "title": "O nas - Olympique Poznań",
+    "metaDescription": "Poznaj historię i wartości Olympique Poznań, klubu piłkarskiego szkolącego w sercu Poznania",
+    "hero": {
+      "title": "Olympique Poznań",
+      "subtitle": "Więcej niż klub, szkoła życia"
+    },
+    "intro": {
+      "text": "Położony w sercu dynamicznego miasta Poznań, Olympique Poznań to znacznie więcej niż zwykły klub piłkarski: to prawdziwa szkoła życia, miejsce, w którym spotykają się pasja, szkolenie i duch zespołowy, aby kształtować talenty przyszłości."
+    },
+    "values": {
+      "title": "Nasze wartości",
+      "excellence": {
+        "title": "Doskonałość",
+        "description": "Wysokiej jakości szkolenie z certyfikowanymi i zaangażowanymi trenerami od 2023 roku"
+      },
+      "teamSpirit": {
+        "title": "Duch zespołowy",
+        "description": "Przyjazna i integracyjna atmosfera, w której każdy zawodnik znajduje swoje miejsce"
+      },
+      "passion": {
+        "title": "Pasja",
+        "description": "Piłka nożna jako narzędzie rozwoju osobistego i zespołowego"
+      },
+      "training": {
+        "title": "Szkolenie",
+        "description": "Programy dostosowane do każdego wieku dla harmonijnego rozwoju"
+      }
+    },
+    "formation": {
+      "excellence": {
+        "title": "Szkolenie nastawione na doskonałość",
+        "text1": "Od momentu powstania w 2023 roku, Olympique Poznań szybko stał się punktem odniesienia w lokalnym krajobrazie sportowym. Klub kładzie nacisk na zapewnienie wysokiej jakości opieki, z certyfikowanymi i zaangażowanymi trenerami, którzy towarzyszą każdemu zawodnikowi w jego rozwoju technicznym, taktycznym i osobistym.",
+        "text2": "Programy szkoleniowe są zaprojektowane tak, aby odpowiadały specyficznym potrzebom każdej grupy wiekowej, sprzyjając harmonijnemu i dostosowanemu postępowi."
+      },
+      "coaches": {
+        "title": "Zespół oddanych trenerów",
+        "text1": "Opiekę zapewnia zespół wykwalifikowanych trenerów, z których niektórzy posiadają uznane certyfikaty, takie jak UEFA C. Ich podejście pedagogiczne, połączone z praktycznym doświadczeniem, gwarantuje stymulujące i życzliwe środowisko nauki.",
+        "text2": "Każdy trener wnosi swój osobisty styl, przyczyniając się do stworzenia rodzinnej i motywującej atmosfery."
+      },
+      "atmosphere": {
+        "title": "Przyjazna i integracyjna atmosfera",
+        "text1": "Olympique Poznań wyróżnia się ciepłą i integracyjną atmosferą. Klub przyjmuje zawodników z różnych środowisk, promując różnorodność i wzajemną pomoc. Wartości szacunku, solidarności i fair play są sednem każdego treningu i zawodów.",
+        "text2": "Ta filozofia tworzy silne poczucie przynależności, w którym każdy członek czuje się doceniony i wspierany."
+      }
+    },
+    "community": {
+      "title": "Dołącz do naszej społeczności",
+      "intro": "Śledź nas w mediach społecznościowych, aby być na bieżąco z aktualnościami klubu, zdjęciami z treningów, opiniami zawodników i wieloma innymi!",
+      "cta": {
+        "text": "Niezależnie od tego, czy jesteś młodym pasjonatem piłki nożnej, rodzicem szukającym klubu szkoleniowego dla swojego dziecka, czy po prostu miłośnikiem sportu chcącym zaangażować się w dynamiczną społeczność,",
+        "textBold": "Olympique Poznań otwiera swoje drzwi z entuzjazmem.",
+        "button": "Dołącz do przygody"
+      }
+    }
+  },
   "common": {
     "loading": "Ładowanie...",
     "error": "Wystąpił błąd",

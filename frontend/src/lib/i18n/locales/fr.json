@@ -124,6 +124,62 @@
     "lesommer": "Eugénie Le Sommer (Mlodziczki)",
     "henry": "Amandine Henry (Orliczki)"
   },
+  "about": {
+    "title": "À propos - Olympique Poznań",
+    "metaDescription": "Découvrez l'histoire et les valeurs d'Olympique Poznań, club de football formateur au cœur de Poznań",
+    "hero": {
+      "title": "Olympique Poznań",
+      "subtitle": "Plus qu'un club, une école de vie"
+    },
+    "intro": {
+      "text": "Situé au cœur de la dynamique ville de Poznań, Olympique Poznań est bien plus qu'un simple club de football : c'est une véritable école de vie, un lieu où la passion, la formation et l'esprit d'équipe se rencontrent pour façonner les talents de demain."
+    },
+    "values": {
+      "title": "Nos valeurs",
+      "excellence": {
+        "title": "Excellence",
+        "description": "Formation de qualité avec des entraîneurs certifiés et passionnés depuis 2023"
+      },
+      "teamSpirit": {
+        "title": "Esprit d'équipe",
+        "description": "Une ambiance conviviale et inclusive où chaque joueur trouve sa place"
+      },
+      "passion": {
+        "title": "Passion",
+        "description": "Le football comme vecteur de développement personnel et collectif"
+      },
+      "training": {
+        "title": "Formation",
+        "description": "Programmes adaptés à chaque âge pour une progression harmonieuse"
+      }
+    },
+    "formation": {
+      "excellence": {
+        "title": "Une formation axée sur l'excellence",
+        "text1": "Depuis sa création en 2023, Olympique Poznań s'est rapidement imposé comme une référence dans le paysage sportif local. Le club met un point d'honneur à offrir un encadrement de qualité, avec des entraîneurs certifiés et passionnés, qui accompagnent chaque joueur dans son développement technique, tactique et personnel.",
+        "text2": "Les programmes de formation sont conçus pour répondre aux besoins spécifiques de chaque groupe d'âge, favorisant ainsi une progression harmonieuse et adaptée."
+      },
+      "coaches": {
+        "title": "Une équipe d'entraîneurs dévoués",
+        "text1": "L'encadrement est assuré par une équipe d'entraîneurs qualifiés, dont certains possèdent des certifications reconnues telles que l'UEFA C. Leur approche pédagogique, combinée à une expérience pratique, garantit un environnement d'apprentissage stimulant et bienveillant.",
+        "text2": "Chaque entraîneur apporte sa touche personnelle, contribuant à créer une atmosphère familiale et motivante."
+      },
+      "atmosphere": {
+        "title": "Une ambiance conviviale et inclusive",
+        "text1": "Olympique Poznań se distingue par son ambiance chaleureuse et inclusive. Le club accueille des joueurs de tous horizons, favorisant la diversité et l'entraide. Les valeurs de respect, de solidarité et de fair-play sont au cœur de chaque entraînement et compétition.",
+        "text2": "Cette philosophie crée un sentiment d'appartenance fort, où chaque membre se sent valorisé et soutenu."
+      }
+    },
+    "community": {
+      "title": "Rejoignez notre communauté",
+      "intro": "Suivez-nous sur nos réseaux sociaux pour ne rien manquer de l'actualité du club, des photos des entraînements, des témoignages de joueurs et bien plus encore !",
+      "cta": {
+        "text": "Que vous soyez un jeune passionné de football, un parent à la recherche d'un club formateur pour votre enfant, ou simplement un amateur de sport souhaitant s'impliquer dans une communauté dynamique,",
+        "textBold": "Olympique Poznań vous ouvre ses portes avec enthousiasme.",
+        "button": "Rejoignez l'aventure"
+      }
+    }
+  },
   "common": {
     "loading": "Chargement...",
     "error": "Une erreur est survenue",
