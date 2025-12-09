@@ -165,7 +165,7 @@
           <span class="icon">📧</span>
           <div>
             <strong>Email</strong>
-            <p>contact@olympiquepoznan.com</p>
+            <p>s.wutezi@wutezi.com</p>
           </div>
         </div>
         <div class="info-item">

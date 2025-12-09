@@ -1,6 +1,6 @@
 <script>
   import { _ } from 'svelte-i18n';
-  import { Facebook, Instagram, Twitter, Mail, MapPin, Phone } from 'lucide-svelte';
+  import { Facebook, Instagram, Music2, Mail, MapPin, Phone } from 'lucide-svelte';
 	import { goto } from '$app/navigation';
   import Button from './Button.svelte';
 </script>
@@ -15,14 +15,14 @@
         {$_('footer.description')}
       </p>
       <div class="social-links">
-        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <a href="https://www.facebook.com/OlympiquePoz" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
           <Facebook size={20} />
         </a>
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <a href="https://www.instagram.com/olympiquepoznan/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
           <Instagram size={20} />
         </a>
-        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-          <Twitter size={20} />
+        <a href="https://www.tiktok.com/tag/olympiquepozna%C5%84" target="_blank" rel="noopener noreferrer" aria-label="Tiktok">
+          <Music2 size={20} />
         </a>
       </div>
     </div>
@@ -54,7 +54,7 @@
         </li>
         <li>
           <Mail size={18} />
-          <span>contact@olympique-poznań.pl</span>
+          <span>s.wutezi@wutezi.com</span>
         </li>
       </ul>
     </div>

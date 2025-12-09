@@ -180,6 +180,164 @@
       }
     }
   },
+  "coaches": {
+    "title": "Nasi Trenerzy - Olympique Poznań",
+    "metaDescription": "Poznaj zespół zaangażowanych i wykwalifikowanych trenerów Olympique Poznań",
+    "hero": {
+      "title": "Olympique Poznań",
+      "subtitle": "Nasi super trenerzy"
+    },
+    "stephane": {
+      "name": "STÉPHANE WUTEZI",
+      "tagline": "Architekt i filar klubu, mistrz organizacji, zaangażowany trener",
+      "since": "Trener od dzieciństwa 😆, oficjalnie od 2003 roku",
+      "motto": "Nigdy się nie poddawać",
+      "formations": {
+        "title": "Szkolenia, kursy, warsztaty, uzyskane licencje",
+        "uefa_c": "Licencja UEFA C (Liga Bretanii)",
+        "uefa_b": "Licencja UEFA B (WZPN)",
+        "stages": "Staże w: Tours FC, Stade Rennais FC, GKS Dopiewo, Warta Poznań",
+        "conferences": "Aktywny udział w konferencjach, warsztatach i szkoleniach dotyczących treningów, przygotowania fizycznego i aspektów taktycznych"
+      },
+      "experience": {
+        "coach": {
+          "title": "Doświadczenie na boisku jako trener"
+        },
+        "player": {
+          "title": "Doświadczenie na boisku jako zawodnik"
+        }
+      },
+      "idol": {
+        "title": "Idol młodości i ulubiony zawodnik obecnie",
+        "text": "Thierry Henry – « Na zewnętrznej ścianie Emirates Stadium można przeczytać: I fell in love with Arsenal because of Ian Wright. To cytat Thierry'ego Henry'ego, mojego idola od jego debiutów w AS Monaco, gdy był jeszcze nastolatkiem ». Dziś: Miles Lewis-Skelly – « Od zawsze fascynują mnie nastolatki wkraczające do świata profesjonalnej piłki nożnej. »"
+      },
+      "passion": {
+        "title": "Inna pasja niż piłka nożna: MUZYKA",
+        "text": "« Jestem melomanem. Co zaskakujące, moją pierwszą pasją jest muzyka. \"Pochłaniam\" astronomiczne ilości albumów każdego tygodnia, od hip-hopu po muzykę klasyczną. Co tydzień muszę odkryć co najmniej dwóch nowych artystów. Platformy streamingowe mają mnie dość, bo psuje ich statystyki » 😊"
+      },
+      "questions": {
+        "title": "Chcesz wiedzieć więcej o trenerze Stéphanie? Nasi zawodnicy zadali mu kilka pytań 😊",
+        "q1": {
+          "question": "Skąd wzięła się nazwa klubu?",
+          "answer": "Olympique de Marseille i Olympique Lyonnais należą do najbardziej rozpoznawalnych francuskich klubów na scenie międzynarodowej. Tworząc klub z francuskim DNA, francuską filozofią szkolenia młodzieży, który grałby na dawnym stadionie Olimpii Poznań – klubu, który również nosił barwy trójkolorowe – ta nazwa narzuciła się naturalnie. Uwaga: Olympique to nie Olimpia. Olympique wymawia się [Olępik] 😊"
+        },
+        "q2": {
+          "question": "Dlaczego Polska?",
+          "answer": "Moja sąsiadka w akademiku w Bretanii gotowała dziwne i egzotyczne potrawy we wspólnej kuchni. Z ciekawości zagadałem ją, mówiąc o \"Lesz Posnan\" i \"Lesz Waleza\" – tak się wymawia po francusku, prawda? Dzięki miłości wiem już, jak się to wymawia poprawnie. Minęło dwadzieścia lat, mieszkam w Polsce, ta sąsiadka została moją żoną, wiceprezesem klubu, matką dwóch olimpijskich zawodników i wciąż miłością mojego życia 🥰"
+        },
+        "q3": {
+          "question": "Dlaczego twoim ulubionym klubem jest Arsenal?",
+          "answer": "Jako paryżanin byłem na kilku meczach na Parc des Princes. W 1994 roku Arsenal zdobył Puchar Europy, pokonując PSG w półfinale. W ataku mieli Iana Wrighta, ikonę klubu, który nosił legendarną czerwoną koszulkę z numerem 8 i sponsorem JVC z przodu. Miałem 10 lat i « zakochałem się w Arsenalu dzięki Ianowi Wrightowi »."
+        }
+      }
+    },
+    "patryk_k": {
+      "name": "PATRYK KAMIONKA",
+      "tagline": "Ciężko pracujący i urzekający bramkarzy",
+      "since": "Trener od 2018 roku",
+      "formations": {
+        "title": "Szkolenia, kursy, warsztaty i uzyskane licencje",
+        "wopr": "Ratownik WOPR",
+        "teacher": "Nauczyciel wychowania fizycznego",
+        "kinesiology": "Szkolenie z kinezygerontoprofilaktyki",
+        "goalkeeper": "Staż trenerski w Akademii Bramkarzy Wielkopolski (asystent)",
+        "uefa": "W trakcie przygotowań do szkoleń UEFA C i GOALKEEPER A"
+      },
+      "experience": {
+        "player": {
+          "title": "Doświadczenie na boisku jako zawodnik (bramkarz)"
+        }
+      },
+      "idol": {
+        "title": "Idol młodości i ulubiony zawodnik obecnie",
+        "text": "Ronaldinho (FC Barcelona) « Czarodziej piłki nożnej, dzięki niemu uśmiech nigdy nie schodził z mojej twarzy podczas meczów. Technicznie przewyższał wszystkich innych w swojej epoce » i Łukasz Fabiański « Będąc sam bramkarzem, nie mogę go nie wybrać. Wspaniały i skromny chłopak, który osiągnął wiele szczytów ciężką pracą. »"
+      },
+      "questions": {
+        "title": "Oto trzy krótkie pytania zadane przez zawodników 😊",
+        "q1": {
+          "question": "Co trener najbardziej ceni u zawodnika? Według niego, co jest ważniejsze: talent czy praca?",
+          "answer": "Najbardziej cenię cechy charakteru, które ujawniają, jakim typem zawodnika się jest. Talent to tylko mała część sukcesu w sporcie, trzeba go wzmocnić ciężką pracą, aby odnieść sukces. Świetnymi przykładami są Messi czy Cristiano Ronaldo. Więc bez wahania: ciężka praca."
+        },
+        "q2": {
+          "question": "Czego chciałbyś się nauczyć w dzieciństwie, ale nigdy nie miałeś okazji?",
+          "answer": "Chciałbym nauczyć się grać na gitarze."
+        },
+        "q3": {
+          "question": "Gdybyś mógł się teleportować gdziekolwiek na świecie, dokąd byś poszedł i dlaczego?",
+          "answer": "Zawsze marzyłem o Islandii, o jej gorących wodach termalnych, wspaniałych krajobrazach, gdzie można się wykąpać i od razu wskoczyć w śnieżne góry!"
+        }
+      }
+    },
+    "patryk_w": {
+      "name": "PATRYK WESOŁOWSKI",
+      "tagline": "Specjalista pracy między słupkami",
+      "since": "Trener od 2020 roku",
+      "formations": {
+        "title": "Szkolenia, kursy, warsztaty i uzyskane licencje",
+        "animator": "Animator piłki nożnej",
+        "camp": "Szkolenie instruktora kolonijnego",
+        "reissa": "Staż trenerski w Akademii Piłkarskiej Reissa",
+        "conferences": "Ciągłe doskonalenie przez udział w specjalistycznych szkoleniach i konferencjach"
+      },
+      "idol": {
+        "title": "Idol młodości i ulubiony zawodnik dzisiaj",
+        "text": "Ronaldo Nazario. « Zawsze ten sam. To nie tylko wspaniały zawodnik, to prawdziwa ikona piłki nożnej. Uwielbiam jego styl gry – jego błyskawiczne przyspieszenia i nieprzewidywalną technikę. Był kompletnym napastnikiem: zdolnym do zimnego wykończenia akcji, ale także do stworzenia okazji z niczego. »"
+      },
+      "questions": {
+        "title": "Jakie pytania nasi zawodnicy zadali Trenerowi? 😊",
+        "q1": {
+          "question": "Według Trenera, czy bramkarz musi być trochę szalony?",
+          "answer": "Tak, myślę, że bramkarz musi mieć w sobie odrobinę szaleństwa. To pozycja, która wymaga nie tylko wyjątkowych umiejętności fizycznych, ale także nadzwyczajnej psychologii. Ta część \"szaleństwa\" to odwaga, instynkt i czasami niemal przesadna wiara w siebie."
+        },
+        "q2": {
+          "question": "Jaka jest największa trudność w pracy z dziećmi?",
+          "answer": "Największą trudnością dla mnie jest odpowiadanie na potrzeby bardzo różnych osobowości. Każde dziecko jest wyjątkowe – niektóre potrzebują więcej uwagi, inne wyzwań, jeszcze inne wsparcia i cierpliwości."
+        },
+        "q3": {
+          "question": "Ulubiona książka i dlaczego?",
+          "answer": "Nie mam jednej ulubionej książki, ale najbardziej pasjonują mnie prace o jednostkach specjalnych i misjach wojskowych. Fascynuje mnie determinacja i dyscyplina wymagana w służbie w tych jednostkach."
+        }
+      }
+    },
+    "dominika": {
+      "name": "DOMINIKA KŁOSOWSKA",
+      "tagline": "Najmłodsza w zespole trenerskim… i ulubienica żeńskiej sekcji zawodników",
+      "since": "Trenerka od marca 2024",
+      "formations": {
+        "title": "Szkolenia, kursy, warsztaty, uzyskane licencje",
+        "assistant": "Certyfikowana Asystentka Trenera Piłki Nożnej",
+        "animator": "Certyfikowana Animatorka Piłki Nożnej",
+        "women": "Specjalistyczne szkolenie z piłki nożnej kobiet z Marzeną Bogdanowicz",
+        "intro_uefa": "Szkolenie wprowadzające do programu UEFA C",
+        "uefa_progress": "W trakcie: Szkolenie UEFA C – trzymamy mocno kciuki! 😊💪"
+      },
+      "mottos": {
+        "title": "Dewizy życiowe",
+        "motto1": "Wybierz pracę, którą kochasz, a nie będziesz musiał pracować ani jednego dnia w życiu.",
+        "motto2": "Nie zawsze wygrywa najsilniejszy, najszybszy lub najbardziej utalentowany – wygrywa ten, kto myśli, że może to zrobić.",
+        "motto3": "Jeśli możesz o tym marzyć, możesz to zrealizować."
+      },
+      "idol": {
+        "title": "Idol: Cristiano Ronaldo",
+        "text": "Zawsze Cristiano Ronaldo, od dzieciństwa i to się nigdy nie zmieni. CR7 uosabia dla mnie żelazną dyscyplinę, rygor, stałość. Jego sukces pochodzi nie tylko z talentu, ale z ciężkiej pracy, ducha poświęcenia, nieustannego dążenia do perfekcji."
+      },
+      "questions": {
+        "title": "Zawodnicy zadali kilka pytań Trenerce 😊",
+        "q1": {
+          "question": "Co sprawia największą radość w pracy z dziećmi?",
+          "answer": "Po roku treningów w Olympique mogę powiedzieć, że wszystkie dzieci mnie totalnie zaadoptowały. Najpiękniejszy moment? To kiedy po trudnym dniu przychodzę na boisko ze sprzętem i słyszę: « Och dzień dobry Trenerko! Tak czekaliśmy na ten moment z Panią! » Te słowa i pozytywna energia dzieci natychmiast wymazują zmęczenie."
+        },
+        "q2": {
+          "question": "Jak to jest pracować w zawodzie zwanym \"męskim\"?",
+          "answer": "Praca w \"męskim świecie\" to prawdziwe wyzwanie. Mimo postępów w piłce nożnej kobiet, wciąż postrzegana jest jako męski sport. Trenerki kobiety są nadal rzadkie, wręcz cenne. Ale zawsze miałam zainteresowania zwane \"męskimi\" i zawsze czułam się swobodnie w męskich grupach."
+        },
+        "q3": {
+          "question": "Co chciałaby zmienić w piłce nożnej?",
+          "answer": "Piłka nożna to wspaniały sport, ale potrzebuje ewolucji w kilku punktach: oferować takie same szanse kobietom, promować więcej piłki nożnej kobiet, wzmacniać szacunek w sporcie, zmniejszyć absurdalne wynagrodzenia i bardziej sprawiedliwy podział funduszy."
+        }
+      }
+    }
+  },
   "common": {
     "loading": "Ładowanie...",
     "error": "Wystąpił błąd",
@@ -191,5 +349,47 @@
     "confirm": "Potwierdź",
     "delete": "Usuń",
     "edit": "Edytuj"
+  },
+  "contact": {
+  "title": "Kontakt - Olympique Poznań",
+  "metaDescription": "Skontaktuj się z Olympique Poznań, aby dołączyć do klubu lub zadać pytanie",
+  "hero": {
+    "title": "Skontaktuj się z nami",
+    "subtitle": "Dołącz do przygody Olympique Poznań"
+  },
+  "intro": {
+    "title": "Masz pytanie? Chcesz do nas dołączyć?",
+    "text": "Wypełnij poniższy formularz, a my odpowiemy najszybciej jak to możliwe. Niezależnie od tego, czy chcesz zostać zawodnikiem, trenerem czy wolontariuszem, chętnie z Tobą porozmawiamy!"
+  },
+  "form": {
+    "name": "Imię i nazwisko",
+    "namePlaceholder": "Twoje imię i nazwisko",
+    "email": "Email",
+    "emailPlaceholder": "twoj.email@przyklad.pl",
+    "category": "Kategoria",
+    "categories": {
+      "coach": "Trener",
+      "junior": "Piłkarz Junior",
+      "senior": "Piłkarz Senior",
+      "veteran": "Piłkarz Weteran",
+      "volunteer": "Wolontariusz",
+      "other": "Inne"
+    },
+    "message": "Wiadomość",
+    "messagePlaceholder": "Opowiedz nam o sobie i swojej motywacji...",
+    "submit": "Wyślij wiadomość",
+    "sending": "Wysyłanie...",
+    "success": "Twoja wiadomość została wysłana! Odpowiemy wkrótce.",
+    "error": "Wystąpił błąd, spróbuj ponownie później.",
+    "errorRequired": "Proszę wypełnić wszystkie wymagane pola."
+  },
+  "info": {
+    "email": {
+      "title": "Email"
+    },
+    "social": {
+      "title": "Media społecznościowe"
+    }
   }
+}
 }

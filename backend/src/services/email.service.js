@@ -32,7 +32,7 @@ class EmailService {
     try {
       const mailOptions = {
         from: process.env.SMTP_FROM || '"Olympique Poznan" <noreply@olympiquepoznan.com>',
-        to: process.env.ADMIN_EMAIL || 'contact@olympiquepoznan.com',
+        to: process.env.ADMIN_EMAIL || 's.wutezi@wutezi.com',
         subject: `📧 Nouveau message: ${contact.subject}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">

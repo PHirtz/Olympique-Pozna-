@@ -180,6 +180,163 @@
       }
     }
   },
+  "coaches": {
+    "title": "Nos Entraîneurs - Olympique Poznań",
+    "metaDescription": "Découvrez l'équipe d'entraîneurs passionnés et qualifiés d'Olympique Poznań",
+    "hero": {
+      "title": "Olympique Poznań",
+      "subtitle": "Nos supers entraîneurs"
+    },
+    "stephane": {
+      "name": "STÉPHANE WUTEZI",
+      "tagline": "Architecte et pilier du club, maître de l'organisation, entraîneur passionné",
+      "since": "Entraîneur depuis l'enfance 😆, officiellement depuis 2003",
+      "motto": "Ne jamais abandonner",
+      "formations": {
+        "title": "Formations, stages, ateliers, licences obtenues",
+        "uefa_c": "Licence UEFA C (Ligue de Bretagne)",
+        "uefa_b": "Licence UEFA B (WZPN)",
+        "stages": "Stages à : Tours FC, Stade Rennais FC, GKS Dopiewo, Warta Poznań",
+        "conferences": "Participation active à des conférences, ateliers et formations sur l'entraînement, la préparation physique et les aspects tactiques"
+      },
+      "experience": {
+        "coach": {
+          "title": "Expérience sur le terrain en tant qu'entraîneur"
+        },
+        "player": {
+          "title": "Expérience sur le terrain en tant que joueur"
+        }
+      },
+      "idol": {
+        "title": "Idole de jeunesse et joueur préféré actuellement",
+        "text": "Thierry Henry – « Sur un mur extérieur de l'Emirates Stadium, on peut lire : I fell in love with Arsenal because of Ian Wright. C'est une citation de Thierry Henry, mon idole depuis ses débuts à l'AS Monaco, alors qu'il n'était encore qu'un adolescent ». Aujourd'hui : Miles Lewis-Skelly – « Depuis toujours, je suis fasciné par les adolescents qui entrent dans le monde du football professionnel. »"
+      },
+      "passion": {
+        "title": "Autre passion que le football : LA MUSIQUE",
+        "text": "« Je suis un mélomane. Étonnamment, ma première passion, c'est la musique. Je \"dévore\" des quantités astronomiques d'albums chaque semaine, du hip-hop à la musique classique. Chaque semaine, je dois découvrir au moins deux nouveaux artistes. Les plateformes de streaming en ont marre de moi, car je fausse leurs statistiques » 😊"
+      },
+      "questions": {
+        "title": "Encore plus sur le coach Stéphane ? Nos joueurs lui ont posé quelques questions 😊",
+        "q1": {
+          "question": "D'où vient le nom du club ?",
+          "answer": "L'Olympique de Marseille et l'Olympique Lyonnais comptent parmi les clubs français les plus reconnus sur la scène internationale. En créant un club avec un ADN français, une philosophie française de formation des jeunes, qui jouerait dans l'ancien stade de l'Olimpia Poznań – un club qui arborait également les couleurs tricolores – ce nom s'est imposé naturellement. Attention toutefois : Olympique n'est pas Olimpia. Olympique se prononce [Olępik] 😊"
+        },
+        "q2": {
+          "question": "Pourquoi la Pologne ?",
+          "answer": "Ma voisine en résidence universitaire en Bretagne cuisinait des plats étranges et exotiques dans la cuisine commune. Par curiosité, je l'ai abordée en parlant de \"Lesz Posnan\" et de \"Lesz Waleza\" – c'est comme ça qu'on prononce en français, non ? Grâce à l'amour, je sais désormais comment les prononcer correctement. Vingt ans ont passé, je vis en Pologne, cette voisine est devenue ma femme, vice-présidente du club, mère de deux joueurs olympiens et toujours l'amour de ma vie 🥰"
+        },
+        "q3": {
+          "question": "Pourquoi ton club préféré est-il Arsenal ?",
+          "answer": "En tant que Parisien, j'ai assisté à plusieurs matchs au Parc des Princes. En 1994, Arsenal a remporté une coupe d'Europe en battant le PSG en demi-finale. Ils avaient Ian Wright en attaque, une icône du club, qui portait le légendaire maillot rouge avec le numéro 8 et le sponsor JVC sur le devant. J'avais 10 ans et « je suis tombé amoureux d'Arsenal grâce à Ian Wright »."
+        }
+      }
+    },
+    "patryk_k": {
+      "name": "PATRYK KAMIONKA",
+      "tagline": "Travailleur acharné et charmeur de gardiens de but",
+      "since": "Entraîneur depuis 2018",
+      "formations": {
+        "title": "Formations, stages, ateliers et licences obtenues",
+        "wopr": "Sauveteur WOPR",
+        "teacher": "Professeur d'éducation physique",
+        "kinesiology": "Formation en kinésigérontoprophylaxie",
+        "goalkeeper": "Stage d'entraîneur à l'Académie de Gardiens de But de Grande-Pologne (assistant)",
+        "uefa": "En cours de préparation pour suivre les formations UEFA C et GOALKEEPER A"
+      },
+      "experience": {
+        "player": {
+          "title": "Expérience sur le terrain en tant que joueur (gardien de but)"
+        }
+      },
+      "idol": {
+        "title": "Idole de jeunesse et joueur préféré actuel",
+        "text": "Ronaldinho (FC Barcelone) « Un magicien du football, grâce à lui un sourire ne quittait jamais mon visage pendant les matchs. Techniquement supérieur à tous les autres de son époque » et Łukasz Fabiański « Étant moi-même gardien, je ne peux que le choisir. Un garçon formidable et humble, qui a atteint de nombreux sommets par un travail acharné. »"
+      },
+      "questions": {
+        "title": "Voici trois courtes questions posées par les joueurs 😊",
+        "q1": {
+          "question": "Qu'est-ce que l'entraîneur apprécie le plus chez un joueur ? Selon lui, qu'est-ce qui est le plus important : le talent ou le travail ?",
+          "answer": "Ce que j'apprécie le plus, ce sont les traits de caractère qui révèlent quel type de joueur on est. Le talent n'est qu'une petite partie du succès dans le sport, il faut le renforcer par un travail acharné pour réussir. De grands exemples sont Messi ou Cristiano Ronaldo. Donc, sans hésiter : le travail acharné."
+        },
+        "q2": {
+          "question": "Qu'auriez-vous aimé apprendre dans votre enfance, mais n'en avez jamais eu l'occasion ?",
+          "answer": "J'aurais aimé apprendre à jouer de la guitare."
+        },
+        "q3": {
+          "question": "Si vous pouviez vous téléporter n'importe où dans le monde, où iriez-vous et pourquoi ?",
+          "answer": "J'ai toujours rêvé de l'Islande, pour ses eaux thermales chaudes, ses paysages magnifiques, où l'on peut se baigner et sauter directement dans les montagnes enneigées !"
+        }
+      }
+    },
+    "patryk_w": {
+      "name": "PATRYK WESOŁOWSKI",
+      "tagline": "Spécialiste du travail entre les poteaux",
+      "since": "Entraîneur depuis 2020",
+      "formations": {
+        "title": "Formations, stages, ateliers et licences obtenues",
+        "animator": "Animateur de football",
+        "camp": "Formation de moniteur de colonie",
+        "reissa": "Stage d'entraîneur à l'Académie de Football Reissa",
+        "conferences": "Perfectionnement continu par la participation à des formations spécialisées et à des conférences"
+      },
+      "idol": {
+        "title": "Idole de jeunesse et joueur préféré aujourd'hui",
+        "text": "Ronaldo Nazario. « Toujours le même. Ce n'est pas seulement un excellent joueur, c'est une véritable icône du football. J'adore son style de jeu – ses accélérations fulgurantes et sa technique imprévisible. C'était un attaquant complet : capable de conclure froidement une action, mais aussi de créer une occasion à partir de rien. »"
+      },
+      "questions": {
+        "title": "Quelles questions nos joueurs ont-ils posées à l'entraîneur ? 😊",
+        "q1": {
+          "question": "Selon l'entraîneur, un gardien de but doit-il être un peu fou ?",
+          "answer": "Oui, je pense qu'un gardien doit avoir une part de folie. C'est un poste qui demande non seulement des qualités physiques exceptionnelles, mais aussi une psychologie hors norme. Cette part de \"folie\", c'est du courage, de l'instinct, et parfois une confiance en soi presque démesurée."
+        },
+        "q2": {
+          "question": "Quelle est la plus grande difficulté dans le travail avec les enfants ?",
+          "answer": "La plus grande difficulté, pour moi, c'est de répondre aux besoins de personnalités très différentes. Chaque enfant est unique – certains ont besoin de plus d'attention, d'autres de défis, d'autres encore de soutien et de patience."
+        },
+        "q3": {
+          "question": "Livre préféré et pourquoi ?",
+          "answer": "Je n'ai pas un livre préféré en particulier, mais ce qui me passionne le plus, ce sont les ouvrages sur les unités spéciales et les missions militaires. Je suis fasciné par la détermination et la discipline qu'exige le service dans ces unités."
+        }
+      }
+    },
+    "dominika": {
+      "name": "DOMINIKA KŁOSOWSKA",
+      "tagline": "La benjamine de l'équipe d'entraîneurs… et la préférée de la section féminine des joueurs",
+      "since": "Entraîneuse depuis mars 2024",
+      "formations": {
+        "title": "Formations, stages, ateliers, licences obtenues",
+        "assistant": "Assistante entraîneuse de Football certifiée",
+        "animator": "Animatrice de Football certifiée",
+        "women": "Formation spécialisée sur le football féminin avec Marzena Bogdanowicz",
+        "intro_uefa": "Formation d'introduction au cursus UEFA C",
+        "uefa_progress": "En cours : Formation UEFA C – on croise fort les doigts ! 😊💪"
+      },
+      "mottos": {
+        "title": "Devises de vie",
+        "motto1": "Choisis un travail que tu aimes, et tu n'auras pas à travailler un seul jour de ta vie.",
+        "motto2": "Ce n'est pas toujours le plus fort, le plus rapide ou le plus talentueux qui gagne – c'est celui qui pense qu'il peut le faire.",
+        "motto3": "Si tu peux en rêver, tu peux le réaliser."
+      },
+      "idol": {
+        "title": "Idole : Cristiano Ronaldo",
+        "text": "Toujours Cristiano Ronaldo, depuis l'enfance, et ça ne changera jamais. CR7 incarne pour moi la discipline de fer, la rigueur, la constance. Sa réussite ne vient pas seulement du talent, mais d'un travail acharné, d'un esprit de sacrifice, d'une quête incessante de la perfection."
+      },
+      "questions": {
+        "title": "Les joueurs ont posé quelques questions à l'entraîneuse 😊",
+        "q1": {
+          "question": "Qu'est-ce qui donne le plus de joie dans le travail avec les enfants ?",
+          "answer": "Après un an d'entraînement à Olympique, je peux dire que tous les enfants m'ont totalement adoptée. Le plus beau moment ? C'est quand, après une journée difficile, j'arrive sur le terrain avec tout le matériel et j'entends : « Oh bonjour Coach ! On attendait trop ce moment avec vous ! » Ces mots et l'énergie positive des enfants effacent immédiatement la fatigue."
+        },
+        "q2": {
+          "question": "Comment vit-on le fait de travailler dans un métier dit \"d'hommes\" ?",
+          "answer": "Travailler dans un \"monde d'hommes\", c'est un vrai défi. Malgré les progrès du football féminin, il est encore perçu comme un sport masculin. Les entraîneuses femmes restent rares, précieuses même. Mais j'ai toujours eu des centres d'intérêt dits \"masculins\", et j'ai toujours été à l'aise dans des groupes d'hommes."        },
+        "q3": {
+          "question": "Ce qu'elle aimerait changer dans le football ?",
+          "answer": "Le football est un sport magnifique, mais il a besoin d'évoluer sur plusieurs points : offrir les mêmes chances aux femmes, promouvoir davantage le football féminin, renforcer le respect dans le sport, réduire les rémunérations absurdes, et une répartition plus équitable des fonds."
+        }
+      }
+    }
+  },
   "common": {
     "loading": "Chargement...",
     "error": "Une erreur est survenue",
@@ -191,5 +348,47 @@
     "confirm": "Confirmer",
     "delete": "Supprimer",
     "edit": "Modifier"
+  },
+  "contact": {
+  "title": "Contact - Olympique Poznań",
+  "metaDescription": "Contactez Olympique Poznań pour rejoindre le club ou pour toute question",
+  "hero": {
+    "title": "Contactez-nous",
+    "subtitle": "Rejoignez l'aventure Olympique Poznań"
+  },
+  "intro": {
+    "title": "Une question ? Une envie de nous rejoindre ?",
+    "text": "Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais. Que vous souhaitiez devenir joueur, entraîneur ou bénévole, nous serons ravis d'échanger avec vous !"
+  },
+  "form": {
+    "name": "Nom",
+    "namePlaceholder": "Votre nom complet",
+    "email": "Email",
+    "emailPlaceholder": "votre.email@exemple.com",
+    "category": "Catégorie",
+    "categories": {
+      "coach": "Entraîneur",
+      "junior": "Footballeur Junior",
+      "senior": "Footballeur Senior",
+      "veteran": "Footballeur Vétéran",
+      "volunteer": "Bénévole",
+      "other": "Autre"
+    },
+    "message": "Message",
+    "messagePlaceholder": "Parlez-nous de vous et de votre motivation...",
+    "submit": "Envoyer le message",
+    "sending": "Envoi en cours...",
+    "success": "Votre message a bien été envoyé ! Nous vous répondrons rapidement.",
+    "error": "Une erreur est survenue, veuillez réessayer plus tard.",
+    "errorRequired": "Veuillez remplir tous les champs obligatoires."
+  },
+  "info": {
+    "email": {
+      "title": "Email"
+    },
+    "social": {
+      "title": "Réseaux sociaux"
+    }
   }
+}
 }
