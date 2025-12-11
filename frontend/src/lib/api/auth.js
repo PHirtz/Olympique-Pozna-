@@ -1,39 +1,20 @@
 import { apiRequest } from './client.js';
-import { loginUser as setLoginUser, logout as clearAuth } from '$lib/stores/auth';
+import { loginUser as setLoginUser, logout as clearAuth, getToken, user } from '$lib/stores/auth';
+import { get } from 'svelte/store';
 
 /**
  * Connexion utilisateur
- * @param {Object} credentials
- * @param {string} [credentials.email] - Email de l'utilisateur
- * @param {string} [credentials.username] - Username de l'utilisateur
- * @param {string} credentials.password - Mot de passe
+ * @param {string} username - Nom d'utilisateur
+ * @param {string} password - Mot de passe
  */
-export async function login(credentials) {
+export async function login(username, password) {
   const response = await apiRequest('/users/login', {
     method: 'POST',
-    body: JSON.stringify(credentials),
+    body: JSON.stringify({ username, password }),
   });
 
   if (response.success && response.data) {
     // Stocker l'utilisateur et le token
-    setLoginUser(response.data.user, response.data.token);
-  }
-
-  return response;
-}
-
-/**
- * Inscription utilisateur
- * @param {Object} data - Données utilisateur
- */
-export async function register(data) {
-  const response = await apiRequest('/users', {
-    method: 'POST',
-    body: JSON.stringify(data),
-  });
-
-  // Optionnel : connexion automatique après inscription
-  if (response.success && response.data?.token) {
     setLoginUser(response.data.user, response.data.token);
   }
 
@@ -46,4 +27,29 @@ export async function register(data) {
 export async function logout() {
   clearAuth();
   return { success: true };
+}
+
+/**
+ * Vérifier si l'utilisateur est authentifié
+ * @returns {boolean}
+ */
+export function isAuthenticated() {
+  return !!getToken();
+}
+
+/**
+ * Vérifier si l'utilisateur est admin
+ * @returns {boolean}
+ */
+export function isAdmin() {
+  const currentUser = get(user);
+  return currentUser?.role === 'admin';
+}
+
+/**
+ * Récupérer l'utilisateur actuel
+ * @returns {Object|null}
+ */
+export function getCurrentUser() {
+  return get(user);
 }

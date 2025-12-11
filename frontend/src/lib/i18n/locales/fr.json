@@ -329,13 +329,114 @@
         },
         "q2": {
           "question": "Comment vit-on le fait de travailler dans un métier dit \"d'hommes\" ?",
-          "answer": "Travailler dans un \"monde d'hommes\", c'est un vrai défi. Malgré les progrès du football féminin, il est encore perçu comme un sport masculin. Les entraîneuses femmes restent rares, précieuses même. Mais j'ai toujours eu des centres d'intérêt dits \"masculins\", et j'ai toujours été à l'aise dans des groupes d'hommes."        },
+          "answer": "Travailler dans un \"monde d'hommes\", c'est un vrai défi. Malgré les progrès du football féminin, il est encore perçu comme un sport masculin. Les entraîneuses femmes restent rares, précieuses même. Mais j'ai toujours eu des centres d'intérêt dits \"masculins\", et j'ai toujours été à l'aise dans des groupes d'hommes."
+        },
         "q3": {
           "question": "Ce qu'elle aimerait changer dans le football ?",
           "answer": "Le football est un sport magnifique, mais il a besoin d'évoluer sur plusieurs points : offrir les mêmes chances aux femmes, promouvoir davantage le football féminin, renforcer le respect dans le sport, réduire les rémunérations absurdes, et une répartition plus équitable des fonds."
         }
       }
+    },
+    "jakub": {
+      "name": "JAKUB GOLAŃSKI",
+      "tagline": "Respect et motivation en une seule personne",
+      "since": "Entraîneur avec 15 ans d'expérience",
+      "motto": "Travaille en silence, laisse les résultats faire du bruit",
+      "formations": {
+        "title": "Cours, formations, ateliers, licences obtenues",
+        "uefa_a": "Licence UEFA A",
+        "motor_coach": "Cours d'entraîneur moteur",
+        "teacher": "Professeur d'éducation physique",
+        "bachelor": "Licence en éducation physique avec gymnastique corrective-compensatoire",
+        "master": "Master en pédagogie sociale",
+        "warta": "Stage à Warta Poznań",
+        "ajax": "Camp pour entraîneurs Ajax Amsterdam à Cracovie",
+        "coerver": "Formation Coerver Coaching",
+        "first_aid": "Instructeur de premiers secours",
+        "corrective": "Spécialiste en gymnastique corrective-compensatoire"
+      },
+      "experience": {
+        "coach": {
+          "title": "Expérience sur le terrain en tant qu'entraîneur"
+        },
+        "player": {
+          "title": "Expérience sur le terrain en tant que joueur"
+        }
+      },
+      "idol": {
+        "title": "Idole de football",
+        "text": "Ronaldo Luis Nazario de Lima – selon l'entraîneur Jakub – l'un des meilleurs attaquants au monde, possédant des compétences individuelles exceptionnelles, un homme qui a su revenir plus fort après des blessures."
+      },
+      "passion": {
+        "title": "Autre passion que le football",
+        "text": "Un bon roman policier, développement personnel, voyages"
+      },
+      "favorite_club": {
+        "title": "Club de football préféré",
+        "text": "Lech Poznań et FC Barcelone"
+      },
+      "questions": {
+        "title": "Nos joueurs ont posé quelques questions à l'entraîneur 😊",
+        "q1": {
+          "question": "Quel a été le premier club où l'entraîneur est devenu entraîneur et pourquoi ?",
+          "answer": "Le premier club où j'ai travaillé comme entraîneur était Złoci Złotkowo. J'ai été sollicité par l'un des résidents locaux pour créer des entraînements pour les enfants et c'est ainsi que mon aventure d'entraîneur a commencé."
+        },
+        "q2": {
+          "question": "À quoi faut-il prêter une attention particulière lors de la formation des jeunes ?",
+          "answer": "Je pense que l'aspect principal du développement des jeunes joueurs ce sont les actions individuelles en attaque et en défense. Il est important d'inculquer à l'enfant l'amour du sport !!!"
+        },
+        "q3": {
+          "question": "Quelques conseils pour séduire une fille",
+          "answer": "La confiance en soi et être soi-même sont importantes. La conversation – les femmes adorent être écoutées. Posez des questions, soyez intéressé par ce qu'elle dit. Retenez le nom de la fille !!!! qui vous intéresse. Les phrases bizarres du genre « tu brilles comme un million de pièces » ne sont pas appropriées."
+        }
+      }
+    },
+  "pawel": {
+    "name": "PAWEŁ KULESA",
+    "tagline": "Formateur au style décontracté mais à l'approche professionnelle",
+    "since": "Entraîneur depuis 2014",
+    "motto": "Be the hero of your own movie",
+    "formations": {
+      "title": "Cours, formations, ateliers, licences obtenues",
+      "uefa": "Licence UEFA B/PZPN C",
+      "conferences": "Participation à des conférences et formations perfectionnant les compétences"
+    },
+    "experience": {
+      "coach": {
+        "title": "Expérience sur le terrain en tant qu'entraîneur"
+      },
+      "player": {
+        "title": "Expérience sur le terrain en tant que joueur"
+      }
+    },
+    "idol": {
+      "title": "Idole de football \"enfant\" et joueur préféré actuellement",
+      "text": "Enfant : le frère de l'entraîneur - Karol Morawiec - \"...qui m'a montré le football enfant, je voulais toujours observer comment il jouait et taper dans le ballon avec lui ne serait-ce que 5 minutes\". Le deuxième idole est le formateur ultérieur de l'entraîneur - Tomasz Kiciński - \"...à l'époque où je jouais activement, je l'observais toujours en 3e ligue. Je me souviens comme si c'était hier de ses buts de loin et de ses longs cheveux presque dorés, grâce auxquels il se distinguait autant que par ses compétences. Plus tard, il m'a fait confiance à 16 ans et m'a introduit dans l'équipe senior. Je me souviens encore de lui, un homme merveilleux\". Actuellement, le joueur préféré est Konrad Laimer - Bayern Munich et John Stones - Manchester City."
+    },
+    "passion": {
+      "title": "Autre passion que le football",
+      "text": "Adore le sport au sens large, salle de sport, course à pied, tennis. Tout ce qui tourne autour du sport même si, comme il l'a dit lui-même, \"Ça ne se voit peut-être pas\". Une grande passion, un engouement est la cuisine \"J'aime cuisiner pour ma famille (ils disent que je me suis trompé de vocation)\"."
+    },
+    "favorite_club": {
+      "title": "Club de football préféré",
+      "text": "Legia Varsovie - \"...grâce à mon frère Karol, je soutiens le club de la capitale depuis x années. Cependant, cette saison, je compte sur le championnat pour Lech !\" et le club étranger Arsenal Londres"
+    },
+    "questions": {
+      "title": "Ce que nos joueurs voulaient savoir sur l'entraîneur ? 😊",
+      "q1": {
+        "question": "Entraîneur préféré au monde et pourquoi ?",
+        "answer": "J'en ai deux : 1. Jurgen Klopp - The Normal One, parce qu'il est lui-même et qu'il est une personne distinctive dans l'entraînement tout en maintenant un équilibre approprié travail-vie. 2. Jakub Golański - pour son approche professionnelle de ses responsabilités et parce qu'au moment de mon \"burn-out\", il a eu une énorme influence pour rallumer cette flamme."
+      },
+      "q2": {
+        "question": "Que dirait l'entraîneur à son jeune lui ? Quel conseil de vie ?",
+        "answer": "La peur est une réaction normale à certaines situations. Apprends à la contrôler pour qu'elle soit une peur positive qui alimente tes actions et non paralysante. Ce n'est que du football, amuse-toi et montre ce dont tu es capable sans aucune barrière."
+      },
+      "q3": {
+        "question": "Pourquoi Olympique Poznań ? Quelle chose changerait l'entraîneur dans le fonctionnement actuel du club ?",
+        "answer": "L'approche de l'entraînement conforme à la mienne. Ce ne sont pas l'âge mais les compétences du moment qui devraient déterminer avec qui nous rivalisons. Qu'est-ce que je changerais ? Tout et rien. Tout ce qui nécessite des changements pour le bien des enfants, quoi que ce soit et sera. Et rien parce que c'est une merveilleuse communauté qui place les enfants et les jeunes en premier."
+      }
     }
+  }
   },
   "common": {
     "loading": "Chargement...",
@@ -350,45 +451,78 @@
     "edit": "Modifier"
   },
   "contact": {
-  "title": "Contact - Olympique Poznań",
-  "metaDescription": "Contactez Olympique Poznań pour rejoindre le club ou pour toute question",
-  "hero": {
-    "title": "Contactez-nous",
-    "subtitle": "Rejoignez l'aventure Olympique Poznań"
-  },
-  "intro": {
-    "title": "Une question ? Une envie de nous rejoindre ?",
-    "text": "Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais. Que vous souhaitiez devenir joueur, entraîneur ou bénévole, nous serons ravis d'échanger avec vous !"
-  },
-  "form": {
-    "name": "Nom",
-    "namePlaceholder": "Votre nom complet",
-    "email": "Email",
-    "emailPlaceholder": "votre.email@exemple.com",
-    "category": "Catégorie",
-    "categories": {
-      "coach": "Entraîneur",
-      "junior": "Footballeur Junior",
-      "senior": "Footballeur Senior",
-      "veteran": "Footballeur Vétéran",
-      "volunteer": "Bénévole",
-      "other": "Autre"
+    "title": "Contact - Olympique Poznań",
+    "metaDescription": "Contactez Olympique Poznań pour rejoindre le club ou pour toute question",
+    "hero": {
+      "title": "Contactez-nous",
+      "subtitle": "Rejoignez l'aventure Olympique Poznań"
     },
-    "message": "Message",
-    "messagePlaceholder": "Parlez-nous de vous et de votre motivation...",
-    "submit": "Envoyer le message",
-    "sending": "Envoi en cours...",
-    "success": "Votre message a bien été envoyé ! Nous vous répondrons rapidement.",
-    "error": "Une erreur est survenue, veuillez réessayer plus tard.",
-    "errorRequired": "Veuillez remplir tous les champs obligatoires."
-  },
-  "info": {
-    "email": {
-      "title": "Email"
+    "intro": {
+      "title": "Une question ? Une envie de nous rejoindre ?",
+      "text": "Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais. Que vous souhaitiez devenir joueur, entraîneur ou bénévole, nous serons ravis d'échanger avec vous !"
     },
-    "social": {
-      "title": "Réseaux sociaux"
+    "form": {
+      "name": "Nom",
+      "namePlaceholder": "Votre nom complet",
+      "email": "Email",
+      "emailPlaceholder": "votre.email@exemple.com",
+      "category": "Catégorie",
+      "categories": {
+        "coach": "Entraîneur",
+        "junior": "Footballeur Junior",
+        "senior": "Footballeur Senior",
+        "veteran": "Footballeur Vétéran",
+        "volunteer": "Bénévole",
+        "other": "Autre"
+      },
+      "message": "Message",
+      "messagePlaceholder": "Parlez-nous de vous et de votre motivation...",
+      "submit": "Envoyer le message",
+      "sending": "Envoi en cours...",
+      "success": "Votre message a bien été envoyé ! Nous vous répondrons rapidement.",
+      "error": "Une erreur est survenue, veuillez réessayer plus tard.",
+      "errorRequired": "Veuillez remplir tous les champs obligatoires."
+    },
+    "info": {
+      "email": {
+        "title": "Email"
+      },
+      "social": {
+        "title": "Réseaux sociaux"
+      }
+    }
+  },
+  "home": {
+    "teams": {
+      "title": "Les équipes Olympique Poznań",
+      "senior": {
+        "name": "Nos équipes seniors",
+        "description": "Des hommes et des femmes passionnés défendant fièrement nos couleurs."
+      },
+      "junior": {
+        "name": "Nos équipes juniors",
+        "description": "Nos jeunes talents en développement pour l'avenir du club."
+      },
+      "feminine": {
+        "name": "Nos équipes féminines",
+        "description": "La fierté féminine de l'Olympique Poznań sur le terrain."
+      }
+    },
+    "accompagnement": {
+      "title": "Une famille unie par la passion",
+      "paragraph1": "Au cœur de notre club bat une conviction simple : chaque enfant mérite sa chance sur le terrain.",
+      "paragraph2": "Chez Olympique Poznań, nous ne formons pas seulement des footballeurs. Nous accompagnons des enfants à grandir, à croire en eux, à se relever après une défaite et à célébrer ensemble chaque petite victoire.",
+      "paragraph3": "Nos entraîneurs ne sont pas là pour crier depuis la touche. Ils sont là pour écouter, encourager, transmettre. Parce qu'avant les trophées, il y a le respect. Avant la performance, il y a le plaisir. Avant le talent, il y a l'envie.",
+      "paragraph4": "Ici, on joue en bleu et blanc, mais surtout, on joue ensemble. Français, Polonais, de tous horizons : nos différences font notre force. Sur notre terrain, chaque enfant trouve sa place, quelle que soit son histoire.",
+      "paragraph5": "Olympique Poznań, c'est une famille unie par l'amour du ballon rond et des valeurs qui comptent vraiment : le respect, la solidarité, le dépassement de soi. C'est un club où les enfants viennent heureux et repartent grandis.",
+      "highlight": "Des premiers pas sur le terrain aux matchs seniors, Olympique Poznań accompagne chaque joueur dans son parcours."
+    },
+    "performance": {
+      "title": "Plus haut. Plus fort. Plus fiers.",
+      "paragraph1": "Olympique Poznań croit au pouvoir du dépassement de soi. Sur nos terrains, les enfants apprennent que les vraies victoires se gagnent d'abord contre soi-même : contre le doute, la fatigue, la peur d'échouer.",
+      "paragraph2": "Encadrés par des entraîneurs exigeants et bienveillants, ils découvrent qu'ils sont capables de repousser leurs limites, de transformer l'effort en fierté, la persévérance en résultats.",
+      "paragraph3": "Chaque médaille raconte une histoire de caractère forgé, de détermination cultivée, de confiance construite.",
+      "highlight": "Que vous ayez 4 ans ou 70 ans, nos terrains sont là pour révéler votre potentiel. Parce que les champions de demain se construisent dans les entraînements d'aujourd'hui."
     }
   }
-}
 }

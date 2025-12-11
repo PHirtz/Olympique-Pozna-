@@ -1,5 +1,6 @@
 import { PUBLIC_API_URL } from '$env/static/public';
-import { getToken } from '$lib/stores/auth';
+import { getToken, logout } from '$lib/stores/auth';
+import { browser } from '$app/environment';
 
 /**
  * @typedef {Object} ApiResponse
@@ -29,12 +30,26 @@ export async function apiRequest(endpoint, options = {}) {
     },
   };
 
-  const response = await fetch(url, config);
-  const data = await response.json();
+  try {
+    const response = await fetch(url, config);
+    const data = await response.json();
 
-  if (!response.ok) {
-    throw new Error(data.message || 'Une erreur est survenue');
+    // Gestion 401 : Token invalide ou expiré
+    if (response.status === 401) {
+      if (browser) {
+        logout();
+        window.location.href = '/login';
+      }
+      throw new Error('Session expirée. Veuillez vous reconnecter.');
+    }
+
+    if (!response.ok) {
+      throw new Error(data.message || 'Une erreur est survenue');
+    }
+
+    return data;
+  } catch (error) {
+    console.error('Erreur API:', error);
+    throw error;
   }
-
-  return data;
 }

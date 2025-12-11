@@ -1,5 +1,6 @@
 import userService from '../services/user.service.js';
 import { HttpBadRequestError } from '../errors/http.errors.js';
+import { generateToken, generateRefreshToken } from '../middlewares/auth.middleware.js';
 
 class UserController {
   async create(req, res, next) {
@@ -41,7 +42,7 @@ class UserController {
 
   async getProfile(req, res, next) {
     try {
-      // req.userId devrait venir d'un middleware d'auth JWT
+      // req.userId vient du middleware d'auth JWT
       const user = await userService.getUserPrivateProfile(req.userId);
       res.status(200).json({
         success: true,
@@ -67,7 +68,7 @@ class UserController {
 
   async updateProfile(req, res, next) {
     try {
-      // req.userId devrait venir d'un middleware d'auth JWT
+      // req.userId vient du middleware d'auth JWT
       const user = await userService.updateUserProfile(req.userId, req.body);
       res.status(200).json({
         success: true,
@@ -87,7 +88,7 @@ class UserController {
         throw new HttpBadRequestError('Mot de passe actuel et nouveau mot de passe requis');
       }
 
-      // req.userId devrait venir d'un middleware d'auth JWT
+      // req.userId vient du middleware d'auth JWT
       await userService.updateUserPassword(req.userId, currentPassword, newPassword);
       
       res.status(200).json({
@@ -107,7 +108,7 @@ class UserController {
         throw new HttpBadRequestError('URL de l\'image requise');
       }
 
-      // req.userId devrait venir d'un middleware d'auth JWT
+      // req.userId vient du middleware d'auth JWT
       const user = await userService.updateUserProfilePicture(req.userId, imageUrl, imagePath);
       
       res.status(200).json({
@@ -149,18 +150,17 @@ class UserController {
       const userWithoutPassword = user.toJSON();
       delete userWithoutPassword.password;
 
-      // Générer le token JWT
-      // Décommentez ces lignes après avoir installé jsonwebtoken
-      // const token = generateToken(user);
-      // const refreshToken = generateRefreshToken(user);
+      // Générer les tokens JWT
+      const token = generateToken(user);
+      const refreshToken = generateRefreshToken(user);
 
       res.status(200).json({
         success: true,
         message: 'Connexion réussie',
         data: {
           user: userWithoutPassword,
-          // token,
-          // refreshToken
+          token,
+          refreshToken
         }
       });
     } catch (error) {

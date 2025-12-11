@@ -189,6 +189,7 @@ class NewsService {
   }
 
   async getLatestNews(limit = 5) {
+  const limitNumber = parseInt(limit) || 5;
     return await News.findAll({
       where: {
         status: 'published',
@@ -206,7 +207,7 @@ class NewsService {
           attributes: ['id', 'name', 'namePl']
         }
       ],
-      limit,
+      limit : limitNumber,
       order: [['publishedAt', 'DESC']]
     });
   }

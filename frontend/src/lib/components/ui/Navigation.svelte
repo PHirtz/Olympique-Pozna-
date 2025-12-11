@@ -99,7 +99,7 @@
         {$_('nav.news')}
       </a>
       
-      <a href="/shop" class="nav-link" style="animation-delay: 0.2s">
+      <a href="www.olympique.pl" class="nav-link" style="animation-delay: 0.2s">
         {$_('nav.shop')}
       </a>
       
@@ -135,8 +135,6 @@
                 <a href="/club/documents/regulations" class="submenu-item" role="menuitem">{$_('club.documents.regulations')}</a>
               </div>
             </div>
-            
-            <a href="/contact" class="dropdown-item" role="menuitem">{$_('nav.contact')}</a>
           </div>
         {/if}
       </div>
@@ -316,8 +314,6 @@
                   </ul>
                 {/if}
               </li>
-              
-              <li><a href="/contact" on:click={close}>{$_('nav.contact')}</a></li>
             </ul>
           {/if}
         </li>

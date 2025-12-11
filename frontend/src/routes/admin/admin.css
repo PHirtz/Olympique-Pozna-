@@ -1,0 +1,230 @@
+/* Backoffice Admin - Olympique Poznań */
+
+/* Variables */
+:root {
+  --op-blue-primary: #1a4d7a;
+  --op-blue-dark: #0f2d4a;
+  --op-gold: #c9a961;
+  --op-gold-light: #ddc184;
+}
+
+/* Sidebar */
+.admin-sidebar {
+  background: linear-gradient(180deg, var(--op-blue-primary) 0%, var(--op-blue-dark) 100%);
+  box-shadow: 4px 0 12px rgba(0, 0, 80, 0.1);
+  position: relative;
+  z-index: 40;
+  border-radius: 0%  0 0 50%;
+}
+
+.admin-sidebar-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-sidebar-subtitle {
+  color: var(--op-gold);
+}
+
+.admin-nav-link {
+  color: white;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.admin-nav-link:hover:not(.disabled) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.admin-nav-link.active {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-left: 4px solid var(--op-gold);
+}
+
+.admin-nav-link.disabled {
+  color: rgba(255, 255, 255, 0.5);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.admin-user-info {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 1.8rem;
+}
+
+.admin-user-role {
+  color: var(--op-gold);
+  font-size: 0.875rem;
+}
+
+/* Mobile sidebar z-index fix */
+.mobile-sidebar-overlay {
+  z-index: 100 !important;
+}
+
+.mobile-sidebar {
+  position: relative;
+  z-index: 101 !important;
+}
+
+/* Header */
+.admin-header {
+  background: white;
+  border-bottom: 2px solid var(--op-gold);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 30;
+}
+
+.admin-link {
+  color: var(--op-blue-primary);
+  transition: color 0.2s ease;
+}
+
+.admin-link:hover {
+  color: var(--op-gold);
+}
+
+/* Main content with white background */
+.admin-main {
+  background-color: #f8f9fa;
+  position: relative;
+}
+
+.admin-main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
+  opacity: 0.95;
+  z-index: -1;
+}
+
+/* Dashboard Title */
+.dashboard-title {
+  color: var(--op-blue-primary);
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Stats Cards */
+.stat-card {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.stat-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.stat-card-sponsors {
+  border-left: 4px solid var(--op-blue-primary);
+}
+
+.stat-card-teams {
+  border-left: 4px solid #2e7d32;
+}
+
+.stat-card-users {
+  border-left: 4px solid #7b1fa2;
+}
+
+.stat-card-products {
+  border-left: 4px solid #ed6c02;
+}
+
+.stat-card-value {
+  color: var(--op-blue-primary);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+.stat-card-icon-gold {
+  color: var(--op-gold);
+}
+
+/* Quick Actions */
+.actions-section {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.actions-title {
+  color: var(--op-blue-primary);
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.action-card {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: 2px solid var(--op-gold);
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  background: white;
+}
+
+.action-card:hover {
+  background-color: #faf8f3;
+  border-color: var(--op-blue-primary);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.action-card-icon {
+  color: var(--op-blue-primary);
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.action-card-title {
+  color: var(--op-blue-primary);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.action-card-subtitle {
+  color: #6c757d;
+  font-size: 0.875rem;
+}
+
+.action-card-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: #e0e0e0;
+  pointer-events: none;
+}
+
+.action-card-disabled:hover {
+  background-color: white;
+  border-color: #e0e0e0;
+  box-shadow: none;
+}
+
+/* Loading */
+.loading-spinner {
+  border-color: var(--op-blue-primary);
+}
+
+/* Mobile */
+@media (min-width: 1024px) {
+  .admin-sidebar {
+    border-radius: 0 0 0 50%;
+  }
+}

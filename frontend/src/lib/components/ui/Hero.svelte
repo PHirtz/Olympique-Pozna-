@@ -97,21 +97,23 @@
   }
 
   .hero-content h1 {
-    font-size: 3.5rem;
+    font-size: 4.5rem;
     font-weight: 800;
     margin-bottom: 1rem;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+    color: white;
+    text-shadow: 0 4px 20px rgba(229, 218, 218, 0.7);
     line-height: 1.2;
   }
 
   .hero-subtitle {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     margin-bottom: 0.5rem;
+    padding-top: 2rem;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
   }
 
   .hero-description {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-style: italic;
     opacity: 0.9;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);

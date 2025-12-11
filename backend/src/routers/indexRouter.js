@@ -1,5 +1,6 @@
 import express from 'express';
 import { validate } from '../middlewares/validate.middleware.js';
+import { authMiddleware, requireRole } from '../middlewares/auth.middleware.js'; // ← NOUVEAU
 
 // Import controllers
 import userController from '../controllers/user.controller.js';
@@ -54,7 +55,7 @@ userRouter.delete('/:id', userController.delete);
 userRouter.get('/team/:teamId/players', userController.getPlayersByTeam);
 userRouter.get('/:id/statistics', userController.getUserWithStatistics);
 
-// Routes profil privé (nécessitent authentification JWT - à ajouter plus tard)
+// Routes profil privé (nécessitent authentification JWT)
 // userRouter.get('/me/profile', authMiddleware, userController.getProfile);
 // userRouter.put('/me/profile', authMiddleware, userController.updateProfile);
 // userRouter.put('/me/password', authMiddleware, userController.updatePassword);
@@ -170,7 +171,51 @@ contactRouter.get('/:id', contactController.getById);
 contactRouter.patch('/:id/status', contactController.updateStatus);
 contactRouter.delete('/:id', contactController.delete);
 
+// ========================================
+// ========== ROUTES ADMIN PROTÉGÉES ==========
+// ========================================
+const adminRouter = express.Router();
+
+// Toutes les routes admin nécessitent authentification + rôle admin
+adminRouter.use(authMiddleware);
+adminRouter.use(requireRole('admin'));
+
+// Dashboard
+adminRouter.get('/dashboard', (req, res) => {
+  res.json({
+    success: true,
+    message: 'Bienvenue dans l\'administration',
+    data: {
+      user: {
+        id: req.userId,
+        role: req.userRole,
+        email: req.userEmail
+      }
+    }
+  });
+});
+
+// PARTNERS (SPONSORS)
+adminRouter.post('/partners', validate(partnerCreateSchema), partnerController.create);
+adminRouter.get('/partners', partnerController.getAll);
+adminRouter.get('/partners/:id', partnerController.getById);
+adminRouter.put('/partners/:id', validate(partnerUpdateSchema), partnerController.update);
+adminRouter.delete('/partners/:id', partnerController.delete);
+
+// À ajouter plus tard :
+// USERS
+// adminRouter.get('/users', userController.getAll);
+// adminRouter.put('/users/:id', userController.update);
+// adminRouter.delete('/users/:id', userController.delete);
+
+// TEAMS
+// adminRouter.post('/teams', validate(teamCreateSchema), teamController.create);
+// adminRouter.put('/teams/:id', validate(teamUpdateSchema), teamController.update);
+// adminRouter.delete('/teams/:id', teamController.delete);
+
+// ========================================
 // Mount all routes
+// ========================================
 router.use('/users', userRouter);
 router.use('/teams', teamRouter);
 router.use('/matches', matchRouter);
@@ -183,5 +228,6 @@ router.use('/statistics', statisticsRouter);
 router.use('/camps', campRouter);
 router.use('/camp-registrations', campRegistrationRouter);
 router.use('/contact', contactRouter);
+router.use('/admin', adminRouter); // ← NOUVEAU : Routes admin protégées
 
 export default router;

@@ -1,8 +1,52 @@
 <script>
+  import { onMount } from 'svelte';
   import { _ } from 'svelte-i18n';
+  import { locale } from 'svelte-i18n';
   import { Facebook, Instagram, Music2, Mail, MapPin, Phone } from 'lucide-svelte';
-	import { goto } from '$app/navigation';
+  import { goto } from '$app/navigation';
   import Button from './Button.svelte';
+  import { partners } from '$lib/api';
+
+  // État pour les sponsors
+  let partnersList = [];
+  let loading = true;
+  let error = null;
+
+  // Récupérer la locale actuelle
+  let currentLocale = 'fr';
+  locale.subscribe(value => {
+    currentLocale = value || 'fr';
+  });
+
+  // Fonction pour charger les sponsors depuis l'API
+  async function loadPartners() {
+    try {
+      loading = true;
+      error = null;
+
+      // Appel à l'API via le module partners
+      const response = await partners.getAllPartners({ 
+        isActive: true 
+      });
+
+      if (response.success && response.data) {
+        // Trier par displayOrder
+        partnersList = response.data.partners.sort((a, b) => a.displayOrder - b.displayOrder);
+      } else {
+        throw new Error(response.message || 'Erreur lors du chargement des sponsors');
+      }
+    } catch (err) {
+      console.error('Erreur lors du chargement des sponsors:', err);
+      error = err.message;
+    } finally {
+      loading = false;
+    }
+  }
+
+  // Charger les sponsors au montage du composant
+  onMount(() => {
+    loadPartners();
+  });
 </script>
 
 <footer class="footer">
@@ -74,55 +118,45 @@
     </div>
   </div>
 
-<!-- Section Sponsors -->
-<div class="sponsors-section">
-  <div class="sponsors-container">
-    <h3 class="sponsors-title">{$_('footer.sponsors')}</h3>
-    <div class="sponsors-grid">
-
-      <!-- Sponsor 1 : Le Petit Paris -->
-      <a 
-        href="https://www.petitparis.com.pl" 
-        class="sponsor-item" 
-        target="_blank" 
-        rel="noopener noreferrer"
-      >
-        <img src="/sponsors/petit-black.svg" alt="Le Petit Paris" />
-      </a>
+  <!-- Section Sponsors (DYNAMIQUE) -->
+  <div class="sponsors-section">
+    <div class="sponsors-container">
+      <h3 class="sponsors-title">{$_('footer.sponsors')}</h3>
       
-      <!-- Sponsor 2 : endo design -->
-      <a 
-        href="https://www.endodesign.pl/" 
-        class="sponsor-item" 
-        target="_blank" 
-        rel="noopener noreferrer"
-      >
-        <img src="/sponsors/endodesign.png" alt="endo design" />
-      </a>
-      
-      <!-- Sponsor 3 : EXCO A2A Polska -->
-      <a 
-        href="https://exco.pl/" 
-        class="sponsor-item" 
-        target="_blank" 
-        rel="noopener noreferrer"
-      >
-        <img src="/sponsors/logo-exco.jpg" alt="EXCO A2A Polska" />
-      </a>
-      
-      <!-- Sponsor 4 : uzdrowisko -->
-      <a 
-        href="https://uzdrowisko.org/" 
-        class="sponsor-item" 
-        target="_blank" 
-        rel="noopener noreferrer"
-      >
-        <img src="/sponsors/uzdrowisko.png" alt="uzdrowisko" />
-      </a>
-      
+      {#if loading}
+        <div class="sponsors-loading">
+          <p>Chargement des sponsors...</p>
+        </div>
+      {:else if error}
+        <div class="sponsors-error">
+          <p>Impossible de charger les sponsors</p>
+        </div>
+      {:else if partnersList.length > 0}
+        <div class="sponsors-grid">
+          {#each partnersList as partner (partner.id)}
+            <a 
+              href={partner.websiteUrl} 
+              class="sponsor-item" 
+              class:main-sponsor={partner.category === 'main_sponsor'}
+              target="_blank" 
+              rel="noopener noreferrer"
+              title={currentLocale === 'pl' ? (partner.descriptionPl || partner.description) : partner.description}
+            >
+              <img 
+                src={partner.logoUrl || partner.logoPath} 
+                alt={partner.name}
+                loading="lazy"
+              />
+            </a>
+          {/each}
+        </div>
+      {:else}
+        <div class="sponsors-empty">
+          <p>Aucun sponsor pour le moment</p>
+        </div>
+      {/if}
     </div>
   </div>
-</div>
 
   <!-- Barre de copyright -->
   <div class="footer-bottom">
@@ -133,7 +167,8 @@
         <span>•</span>
         <button type="button" on:click={() => goto('/privacy')}>
           Politique de confidentialité
-        </button>        <span>•</span>
+        </button>
+        <span>•</span>
         <a href="/cgv">{$_('footer.terms')}</a>
       </div>
     </div>
@@ -174,6 +209,7 @@
     height: 130px;
     width: 100px;
     margin-bottom: 0.5rem;
+
   }
 
   .footer-description {
@@ -345,6 +381,20 @@
     letter-spacing: 1px;
   }
 
+  /* États de chargement/erreur/vide */
+  .sponsors-loading,
+  .sponsors-error,
+  .sponsors-empty {
+    text-align: center;
+    padding: 2rem;
+    color: #b4b4c5;
+    font-size: 0.95rem;
+  }
+
+  .sponsors-error {
+    color: #ff6b6b;
+  }
+
   .sponsors-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -366,6 +416,13 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
+  /* Style spécial pour les sponsors principaux */
+  .sponsor-item.main-sponsor {
+    grid-column: span 2;
+    height: 120px;
+    border: 2px solid rgba(201, 169, 97, 0.3);
+  }
+
   .sponsor-item:hover {
     background: rgba(255, 255, 255, 0.1);
     transform: translateY(-5px);
@@ -380,6 +437,10 @@
     object-fit: contain;
     filter: grayscale(100%) brightness(2);
     transition: filter 0.3s;
+  }
+
+  .sponsor-item.main-sponsor img {
+    max-height: 80px;
   }
 
   .sponsor-item:hover img {
@@ -419,14 +480,21 @@
     align-items: center;
   }
 
-  .footer-legal a {
+  .footer-legal a,
+  .footer-legal button {
     color: #8a8a9f;
     text-decoration: none;
     font-size: 0.9rem;
     transition: color 0.2s;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
   }
 
-  .footer-legal a:hover {
+  .footer-legal a:hover,
+  .footer-legal button:hover {
     color: #667eea;
   }
 
@@ -449,6 +517,11 @@
       gap: 1.5rem;
     }
 
+    .sponsor-item.main-sponsor {
+      grid-column: span 1;
+      height: 100px;
+    }
+
     .footer-bottom-container {
       flex-direction: column;
       text-align: center;
@@ -463,6 +536,10 @@
   @media (max-width: 480px) {
     .sponsors-grid {
       grid-template-columns: 1fr;
+    }
+
+    .sponsor-item.main-sponsor {
+      grid-column: span 1;
     }
   }
 </style>

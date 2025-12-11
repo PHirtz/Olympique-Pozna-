@@ -18,7 +18,10 @@ const PORT = process.env.PORT || 3000;
 
 // Middlewares
 app.use(helmet());
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true
+}));
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -84,7 +87,7 @@ const startServer = async () => {
     
     // Sync database (in development only)
     if (process.env.NODE_ENV === 'development') {
-      await db.sync({ alter: true });
+      await db.sync();
       console.log('✅ Base de données synchronisée');
     }
     

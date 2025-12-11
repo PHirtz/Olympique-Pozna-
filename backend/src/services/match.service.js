@@ -85,13 +85,14 @@ class MatchService {
   }
 
   async getUpcomingMatches(teamId = null, limit = 10) {
+    const limitNumber = parseInt(limit) || 10;  // ← AJOUTE
+    
     const where = {
       matchDate: { [Op.gte]: new Date() },
       status: { [Op.in]: ['scheduled', 'in_progress'] }
     };
-
     if (teamId) where.teamId = teamId;
-
+    
     return await Match.findAll({
       where,
       include: [{
@@ -99,19 +100,20 @@ class MatchService {
         as: 'team',
         attributes: ['id', 'name', 'namePl', 'category']
       }],
-      limit,
+      limit: limitNumber,  // ← CHANGE
       order: [['matchDate', 'ASC']]
     });
   }
 
   async getPastMatches(teamId = null, limit = 10) {
+    const limitNumber = parseInt(limit) || 10;  // ← AJOUTE
+    
     const where = {
       matchDate: { [Op.lt]: new Date() },
       status: 'finished'
     };
-
     if (teamId) where.teamId = teamId;
-
+    
     return await Match.findAll({
       where,
       include: [{
@@ -119,7 +121,7 @@ class MatchService {
         as: 'team',
         attributes: ['id', 'name', 'namePl', 'category']
       }],
-      limit,
+      limit: limitNumber,  // ← CHANGE
       order: [['matchDate', 'DESC']]
     });
   }

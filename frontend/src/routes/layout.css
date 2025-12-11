@@ -1,4 +1,9 @@
-@import 'tailwindcss';
+/* 1. D'abord Tailwind base (reset) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 2. Ensuite ton CSS custom */
 @import '@fontsource/fira-mono';
 
 /* ========================================

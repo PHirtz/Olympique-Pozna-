@@ -88,7 +88,7 @@
     padding: 0.75rem 1rem;
     background: rgba(102, 126, 234, 0.1);
     border-radius: 0.5rem;
-    color: #e8e9ef;
+    color: #667eea ;
     font-weight: 600;
   }
 

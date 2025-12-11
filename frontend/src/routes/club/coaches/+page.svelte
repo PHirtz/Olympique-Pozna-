@@ -29,6 +29,8 @@
     '../slides/tener11.jpg',
     '../slides/tener12.jpg',
     '../slides/tener13.jpg',
+    '../slides/tener14.jpg',
+    '../slides/tener15.jpg'
    ];
 
   function nextSlide() {
@@ -364,6 +366,193 @@
               <div class="question">
                 <strong>➡️ {$_('coaches.dominika.questions.q3.question')}</strong>
                 <p>{$_('coaches.dominika.questions.q3.answer')}</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+<!-- Après l'article de Dominika, avant la fermeture de </div> container -->
+
+        <!-- Coach 5: Jakub Golański -->
+        <article class="coach-card">
+          <div class="coach-header">
+            <img src="/trener/jakub-trener.jpg" alt="Jakub Golański" class="coach-photo" />
+            <div class="coach-intro">
+              <h2>{$_('coaches.jakub.name')}</h2>
+              <p class="coach-tagline">
+                <Award size={20} />
+                {$_('coaches.jakub.tagline')}
+              </p>
+            </div>
+          </div>
+
+          <div class="coach-content">
+            <div class="highlight-box">
+              <p>⚽ {$_('coaches.jakub.since')}</p>
+              <p class="motto">
+                <Heart size={18} />
+                <strong>{$_('coaches.jakub.motto')}</strong>
+              </p>
+            </div>
+
+            <div class="section-block">
+              <h3>{$_('coaches.jakub.formations.title')}</h3>
+              <ul>
+                <li>{$_('coaches.jakub.formations.uefa_a')}</li>
+                <li>{$_('coaches.jakub.formations.motor_coach')}</li>
+                <li>{$_('coaches.jakub.formations.teacher')}</li>
+                <li>{$_('coaches.jakub.formations.bachelor')}</li>
+                <li>{$_('coaches.jakub.formations.master')}</li>
+                <li>{$_('coaches.jakub.formations.warta')}</li>
+                <li>{$_('coaches.jakub.formations.ajax')}</li>
+                <li>{$_('coaches.jakub.formations.coerver')}</li>
+                <li>{$_('coaches.jakub.formations.first_aid')}</li>
+                <li>{$_('coaches.jakub.formations.corrective')}</li>
+              </ul>
+            </div>
+
+            <div class="section-block">
+              <h3>{$_('coaches.jakub.experience.coach.title')}</h3>
+              <ul class="compact-list">
+                <li>Złoci Złotkowo</li>
+                <li>TMS Suchary Suchy Las</li>
+                <li>FC Poznaniak Poznań</li>
+                <li>Poznańska 13</li>
+                <li>TPS Winogrady</li>
+                <li>UAM Poznań</li>
+                <li>Sparks Poznań</li>
+                <li>Olympique Poznań</li>
+              </ul>
+            </div>
+
+            <div class="section-block">
+              <h3>{$_('coaches.jakub.experience.player.title')}</h3>
+              <ul class="compact-list">
+                <li>TPS Winogrady</li>
+                <li>TMS Suchary Suchy Las</li>
+                <li>Złoci Złotkowo</li>
+              </ul>
+            </div>
+
+            <div class="quote-box">
+              <h4>{$_('coaches.jakub.idol.title')}</h4>
+              <p>{$_('coaches.jakub.idol.text')}</p>
+            </div>
+
+            <div class="highlight-box passion">
+              <h4>{$_('coaches.jakub.passion.title')}</h4>
+              <p>{$_('coaches.jakub.passion.text')}</p>
+            </div>
+
+            <div class="section-block">
+              <h4>{$_('coaches.jakub.favorite_club.title')}</h4>
+              <p>{$_('coaches.jakub.favorite_club.text')}</p>
+            </div>
+
+            <div class="qa-section">
+              <h4>{$_('coaches.jakub.questions.title')}</h4>
+              
+              <div class="question">
+                <strong>➡️ {$_('coaches.jakub.questions.q1.question')}</strong>
+                <p>{$_('coaches.jakub.questions.q1.answer')}</p>
+              </div>
+
+              <div class="question">
+                <strong>➡️ {$_('coaches.jakub.questions.q2.question')}</strong>
+                <p>{$_('coaches.jakub.questions.q2.answer')}</p>
+              </div>
+
+              <div class="question">
+                <strong>➡️ {$_('coaches.jakub.questions.q3.question')}</strong>
+                <p>{$_('coaches.jakub.questions.q3.answer')}</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Coach 6: Paweł Kulesa -->
+        <article class="coach-card">
+          <div class="coach-header">
+            <img src="/trener/pawel-trener.jpg" alt="Paweł Kulesa" class="coach-photo" />
+            <div class="coach-intro">
+              <h2>{$_('coaches.pawel.name')}</h2>
+              <p class="coach-tagline">
+                <Award size={20} />
+                {$_('coaches.pawel.tagline')}
+              </p>
+            </div>
+          </div>
+
+          <div class="coach-content">
+            <div class="highlight-box">
+              <p>⚽ {$_('coaches.pawel.since')}</p>
+              <p class="motto">
+                <Heart size={18} />
+                <strong>{$_('coaches.pawel.motto')}</strong>
+              </p>
+            </div>
+
+            <div class="section-block">
+              <h3>{$_('coaches.pawel.formations.title')}</h3>
+              <ul>
+                <li>{$_('coaches.pawel.formations.uefa')}</li>
+                <li>{$_('coaches.pawel.formations.conferences')}</li>
+              </ul>
+            </div>
+
+            <div class="section-block">
+              <h3>{$_('coaches.pawel.experience.coach.title')}</h3>
+              <ul class="compact-list">
+                <li>Akademia Piłkarska Reissa</li>
+                <li>Koziołek Poznań</li>
+                <li>MKS Przemysław Poznań</li>
+                <li>GKS Dopiewo</li>
+                <li>Korona Zakrzewo</li>
+                <li>UKS Orlik Mosina</li>
+                <li>Olympique Poznań</li>
+              </ul>
+            </div>
+
+            <div class="section-block">
+              <h3>{$_('coaches.pawel.experience.player.title')}</h3>
+              <ul class="compact-list">
+                <li>MKS Czarni Połaniec (3 liga)</li>
+                <li>Akademia Piłkarska Reissa</li>
+                <li>Olympique Les Bleus</li>
+              </ul>
+            </div>
+
+            <div class="quote-box">
+              <h4>{$_('coaches.pawel.idol.title')}</h4>
+              <p>{$_('coaches.pawel.idol.text')}</p>
+            </div>
+
+            <div class="highlight-box passion">
+              <h4>{$_('coaches.pawel.passion.title')}</h4>
+              <p>{$_('coaches.pawel.passion.text')}</p>
+            </div>
+
+            <div class="section-block">
+              <h4>{$_('coaches.pawel.favorite_club.title')}</h4>
+              <p>{$_('coaches.pawel.favorite_club.text')}</p>
+            </div>
+
+            <div class="qa-section">
+              <h4>{$_('coaches.pawel.questions.title')}</h4>
+              
+              <div class="question">
+                <strong>➡️ {$_('coaches.pawel.questions.q1.question')}</strong>
+                <p>{$_('coaches.pawel.questions.q1.answer')}</p>
+              </div>
+
+              <div class="question">
+                <strong>➡️ {$_('coaches.pawel.questions.q2.question')}</strong>
+                <p>{$_('coaches.pawel.questions.q2.answer')}</p>
+              </div>
+
+              <div class="question">
+                <strong>➡️ {$_('coaches.pawel.questions.q3.question')}</strong>
+                <p>{$_('coaches.pawel.questions.q3.answer')}</p>
               </div>
             </div>
           </div>
