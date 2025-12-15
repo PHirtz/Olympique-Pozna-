@@ -173,6 +173,7 @@
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 700;
     margin-bottom: 1rem;
+    color: #ffffff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   }
 
@@ -242,6 +243,7 @@
     font-size: clamp(2rem, 4vw, 2.5rem);
     margin-bottom: 3rem;
     font-weight: 700;
+    color:#0f2d4a;
   }
 
   .values-grid {
@@ -276,6 +278,7 @@
     font-size: 1.5rem;
     margin-bottom: 0.75rem;
     font-weight: 600;
+    color: white;
   }
 
   .value-card p {

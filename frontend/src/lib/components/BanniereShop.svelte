@@ -5,11 +5,6 @@
 
   const shopImages = [
     {
-      src: '../vitrine/maillots.jpg',
-      alt: 'Maillots domicile Olympique Poznań',
-      title: 'Maillots domicile Officiels',
-    },
-    {
       src: '../vitrine/Veste1.jpg',
       alt: 'veste domicile Olympique Poznań',
       title: 'Veste pluie officielle',
@@ -23,6 +18,11 @@
       src: '../vitrine/Bidon.jpg',
       alt: 'Gourde Olympique Poznań',
       title: 'Gourde Officielle',
+    },
+    {
+      src: '../vitrine/roller.png',
+      alt: 'Roller Olympique Poznań',
+      title: 'Roller',
     },
     {
       src: '../vitrine/chaussettes2.png',
@@ -216,7 +216,7 @@
   .slider {
     position: relative;
     width: 100%;
-    height: 450px;
+    height: 550px;
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
@@ -238,7 +238,6 @@
   .slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
   }
 
   .product-info {

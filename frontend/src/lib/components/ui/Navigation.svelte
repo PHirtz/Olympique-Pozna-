@@ -119,22 +119,9 @@
           >
             <a href="/club/about" class="dropdown-item" role="menuitem">{$_('club.about')}</a>
             <a href="/club/coaches" class="dropdown-item" role="menuitem">{$_('club.coaches')}</a>
-            <a href="/club/support" class="dropdown-item" role="menuitem">{$_('club.support')}</a>
+            <a href="/club/partners" class="dropdown-item" role="menuitem">{$_('club.partners')}</a>
             <a href="/club/status" class="dropdown-item" role="menuitem">{$_('club.status')}</a>
-            
-            <div class="submenu" on:mouseenter={cancelClose} on:mouseleave={closeDropdownWithDelay} role="group">
-              <button class="dropdown-item submenu-trigger" role="menuitem" aria-haspopup="true">
-                {$_('club.documents.title')}
-                <span class="icon-rotate-90">
-                  <ChevronDown size={14} />
-                </span>
-              </button>
-              <div class="submenu-content" role="menu" tabindex="-1" on:mouseenter={cancelClose} on:mouseleave={closeDropdownWithDelay}>
-                <a href="/club/documents/cgv" class="submenu-item" role="menuitem">{$_('club.documents.cgv')}</a>
-                <a href="/club/documents/statutes" class="submenu-item" role="menuitem">{$_('club.documents.statutes')}</a>
-                <a href="/club/documents/regulations" class="submenu-item" role="menuitem">{$_('club.documents.regulations')}</a>
-              </div>
-            </div>
+            <a href="/club/documents" class="dropdown-item" role="menuitem">{$_('club.documents.title')}</a>
           </div>
         {/if}
       </div>
@@ -295,7 +282,7 @@
             <ul class="mobile-submenu">
               <li><a href="/club/about" on:click={close}>{$_('club.about')}</a></li>
               <li><a href="/club/coaches" on:click={close}>{$_('club.coaches')}</a></li>
-              <li><a href="/club/support" on:click={close}>{$_('club.support')}</a></li>
+              <li><a href="/club/partner" on:click={close}>{$_('club.partners')}</a></li>
               <li><a href="/club/status" on:click={close}>{$_('club.status')}</a></li>
               
               <li class="mobile-subsubmenu">
@@ -305,14 +292,6 @@
                     <ChevronDown size={14} />
                   </span>                
                 </button>
-                
-                {#if openSubmenu === 'documents-mobile'}
-                  <ul class="mobile-subsubmenu-list">
-                    <li><a href="/club/documents/cgv" on:click={close}>{$_('club.documents.cgv')}</a></li>
-                    <li><a href="/club/documents/statutes" on:click={close}>{$_('club.documents.statutes')}</a></li>
-                    <li><a href="/club/documents/regulations" on:click={close}>{$_('club.documents.regulations')}</a></li>
-                  </ul>
-                {/if}
               </li>
             </ul>
           {/if}

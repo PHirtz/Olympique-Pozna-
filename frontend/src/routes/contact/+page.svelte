@@ -120,6 +120,7 @@
                 <option value="coach">{$_('contact.form.categories.coach')}</option>
                 <option value="footj">{$_('contact.form.categories.junior')}</option>
                 <option value="foots">{$_('contact.form.categories.senior')}</option>
+                <option value="sponsor">{$_('contact.form.categories.sponsor')}</option>
                 <option value="volunteer">{$_('contact.form.categories.volunteer')}</option>
                 <option value="other">{$_('contact.form.categories.other')}</option>
               </select>
@@ -196,6 +197,7 @@
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 700;
     margin-bottom: 1rem;
+    color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   }
 

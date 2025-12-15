@@ -1,5 +1,5 @@
 <script>
-  import { sendContactForm } from '$lib/api/contact';
+  import { contact } from '$lib/api';
 
   let firstName = '';
   let lastName = '';

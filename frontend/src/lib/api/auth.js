@@ -3,6 +3,19 @@ import { loginUser as setLoginUser, logout as clearAuth, getToken, user } from '
 import { get } from 'svelte/store';
 
 /**
+ * Inscription utilisateur
+ * @param {Object} userData - Données utilisateur
+ */
+export async function register(userData) {
+  const response = await apiRequest('/users/register', {
+    method: 'POST',
+    body: JSON.stringify(userData),
+  });
+  
+  return response;
+}
+
+/**
  * Connexion utilisateur
  * @param {string} username - Nom d'utilisateur
  * @param {string} password - Mot de passe

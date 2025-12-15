@@ -582,6 +582,7 @@
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 700;
     margin-bottom: 1rem;
+    color: #ffffff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   }
 

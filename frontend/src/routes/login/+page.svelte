@@ -151,7 +151,7 @@
   }
 
   input {
-    width: 85%;
+    width: 100%;
     padding: 0.75rem;
     border: 1px solid #ddd;
     border-radius: 0.5rem;
@@ -168,7 +168,7 @@
   button {
     width: 40%;
     padding: 1rem;
-    background: #e6c334;
+    background: #1a4d7a;
     color: white;
     border: none;
     border-radius: 0.5rem;
@@ -179,7 +179,7 @@
   }
 
   button:hover:not(:disabled) {
-    background: #f7e187;
+    background: linear-gradient(180deg, #f0f0f0 0%, #e0e0e0 100%);
   }
 
   button:disabled {

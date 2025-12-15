@@ -7,6 +7,9 @@
     "teams": "Nasze drużyny",
     "camps": "Obóz Olimpijski",
     "contact": "Kontakt",
+    "about": "O nas",
+    "coaches": "Nasi trenerzy",
+    "partners": "Nasi partnerzy",
     "menu": "Menu",
     "mobileMenu": "Menu nawigacji",
     "mainNavigation": "Główna nawigacja mobilna"
@@ -79,11 +82,13 @@
       "loginLink": "Zaloguj się",
       "required": "*"
     }
+
   },
   "club": {
     "about": "Kim jesteśmy",
     "coaches": "Nasi trenerzy",
     "support": "Wsparcie Olimpijskie",
+    "partners": "Nasi partnerzy",
     "status": "Statut klubu",
     "documents": {
       "title": "Ważne dokumenty",
@@ -91,6 +96,22 @@
       "statutes": "Statut",
       "regulations": "Przepisy"
     }
+  },
+
+  "camps":{
+    "title": "Obóz Olimpijski - Olympique Poznań",
+    "metaDescription": "Dołącz do Obóz Olimpijski w Poznaniu na niezapomniane piłkarskie doświadczenie! Intensywne treningi, warsztaty techniczne i gwarantowana zabawa.",
+    "hero": {
+      "title": "Obóz Olimpijski",
+      "subtitle": "Intensywne piłkarskie doświadczenie w sercu Poznania"
+    },
+    "intro": {
+      "text": "Obóz Olimpijski to wyjątkowa okazja dla młodych piłkarzy, aby zanurzyć się w intensywnym i ekscytującym środowisku treningowym. Odbywający się w sercu Poznania, nasz obóz oferuje starannie zaprojektowany program, który łączy techniczne szkolenie, taktyczne zrozumienie i elementy zabawy, aby stworzyć kompleksowe doświadczenie piłkarskie."
+    },
+    "dates":"Daty obozu",
+    "register": "Zarejestruj się teraz",
+    "lieu": "Miejsce",
+    "programme": "Program"
   },
   "teams": {
     "seniors": {
@@ -463,7 +484,16 @@
     },
     "form": {
       "name": "Imię i nazwisko",
+      "lastName": "Nazwisko",
+      "nameRequired": "Proszę podać imię i nazwisko",
+      "emailRequired": "Proszę podać poprawny adres email",
+      "messageRequired": "Proszę wpisać wiadomość",
+      "categoryRequired": "Proszę wybrać kategorię",
       "namePlaceholder": "Twoje imię i nazwisko",
+      "age": "Wiek uczestnika",
+      "tel": "Telefon",
+      "demande" : "Wyślij moją prośbę",
+      "telPlaceholder": "+48 123 456 789",
       "email": "Email",
       "emailPlaceholder": "twoj.email@przyklad.pl",
       "category": "Kategoria",
@@ -473,6 +503,7 @@
         "senior": "Piłkarz Senior",
         "veteran": "Piłkarz Weteran",
         "volunteer": "Wolontariusz",
+        "sponsor": "Sponsor",
         "other": "Inne"
       },
       "message": "Wiadomość",

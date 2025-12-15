@@ -7,10 +7,41 @@
     "teams": "Nos Équipes",
     "camps": "Le Camp Olympique",
     "contact": "Contact",
+    "about": "À propos",
+    "coaches": "Nos Entraîneurs",
+    "partners": "Nos Partenaires",
     "menu": "Menu",
     "mobileMenu": "Menu de navigation",
     "mainNavigation": "Navigation principale mobile"
   },
+
+  "camps":{
+    "title": "Camp Olympique - Olympique Poznań",
+    "metaDescription": "Rejoignez le Camp Olympique de Poznań pour une expérience footballistique inoubliable ! Entraînements intensifs, ateliers techniques et fun garantis.",
+    "hero": {
+      "title": "Camp Olympique",
+      "subtitle": "Rejoignez-nous pour une expérience footballistique inoubliable !"
+    },
+    "intro": {
+      "text": "Le Camp Olympique est une opportunité unique pour les jeunes passionnés de football de vivre une expérience immersive dans le monde du football. Que vous soyez débutant ou joueur confirmé, notre camp est conçu pour offrir un environnement d'apprentissage stimulant et amusant."
+    },
+    "benefits": {
+      "title": "Pourquoi choisir le Camp Olympique ?",
+      "training": "Entraînements intensifs avec des entraîneurs qualifiés",
+      "techniques": "Ateliers techniques pour améliorer vos compétences",
+      "fun": "Activités ludiques et compétitions amicales",
+      "teamSpirit": "Développement de l'esprit d'équipe et du fair-play"
+    },
+    "register": {
+      "title": "Inscrivez-vous dès aujourd'hui !",
+      "text": "Ne manquez pas cette occasion de faire partie du Camp Olympique. Remplissez le formulaire ci-dessous pour vous inscrire ou obtenir plus d'informations.",
+      "formTitle": "Formulaire d'inscription au Camp Olympique"
+    },
+    "lieu":"Lieu",
+    "dates":"Dates",
+    "programme":"Programme"
+  },
+
   "userMenu": {
     "hello": "Bonjour",
     "logout": "Déconnexion",
@@ -84,6 +115,7 @@
     "about": "Qui sommes-nous",
     "coaches": "Nos entraîneurs",
     "support": "Soutien Olympique",
+    "partners": "Nos Partenaires",
     "status": "Statuts du club",
     "documents": {
       "title": "Documents importants",
@@ -463,15 +495,23 @@
     },
     "form": {
       "name": "Nom",
+      "lastName": "Prénom",
+      "nameRequired": "Le nom est obligatoire",
+      "emailRequired": "L'email est obligatoire",
+      "categoryRequired": "La catégorie est obligatoire",
       "namePlaceholder": "Votre nom complet",
       "email": "Email",
+      "tel": "Téléphone",
       "emailPlaceholder": "votre.email@exemple.com",
       "category": "Catégorie",
+      "age": "Âge du participant",
+      "demande":"Envoyer ma demande",
       "categories": {
         "coach": "Entraîneur",
         "junior": "Footballeur Junior",
         "senior": "Footballeur Senior",
         "veteran": "Footballeur Vétéran",
+        "sponsor": "Sponsor",
         "volunteer": "Bénévole",
         "other": "Autre"
       },
