@@ -128,7 +128,7 @@
   <section class="contact-form-section">
     <div class="container">
       <div class="form-header">
-        <h2>Inscrivez-vous au Camp Olympique</h2>
+        <h2>Inscrivez-vous au Camp d'Olympique Poznań</h2>
         <p>Remplissez le formulaire ci-dessous pour vous inscrire ou demander plus d'informations</p>
       </div>
 
@@ -361,6 +361,7 @@
   .form-header h2 {
     font-size: 2rem;
     margin-bottom: 0.5rem;
+    color: white;
   }
 
   .form-header p {

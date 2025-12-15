@@ -8,11 +8,11 @@ export const seedUsers = async () => {
 
   const users = [
     {
-      username: 'admin',
-      email: 'admin@olympiquepoznan.com',
+      username: 'Owen',
+      email: 's.wutezi@wutezi.com',
       password: hashedPassword,
-      firstName: 'Admin',
-      lastName: 'Olympique',
+      firstName: 'Stéphane',
+      lastName: 'Wutezi',
       role: 'admin',
       isActive: true,
       preferredLanguage: 'fr',
