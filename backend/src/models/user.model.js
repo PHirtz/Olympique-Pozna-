@@ -16,7 +16,6 @@ User.init(
     email: { 
       type: DataTypes.STRING(150), 
       allowNull: false, 
-      unique: true,
       validate: {
         isEmail: true
       } 
@@ -24,7 +23,6 @@ User.init(
     username: {
       type: DataTypes.STRING(20), 
       allowNull: false, 
-      unique: true 
     },
     password: { 
       type: DataTypes.STRING(255),
@@ -114,7 +112,17 @@ User.init(
     sequelize: db, 
     tableName: "users", 
     timestamps: true, 
-    underscored: true 
+    underscored: true,
+    indexes: [
+    {
+      unique: true,
+      fields: ['email']
+    },
+    {
+      unique: true,
+      fields: ['username']
+    }
+  ]
   }
 );
 
