@@ -28,12 +28,7 @@
   // Catégories disponibles
   const categories = [
     { value: 'main_sponsor', label: 'Sponsor Principal' },
-    { value: 'gold', label: 'Or' },
-    { value: 'silver', label: 'Argent' },
-    { value: 'bronze', label: 'Bronze' },
-    { value: 'partner', label: 'Partenaire' },
     { value: 'supplier', label: 'Fournisseur' },
-    { value: 'institutional', label: 'Institutionnel' }
   ];
 
   onMount(async () => {
@@ -66,8 +61,8 @@
         await adminPartners.update(sponsorId, formData);
       }
 
-      // Rediriger vers la liste
-      goto('/admin/sponsors');
+      // Rediriger vers le tableau de bord
+      goto('/admin');
     } catch (err) {
       error = err.message || 'Erreur lors de l\'enregistrement';
       console.error(err);
@@ -77,9 +72,11 @@
   }
 
   function handleCancel() {
-    goto('/admin/sponsors');
+    goto('/admin');
   }
 </script>
+
+<section class ="fm-container">
 
 {#if loading}
   <div class="bg-white rounded-lg shadow-sm p-12 text-center">
@@ -317,3 +314,17 @@
     </form>
   </div>
 {/if}
+
+</section>
+
+<style>
+  /* Styles spécifiques au formulaire */
+  .fm-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+
+</style>
