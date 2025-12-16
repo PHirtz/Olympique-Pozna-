@@ -8,9 +8,14 @@ const config = {
   kit: {
     adapter: adapter({
       out: 'build',
-      precompress: false,
+      precompress: true,
       envPrefix: ''
-    })
+    }),
+    
+    // Configuration pour API externe
+    alias: {
+      $lib: './src/lib'
+    }
   }
 };
 
