@@ -10,10 +10,13 @@
   import FacebookFeed from '$lib/components/FacebookFeed.svelte';
   import BanniereCamp from '$lib/components/BanniereCamp.svelte';
   import BanniereShop from '$lib/components/BanniereShop.svelte';
+  import Navigation from '$lib/components/ui/Navigation.svelte';
   
   /** @type {import('./$types').PageData} */
   export let data;
 </script>
+
+<Navigation />
 
 <Hero 
   image="/victory.jpg"

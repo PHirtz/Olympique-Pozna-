@@ -127,7 +127,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('../img-communes/fondneutre.png');
+  background-image: url('/img-communes/fondneutre.png');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -145,7 +145,8 @@
 
   .logo {
     display: block;
-    height: 60px; 
+    height: 100px; 
+    margin-top: 2rem;
     padding: 1rem;
   }
 
@@ -163,7 +164,7 @@
   }
 
   input {
-    width: 85%;
+    width: 100%;
     padding: 0.75rem;
     border: 1px solid #ddd;
     border-radius: 0.5rem;
@@ -178,9 +179,12 @@
   }
 
   button {
-    width: 40%;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 50%;
     padding: 1rem;
-    background: #e6c334;
+    background: #1a4d7a;
     color: white;
     border: none;
     border-radius: 0.5rem;

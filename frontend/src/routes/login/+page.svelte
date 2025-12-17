@@ -113,7 +113,8 @@
 
   .logo {
     display: block;
-    height: 60px; 
+    height: 100px; 
+    margin-top: 2rem;
     padding: 1rem;
   }
 
@@ -122,7 +123,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url('../img-communes/fondneutre.png');
+    background-image: url('/img-communes/fondneutre.png');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -166,7 +167,10 @@
   }
 
   button {
-    width: 40%;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 50%;
     padding: 1rem;
     background: #1a4d7a;
     color: white;

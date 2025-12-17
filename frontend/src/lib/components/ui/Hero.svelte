@@ -49,7 +49,6 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 10;
   }
 
   /* Background */
@@ -59,7 +58,6 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
   }
 
   .hero-background img {
@@ -82,13 +80,11 @@
       rgba(0, 0, 0, 0.3) 0%,
       rgba(0, 0, 0, 0.6) 100%
     );
-    z-index: 2;
   }
 
   /* Contenu */
   .hero-content {
     position: relative;
-    z-index: 3;
     text-align: center;
     color: white;
     padding: 2rem;

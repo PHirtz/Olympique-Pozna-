@@ -373,478 +373,480 @@
 {/if}
 
 <style>
-  /* ========================================
-     BASE : MOBILE FIRST (320px+)
-     ======================================== */
+/* ========================================
+   BASE : MOBILE FIRST (320px+)
+   ======================================== */
 
-  /* ICON WRAPPER */
-  .icon-wrapper {
-    display: inline-flex;
-    transition: transform 0.3s ease;
+/* ICON WRAPPER */
+.icon-wrapper {
+  display: inline-flex;
+  transition: transform 0.3s ease;
+}
+
+.icon-wrapper.rotate {
+  transform: rotate(180deg);
+}
+
+/* NAVIGATION PRINCIPALE */
+.nav {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* LOGO */
+.logo-container {
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.logo-container:hover {
+  transform: scale(1.05);
+}
+
+.logo-olympique-poznan {
+  height: 50px;
+}
+
+/* LIENS DE NAVIGATION (cachés sur mobile) */
+.nav-links {
+  display: none;
+}
+
+.nav-link {
+  padding: 0.75rem 1rem;
+  color: #333;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s;
+  border-radius: 8px;
+  white-space: nowrap;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: #1a4d7a;
+  background: rgba(26, 77, 122, 0.08);
+}
+
+/* USER MENU (caché sur mobile) */
+.desktop-user-menu {
+  display: none;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* BURGER MENU (visible sur mobile) */
+.menu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #333;
+  transition: color 0.2s;
+}
+
+.menu-toggle:hover,
+.menu-toggle:focus {
+  color: #1a4d7a;
+}
+
+/* ========================================
+   MOBILE DRAWER
+   ======================================== */
+
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 280px;
+  background: rgb(229, 226, 221);
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.mobile-drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-content {
+  padding: 2rem 1.5rem;
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  padding: 0.5rem;
+  transition: color 0.2s;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: #1a4d7a;
+}
+
+/* MOBILE MENU */
+.mobile-menu {
+  list-style: none;
+  padding: 0;
+  margin: 3rem 0 2rem 0;
+}
+
+.mobile-menu > li {
+  margin: 0.5rem 0;
+}
+
+.mobile-menu > li > a {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  color: #333;
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.mobile-menu > li > a:hover {
+  background: rgba(26, 77, 122, 0.15);
+  color: #1a4d7a;
+}
+
+/* MOBILE DROPDOWN TRIGGER */
+.mobile-dropdown-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  text-align: left;
+}
+
+.mobile-dropdown-trigger:hover {
+  background: rgba(26, 77, 122, 0.15);
+  color: #1a4d7a;
+}
+
+/* MOBILE SUBMENU */
+.mobile-submenu {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0 1rem;
+}
+
+.mobile-submenu li {
+  margin: 0.25rem 0;
+}
+
+.mobile-submenu a {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: #555;
+  text-decoration: none;
+  font-size: 0.95rem;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.mobile-submenu a:hover {
+  background: rgba(26, 77, 122, 0.1);
+  color: #1a4d7a;
+}
+
+/* MOBILE SUBSUBMENU */
+.mobile-subsubmenu-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 0.95rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  text-align: left;
+}
+
+.mobile-subsubmenu-trigger:hover {
+  background: rgba(26, 77, 122, 0.1);
+  color: #1a4d7a;
+}
+
+.mobile-subsubmenu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.25rem 0 0 1rem;
+}
+
+.mobile-subsubmenu-list a {
+  display: block;
+  padding: 0.65rem 1rem;
+  color: #666;
+  text-decoration: none;
+  font-size: 0.9rem;
+  border-radius: 4px;
+}
+
+.mobile-subsubmenu-list a:hover {
+  background: rgba(26, 77, 122, 0.08);
+  color: #1a4d7a;
+}
+
+  /* MOBILE USER MENU */
+.mobile-user-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* OVERLAY */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  cursor: pointer;
+  animation: fadeInOverlay 0.3s;
+}
+
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
   }
-
-  .icon-wrapper.rotate {
-    transform: rotate(180deg);
+  to {
+    opacity: 1;
   }
+}
 
-  /* NAVIGATION PRINCIPALE */
-  .nav {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
+.overlay:focus {
+  outline: none;
+}
 
+/* ========================================
+   TABLETTE (768px+)
+   ======================================== */
+
+@media (min-width: 768px) {
   .nav-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-  }
-
-  /* LOGO */
-  .logo-container {
-    display: flex;
-    align-items: center;
-    transition: transform 0.2s;
-    flex-shrink: 0;
-  }
-
-  .logo-container:hover {
-    transform: scale(1.05);
+    padding: 1rem 2rem;
+    gap: 2rem;
+    max-width: 100%;
   }
 
   .logo-olympique-poznan {
-    height: 50px;
+    height: 60px;
   }
 
-  /* LIENS DE NAVIGATION (cachés sur mobile) */
-  .nav-links {
+  /* Cacher le burger, afficher la nav desktop */
+  .menu-toggle {
     display: none;
+  }
+
+  .nav-links {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
   }
 
   .nav-link {
-    padding: 0.75rem 1rem;
-    color: #333;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: all 0.3s;
-    border-radius: 8px;
-    white-space: nowrap;
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
+    opacity: 0;
+    transform: translateY(-10px);
   }
 
-  .nav-link:hover,
-  .nav-link:focus {
-    color: #1a4d7a;
-    background: rgba(26, 77, 122, 0.08);
+  .nav.visible .nav-link {
+    animation: slideDown 0.5s ease-out forwards;
   }
 
-  /* USER MENU (caché sur mobile) */
+  @keyframes slideDown {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   .desktop-user-menu {
+    display: block;
+    flex-shrink: 0;
+  }
+
+  /* Cacher le drawer mobile */
+  .mobile-drawer {
     display: none;
   }
 
-  .nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+  /* DROPDOWN DESKTOP */
+  .dropdown {
+    position: relative;
   }
 
-  /* BURGER MENU (visible sur mobile) */
-  .menu-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: none;
-    border: none;
+  .dropdown-trigger {
     cursor: pointer;
-    padding: 0.5rem;
-    color: #333;
-    transition: color 0.2s;
   }
 
-  .menu-toggle:hover,
-  .menu-toggle:focus {
-    color: #1a4d7a;
-  }
-
-  /* ========================================
-     MOBILE DRAWER
-     ======================================== */
-
-  .mobile-drawer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 280px;
-    background: rgb(229, 226, 221);
-    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    z-index: 1000;
-    overflow-y: auto;
-  }
-
-  .mobile-drawer.open {
-    transform: translateX(0);
-  }
-
-  .drawer-content {
-    padding: 2rem 1.5rem;
-  }
-
-  .close-btn {
+  .dropdown-menu {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #333;
-    padding: 0.5rem;
-    transition: color 0.2s;
-  }
-
-  .close-btn:hover,
-  .close-btn:focus {
-    color: #1a4d7a;
-  }
-
-  /* MOBILE MENU */
-  .mobile-menu {
-    list-style: none;
-    padding: 0;
-    margin: 3rem 0 2rem 0;
-  }
-
-  .mobile-menu > li {
-    margin: 0.5rem 0;
-  }
-
-  .mobile-menu > li > a {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    color: #333;
-    text-decoration: none;
-    font-size: 1.05rem;
-    font-weight: 600;
+    top: 100%;
+    left: 0;
+    min-width: 300px;
+    background: white;
     border-radius: 8px;
-    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+    animation: fadeInDropdown 0.2s;
+    z-index: 1000;
   }
 
-  .mobile-menu > li > a:hover {
-    background: rgba(26, 77, 122, 0.15);
-    color: #1a4d7a;
+  @keyframes fadeInDropdown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
-  /* MOBILE DROPDOWN TRIGGER */
-  .mobile-dropdown-trigger {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 1rem;
-    background: none;
-    border: none;
+  .dropdown-item {
+    display: block;
+    padding: 0.75rem 1.25rem;
     color: #333;
-    font-size: 1.05rem;
-    font-weight: 600;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: inherit;
-    text-align: left;
-  }
-
-  .mobile-dropdown-trigger:hover {
-    background: rgba(26, 77, 122, 0.15);
-    color: #1a4d7a;
-  }
-
-  /* MOBILE SUBMENU */
-  .mobile-submenu {
-    list-style: none;
-    padding: 0;
-    margin: 0.5rem 0 0 1rem;
-  }
-
-  .mobile-submenu li {
-    margin: 0.25rem 0;
-  }
-
-  .mobile-submenu a {
-    display: block;
-    padding: 0.75rem 1rem;
-    color: #555;
     text-decoration: none;
-    font-size: 0.95rem;
-    border-radius: 6px;
     transition: all 0.2s;
-  }
-
-  .mobile-submenu a:hover {
-    background: rgba(26, 77, 122, 0.1);
-    color: #1a4d7a;
-  }
-
-  /* MOBILE SUBSUBMENU */
-  .mobile-subsubmenu-trigger {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 0.75rem 1rem;
+    font-weight: 500;
     background: none;
     border: none;
-    color: #555;
-    font-size: 0.95rem;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: inherit;
+    width: 100%;
     text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
   }
 
-  .mobile-subsubmenu-trigger:hover {
-    background: rgba(26, 77, 122, 0.1);
-    color: #1a4d7a;
-  }
-
-  .mobile-subsubmenu-list {
-    list-style: none;
-    padding: 0;
-    margin: 0.25rem 0 0 1rem;
-  }
-
-  .mobile-subsubmenu-list a {
-    display: block;
-    padding: 0.65rem 1rem;
-    color: #666;
-    text-decoration: none;
-    font-size: 0.9rem;
-    border-radius: 4px;
-  }
-
-  .mobile-subsubmenu-list a:hover {
+  .dropdown-item:hover {
     background: rgba(26, 77, 122, 0.08);
     color: #1a4d7a;
   }
 
-    /* MOBILE USER MENU */
-  .mobile-user-menu {
+  /* SUBMENU (Niveau 2) */
+  .submenu {
+    position: relative;
+  }
+
+  .submenu-trigger {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    justify-content: space-between;
+    align-items: center;
   }
 
-  /* OVERLAY */
-  .overlay {
-    position: fixed;
+  .submenu:hover .submenu-content {
+    display: block;
+  }
+
+  .submenu-content {
+    display: none;
+    position: absolute;
+    left: 100%;
     top: 0;
-    left: 0;
+    min-width: 200px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    padding: 0.5rem 0;
+    margin-left: 0.5rem;
+    animation: fadeInDropdown 0.2s;
+    z-index: 1000;
+  }
+
+  .submenu-item {
+    display: block;
+    padding: 0.65rem 1rem;
+    color: #555;
+    text-decoration: none;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+    background: none;
+    border: none;
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
+    text-align: left;
     cursor: pointer;
-    animation: fadeInOverlay 0.3s;
+    font-family: inherit;
+    font-weight: 500;
   }
 
-  @keyframes fadeInOverlay {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+  .submenu-item:hover {
+    background: rgba(26, 77, 122, 0.08);
+    color: #1a4d7a;
   }
+}
 
-  .overlay:focus {
-    outline: none;
-  }
-
-  /* ========================================
-     TABLETTE (768px+)
-     ======================================== */
-
-  @media (min-width: 768px) {
-    .nav-container {
-      padding: 1rem 2rem;
-      gap: 2rem;
-    }
-
-    .logo-olympique-poznan {
-      height: 60px;
-    }
-
-    /* Cacher le burger, afficher la nav desktop */
-    .menu-toggle {
-      display: none;
-    }
-
-    .nav-links {
-      display: flex;
-      flex: 1;
-      justify-content: space-evenly;
-      align-items: center;
-    }
-
-    .nav-link {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-
-    .nav.visible .nav-link {
-      animation: slideDown 0.5s ease-out forwards;
-    }
-
-    @keyframes slideDown {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .desktop-user-menu {
-      display: block;
-      flex-shrink: 0;
-    }
-
-    /* Cacher le drawer mobile */
-    .mobile-drawer {
-      display: none;
-    }
-
-    /* DROPDOWN DESKTOP */
-    .dropdown {
-      position: relative;
-    }
-
-    .dropdown-trigger {
-      cursor: pointer;
-    }
-
-    .dropdown-menu {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      min-width: 300px;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-      padding: 0.5rem 0;
-      margin-top: 0.5rem;
-      animation: fadeInDropdown 0.2s;
-      z-index: 200;
-    }
-
-    @keyframes fadeInDropdown {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .dropdown-item {
-      display: block;
-      padding: 0.75rem 1.25rem;
-      color: #333;
-      text-decoration: none;
-      transition: all 0.2s;
-      font-weight: 500;
-      background: none;
-      border: none;
-      width: 100%;
-      text-align: left;
-      cursor: pointer;
-      font-family: inherit;
-      font-size: 1rem;
-    }
-
-    .dropdown-item:hover {
-      background: rgba(26, 77, 122, 0.08);
-      color: #1a4d7a;
-    }
-
-    /* SUBMENU (Niveau 2) */
-    .submenu {
-      position: relative;
-    }
-
-    .submenu-trigger {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .submenu:hover .submenu-content {
-      display: block;
-    }
-
-    .submenu-content {
-      display: none;
-      position: absolute;
-      left: 100%;
-      top: 0;
-      min-width: 200px;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-      padding: 0.5rem 0;
-      margin-left: 0.5rem;
-      animation: fadeInDropdown 0.2s;
-      z-index: 300;
-    }
-
-    .submenu-item {
-      display: block;
-      padding: 0.65rem 1rem;
-      color: #555;
-      text-decoration: none;
-      transition: all 0.2s;
-      font-size: 0.95rem;
-      background: none;
-      border: none;
-      width: 100%;
-      text-align: left;
-      cursor: pointer;
-      font-family: inherit;
-      font-weight: 500;
-    }
-
-    .submenu-item:hover {
-      background: rgba(26, 77, 122, 0.08);
-      color: #1a4d7a;
-    }
-  }
-
-  /* ========================================
-     DESKTOP (1024px+)
-     ======================================== */
+/* ========================================
+   DESKTOP (1024px+)
+   ======================================== */
 
   @media (min-width: 1024px) {
     .logo-olympique-poznan {
@@ -852,41 +854,58 @@
     }
 
     .nav-container {
-      padding: 1.25rem 2rem;
+      padding: 1.25rem 3rem;
+      gap: 3rem;
     }
 
     .nav-link {
       font-size: 1rem;
       padding: 0.875rem 1.25rem;
     }
+
+    .nav-links {
+      gap: 2.5rem;
+    }
   }
 
-  /* ========================================
-     GRAND DESKTOP (1200px+)
-     ======================================== */
+/* ========================================
+   GRAND DESKTOP (1200px+)
+   ======================================== */
 
   @media (min-width: 1200px) {
     .logo-olympique-poznan {
       height: 80px;
     }
 
+    .nav-container {
+      padding: 1.25rem 4rem;
+    }
+
     .nav-link {
       font-size: 1.05rem;
       padding: 1rem 1.5rem;
     }
+
+    .nav-links {
+      gap: 3rem;
+    }
   }
 
-  /* ========================================
-     TRÈS GRAND DESKTOP (1400px+)
-     ======================================== */
+/* ========================================
+   TRÈS GRAND DESKTOP (1400px+)
+   ======================================== */
 
   @media (min-width: 1400px) {
     .logo-olympique-poznan {
       height: 90px;
     }
 
+    .nav-container {
+      padding: 1.5rem 5rem;
+    }
+
     .nav-links {
-      gap: 1.5rem;
+      gap: 4rem;
     }
   }
 </style>
