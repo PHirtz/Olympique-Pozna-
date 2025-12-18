@@ -1,15 +1,37 @@
 <script>
+  import { onMount } from 'svelte';
   import Navigation from './Navigation.svelte';
   import { _ } from 'svelte-i18n';
-  
-  /** @type {string} */
-  export let image = '/victory.jpg';
-  /** @type {string} */
-  export let title = 'Bienvenue sur le site d\'Olympique Poznań';
-  /** @type {string} */
-  export let subtitle = 'Club de football de Poznań';
-  /** @type {string} */
-  export let description = 'Passion et partage sont nos moteurs';
+
+  /** @type {string[]} */
+  export let images = ['/victory.jpg'];
+
+  let currentIndex = 0;
+  let interval;
+
+  onMount(() => {
+    // Démarrer le slider seulement s'il y a plusieurs images
+    if (images.length > 1) {
+      startSlider();
+    }
+
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  });
+
+  function startSlider() {
+    interval = setInterval(() => {
+      currentIndex = (currentIndex + 1) % images.length;
+    }, 5000); // Change toutes les 5 secondes
+  }
+
+  function goToSlide(index) {
+    currentIndex = index;
+    // Réinitialiser le timer
+    if (interval) clearInterval(interval);
+    startSlider();
+  }
 </script>
 
 <section class="hero">
@@ -18,9 +40,16 @@
     <Navigation />
   </div>
 
-  <!-- Background image -->
+  <!-- Background images avec transition -->
   <div class="hero-background">
-    <img src={image} alt={title} />
+    {#each images as image, index}
+      <div 
+        class="hero-slide" 
+        class:active={currentIndex === index}
+      >
+        <img src={image} alt="Olympique Poznań - Image {index + 1}" />
+      </div>
+    {/each}
     <div class="hero-overlay"></div>
   </div>
 
@@ -30,6 +59,20 @@
     <p class="hero-subtitle">{$_('hero.subtitle')}</p>
     <p class="hero-description">{$_('hero.description')}</p>
   </div>
+
+  <!-- Indicateurs (seulement si plusieurs images) -->
+  {#if images.length > 1}
+    <div class="hero-indicators">
+      {#each images as _, index}
+        <button
+          class="indicator"
+          class:active={currentIndex === index}
+          on:click={() => goToSlide(index)}
+          aria-label="Voir image {index + 1}"
+        ></button>
+      {/each}
+    </div>
+  {/if}
 </section>
 
 <style>
@@ -49,9 +92,10 @@
     top: 0;
     left: 0;
     right: 0;
+    z-index: 100;
   }
 
-  /* Background */
+  /* Background avec slides */
   .hero-background {
     position: absolute;
     top: 0;
@@ -60,12 +104,40 @@
     height: 100%;
   }
 
-  .hero-background img {
+  .hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+  }
+
+  .hero-slide.active {
+    opacity: 1;
+  }
+
+  .hero-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
-    -ms-zoom-animation: 10%;
+    animation: zoomIn 10s ease-out forwards;
+  }
+
+  @keyframes zoomIn {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.1);
+    }
+  }
+
+  /* Réinitialiser l'animation à chaque changement */
+  .hero-slide.active img {
+    animation: zoomIn 10s ease-out forwards;
   }
 
   /* Overlay sombre */
@@ -80,6 +152,7 @@
       rgba(0, 0, 0, 0.3) 0%,
       rgba(0, 0, 0, 0.6) 100%
     );
+    z-index: 1;
   }
 
   /* Contenu */
@@ -90,6 +163,7 @@
     padding: 2rem;
     max-width: 800px;
     animation: fadeInUp 1s ease-out;
+    z-index: 2;
   }
 
   .hero-content h1 {
@@ -97,7 +171,7 @@
     font-weight: 800;
     margin-bottom: 1rem;
     color: white;
-    text-shadow: 0 4px 20px rgba(229, 218, 218, 0.7);
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
     line-height: 1.2;
   }
 
@@ -113,6 +187,39 @@
     font-style: italic;
     opacity: 0.9;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+  }
+
+  /* Indicateurs */
+  .hero-indicators {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.75rem;
+    z-index: 3;
+  }
+
+  .indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: 2px solid white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+  }
+
+  .indicator.active {
+    background: white;
+    width: 35px;
+    border-radius: 6px;
+  }
+
+  .indicator:hover {
+    background: rgba(255, 255, 255, 0.8);
+    transform: scale(1.1);
   }
 
   @keyframes fadeInUp {
@@ -139,6 +246,19 @@
     .hero-description {
       font-size: 1rem;
     }
+
+    .hero-indicators {
+      bottom: 1rem;
+    }
+
+    .indicator {
+      width: 10px;
+      height: 10px;
+    }
+
+    .indicator.active {
+      width: 28px;
+    }
   }
 
   @media (max-width: 480px) {
@@ -148,6 +268,7 @@
 
     .hero-subtitle {
       font-size: 1rem;
+      padding-top: 1rem;
     }
 
     .hero-description {

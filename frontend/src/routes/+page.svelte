@@ -11,18 +11,24 @@
   import BanniereCamp from '$lib/components/BanniereCamp.svelte';
   import BanniereShop from '$lib/components/BanniereShop.svelte';
   import Navigation from '$lib/components/ui/Navigation.svelte';
-  
-  /** @type {import('./$types').PageData} */
-  export let data;
+
+  // Tableau d'images pour le slider Hero
+  const heroImages = [
+    '/victory.jpg',
+    '/480253574_519592814503843_155183674564057428_n.jpg',
+    '/img-communes/fondteam.jpeg',
+    '/img-communes/515983768_627785960351194_4348364861543239483_n.jpg',
+    '/480550232_520175491112242_6056627001798457656_n.jpg',
+    '/480451313_519582431171548_3309691283841879797_n.jpg'
+  ];
 </script>
 
+<!-- Navigation EN PREMIER pour éviter les problèmes de z-index -->
 <Navigation />
-<Hero 
-  image="/victory.jpg"
-  title="Bienvenue sur le site d'Olympique Poznań"
-  subtitle="Club de football de Poznań"
-  description="Passion et partage sont nos moteurs"
-/>
+
+<!-- Hero avec slider d'images -->
+<Hero images={heroImages} />
+
 <SectionTeams />
 
 <!-- Container pour Shop et Facebook côte à côte -->
@@ -66,6 +72,6 @@
 
   .shop-section,
   .facebook-section {
-    min-width: 0; /* Important pour éviter l'overflow */
+    min-width: 0; /* Pour éviter les débordements dans les flex/grid */
   }
 </style>
