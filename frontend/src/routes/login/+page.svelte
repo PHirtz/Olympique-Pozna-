@@ -123,7 +123,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url('/img-communes/fondneutre.png');
+    background-image: url('/img-communes/fondteam.jpeg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
