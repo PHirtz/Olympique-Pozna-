@@ -51,14 +51,13 @@
       <p>{$_('home.accompagnement.paragraph2')}</p>
       <p>{$_('home.accompagnement.paragraph3')}</p>
       <p>{$_('home.accompagnement.paragraph4')}</p>
-      <p>{$_('home.accompagnement.paragraph5')}</p>
       <p class="performance-highlight">
         {$_('home.accompagnement.highlight')}
       </p>
     </div>
     <div class="accompagnement-image">
       <img 
-        src="../img-communes/516872493_627785213684602_5808429210444116953_n.jpg" 
+        src="../img-communes/famille.jpg" 
         alt="Coach et enfant sur le terrain" 
         loading="lazy" 
       />
@@ -79,7 +78,6 @@
       <h2>{$_('home.performance.title')}</h2>
       <p>{$_('home.performance.paragraph1')}</p>
       <p>{$_('home.performance.paragraph2')}</p>
-      <p>{$_('home.performance.paragraph3')}</p>
       <p class="performance-highlight">
         {$_('home.performance.highlight')}
       </p>
