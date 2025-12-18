@@ -1,17 +1,33 @@
 <script>
   import { onMount } from 'svelte';
+  import { partners as partnersAPI } from '$lib/api';
   import { _ } from 'svelte-i18n';
   import { locale } from 'svelte-i18n';
   import { Facebook, Instagram, Music2, Mail, MapPin, Phone } from 'lucide-svelte';
   import { goto } from '$app/navigation';
-  import Button from './Button.svelte';
 
   // Récupérer la locale actuelle
   let currentLocale = 'fr';
   locale.subscribe(value => {
     currentLocale = value || 'fr';
   });
-  
+
+  // État pour les sponsors
+  let sponsors = [];
+  let loadingSponsors = true;
+
+  onMount(async () => {
+    try {
+      const response = await partnersAPI.getAll({ isActive: true });
+      const allPartners = response.data?.partners || response.data || [];
+      // Limiter à 6 sponsors pour le footer
+      sponsors = allPartners.slice(0, 6);
+    } catch (err) {
+      console.error('Erreur chargement sponsors:', err);
+    } finally {
+      loadingSponsors = false;
+    }
+  });
 </script>
 
 <footer class="footer">
@@ -68,18 +84,49 @@
       </ul>
     </div>
 
-    <!-- Section 4: Newsletter -->
-    <div class="footer-section">
-      <h3 class="footer-title">{$_('footer.newsletter')}</h3>
-      <p class="newsletter-text">{$_('footer.newsletterText')}</p>
-      <form class="newsletter-form">
-        <input 
-          type="email" 
-          placeholder={$_('footer.emailPlaceholder')}
-          aria-label={$_('footer.emailPlaceholder')}
-        />
-        <Button variant="primary">{$_('footer.subscribe')}</Button>
-      </form>
+    <!-- Section 4: Sponsors -->
+    <div class="footer-section footer-sponsors-section">
+      <h3 class="footer-title">{$_('footer.sponsors')}</h3>
+      
+      {#if loadingSponsors}
+        <div class="sponsors-loading">
+          <div class="mini-spinner"></div>
+        </div>
+      {:else if sponsors.length > 0}
+        <div class="sponsors-grid">
+          {#each sponsors as sponsor}
+            {#if sponsor.websiteUrl}
+              <a 
+                href={sponsor.websiteUrl} 
+                class="sponsor-logo-link"
+                target="_blank" 
+                rel="noopener noreferrer"
+                title={sponsor.name}
+              >
+                <img 
+                  src={sponsor.logoUrl || sponsor.logoPath} 
+                  alt={sponsor.name}
+                  loading="lazy"
+                />
+              </a>
+            {:else}
+              <div class="sponsor-logo-link no-link" title={sponsor.name}>
+                <img 
+                  src={sponsor.logoUrl || sponsor.logoPath} 
+                  alt={sponsor.name}
+                  loading="lazy"
+                />
+              </div>
+            {/if}
+          {/each}
+        </div>
+        
+        <a href="/club/partners" class="view-all-sponsors">
+          {$_('footer.viewAllSponsors', { default: 'Voir tous nos partenaires' })} →
+        </a>
+      {:else}
+        <p class="no-sponsors">{$_('footer.noSponsors', { default: 'Aucun partenaire pour le moment' })}</p>
+      {/if}
     </div>
   </div>
 
@@ -102,22 +149,22 @@
 
 <style>
   /* ========================================
-     FOOTER PRINCIPAL
+     MOBILE FIRST - BASE (320px+)
      ======================================== */
 
   .footer {
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     color: #e8e9ef;
-    padding-top: 4rem;
+    padding-top: 3rem;
   }
 
   .footer-container {
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
-    padding: 0 2rem 3rem 2rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 3rem;
+    padding: 0 1rem 3rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
   }
 
   /* ========================================
@@ -130,11 +177,17 @@
     gap: 1rem;
   }
 
-  .footer-logo {
-    height: 130px;
-    width: 100px;
-    margin-bottom: 0.5rem;
+  .footer-sponsors-section {
+    min-height: 200px;
+  }
 
+  .footer-logo {
+    height: 100px;
+    width: 100px;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    margin-bottom: 0.5rem;
   }
 
   .footer-description {
@@ -244,40 +297,93 @@
   }
 
   /* ========================================
-     NEWSLETTER
+     SPONSORS GRID - MOBILE FIRST
      ======================================== */
 
-  .newsletter-text {
-    color: #b4b4c5;
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-
-  .newsletter-form {
+  .sponsors-loading {
     display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    margin-top: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    min-height: 150px;
   }
 
-  .newsletter-form input {
-    padding: 0.875rem 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 0.5rem;
+  .mini-spinner {
+    width: 30px;
+    height: 30px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: #c9a961;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* Mobile : 2 colonnes */
+  .sponsors-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .sponsor-logo-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: rgba(255, 255, 255, 0.05);
-    color: #e8e9ef;
-    font-size: 0.95rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    transition: all 0.3s;
+    min-height: 90px;
+  }
+
+  .sponsor-logo-link:not(.no-link):hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #c9a961;
+    transform: translateY(-2px);
+  }
+
+  .sponsor-logo-link.no-link {
+    cursor: default;
+  }
+
+  .sponsor-logo-link img {
+    max-width: 100%;
+    max-height: 60px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: brightness(0.9);
+    transition: filter 0.3s;
+  }
+
+  .sponsor-logo-link:not(.no-link):hover img {
+    filter: brightness(1.1);
+  }
+
+  .view-all-sponsors {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #c9a961;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
     transition: all 0.2s;
   }
 
-  .newsletter-form input::placeholder {
-    color: #8a8a9f;
+  .view-all-sponsors:hover {
+    color: #d4b76f;
+    transform: translateX(5px);
   }
 
-  .newsletter-form input:focus {
-    outline: none;
-    border-color: #667eea;
-    background: rgba(255, 255, 255, 0.08);
+  .no-sponsors {
+    color: #8a8a9f;
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-top: 1rem;
   }
 
   /* ========================================
@@ -291,13 +397,14 @@
   }
 
   .footer-bottom-container {
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1rem;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    text-align: center;
     gap: 1rem;
   }
 
@@ -311,6 +418,8 @@
     display: flex;
     gap: 1rem;
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .footer-legal a,
@@ -336,27 +445,91 @@
   }
 
   /* ========================================
-     RESPONSIVE
+     TABLET (640px+)
      ======================================== */
 
-  @media (max-width: 768px) {
+  @media (min-width: 640px) {
     .footer-container {
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
+      padding: 0 2rem 3rem 2rem;
+      gap: 3rem;
     }
 
-    .footer-bottom-container {
-      flex-direction: column;
-      text-align: center;
+    /* Tablet : 3 colonnes pour sponsors */
+    .sponsors-grid {
+      grid-template-columns: repeat(2, 2fr);
+      gap: 1.25rem;
     }
 
-    .footer-legal {
-      flex-wrap: wrap;
-      justify-content: center;
+    .sponsor-logo-link {
+      min-height: 100px;
+      padding: 1.25rem;
+    }
+
+    .sponsor-logo-link img {
+      max-height: 70px;
+    }
+
+    .footer-logo {
+      height: 120px;
+      width: 120px;
     }
   }
 
-  @media (max-width: 480px) {
+  /* ========================================
+     DESKTOP (768px+)
+     ======================================== */
 
+  @media (min-width: 768px) {
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-bottom-container {
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 0 2rem;
+    }
+
+    .footer-legal {
+      justify-content: flex-end;
+    }
+  }
+
+  /* ========================================
+     LARGE DESKTOP (1024px+)
+     ======================================== */
+
+  @media (min-width: 1024px) {
+    .footer-container {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .sponsor-logo-link {
+      min-height: 110px;
+    }
+
+    .sponsor-logo-link img {
+      max-height: 100px;
+    }
+
+    .footer-logo {
+      height: 150px;
+      width: 150px;
+    }
+  }
+
+  /* ========================================
+     EXTRA LARGE (1200px+)
+     ======================================== */
+
+  @media (min-width: 1200px) {
+    .footer-container {
+      padding: 0 1rem 1rem 1rem;
+    }
+
+    .sponsor-logo-link {
+      padding: 1rem;
+    }
   }
 </style>

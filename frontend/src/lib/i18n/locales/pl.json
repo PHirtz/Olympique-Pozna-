@@ -56,14 +56,16 @@
     "errorLoading": "Błąd podczas ładowania postów z Facebooka"
   },
   "footer": {
-    "description": "Francusko-polski klub piłkarski z siedzibą w Poznaniu. Dołącz do nas, aby przeżyć swoją pasję do piłki nożnej!",
+    "description": "Francusko-polski klub piłkarski z siedzibą w Poznaniu. Dołącz do nas !",
     "quickLinks": "Szybkie linki",
     "contact": "Kontakt",
     "newsletter": "Newsletter",
     "newsletterText": "Zapisz się, aby otrzymywać nasze najnowsze wiadomości",
     "emailPlaceholder": "Twój email",
     "subscribe": "Zapisz się",
-    "sponsors": "Nasi partnerzy",
+    "sponsors": "Nasi Partnerzy",
+    "viewAllSponsors": "Zobacz wszystkich partnerów",
+    "noSponsors": "Brak partnerów na razie",
     "rights": "Wszelkie prawa zastrzeżone",
     "legalNotice": "Informacje prawne",
     "privacy": "Polityka prywatności",

@@ -89,14 +89,16 @@
     "errorLoading": "Erreur lors du chargement des posts Facebook"
   },
   "footer": {
-    "description": "Club de football franco-polonais basé à Poznań. Rejoignez-nous pour vivre votre passion du football !",
+    "description": "Club de football franco-polonais basé à Poznań. Rejoignez-nous !",
     "quickLinks": "Liens rapides",
     "contact": "Contact",
     "newsletter": "Newsletter",
     "newsletterText": "Inscrivez-vous pour recevoir nos dernières actualités",
     "emailPlaceholder": "Votre email",
     "subscribe": "S'abonner",
-    "sponsors": "Nos partenaires",
+    "sponsors": "Nos Partenaires",
+    "viewAllSponsors": "Voir tous nos partenaires",
+    "noSponsors": "Aucun partenaire pour le moment",
     "rights": "Tous droits réservés",
     "legalNotice": "Mentions légales",
     "privacy": "Politique de confidentialité",
