@@ -2,6 +2,7 @@
   "nav": {
     "home": "Strona główna",
     "news": "Aktualności",
+    "photo": "Zdjęcie",
     "shop": "Sklep",
     "club": "Klub",
     "teams": "Nasze drużyny",
@@ -21,6 +22,26 @@
     "login": "Zaloguj się",
     "register": "Dołącz"
   },
+
+    "shop": {
+    "title": "Nasz Sklep",
+    "viewProduct": "Zobacz produkt",
+    "subtitle": "Odkryj nasze oficjalne produkty",
+    "items": {
+      "jacket": "Oficjalna Kurtka",
+      "winterJacket": "Kurtka Zimowa",
+      "bottle": "Oficjalny Bidon",
+      "roller": "Roller",
+      "socks": "Skarpety",
+      "rainJacket": "Oficjalna kurtka przeciwdeszczowa",
+      "whiteShorts": "Białe spodenki",
+      "blueShorts": "Niebieskie spodenki",
+      "sweatshirt": "Oficjalna Bluza",
+      "scarf": "Oficjalny Szalik",
+      "homeJersey": "Koszulka Domowa"
+    }
+  },
+  
   "hero": {
     "title": "Witamy na stronie Olympique Poznan",
     "subtitle": "Klub piłkarski Poznania",

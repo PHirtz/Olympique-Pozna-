@@ -1,73 +1,67 @@
 <script>
   import { onMount } from 'svelte';
   import { _ } from 'svelte-i18n';
-  import { goto } from '$app/navigation';
 
   const shopImages = [
     {
       src: '../vitrine/Veste1.jpg',
       alt: 'veste domicile Olympique Poznań',
-      title: 'Veste pluie officielle',
+      titleKey: 'shop.items.jacket',
+      link: '' // À compléter avec l'URL du produit
+    },
+    {
+      src: '../vitrine/maillot.jpg',
+      alt: 'maillot domicile Olympique Poznań',
+      titleKey: 'shop.items.homeJersey',
+      link: 'https://olympique.pl/products/koszulka-meczowa-olympique-domowa'
     },
     {
       src: '../vitrine/vestehv.jpg',
-      alt: 'veste hiver  Olympique Poznań',
-      title: 'Veste Hiver officielle',
+      alt: 'veste hiver Olympique Poznań',
+      titleKey: 'shop.items.scarf',
+      link: '' // À compléter avec l'URL du produit
     },
     {
       src: '../vitrine/Bidon.jpg',
       alt: 'Gourde Olympique Poznań',
-      title: 'Gourde Officielle',
+      titleKey: 'shop.items.bottle',
+      link: '' // À compléter avec l'URL du produit
     },
     {
       src: '../vitrine/roller.png',
       alt: 'Roller Olympique Poznań',
-      title: 'Roller',
+      titleKey: 'shop.items.roller',
+      link: '' // À compléter avec l'URL du produit
     },
     {
       src: '../vitrine/chaussettes2.png',
       alt: 'Chaussettes Olympique Poznań',
-      title: 'Chaussettes',
-    },
-    {
-      src: '../vitrine/Echarpe1.jpg',
-      alt: 'Echarpe Olympique Poznań',
-      title: 'Echarpe Officielle',
-    },
-    {
-      src: '../vitrine/Getry.png',
-      alt: 'Guêtre Olympique Poznań',
-      title: 'Guêtre',
+      titleKey: 'shop.items.socks',
+      link: 'https://olympique.pl/products/skarpetogetry'
     },
     {
       src: '../vitrine/sweatpluie.jpg',
       alt: 'Veste pluie officielle Olympique Poznań',
-      title: 'Veste pluie officielle',
+      titleKey: 'shop.items.rainJacket',
+      link: '' // À compléter avec l'URL du produit
     },
     {
       src: '../vitrine/ShortBlanc3.png',
       alt: 'Short blanc Olympique Poznań',
-      title: 'Short blanc',
+      titleKey: 'shop.items.whiteShorts',
+      link: 'https://olympique.pl/products/meskie-spodenki-meczowe-olympique?ownerid=126459513&noProxyRedirect=true&ownerid=126459513'
     },
-        {
+    {
       src: '../vitrine/ShortBleu4.jpg',
       alt: 'Short bleu Olympique Poznań',
-      title: 'Short bleu',
-    },
-    {
-      src: '../vitrine/Gardien1.jpg',
-      alt: 'Gants Olympique Poznań',
-      title: 'Gants de gardien',
-    },
-    {
-      src: '../vitrine/Jogging1.jpg',
-      alt: 'Jogging Olympique Poznań',
-      title: 'Jogging Officiel',
+      titleKey: 'shop.items.blueShorts',
+      link: 'https://olympique.pl/products/damskie-spodenki-meczowe-olympique?ownerid=126459513&noProxyRedirect=true&ownerid=126459513'
     },
     {
       src: '../vitrine/sweatfilles.jpg',
       alt: 'sweat Olympique Poznań',
-      title: 'Sweat Officiel',
+      titleKey: 'shop.items.sweatshirt',
+      link: '' // À compléter avec l'URL du produit
     }
   ];
 
@@ -84,7 +78,7 @@
   function startAutoSlide() {
     interval = setInterval(() => {
       nextSlide();
-    }, 4000); // Change toutes les 4 secondes
+    }, 4000);
   }
 
   function nextSlide() {
@@ -102,7 +96,13 @@
   }
 
   function handleShopClick() {
-    goto('www.olympique.pl');
+    window.open('https://olympique.pl', '_blank', 'noopener,noreferrer');
+  }
+
+  function handleProductClick(link) {
+    if (link) {
+      window.open(link, '_blank', 'noopener,noreferrer');
+    }
   }
 </script>
 
@@ -110,22 +110,37 @@
   <div class="banniere-container">
     <div class="content-wrapper">
       <div class="text-content">
-        <h2>{$_('shop.banner.title', { default: 'Boutique Olympique' })}</h2>
-        <p>{$_('shop.banner.subtitle', { default: 'Portez fièrement les couleurs du club' })}</p>
+        <h2>{$_('shop.banner.title')}</h2>
         <button class="shop-btn" on:click={handleShopClick}>
-          {$_('shop.banner.cta', { default: 'Découvrir la boutique' })}
+          {$_('shop.banner.cta')}
         </button>
       </div>
 
       <div class="slider">
         <div class="slides" style="transform: translateX(-{currentSlide * 100}%)">
           {#each shopImages as product, index}
-            <div class="slide">
-              <img src={product.src} alt={product.alt} loading="lazy" />
-              <div class="product-info">
-                <h3>{product.title}</h3>
+            {#if product.link}
+              <!-- Si le produit a un lien, utilise un bouton -->
+              <button 
+                class="slide clickable"
+                on:click={() => handleProductClick(product.link)}
+                aria-label="Voir {$_(product.titleKey)}"
+              >
+                <img src={product.src} alt={product.alt} loading="lazy" />
+                <div class="product-info">
+                  <h3>{$_(product.titleKey)}</h3>
+                  <span class="view-product">{$_('shop.viewProduct')}</span>
+                </div>
+              </button>
+            {:else}
+              <!-- Si pas de lien, utilise une div simple -->
+              <div class="slide">
+                <img src={product.src} alt={product.alt} loading="lazy" />
+                <div class="product-info">
+                  <h3>{$_(product.titleKey)}</h3>
+                </div>
               </div>
-            </div>
+            {/if}
           {/each}
         </div>
 
@@ -143,14 +158,14 @@
 
         <!-- Indicateurs -->
         <div class="indicators">
-        {#each shopImages as _, index}
+          {#each shopImages as _, index}
             <button
-            class="indicator"
-            class:active={currentSlide === index}
-            on:click={() => goToSlide(index)}
-            aria-label="Voir produit {index + 1}"
+              class="indicator"
+              class:active={currentSlide === index}
+              on:click={() => goToSlide(index)}
+              aria-label="Voir produit {index + 1}"
             ></button>
-        {/each}
+          {/each}
         </div>
       </div>
     </div>
@@ -159,8 +174,7 @@
 
 <style>
   .banniere-shop {
-    padding: 4rem 2rem;
-    background: var(--bg-secondary, #f5f5f5);
+    padding: 4rem 1rem;
   }
 
   .banniere-container {
@@ -176,30 +190,26 @@
   }
 
   .text-content {
-    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
   }
 
   .text-content h2 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: var(--primary-color);
     margin-bottom: 1rem;
     font-weight: bold;
   }
 
-  .text-content p {
-    font-size: 1.125rem;
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-    line-height: 1.6;
-  }
-
   .shop-btn {
     background: var(--primary-color);
-    color: rgba(30, 64, 175, 0.2);
+    color: #1a4d7a;
     border: none;
     padding: 1rem 2rem;
     font-size: 1.0625rem;
     font-weight: 600;
+    width: fit-content;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -219,7 +229,7 @@
     height: 550px;
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 40px rgba(47, 5, 235, 0.264);
     background: white;
   }
 
@@ -233,11 +243,25 @@
     min-width: 100%;
     height: 100%;
     position: relative;
+    transition: transform 0.3s ease;
+    border: none;
+    padding: 0;
+    background: none;
+    text-align: left;
+  }
+
+  .slide.clickable {
+    cursor: pointer;
+  }
+
+  .slide.clickable:hover {
+    transform: scale(1.02);
   }
 
   .slide img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
   }
 
   .product-info {
@@ -245,7 +269,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    background: linear-gradient(to top, rgba(45, 42, 42, 0.8), transparent);
     padding: 2rem 1.5rem 1.5rem;
     color: white;
   }
@@ -253,6 +277,24 @@
   .product-info h3 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.66);
+  }
+
+  .view-product {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid white;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .slide.clickable:hover .view-product {
+    background: white;
+    color: var(--primary-color);
   }
 
   .nav-btn {
@@ -365,10 +407,6 @@
 
     .product-info h3 {
       font-size: 1.25rem;
-    }
-
-    .price {
-      font-size: 1.125rem;
     }
   }
 </style>

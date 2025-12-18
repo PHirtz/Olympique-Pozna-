@@ -95,14 +95,15 @@
 
     <!-- DESKTOP NAVIGATION -->
     <div class="nav-links">
-      <a href="/news" class="nav-link" style="animation-delay: 0.1s">
-        {$_('nav.news')}
-      </a>
       
-      <a href="www.olympique.pl" class="nav-link" style="animation-delay: 0.2s">
+      <a href="https://olympique.pl/" class="nav-link shop-link" style="animation-delay: 0.2s">
         {$_('nav.shop')}
+        <span class="new-badge">
+          <span class="badge-text">NEW</span>
+          <span class="shine"></span>
+        </span>
       </a>
-      
+            
       <!-- DROPDOWN : Le Club -->
       <div class="dropdown" style="animation-delay: 0.3s">
         <button class="nav-link dropdown-trigger" on:mouseenter={() => toggleDropdown('club')}>
@@ -121,7 +122,7 @@
             <a href="/club/coaches" class="dropdown-item" role="menuitem">{$_('club.coaches')}</a>
             <a href="/club/partners" class="dropdown-item" role="menuitem">{$_('club.partners')}</a>
             <a href="/club/status" class="dropdown-item" role="menuitem">{$_('club.status')}</a>
-            <a href="/club/documents" class="dropdown-item" role="menuitem">{$_('club.documents.title')}</a>
+            <a href="https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit?tab=t.0" class="dropdown-item" role="menuitem">{$_('club.documents.title')}</a>
           </div>
         {/if}
       </div>
@@ -144,17 +145,7 @@
           class="dropdown-menu" 
           role="menu"
           tabindex="-1"
-        >
-          <!-- Seniors Femmes -->
-          <a href="/teams/seniors/women" class="dropdown-item" role="menuitem" tabindex="0">
-            {$_('teams.seniors.women')}
-          </a>
-          
-          <!-- Seniors Hommes -->
-          <a href="/teams/seniors/men" class="dropdown-item" role="menuitem" tabindex="0">
-            {$_('teams.seniors.men')}
-          </a>
-          
+        >          
           <!-- Les Dames -->
           <a href="/teams/ladies" class="dropdown-item" role="menuitem" tabindex="0">
             {$_('teams.ladies')}
@@ -229,6 +220,11 @@
       <a href="/camps" class="nav-link" style="animation-delay: 0.5s">
         {$_('nav.camps')}
       </a>
+      
+      <a href="https://drive.google.com/drive/folders/1Qm9yOZJ9_sKRuJ70V8KSa1FrcSgxwXRW" class="nav-link" style="animation-delay: 0.1s">
+        {$_('nav.photo')}
+      </a>
+
     </div>
 
     <!-- Actions à droite (desktop) -->
@@ -266,9 +262,15 @@
     <nav aria-label={$_('nav.mainNavigation')}>
       <ul class="mobile-menu">
         <li><a href="/" on:click={close}>{$_('nav.home')}</a></li>
-        <li><a href="/news" on:click={close}>{$_('nav.news')}</a></li>
-        <li><a href="/shop" on:click={close}>{$_('nav.shop')}</a></li>
-        
+        <li>
+          <a href="https://olympique.pl/" on:click={close} class="shop-mobile-link">
+            {$_('nav.shop')}
+            <span class="new-badge">
+              <span class="badge-text">NEW</span>
+              <span class="shine"></span>
+            </span>
+          </a>
+        </li>        
         <!-- Le Club (mobile) -->
         <li class="mobile-dropdown">
           <button class="mobile-dropdown-trigger" on:click={() => toggleDropdown('club-mobile')}>
@@ -283,15 +285,16 @@
               <li><a href="/club/about" on:click={close}>{$_('club.about')}</a></li>
               <li><a href="/club/coaches" on:click={close}>{$_('club.coaches')}</a></li>
               <li><a href="/club/partner" on:click={close}>{$_('club.partners')}</a></li>
-              <li><a href="/club/status" on:click={close}>{$_('club.status')}</a></li>
-              
-              <li class="mobile-subsubmenu">
-                <button class="mobile-subsubmenu-trigger" on:click={() => toggleSubmenu('documents-mobile')}>
+              <li><a href="/club/status" on:click={close}>{$_('club.status')}</a></li>  
+              <li>
+                <a 
+                  href="https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit?tab=t.0" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  on:click={close}
+                >
                   {$_('club.documents.title')}
-                  <span class="icon-wrapper" class:rotate={openSubmenu === 'documents-mobile'}>
-                    <ChevronDown size={14} />
-                  </span>                
-                </button>
+                </a>
               </li>
             </ul>
           {/if}
@@ -308,8 +311,6 @@
           
           {#if openDropdown === 'teams-mobile'}
             <ul class="mobile-submenu">
-              <li><a href="/teams/seniors/women" on:click={close}>{$_('teams.seniors.women')}</a></li>
-              <li><a href="/teams/seniors/men" on:click={close}>{$_('teams.seniors.men')}</a></li>
               <li><a href="/teams/ladies" on:click={close}>{$_('teams.ladies')}</a></li>
               <li><a href="/teams/blues" on:click={close}>{$_('teams.blues')}</a></li>
               <li><a href="/teams/giroud" on:click={close}>{$_('teams.giroud')}</a></li>
@@ -339,7 +340,6 @@
                   </ul>
                 {/if}
               </li>
-              
               <li><a href="/teams/griezmann" on:click={close}>{$_('teams.griezmann')}</a></li>
               <li><a href="/teams/coman" on:click={close}>{$_('teams.coman')}</a></li>
               <li><a href="/teams/diani" on:click={close}>{$_('teams.diani')}</a></li>
@@ -349,8 +349,8 @@
             </ul>
           {/if}
         </li>
-        
         <li><a href="/camps" on:click={close}>{$_('nav.camps')}</a></li>
+        <li><a href="https://drive.google.com/drive/folders/1Qm9yOZJ9_sKRuJ70V8KSa1FrcSgxwXRW" on:click={close}>{$_('nav.photo')}</a></li>          
       </ul>
     </nav>
 
@@ -684,6 +684,34 @@
 }
 
 /* ========================================
+   ADAPTATIONS MOBILE
+   ======================================== */
+
+@media (max-width: 767px) {
+  .shop-mobile-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .shop-mobile-link .new-badge {
+    position: relative;
+    top: 0;
+    right: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Version alternative si tu veux le badge à côté du texte en mobile */
+@media (max-width: 767px) {
+  .mobile-menu a.shop-mobile-link {
+    justify-content: space-between;
+  }
+}
+
+/* ========================================
    TABLETTE (768px+)
    ======================================== */
 
@@ -908,4 +936,140 @@
       gap: 4rem;
     }
   }
+/* ========================================
+   NEW BADGE - VERSION ULTRA ESTHÉTIQUE DORÉE
+   ======================================== */
+
+.shop-link,
+.shop-mobile-link {
+  position: relative;
+}
+
+.new-badge {
+  position: absolute;
+  top: -10px;
+  right: -12px;
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffc107 100%);
+  background-size: 200% 200%;
+  color: #1a1a1a;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  letter-spacing: 0.8px;
+  box-shadow: 
+    0 4px 15px rgba(255, 215, 0, 0.5),
+    0 2px 8px rgba(255, 237, 78, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  animation: badgePulse 2s ease-in-out infinite, gradientShift 4s ease infinite;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.badge-text {
+  position: relative;
+  z-index: 2;
+  display: block;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* Effet de brillance qui traverse le badge */
+.shine {
+  position: absolute;
+  top: -50%;
+  left: -100%;
+  width: 60%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0.2) 80%,
+    transparent 100%
+  );
+  transform: skewX(-25deg);
+  animation: shine 3s ease-in-out infinite;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Animation de pulsation subtile */
+@keyframes badgePulse {
+  0%, 100% {
+    transform: scale(1) rotate(-2deg);
+    box-shadow: 
+      0 4px 15px rgba(255, 215, 0, 0.5),
+      0 2px 8px rgba(255, 237, 78, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    transform: scale(1.1) rotate(2deg);
+    box-shadow: 
+      0 6px 20px rgba(255, 215, 0, 0.7),
+      0 3px 12px rgba(255, 237, 78, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* Animation du gradient de fond */
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Animation de la brillance */
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  20% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Effet au survol */
+.nav-link:hover .new-badge,
+.shop-mobile-link:hover .new-badge {
+  animation: badgePulse 2s ease-in-out infinite, gradientShift 4s ease infinite, bounceIn 0.6s ease;
+}
+
+@keyframes bounceIn {
+  0%, 100% {
+    transform: scale(1.1) rotate(2deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(-2deg);
+  }
+}
+
+/* ========================================
+   ADAPTATIONS MOBILE
+   ======================================== */
+
+@media (max-width: 767px) {
+  .shop-mobile-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .shop-mobile-link .new-badge {
+    position: relative;
+    top: 0;
+    right: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
 </style>

@@ -2,6 +2,7 @@
   "nav": {
     "home": "Accueil",
     "news": "News",
+    "photo": "Photos",
     "shop": "Shop",
     "club": "Le Club",
     "teams": "Nos Équipes",
@@ -49,6 +50,31 @@
     "login": "Me connecter",
     "register": "Rejoindre"
   },
+
+  "shop": {
+    "title": "Notre Boutique",
+    "viewProduct": "Voir le produit",
+    "subtitle": "Découvrez nos produits officiels",
+  "banner":{
+    "title": "Boutique Officielle Olympique Poznań",
+    "subtitle": "Montrez votre soutien avec notre collection exclusive d'articles Olympique Poznań !",
+    "cta": "Visitez la boutique"
+  },
+    "items": {
+      "jacket": "Veste Officielle",
+      "winterJacket": "Veste Hiver",
+      "bottle": "Gourde Officielle",
+      "roller": "Roller",
+      "socks": "Chaussettes",
+      "rainJacket": "Veste pluie officielle",
+      "whiteShorts": "Short blanc",
+      "blueShorts": "Short bleu",
+      "sweatshirt": "Sweat Officiel",
+      "homeJersey": "Maillot Domicile Officiel",
+      "scarf": "Écharpe Officielle"
+    }
+  },
+
   "hero": {
     "title": "Bienvenue sur le site d'Olympique Poznan",
     "subtitle": "Club de football de Poznań",
