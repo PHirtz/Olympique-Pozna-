@@ -215,7 +215,7 @@
     border: none;
     padding: 1rem 2rem;
     font-size: 1.0625rem;
-    font-weight: 600;
+    font-weight: 800;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -300,7 +300,7 @@
   }
 
   .slide.clickable:hover .view-product {
-    background: white;
+    background: rgb(85, 86, 96);
     color: var(--primary-color);
   }
 
@@ -429,7 +429,7 @@
   /* Grand Desktop (1200px+) */
   @media (min-width: 1200px) {
     .text-content h2 {
-      font-size: 3rem;
+      font-size: 3.5rem;
     }
 
     .slider {
