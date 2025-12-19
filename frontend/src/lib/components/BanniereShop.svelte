@@ -109,6 +109,7 @@
 <section class="banniere-shop">
   <div class="banniere-container">
     <div class="content-wrapper">
+      <!-- En-tête avec titre et bouton -->
       <div class="text-content">
         <h2>{$_('shop.banner.title')}</h2>
         <button class="shop-btn" on:click={handleShopClick}>
@@ -116,6 +117,7 @@
         </button>
       </div>
 
+      <!-- Slider en dessous -->
       <div class="slider">
         <div class="slides" style="transform: translateX(-{currentSlide * 100}%)">
           {#each shopImages as product, index}
@@ -173,33 +175,38 @@
 </section>
 
 <style>
+  /* Mobile First */
   .banniere-shop {
-    padding: 4rem 1rem;
+    padding: 3rem 1rem;
   }
 
   .banniere-container {
+    width: 100%;
     max-width: 1400px;
     margin: 0 auto;
   }
 
   .content-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 3rem;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
   }
 
+  /* En-tête */
   .text-content {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: center;
+    padding: 1rem;
   }
 
   .text-content h2 {
     font-size: 2rem;
     color: var(--primary-color);
-    margin-bottom: 1rem;
     font-weight: bold;
+    margin: 0;
   }
 
   .shop-btn {
@@ -209,7 +216,6 @@
     padding: 1rem 2rem;
     font-size: 1.0625rem;
     font-weight: 600;
-    width: fit-content;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -223,10 +229,11 @@
     color: white;
   }
 
+  /* Slider */
   .slider {
     position: relative;
     width: 100%;
-    height: 550px;
+    height: 400px;
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 10px 40px rgba(47, 5, 235, 0.264);
@@ -275,7 +282,7 @@
   }
 
   .product-info h3 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     margin-bottom: 0.5rem;
     color: rgba(255, 255, 255, 0.66);
   }
@@ -297,14 +304,15 @@
     color: var(--primary-color);
   }
 
+  /* Boutons de navigation */
   .nav-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     background: rgba(255, 255, 255, 0.95);
     border: none;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -321,13 +329,14 @@
   }
 
   .nav-btn.prev {
-    left: 1rem;
+    left: 0.5rem;
   }
 
   .nav-btn.next {
-    right: 1rem;
+    right: 0.5rem;
   }
 
+  /* Indicateurs */
   .indicators {
     position: absolute;
     bottom: 1rem;
@@ -359,54 +368,72 @@
     background: rgba(255, 255, 255, 0.8);
   }
 
-  @media (max-width: 968px) {
-    .content-wrapper {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-
-    .text-content {
-      text-align: center;
-      padding: 1rem;
-    }
-
-    .slider {
-      height: 350px;
-    }
-  }
-
-  @media (max-width: 768px) {
+  /* Tablette (768px+) */
+  @media (min-width: 768px) {
     .banniere-shop {
-      padding: 3rem 1rem;
+      padding: 4rem 2rem;
+    }
+
+    .content-wrapper {
+      gap: 2.5rem;
     }
 
     .text-content h2 {
-      font-size: 2rem;
-    }
-
-    .text-content p {
-      font-size: 1rem;
+      font-size: 2.5rem;
     }
 
     .slider {
-      height: 300px;
-    }
-
-    .nav-btn {
-      width: 36px;
-      height: 36px;
-    }
-
-    .nav-btn.prev {
-      left: 0.5rem;
-    }
-
-    .nav-btn.next {
-      right: 0.5rem;
+      height: 450px;
     }
 
     .product-info h3 {
-      font-size: 1.25rem;
+      font-size: 1.5rem;
+    }
+
+    .nav-btn {
+      width: 40px;
+      height: 40px;
+    }
+
+    .nav-btn.prev {
+      left: 1rem;
+    }
+
+    .nav-btn.next {
+      right: 1rem;
+    }
+  }
+
+  /* Desktop (1024px+) */
+  @media (min-width: 1024px) {
+    .banniere-shop {
+      padding: 5rem 3rem;
+    }
+
+    .text-content {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+    }
+
+    .text-content h2 {
+      font-size: 2.75rem;
+    }
+
+    .slider {
+      height: 500px;
+    }
+  }
+
+  /* Grand Desktop (1200px+) */
+  @media (min-width: 1200px) {
+    .text-content h2 {
+      font-size: 3rem;
+    }
+
+    .slider {
+      height: 550px;
     }
   }
 </style>
