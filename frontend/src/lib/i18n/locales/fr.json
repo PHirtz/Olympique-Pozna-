@@ -564,15 +564,15 @@
     "teams": {
       "title": "Les équipes Olympique Poznań",
       "senior": {
-        "name": "Les bleus",
+        "name": "Les Bleus",
         "description": "..."
       },
       "junior": {
         "name": "L'académie",
-        "description": "10 drużyn, trampoliny dla mistrzów jutra."
+        "description": "10 Équipes, tremplins pour les champions de demain."
       },
       "feminine": {
-        "name": "Les dames",
+        "name": "Les Dames",
         "description": "..."
       }
     },
