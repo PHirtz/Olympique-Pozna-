@@ -470,7 +470,7 @@
     }
 
     .footer-logo {
-      height: 120px;
+      height: 140px;
       width: 120px;
     }
   }
@@ -514,7 +514,7 @@
     }
 
     .footer-logo {
-      height: 150px;
+      height: 180px;
       width: 150px;
     }
   }
