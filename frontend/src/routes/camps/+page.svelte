@@ -118,7 +118,6 @@
           <li>🎾 Activités : Silownia, plac zabaw, ping pong, mini zoo</li>
           <li>⚽ Tournois FIFA + Aquapark</li>
           <li>🎓 Encadrement professionnel par nos entraîneurs</li>
-          <li>🏆 Retour possible en avion</li>
         </ul>
       </div>
     </div>
