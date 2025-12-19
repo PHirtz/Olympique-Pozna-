@@ -15,7 +15,7 @@
   let openSubmenu = null;
   
   /** @type {string | null} */
-  let openSubSubmenu = null; // Pour les joueurs de Désiré Doué
+  let openSubSubmenu = null;
 
   /** @type {ReturnType<typeof setTimeout> | null} */
   let closeTimeout = null;
@@ -29,7 +29,7 @@
       openDropdown = null;
       openSubmenu = null;
       openSubSubmenu = null;
-    }, 300);
+    }, 800); // Délai augmenté à 800ms pour plus de confort
   };
 
   const cancelClose = () => {
@@ -47,6 +47,16 @@
   };
 
   /**
+   * Ouvre un dropdown (pour desktop)
+   * @param {string} name
+   */
+  const openDropdownMenu = (name) => {
+    cancelClose();
+    openDropdown = name;
+  };
+
+  /**
+   * Toggle dropdown (pour mobile)
    * @param {string} name
    */
   const toggleDropdown = (name) => {
@@ -105,8 +115,13 @@
       </a>
             
       <!-- DROPDOWN : Le Club -->
-      <div class="dropdown" style="animation-delay: 0.3s">
-        <button class="nav-link dropdown-trigger" on:mouseenter={() => toggleDropdown('club')}>
+      <div 
+        class="dropdown" 
+        style="animation-delay: 0.3s"
+        on:mouseenter={() => openDropdownMenu('club')}
+        on:mouseleave={closeDropdownWithDelay}
+      >
+        <button class="nav-link dropdown-trigger">
           {$_('nav.club')}
           <ChevronDown size={16} />
         </button>
@@ -114,9 +129,10 @@
         {#if openDropdown === 'club'}
           <div 
             class="dropdown-menu" 
-            on:mouseleave={() => openDropdown = null}
+            on:mouseenter={cancelClose}
+            on:mouseleave={closeDropdownWithDelay}
             role="menu"
-                  tabindex="-1"
+            tabindex="-1"
           >
             <a href="/club/about" class="dropdown-item" role="menuitem">{$_('club.about')}</a>
             <a href="/club/coaches" class="dropdown-item" role="menuitem">{$_('club.coaches')}</a>
@@ -129,22 +145,23 @@
       
     <!-- DROPDOWN : Nos Équipes (DESKTOP) -->
     <div 
-      class="dropdown" 
+      class="dropdown teams-dropdown" 
       style="animation-delay: 0.4s"
-      on:mouseenter={cancelClose}
+      on:mouseenter={() => openDropdownMenu('teams')}
       on:mouseleave={closeDropdownWithDelay}
       role="group"
     >
-      <button class="nav-link dropdown-trigger" on:mouseenter={() => toggleDropdown('teams')}>
+      <button class="nav-link dropdown-trigger">
         {$_('nav.teams')}
         <ChevronDown size={16} />
       </button>
       
       {#if openDropdown === 'teams'}
         <div 
-          class="dropdown-menu" 
+          class="dropdown-menu teams-menu" 
           role="menu"
           tabindex="-1"
+          on:mouseenter={cancelClose}
         >          
           <!-- Les Dames -->
           <a href="/teams/ladies" class="dropdown-item" role="menuitem" tabindex="0">
@@ -162,14 +179,23 @@
           </a>
           
           <!-- Désiré Doué avec sous-menu joueurs -->
-          <div class="submenu" on:mouseenter={cancelClose} on:mouseleave={closeDropdownWithDelay} role="group">
+          <div 
+            class="submenu" 
+            on:mouseenter={cancelClose}
+            role="group"
+          >
             <button class="dropdown-item submenu-trigger" role="menuitem" aria-haspopup="true" tabindex="0">
               {$_('teams.doue.title')}
               <span class="icon-rotate-90">
                 <ChevronDown size={14} />
               </span>
             </button>
-            <div class="submenu-content" role="menu" tabindex="-1" on:mouseenter={cancelClose} on:mouseleave={closeDropdownWithDelay}>
+            <div 
+              class="submenu-content" 
+              role="menu" 
+              tabindex="-1"
+              on:mouseenter={cancelClose}
+            >
               <a href="/teams/doue/players/craczyk" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.craczyk')}</a>
               <a href="/teams/doue/players/wutezi" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.wutezi')}</a>
               <a href="/teams/doue/players/gartecki" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.gartecki')}</a>
@@ -389,7 +415,7 @@
 
 /* NAVIGATION PRINCIPALE */
 .nav {
-  background: rgba(255, 255, 255, 0.95);
+  background: transparent;
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -429,40 +455,9 @@
   display: none;
 }
 
-.nav-link {
-  padding: 0.75rem 1rem;
-  color: #333;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: all 0.3s;
-  border-radius: 8px;
-  white-space: nowrap;
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
-}
-
-.nav-link:hover,
-.nav-link:focus {
-  color: #1a4d7a;
-  background: rgba(26, 77, 122, 0.08);
-}
-
 /* USER MENU (caché sur mobile) */
 .desktop-user-menu {
   display: none;
-}
-
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
 }
 
 /* BURGER MENU (visible sur mobile) */
@@ -647,7 +642,7 @@
   color: #1a4d7a;
 }
 
-  /* MOBILE USER MENU */
+/* MOBILE USER MENU */
 .mobile-user-menu {
   display: flex;
   flex-direction: column;
@@ -683,31 +678,108 @@
   outline: none;
 }
 
+/* NEW BADGE MOBILE */
+.shop-mobile-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.shop-mobile-link .new-badge {
+  position: relative;
+  top: 0;
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* ========================================
-   ADAPTATIONS MOBILE
+   NEW BADGE - VERSION DORÉE
    ======================================== */
 
-@media (max-width: 767px) {
-  .shop-mobile-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
+.new-badge {
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffc107 100%);
+  background-size: 200% 200%;
+  color: #1a1a1a;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  letter-spacing: 0.8px;
+  box-shadow: 
+    0 4px 15px rgba(255, 215, 0, 0.5),
+    0 2px 8px rgba(255, 237, 78, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  animation: badgePulse 2s ease-in-out infinite, gradientShift 4s ease infinite;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.badge-text {
+  position: relative;
+  z-index: 2;
+  display: block;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.shine {
+  position: absolute;
+  top: -50%;
+  left: -100%;
+  width: 60%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0.2) 80%,
+    transparent 100%
+  );
+  transform: skewX(-25deg);
+  animation: shine 3s ease-in-out infinite;
+  z-index: 3;
+  pointer-events: none;
+}
+
+@keyframes badgePulse {
+  0%, 100% {
+    transform: scale(1) rotate(-2deg);
+    box-shadow: 
+      0 4px 15px rgba(255, 215, 0, 0.5),
+      0 2px 8px rgba(255, 237, 78, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
   }
-  
-  .shop-mobile-link .new-badge {
-    position: relative;
-    top: 0;
-    right: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  50% {
+    transform: scale(1.1) rotate(2deg);
+    box-shadow: 
+      0 6px 20px rgba(255, 215, 0, 0.7),
+      0 3px 12px rgba(255, 237, 78, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
   }
 }
 
-/* Version alternative si tu veux le badge à côté du texte en mobile */
-@media (max-width: 767px) {
-  .mobile-menu a.shop-mobile-link {
-    justify-content: space-between;
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  20% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
   }
 }
 
@@ -740,6 +812,22 @@
   }
 
   .nav-link {
+    padding: 0.75rem 1rem;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    border-radius: 8px;
+    white-space: nowrap;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: #0f2d4a54;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
     opacity: 0;
     transform: translateY(-10px);
   }
@@ -755,9 +843,45 @@
     }
   }
 
+  .nav-link:hover,
+  .nav-link:focus {
+    color: #1a4d7a;
+    background: rgba(26, 77, 122, 0.08);
+  }
+
   .desktop-user-menu {
     display: block;
     flex-shrink: 0;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  /* NEW BADGE DESKTOP */
+  .shop-link {
+    position: relative;
+  }
+
+  .shop-link .new-badge {
+    position: absolute;
+    top: -10px;
+    right: -12px;
+  }
+
+  .nav-link:hover .new-badge {
+    animation: badgePulse 2s ease-in-out infinite, gradientShift 4s ease infinite, bounceIn 0.6s ease;
+  }
+
+  @keyframes bounceIn {
+    0%, 100% {
+      transform: scale(1.1) rotate(2deg);
+    }
+    50% {
+      transform: scale(1.2) rotate(-2deg);
+    }
   }
 
   /* Cacher le drawer mobile */
@@ -779,13 +903,24 @@
     top: 100%;
     left: 0;
     min-width: 300px;
-    background: white;
+    background: rgb(255, 255, 255);
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     padding: 0.5rem 0;
-    margin-top: 0.5rem;
+    margin-top: 0.25rem; /* Réduit pour éviter les zones mortes */
     animation: fadeInDropdown 0.2s;
     z-index: 1000;
+  }
+
+  /* Zone de tolérance invisible pour éviter que le menu se ferme */
+  .dropdown::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 0.5rem; /* Zone invisible qui maintient le hover */
+    z-index: 999;
   }
 
   @keyframes fadeInDropdown {
@@ -831,6 +966,21 @@
     align-items: center;
   }
 
+  .icon-rotate-90 {
+    transform: rotate(-90deg);
+  }
+
+  /* Zone de tolérance pour le submenu */
+  .submenu::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 0.5rem; /* Zone invisible qui maintient le hover */
+    height: 100%;
+    z-index: 999;
+  }
+
   .submenu:hover .submenu-content {
     display: block;
   }
@@ -845,7 +995,7 @@
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     padding: 0.5rem 0;
-    margin-left: 0.5rem;
+    margin-left: 0.25rem; /* Réduit pour éviter les zones mortes */
     animation: fadeInDropdown 0.2s;
     z-index: 1000;
   }
@@ -876,200 +1026,65 @@
    DESKTOP (1024px+)
    ======================================== */
 
-  @media (min-width: 1024px) {
-    .logo-olympique-poznan {
-      height: 70px;
-    }
-
-    .nav-container {
-      padding: 1.25rem 3rem;
-      gap: 3rem;
-    }
-
-    .nav-link {
-      font-size: 1rem;
-      padding: 0.875rem 1.25rem;
-    }
-
-    .nav-links {
-      gap: 2.5rem;
-    }
+@media (min-width: 1024px) {
+  .logo-olympique-poznan {
+    height: 70px;
   }
+
+  .nav-container {
+    padding: 1.25rem 3rem;
+    gap: 3rem;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+    gap: 2rem;
+    padding: 0.875rem 1.25rem;
+  }
+
+  .nav-links {
+    gap: 2.5rem;
+  }
+}
 
 /* ========================================
    GRAND DESKTOP (1200px+)
    ======================================== */
 
-  @media (min-width: 1200px) {
-    .logo-olympique-poznan {
-      height: 80px;
-    }
-
-    .nav-container {
-      padding: 1.25rem 4rem;
-    }
-
-    .nav-link {
-      font-size: 1.05rem;
-      padding: 1rem 1.5rem;
-    }
-
-    .nav-links {
-      gap: 3rem;
-    }
+@media (min-width: 1200px) {
+  .logo-olympique-poznan {
+    height: 80px;
   }
+
+  .nav-container {
+    padding: 1.25rem 4rem;
+  }
+
+  .nav-link {
+    font-size: 1.05rem;
+    padding: 1rem 1.5rem;
+  }
+
+  .nav-links {
+    gap: 3rem;
+  }
+}
 
 /* ========================================
    TRÈS GRAND DESKTOP (1400px+)
    ======================================== */
 
-  @media (min-width: 1400px) {
-    .logo-olympique-poznan {
-      height: 90px;
-    }
-
-    .nav-container {
-      padding: 1.5rem 5rem;
-    }
-
-    .nav-links {
-      gap: 4rem;
-    }
+@media (min-width: 1400px) {
+  .logo-olympique-poznan {
+    height: 90px;
   }
-/* ========================================
-   NEW BADGE - VERSION ULTRA ESTHÉTIQUE DORÉE
-   ======================================== */
 
-.shop-link,
-.shop-mobile-link {
-  position: relative;
-}
-
-.new-badge {
-  position: absolute;
-  top: -10px;
-  right: -12px;
-  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffc107 100%);
-  background-size: 200% 200%;
-  color: #1a1a1a;
-  font-size: 0.65rem;
-  font-weight: 800;
-  padding: 0.25rem 0.5rem;
-  border-radius: 8px;
-  letter-spacing: 0.8px;
-  box-shadow: 
-    0 4px 15px rgba(255, 215, 0, 0.5),
-    0 2px 8px rgba(255, 237, 78, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  animation: badgePulse 2s ease-in-out infinite, gradientShift 4s ease infinite;
-  overflow: hidden;
-  position: relative;
-  z-index: 1;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.badge-text {
-  position: relative;
-  z-index: 2;
-  display: block;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-}
-
-/* Effet de brillance qui traverse le badge */
-.shine {
-  position: absolute;
-  top: -50%;
-  left: -100%;
-  width: 60%;
-  height: 200%;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.2) 20%,
-    rgba(255, 255, 255, 0.6) 50%,
-    rgba(255, 255, 255, 0.2) 80%,
-    transparent 100%
-  );
-  transform: skewX(-25deg);
-  animation: shine 3s ease-in-out infinite;
-  z-index: 3;
-  pointer-events: none;
-}
-
-/* Animation de pulsation subtile */
-@keyframes badgePulse {
-  0%, 100% {
-    transform: scale(1) rotate(-2deg);
-    box-shadow: 
-      0 4px 15px rgba(255, 215, 0, 0.5),
-      0 2px 8px rgba(255, 237, 78, 0.4),
-      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  .nav-container {
+    padding: 1.5rem 5rem;
   }
-  50% {
-    transform: scale(1.1) rotate(2deg);
-    box-shadow: 
-      0 6px 20px rgba(255, 215, 0, 0.7),
-      0 3px 12px rgba(255, 237, 78, 0.6),
-      inset 0 1px 0 rgba(255, 255, 255, 0.5);
-  }
-}
 
-/* Animation du gradient de fond */
-@keyframes gradientShift {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-/* Animation de la brillance */
-@keyframes shine {
-  0% {
-    left: -100%;
-  }
-  20% {
-    left: 100%;
-  }
-  100% {
-    left: 100%;
-  }
-}
-
-/* Effet au survol */
-.nav-link:hover .new-badge,
-.shop-mobile-link:hover .new-badge {
-  animation: badgePulse 2s ease-in-out infinite, gradientShift 4s ease infinite, bounceIn 0.6s ease;
-}
-
-@keyframes bounceIn {
-  0%, 100% {
-    transform: scale(1.1) rotate(2deg);
-  }
-  50% {
-    transform: scale(1.2) rotate(-2deg);
-  }
-}
-
-/* ========================================
-   ADAPTATIONS MOBILE
-   ======================================== */
-
-@media (max-width: 767px) {
-  .shop-mobile-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  .shop-mobile-link .new-badge {
-    position: relative;
-    top: 0;
-    right: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  .nav-links {
+    gap: 4rem;
   }
 }
 </style>

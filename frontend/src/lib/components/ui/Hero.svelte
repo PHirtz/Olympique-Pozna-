@@ -1,6 +1,5 @@
 <script>
   import { onMount } from 'svelte';
-  import Navigation from './Navigation.svelte';
   import { _ } from 'svelte-i18n';
 
   /** @type {string[]} */
@@ -35,10 +34,6 @@
 </script>
 
 <section class="hero">
-  <!-- Navigation intégrée dans le hero -->
-  <div class="hero-navigation">
-    <Navigation />
-  </div>
 
   <!-- Background images avec transition -->
   <div class="hero-background">
@@ -80,25 +75,18 @@
     position: relative;
     width: 100%;
     height: 100vh;
+    margin-top: -140px; /* Ajusté pour remonter sous la navbar */
+    padding-top: 120px; /* Compensation pour le contenu */
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
   }
 
-  /* Navigation intégrée en haut du hero */
-  .hero-navigation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-  }
-
   /* Background avec slides */
   .hero-background {
     position: absolute;
-    top: 0;
+    top: 50px;
     left: 0;
     width: 100%;
     height: 100%;
@@ -152,8 +140,7 @@
       rgba(0, 0, 0, 0.3) 0%,
       rgba(0, 0, 0, 0.6) 100%
     );
-    z-index: 1;
-  }
+ }
 
   /* Contenu */
   .hero-content {
@@ -163,8 +150,7 @@
     padding: 2rem;
     max-width: 800px;
     animation: fadeInUp 1s ease-out;
-    z-index: 2;
-  }
+ }
 
   .hero-content h1 {
     font-size: 4.5rem;
@@ -197,8 +183,7 @@
     transform: translateX(-50%);
     display: flex;
     gap: 0.75rem;
-    z-index: 3;
-  }
+ }
 
   .indicator {
     width: 12px;
@@ -235,6 +220,11 @@
 
   /* Responsive */
   @media (max-width: 768px) {
+    .hero {
+      margin-top: -100px; /* Ajusté pour mobile */
+      padding-top: 80px;
+    }
+
     .hero-content h1 {
       font-size: 2rem;
     }
@@ -262,6 +252,11 @@
   }
 
   @media (max-width: 480px) {
+    .hero {
+      margin-top: -80px; /* Ajusté pour petit mobile */
+      padding-top: 70px;
+    }
+
     .hero-content h1 {
       font-size: 1.5rem;
     }

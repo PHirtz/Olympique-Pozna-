@@ -184,7 +184,7 @@
 
   .content-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
+    grid-template-columns: 1fr 2fr;
     gap: 3rem;
     align-items: center;
   }
