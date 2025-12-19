@@ -5,16 +5,18 @@
 
   const teams = [
     {
-      slug: 'senior',
-      image: '../seniorsh/565694409_714234655039657_3240198854373276417_n.jpg'
+      slug: 'feminine',
+      image: '../seniorsf/548748092_685055974624192_8235511687039625110_n.jpg'
     },
+
     {
       slug: 'junior',
       image: '../juniors/535057118_663522866777503_4651670088385010660_n.jpg'
     },
+
     {
-      slug: 'feminine',
-      image: '../seniorsf/548748092_685055974624192_8235511687039625110_n.jpg'
+      slug: 'senior',
+      image: '../seniorsh/565694409_714234655039657_3240198854373276417_n.jpg'
     }
   ];
 </script>

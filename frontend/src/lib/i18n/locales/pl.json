@@ -550,16 +550,16 @@
     "teams": {
       "title": "Drużyny Olympique Poznań",
       "senior": {
-        "name": "Nasze drużyny seniorów",
-        "description": "Mężczyźni i kobiety pełni pasji, dumnie reprezentujący nasze barwy."
+        "name": "Niebiescy",
+        "description": "..."
       },
       "junior": {
         "name": "Nasze drużyny juniorów",
         "description": "Nasze młode talenty rozwijające się dla przyszłości klubu."
       },
       "feminine": {
-        "name": "Nasze drużyny kobiece",
-        "description": "Kobieca duma Olympique Poznań na boisku."
+        "name": "Panie",
+        "description": "..."
       }
     },
     "accompagnement": {

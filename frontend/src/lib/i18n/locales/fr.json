@@ -564,16 +564,16 @@
     "teams": {
       "title": "Les équipes Olympique Poznań",
       "senior": {
-        "name": "Nos équipes seniors",
-        "description": "Des hommes et des femmes passionnés défendant fièrement nos couleurs."
+        "name": "Les bleus",
+        "description": "..."
       },
       "junior": {
-        "name": "Nos équipes juniors",
-        "description": "Nos jeunes talents en développement pour l'avenir du club."
+        "name": "L'académie",
+        "description": "10 drużyn, trampoliny dla mistrzów jutra."
       },
       "feminine": {
-        "name": "Nos équipes féminines",
-        "description": "La fierté féminine de l'Olympique Poznań sur le terrain."
+        "name": "Les dames",
+        "description": "..."
       }
     },
     "accompagnement": {
