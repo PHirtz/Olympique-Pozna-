@@ -1,8 +1,10 @@
 <script>
-  import UserMenu from '../UserMenu.svelte';
-  import Language from './Langage.svelte';
   import { _ } from 'svelte-i18n';
-  import { Menu, X, ChevronDown } from 'lucide-svelte';
+  import { locale } from 'svelte-i18n';
+  import { user } from '$lib/stores/auth.js';
+  import { logout } from '$lib/api/auth';
+  import { goto } from '$app/navigation';
+  import { Menu, X, ChevronDown, LogIn, UserPlus, LogOut, User } from 'lucide-svelte';
   import { onMount } from 'svelte';
 
   let open = false;
@@ -29,7 +31,7 @@
       openDropdown = null;
       openSubmenu = null;
       openSubSubmenu = null;
-    }, 800); // Délai augmenté à 800ms pour plus de confort
+    }, 800);
   };
 
   const cancelClose = () => {
@@ -84,6 +86,21 @@
     openSubSubmenu = openSubSubmenu === name ? null : name;
   };
 
+  /**
+   * Change la langue
+   * @param {'fr' | 'pl'} lang
+   */
+  function changeLanguage(lang) {
+    locale.set(lang);
+    localStorage.setItem('preferredLanguage', lang);
+  }
+
+  async function handleLogout() {
+    await logout();
+    close();
+    goto('/');
+  }
+
   const handleKeydown = (/** @type {KeyboardEvent} */ e) => {
     if (e.key === 'Escape') {
       close();
@@ -118,6 +135,7 @@
       <div 
         class="dropdown" 
         style="animation-delay: 0.3s"
+        role="group"
         on:mouseenter={() => openDropdownMenu('club')}
         on:mouseleave={closeDropdownWithDelay}
       >
@@ -143,105 +161,105 @@
         {/if}
       </div>
       
-    <!-- DROPDOWN : Nos Équipes (DESKTOP) -->
-    <div 
-      class="dropdown teams-dropdown" 
-      style="animation-delay: 0.4s"
-      on:mouseenter={() => openDropdownMenu('teams')}
-      on:mouseleave={closeDropdownWithDelay}
-      role="group"
-    >
-      <button class="nav-link dropdown-trigger">
-        {$_('nav.teams')}
-        <ChevronDown size={16} />
-      </button>
-      
-      {#if openDropdown === 'teams'}
-        <div 
-          class="dropdown-menu teams-menu" 
-          role="menu"
-          tabindex="-1"
-          on:mouseenter={cancelClose}
-        >          
-          <!-- Les Dames -->
-          <a href="/teams/ladies" class="dropdown-item" role="menuitem" tabindex="0">
-            {$_('teams.ladies')}
-          </a>
-          
-          <!-- Les Bleus -->
-          <a href="/teams/blues" class="dropdown-item" role="menuitem" tabindex="0">
-            {$_('teams.blues')}
-          </a>
-          
-          <!-- Olivier Giroud -->
-          <a href="/teams/giroud" class="dropdown-item" role="menuitem" tabindex="0">
-            {$_('teams.giroud')}
-          </a>
-          
-          <!-- Désiré Doué avec sous-menu joueurs -->
+      <!-- DROPDOWN : Nos Équipes (DESKTOP) -->
+      <div 
+        class="dropdown teams-dropdown" 
+        style="animation-delay: 0.4s"
+        on:mouseenter={() => openDropdownMenu('teams')}
+        on:mouseleave={closeDropdownWithDelay}
+        role="group"
+      >
+        <button class="nav-link dropdown-trigger">
+          {$_('nav.teams')}
+          <ChevronDown size={16} />
+        </button>
+        
+        {#if openDropdown === 'teams'}
           <div 
-            class="submenu" 
+            class="dropdown-menu teams-menu" 
+            role="menu"
+            tabindex="-1"
             on:mouseenter={cancelClose}
-            role="group"
-          >
-            <button class="dropdown-item submenu-trigger" role="menuitem" aria-haspopup="true" tabindex="0">
-              {$_('teams.doue.title')}
-              <span class="icon-rotate-90">
-                <ChevronDown size={14} />
-              </span>
-            </button>
+          >          
+            <!-- Les Dames -->
+            <a href="/teams/ladies" class="dropdown-item" role="menuitem" tabindex="0">
+              {$_('teams.ladies')}
+            </a>
+            
+            <!-- Les Bleus -->
+            <a href="/teams/blues" class="dropdown-item" role="menuitem" tabindex="0">
+              {$_('teams.blues')}
+            </a>
+            
+            <!-- Olivier Giroud -->
+            <a href="/teams/giroud" class="dropdown-item" role="menuitem" tabindex="0">
+              {$_('teams.giroud')}
+            </a>
+            
+            <!-- Désiré Doué avec sous-menu joueurs -->
             <div 
-              class="submenu-content" 
-              role="menu" 
-              tabindex="-1"
+              class="submenu" 
+              role="group"
               on:mouseenter={cancelClose}
             >
-              <a href="/teams/doue/players/craczyk" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.craczyk')}</a>
-              <a href="/teams/doue/players/wutezi" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.wutezi')}</a>
-              <a href="/teams/doue/players/gartecki" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.gartecki')}</a>
-              <a href="/teams/doue/players/zok" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.zok')}</a>
-              <a href="/teams/doue/players/bielecki" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.bielecki')}</a>
-              <a href="/teams/doue/players/ceglowski" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.ceglowski')}</a>
-              <a href="/teams/doue/players/namysl" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.namysl')}</a>
-              <a href="/teams/doue/players/wesolowski" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.wesolowski')}</a>
-              <a href="/teams/doue/players/wegner" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.wegner')}</a>
-              <a href="/teams/doue/players/majchrowicz" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.majchrowicz')}</a>
-              <a href="/teams/doue/players/pyzalka" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.pyzalka')}</a>
+              <button class="dropdown-item submenu-trigger" role="menuitem" aria-haspopup="true" tabindex="0">
+                {$_('teams.doue.title')}
+                <span class="icon-rotate-90">
+                  <ChevronDown size={14} />
+                </span>
+              </button>
+              <div 
+                class="submenu-content" 
+                role="menu" 
+                tabindex="-1"
+                on:mouseenter={cancelClose}
+              >
+                <a href="/teams/doue/players/craczyk" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.craczyk')}</a>
+                <a href="/teams/doue/players/wutezi" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.wutezi')}</a>
+                <a href="/teams/doue/players/gartecki" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.gartecki')}</a>
+                <a href="/teams/doue/players/zok" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.zok')}</a>
+                <a href="/teams/doue/players/bielecki" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.bielecki')}</a>
+                <a href="/teams/doue/players/ceglowski" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.ceglowski')}</a>
+                <a href="/teams/doue/players/namysl" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.namysl')}</a>
+                <a href="/teams/doue/players/wesolowski" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.wesolowski')}</a>
+                <a href="/teams/doue/players/wegner" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.wegner')}</a>
+                <a href="/teams/doue/players/majchrowicz" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.majchrowicz')}</a>
+                <a href="/teams/doue/players/pyzalka" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.pyzalka')}</a>
+              </div>
             </div>
+            
+            <!-- Antoine Griezmann -->
+            <a href="/teams/griezmann" class="dropdown-item" role="menuitem" tabindex="0">
+              {$_('teams.griezmann')}
+            </a>
+            
+            <!-- Kingsley Coman -->
+            <a href="/teams/coman" class="dropdown-item" role="menuitem" tabindex="0">
+              {$_('teams.coman')}
+            </a>
+            
+            <!-- Kadidiatou Diani -->
+            <a href="/teams/diani" class="dropdown-item" role="menuitem" tabindex="0">
+              {$_('teams.diani')}
+            </a>
+            
+            <!-- Wendie Renard -->
+            <a href="/teams/renard" class="dropdown-item" role="menuitem" tabindex="0">
+              {$_('teams.renard')}
+            </a>
+            
+            <!-- Eugénie Le Sommer -->
+            <a href="/teams/lesommer" class="dropdown-item" role="menuitem" tabindex="0">
+              {$_('teams.lesommer')}
+            </a>
+            
+            <!-- Thierry Henry -->
+            <a href="/teams/henry" class="dropdown-item" role="menuitem" tabindex="0">
+              {$_('teams.henry')}
+            </a>
           </div>
-          
-          <!-- Antoine Griezmann -->
-          <a href="/teams/griezmann" class="dropdown-item" role="menuitem" tabindex="0">
-            {$_('teams.griezmann')}
-          </a>
-          
-          <!-- Kingsley Coman -->
-          <a href="/teams/coman" class="dropdown-item" role="menuitem" tabindex="0">
-            {$_('teams.coman')}
-          </a>
-          
-          <!-- Kadidiatou Diani -->
-          <a href="/teams/diani" class="dropdown-item" role="menuitem" tabindex="0">
-            {$_('teams.diani')}
-          </a>
-          
-          <!-- Wendie Renard -->
-          <a href="/teams/renard" class="dropdown-item" role="menuitem" tabindex="0">
-            {$_('teams.renard')}
-          </a>
-          
-          <!-- Eugénie Le Sommer -->
-          <a href="/teams/lesommer" class="dropdown-item" role="menuitem" tabindex="0">
-            {$_('teams.lesommer')}
-          </a>
-          
-          <!-- Thierry Henry -->
-          <a href="/teams/henry" class="dropdown-item" role="menuitem" tabindex="0">
-            {$_('teams.henry')}
-          </a>
-        </div>
-      {/if}
-    </div>
+        {/if}
+      </div>
       
       <a href="/camps" class="nav-link" style="animation-delay: 0.5s">
         {$_('nav.camps')}
@@ -250,15 +268,51 @@
       <a href="https://drive.google.com/drive/folders/1Qm9yOZJ9_sKRuJ70V8KSa1FrcSgxwXRW" class="nav-link" style="animation-delay: 0.1s">
         {$_('nav.photo')}
       </a>
-
     </div>
 
     <!-- Actions à droite (desktop) -->
-    <div class="desktop-user-menu">
-      <div class="nav-actions">
-        <Language />
-        <UserMenu />
+    <div class="desktop-user-actions">
+      <!-- Language Selector -->
+      <div class="language-selector">
+        <button 
+          on:click={() => changeLanguage('fr')} 
+          class="lang-btn" 
+          class:active={$locale === 'fr'}
+          aria-label="Français"
+        >
+          FR
+        </button>
+        <span class="separator">|</span>
+        <button 
+          on:click={() => changeLanguage('pl')} 
+          class="lang-btn" 
+          class:active={$locale === 'pl'}
+          aria-label="Polski"
+        >
+          PL
+        </button>
       </div>
+
+      <!-- User Menu -->
+      {#if $user}
+        <div class="user-info">
+          <User size={18} />
+          <span>{$_('userMenu.hello')}, {$user.firstName} !</span>
+        </div>
+        <button class="btn-logout" on:click={handleLogout}>
+          <LogOut size={18} />
+          <span>{$_('userMenu.logout')}</span>
+        </button>
+      {:else}
+        <a href="/login" class="btn-auth btn-login">
+          <LogIn size={18} />
+          <span>{$_('userMenu.login')}</span>
+        </a>
+        <a href="/register" class="btn-auth btn-register">
+          <UserPlus size={18} />
+          <span>{$_('userMenu.register')}</span>
+        </a>
+      {/if}
     </div>
 
     <!-- Burger (mobile) -->
@@ -380,9 +434,49 @@
       </ul>
     </nav>
 
-    <div class="mobile-user-menu">
-      <Language />
-      <UserMenu />
+    <!-- Mobile Actions (dans le drawer) -->
+    <div class="mobile-user-actions">
+      <!-- Language Selector Mobile -->
+      <div class="language-selector mobile">
+        <button 
+          on:click={() => changeLanguage('fr')} 
+          class="lang-btn" 
+          class:active={$locale === 'fr'}
+          aria-label="Français"
+        >
+          FR
+        </button>
+        <span class="separator">|</span>
+        <button 
+          on:click={() => changeLanguage('pl')} 
+          class="lang-btn" 
+          class:active={$locale === 'pl'}
+          aria-label="Polski"
+        >
+          PL
+        </button>
+      </div>
+
+      <!-- User Actions Mobile -->
+      {#if $user}
+        <div class="user-info-mobile">
+          <User size={20} />
+          <span>{$_('userMenu.hello')}, {$user.firstName} !</span>
+        </div>
+        <button class="btn-logout mobile" on:click={handleLogout}>
+          <LogOut size={20} />
+          <span>{$_('userMenu.logout')}</span>
+        </button>
+      {:else}
+        <a href="/login" class="btn-auth btn-login mobile" on:click={close}>
+          <LogIn size={20} />
+          <span>{$_('userMenu.login')}</span>
+        </a>
+        <a href="/register" class="btn-auth btn-register mobile" on:click={close}>
+          <UserPlus size={20} />
+          <span>{$_('userMenu.register')}</span>
+        </a>
+      {/if}
     </div>
   </div>
 </div>
@@ -455,8 +549,8 @@
   display: none;
 }
 
-/* USER MENU (caché sur mobile) */
-.desktop-user-menu {
+/* DESKTOP USER ACTIONS (cachés sur mobile) */
+.desktop-user-actions {
   display: none;
 }
 
@@ -642,8 +736,145 @@
   color: #1a4d7a;
 }
 
-/* MOBILE USER MENU */
-.mobile-user-menu {
+/* ========================================
+   LANGUAGE SELECTOR
+   ======================================== */
+
+.language-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(102, 126, 234, 0.08);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.language-selector.mobile {
+  width: 100%;
+  justify-content: center;
+  padding: 0.75rem;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #666;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.lang-btn:hover {
+  color: #c9a961;
+  background: rgba(102, 126, 234, 0.1);
+}
+
+.lang-btn.active {
+  color: #c9a961;
+  background: rgba(102, 126, 234, 0.15);
+  font-weight: 700;
+}
+
+.separator {
+  color: #ccc;
+  font-weight: 300;
+}
+
+/* ========================================
+   USER INFO & AUTH BUTTONS (MOBILE)
+   ======================================== */
+
+.user-info {
+  display: none;
+}
+
+.user-info-mobile {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 0.5rem;
+  color: #667eea;
+  font-weight: 600;
+  justify-content: center;
+}
+
+.btn-logout {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #e63946;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.btn-logout.mobile {
+  width: 100%;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.btn-logout:hover {
+  background: #d62839;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
+}
+
+.btn-auth {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.btn-auth.mobile {
+  width: 100%;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.btn-login {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+}
+
+.btn-login:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.btn-register {
+  background: rgba(102, 126, 234, 0.1);
+  color: #667eea;
+  border: 1px solid #667eea;
+}
+
+.btn-register:hover {
+  background: #667eea;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   MOBILE USER ACTIONS
+   ======================================== */
+
+.mobile-user-actions {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -789,9 +1020,8 @@
 
 @media (min-width: 768px) {
   .nav-container {
-    padding: 1rem 2rem;
-    gap: 2rem;
-    max-width: 100%;
+    padding: 1rem 1.5rem;
+    gap: 1.5rem;
   }
 
   .logo-olympique-poznan {
@@ -808,15 +1038,15 @@
     flex: 1;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
   }
 
   .nav-link {
-    padding: 0.75rem 1rem;
+    padding: 0.65rem 0.85rem;
     color: #ffffff;
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     transition: all 0.3s;
     border-radius: 8px;
     white-space: nowrap;
@@ -824,7 +1054,7 @@
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    background: #0f2d4a54;
+    background: #0f2d4a15;
     border: none;
     cursor: pointer;
     font-family: inherit;
@@ -845,19 +1075,41 @@
 
   .nav-link:hover,
   .nav-link:focus {
-    color: #1a4d7a;
+    color: #c9a961;
     background: rgba(26, 77, 122, 0.08);
   }
 
-  .desktop-user-menu {
-    display: block;
+  /* DESKTOP USER ACTIONS */
+  .desktop-user-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     flex-shrink: 0;
   }
 
-  .nav-actions {
+  .user-info {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 0.5rem;
+    color: #667eea;
+    font-weight: 600;
+    white-space: nowrap;
+    font-size: 0.9rem;
+  }
+
+  .btn-logout {
+    padding: 0.5rem 0.75rem;
+    white-space: nowrap;
+    font-size: 0.9rem;
+  }
+
+  .btn-auth {
+    padding: 0.5rem 0.75rem;
+    white-space: nowrap;
+    font-size: 0.9rem;
   }
 
   /* NEW BADGE DESKTOP */
@@ -907,19 +1159,18 @@
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     padding: 0.5rem 0;
-    margin-top: 0.25rem; /* Réduit pour éviter les zones mortes */
+    margin-top: 0.25rem;
     animation: fadeInDropdown 0.2s;
     z-index: 1000;
   }
 
-  /* Zone de tolérance invisible pour éviter que le menu se ferme */
   .dropdown::before {
     content: '';
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    height: 0.5rem; /* Zone invisible qui maintient le hover */
+    height: 0.5rem;
     z-index: 999;
   }
 
@@ -970,13 +1221,12 @@
     transform: rotate(-90deg);
   }
 
-  /* Zone de tolérance pour le submenu */
   .submenu::before {
     content: '';
     position: absolute;
     top: 0;
     left: 100%;
-    width: 0.5rem; /* Zone invisible qui maintient le hover */
+    width: 0.5rem;
     height: 100%;
     z-index: 999;
   }
@@ -995,7 +1245,7 @@
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     padding: 0.5rem 0;
-    margin-left: 0.25rem; /* Réduit pour éviter les zones mortes */
+    margin-left: 0.25rem;
     animation: fadeInDropdown 0.2s;
     z-index: 1000;
   }
@@ -1038,7 +1288,6 @@
 
   .nav-link {
     font-size: 1rem;
-    gap: 2rem;
     padding: 0.875rem 1.25rem;
   }
 
@@ -1057,16 +1306,16 @@
   }
 
   .nav-container {
-    padding: 1.25rem 4rem;
+    padding: 1.25rem 1rem;
   }
 
   .nav-link {
     font-size: 1.05rem;
-    padding: 1rem 1.5rem;
+    padding: 1rem 1rem;
   }
 
   .nav-links {
-    gap: 3rem;
+    gap: 2rem;
   }
 }
 
