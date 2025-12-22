@@ -16,6 +16,246 @@
     "mainNavigation": "Navigation principale mobile"
   },
 
+  "coach": {
+    "intro": {
+      "title": "Notre Équipe d'Entraîneurs",
+      "description": "Des professionnels passionnés dédiés au développement de nos joueurs"
+    },
+    "viewProfile": "Voir le profil",
+    "backToCoaches": "Retour aux entraîneurs"
+  },
+
+  "camps": {
+    "title": "Camp Olympique - Olympique Poznań",
+    "metaDescription": "Rejoignez le Camp Olympique de Poznań pour une expérience footballistique inoubliable ! Entraînements intensifs, ateliers techniques et fun garantis.",
+    "hero": {
+      "title": "Camp Olympique",
+      "subtitle": "Rejoignez-nous pour une expérience footballistique inoubliable !"
+    },
+    "intro": {
+      "text": "Le Camp Olympique est une opportunité unique pour les jeunes passionnés de football de vivre une expérience immersive dans le monde du football. Que vous soyez débutant ou joueur confirmé, notre camp est conçu pour offrir un environnement d'apprentissage stimulant et amusant."
+    },
+    "benefits": {
+      "title": "Pourquoi choisir le Camp Olympique ?",
+      "training": "Entraînements intensifs avec des entraîneurs qualifiés",
+      "techniques": "Ateliers techniques pour améliorer vos compétences",
+      "fun": "Activités ludiques et compétitions amicales",
+      "teamSpirit": "Développement de l'esprit d'équipe et du fair-play"
+    },
+    "register": {
+      "title": "Inscrivez-vous dès aujourd'hui !",
+      "text": "Ne manquez pas cette occasion de faire partie du Camp Olympique. Remplissez le formulaire ci-dessous pour vous inscrire ou obtenir plus d'informations.",
+      "formTitle": "Formulaire d'inscription au Camp Olympique"
+    },
+    "lieu": "Lieu",
+    "dates": "Dates",
+    "programme": "Programme"
+  },
+
+  "userMenu": {
+    "hello": "Bonjour",
+    "logout": "Déconnexion",
+    "myProfile": "Mon profil",
+    "login": "Me connecter",
+    "register": "Rejoindre"
+  },
+
+  "shop": {
+    "title": "Notre Boutique",
+    "viewProduct": "Voir le produit",
+    "subtitle": "Découvrez nos produits officiels",
+    "banner": {
+      "title": "Boutique Officielle Olympique Poznań",
+      "subtitle": "Montrez votre soutien avec notre collection exclusive d'articles Olympique Poznań !",
+      "cta": "Visitez la boutique"
+    },
+    "items": {
+      "jacket": "Veste Officielle",
+      "winterJacket": "Veste Hiver",
+      "bottle": "Gourde Officielle",
+      "roller": "Roller",
+      "socks": "Chaussettes",
+      "rainJacket": "Veste pluie officielle",
+      "whiteShorts": "Short blanc",
+      "blueShorts": "Short bleu",
+      "sweatshirt": "Sweat Officiel",
+      "homeJersey": "Maillot Domicile Officiel",
+      "scarf": "Écharpe Officielle"
+    }
+  },
+
+  "hero": {
+    "title": "Bienvenue sur le site d'Olympique Poznan",
+    "subtitle": "Club de football de Poznań",
+    "description": "Passion et partage sont nos moteurs"
+  },
+
+  "facebook": {
+    "latestPosts": "Suivez-nous sur Facebook",
+    "followDescription": "Restez informés de toutes nos actualités",
+    "pageLink": "Olympique Poznan sur Facebook",
+    "viewOnFacebook": "Voir sur Facebook",
+    "noPosts": "Aucun post pour le moment",
+    "errorLoading": "Erreur lors du chargement des posts Facebook"
+  },
+
+  "footer": {
+    "description": "Club de football franco-polonais basé à Poznań. Rejoignez-nous !",
+    "quickLinks": "Liens rapides",
+    "contact": "Contact",
+    "newsletter": "Newsletter",
+    "newsletterText": "Inscrivez-vous pour recevoir nos dernières actualités",
+    "emailPlaceholder": "Votre email",
+    "subscribe": "S'abonner",
+    "sponsors": "Nos Partenaires",
+    "viewAllSponsors": "Voir tous nos partenaires",
+    "noSponsors": "Aucun partenaire pour le moment",
+    "rights": "Tous droits réservés",
+    "legalNotice": "Mentions légales",
+    "privacy": "Politique de confidentialité",
+    "terms": "CGV"
+  },
+
+  "auth": {
+    "login": {
+      "title": "Connexion",
+      "username": "Pseudo",
+      "usernamePlaceholder": "Votre pseudo",
+      "password": "Mot de passe",
+      "passwordPlaceholder": "Votre mot de passe",
+      "submit": "Se connecter",
+      "loading": "Connexion...",
+      "error": "Pseudo ou mot de passe incorrect",
+      "noAccount": "Pas encore inscrit ?",
+      "createAccount": "Créer un compte"
+    },
+    "register": {
+      "title": "Inscription",
+      "firstName": "Prénom",
+      "firstNamePlaceholder": "Pauline",
+      "lastName": "Nom",
+      "lastNamePlaceholder": "Hirtz",
+      "username": "Pseudo",
+      "usernamePlaceholder": "Kàmii",
+      "email": "Email",
+      "emailPlaceholder": "pauline@kamiicode.com",
+      "password": "Mot de passe",
+      "passwordPlaceholder": "Mon mot de passe",
+      "submit": "Créer mon compte",
+      "loading": "Inscription en cours...",
+      "success": "Inscription réussie ! Bienvenue sur Olympique Poznan !",
+      "errorAllFields": "Veuillez remplir tous les champs",
+      "errorGeneral": "Erreur lors de l'inscription",
+      "hasAccount": "Déjà inscrit ?",
+      "loginLink": "Se connecter",
+      "required": "*"
+    }
+  },
+
+  "club": {
+    "about": "Qui sommes-nous",
+    "coaches": "Nos entraîneurs",
+    "support": "Soutien Olympique",
+    "partners": "Nos Partenaires",
+    "status": "Statuts du club",
+    "documents": {
+      "title": "Documents importants",
+      "cgv": "CGV",
+      "statutes": "Statuts",
+      "regulations": "Règlements"
+    }
+  },
+
+  "teams": {
+    "seniors": {
+      "title": "Seniors",
+      "women": "Seniors Femmes",
+      "men": "Seniors Hommes"
+    },
+    "ladies": "Les Dames",
+    "blues": "Les Bleus",
+    "giroud": "Olivier Giroud (2010/2011)",
+    "doue": {
+      "title": "Désiré Doué (2012)",
+      "players": {
+        "craczyk": "54 - CRACZYK",
+        "wutezi": "10 - WUTEZI",
+        "gartecki": "21 - GARTECKI",
+        "zok": "3 - ZOK",
+        "bielecki": "11 - BIELECKI",
+        "ceglowski": "40 - CEGLOWSKI",
+        "namysl": "7 - NAMYSL",
+        "wesolowski": "85 - WESOLOWSKI",
+        "wegner": "4 - WEGNER",
+        "majchrowicz": "12 - MAJCHROWICZ",
+        "pyzalka": "42 - PYZALKA"
+      }
+    },
+    "griezmann": "Antoine Griezmann (2013)",
+    "coman": "Kingsley Coman (2014)",
+    "diani": "Kadidiatou Diani (Junior)",
+    "renard": "Wendie Renard (Trampkarki)",
+    "lesommer": "Eugénie Le Sommer (Mlodziczki)",
+    "henry": "Amandine Henry (Orliczki)"
+  },
+
+  "about": {
+    "title": "À propos - Olympique Poznań",
+    "metaDescription": "Découvrez l'histoire et les valeurs d'Olympique Poznań, club de football formateur au cœur de Poznań",
+    "hero": {
+      "title": "Olympique Poznań",
+      "subtitle": "Plus qu'un club, une école de vie"
+    },
+    "intro": {
+      "text": "Situé au cœur de la dynamique ville de Poznań, Olympique Poznań est bien plus qu'un simple club de football : c'est une véritable école de vie, un lieu où la passion, la formation et l'esprit d'équipe se rencontrent pour façonner les talents de demain."
+    },
+    "values": {
+      "title": "Nos valeurs",
+      "excellence": {
+        "title": "Excellence",
+        "description": "Formation de qualité avec des entraîneurs certifiés et passionnés depuis 2023"
+      },
+      "teamSpirit": {
+        "title": "Esprit d'équipe",
+        "description": "Une ambiance conviviale et inclusive où chaque joueur trouve sa place"
+      },
+      "passion": {
+        "title": "Passion",
+        "description": "Le football comme vecteur de développement personnel et collectif"
+      },
+      "training": {
+        "title": "Formation",
+        "description": "Programmes adaptés à chaque âge pour une progression harmonieuse"
+      }
+    },
+    "formation": {
+      "excellence": {
+        "title": "Une formation axée sur l'excellence",
+        "text1": "Depuis sa création en 2023, Olympique Poznań s'est rapidement imposé comme une référence dans le paysage sportif local. Le club met un point d'honneur à offrir un encadrement de qualité, avec des entraîneurs certifiés et passionnés, qui accompagnent chaque joueur dans son développement technique, tactique et personnel.",
+        "text2": "Les programmes de formation sont conçus pour répondre aux besoins spécifiques de chaque groupe d'âge, favorisant ainsi une progression harmonieuse et adaptée."
+      },
+      "coaches": {
+        "title": "Une équipe d'entraîneurs dévoués",
+        "text1": "L'encadrement est assuré par une équipe d'entraîneurs qualifiés, dont certains possèdent des certifications reconnues telles que l'UEFA C. Leur approche pédagogique, combinée à une expérience pratique, garantit un environnement d'apprentissage stimulant et bienveillant.",
+        "text2": "Chaque entraîneur apporte sa touche personnelle, contribuant à créer une atmosphère familiale et motivante."
+      },
+      "atmosphere": {
+        "title": "Une ambiance conviviale et inclusive",
+        "text1": "Olympique Poznań se distingue par son ambiance chaleureuse et inclusive. Le club accueille des joueurs de tous horizons, favorisant la diversité et l'entraide. Les valeurs de respect, de solidarité et de fair-play sont au cœur de chaque entraînement et compétition.",
+        "text2": "Cette philosophie crée un sentiment d'appartenance fort, où chaque membre se sent valorisé et soutenu."
+      }
+    },
+    "community": {
+      "title": "Rejoignez notre communauté",
+      "intro": "Suivez-nous sur nos réseaux sociaux pour ne rien manquer de l'actualité du club, des photos des entraînements, des témoignages de joueurs et bien plus encore !",
+      "cta": {
+        "text": "Que vous soyez un jeune passionné de football, un parent à la recherche d'un club formateur pour votre enfant, ou simplement un amateur de sport souhaitant s'impliquer dans une communauté dynamique,",
+        "textBold": "Olympique Poznań vous ouvre ses portes avec enthousiasme.",
+        "button": "Rejoignez l'aventure"
+      }
+    }
+  },
+
   "coaches": {
     "title": "Nos Entraîneurs - Olympique Poznań",
     "metaDescription": "Découvrez l'équipe d'entraîneurs passionnés et qualifiés d'Olympique Poznań",
@@ -278,6 +518,102 @@
           "answer": "L'approche de l'entraînement conforme à la mienne. Ce ne sont pas l'âge mais les compétences du moment qui devraient déterminer avec qui nous rivalisons. Qu'est-ce que je changerais ? Tout et rien. Tout ce qui nécessite des changements pour le bien des enfants, quoi que ce soit et sera. Et rien parce que c'est une merveilleuse communauté qui place les enfants et les jeunes en premier."
         }
       }
+    }
+  },
+
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur est survenue",
+    "noData": "Aucune donnée disponible",
+    "back": "Retour",
+    "close": "Fermer",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "delete": "Supprimer",
+    "edit": "Modifier"
+  },
+
+  "contact": {
+    "title": "Contact - Olympique Poznań",
+    "metaDescription": "Contactez Olympique Poznań pour rejoindre le club ou pour toute question",
+    "hero": {
+      "title": "Contactez-nous",
+      "subtitle": "Rejoignez l'aventure Olympique Poznań"
+    },
+    "intro": {
+      "title": "Une question ? Une envie de nous rejoindre ?",
+      "text": "Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais. Que vous souhaitiez devenir joueur, entraîneur ou bénévole, nous serons ravis d'échanger avec vous !"
+    },
+    "form": {
+      "name": "Nom",
+      "lastName": "Prénom",
+      "nameRequired": "Le nom est obligatoire",
+      "emailRequired": "L'email est obligatoire",
+      "categoryRequired": "La catégorie est obligatoire",
+      "namePlaceholder": "Votre nom complet",
+      "email": "Email",
+      "tel": "Téléphone",
+      "emailPlaceholder": "votre.email@exemple.com",
+      "category": "Catégorie",
+      "age": "Âge du participant",
+      "demande": "Envoyer ma demande",
+      "categories": {
+        "coach": "Entraîneur",
+        "junior": "Footballeur Junior",
+        "senior": "Footballeur Senior",
+        "veteran": "Footballeur Vétéran",
+        "sponsor": "Sponsor",
+        "volunteer": "Bénévole",
+        "other": "Autre"
+      },
+      "message": "Message",
+      "messagePlaceholder": "Parlez-nous de vous et de votre motivation...",
+      "submit": "Envoyer le message",
+      "sending": "Envoi en cours...",
+      "success": "Votre message a bien été envoyé ! Nous vous répondrons rapidement.",
+      "error": "Une erreur est survenue, veuillez réessayer plus tard.",
+      "errorRequired": "Veuillez remplir tous les champs obligatoires."
+    },
+    "info": {
+      "email": {
+        "title": "Email"
+      },
+      "social": {
+        "title": "Réseaux sociaux"
+      }
+    }
+  },
+
+  "home": {
+    "teams": {
+      "title": "Les équipes Olympique Poznań",
+      "senior": {
+        "name": "Les Bleus",
+        "description": "..."
+      },
+      "junior": {
+        "name": "L'académie",
+        "description": "10 Équipes, tremplins pour les champions de demain."
+      },
+      "feminine": {
+        "name": "Les Dames",
+        "description": "..."
+      }
+    },
+    "accompagnement": {
+      "title": "Une famille unie par la passion",
+      "paragraph1": "Au cœur de notre club : chaque enfant mérite sa chance.",
+      "paragraph2": "Nous accompagnons des enfants à grandir, croire en eux, se relever. Nos entraîneurs écoutent, encouragent, transmettent.",
+      "paragraph3": "Français, Polonais, de tous horizons : on joue ensemble. Nos différences font notre force.",
+      "paragraph4": "Nos différences font notre force.",
+      "highlight": "Des premiers pas sur le terrain aux matchs seniors, Olympique Poznań accompagne chaque joueur dans son parcours."
+    },
+    "performance": {
+      "title": "Plus haut. Plus fort. Plus fiers.",
+      "paragraph1": "Sur nos terrains, les enfants apprennent à se dépasser. Contre le doute, la fatigue, la peur d'échouer.",
+      "paragraph2": "Nos entraîneurs les accompagnent pour transformer l'effort en fierté, la persévérance en résultats.",
+      "highlight": "Que vous ayez 4 ans ou 70 ans, nos terrains sont là pour révéler votre potentiel. Parce que les champions de demain se construisent dans les entraînements d'aujourd'hui."
     }
   }
 }

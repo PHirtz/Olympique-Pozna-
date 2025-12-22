@@ -1,4 +1,261 @@
 {
+  "nav": {
+    "home": "Strona główna",
+    "news": "Aktualności",
+    "photo": "Zdjęcie",
+    "shop": "Sklep",
+    "club": "Klub",
+    "teams": "Nasze drużyny",
+    "camps": "Obóz Olimpijski",
+    "contact": "Kontakt",
+    "about": "O nas",
+    "coaches": "Nasi trenerzy",
+    "partners": "Nasi partnerzy",
+    "menu": "Menu",
+    "mobileMenu": "Menu nawigacji",
+    "mainNavigation": "Główna nawigacja mobilna"
+  },
+
+  "coach": {
+    "intro": {
+      "title": "Nasz Zespół Trenerski",
+      "description": "Profesjonaliści z pasją, oddani rozwojowi naszych zawodników"
+    },
+    "viewProfile": "Zobacz profil",
+    "backToCoaches": "Powrót do trenerów"
+  },
+
+  "userMenu": {
+    "hello": "Cześć",
+    "logout": "Wyloguj",
+    "myProfile": "Mój profil",
+    "login": "Zaloguj się",
+    "register": "Dołącz"
+  },
+
+  "shop": {
+    "title": "Nasz Sklep",
+    "viewProduct": "Zobacz produkt",
+    "subtitle": "Odkryj nasze oficjalne produkty",
+    "banner": {
+      "title": "Oficjalny Sklep Olympique Poznań",
+      "subtitle": "Pokaż swoje wsparcie naszą ekskluzywną kolekcją produktów Olympique Poznań!",
+      "cta": "Odwiedź sklep"
+    },
+    "items": {
+      "jacket": "Oficjalna Kurtka",
+      "winterJacket": "Kurtka Zimowa",
+      "bottle": "Oficjalny Bidon",
+      "roller": "Roller",
+      "socks": "Skarpety",
+      "rainJacket": "Oficjalna kurtka przeciwdeszczowa",
+      "whiteShorts": "Białe spodenki",
+      "blueShorts": "Niebieskie spodenki",
+      "sweatshirt": "Oficjalna Bluza",
+      "scarf": "Oficjalny Szalik",
+      "homeJersey": "Koszulka Domowa"
+    }
+  },
+
+  "hero": {
+    "title": "Witamy na stronie Olympique Poznan",
+    "subtitle": "Klub piłkarski Poznania",
+    "description": "Pasja i dzielenie się to nasz motor"
+  },
+
+  "facebook": {
+    "latestPosts": "Śledź nas na Facebooku",
+    "followDescription": "Bądź na bieżąco z naszymi aktualnościami",
+    "pageLink": "Olympique Poznan na Facebooku",
+    "viewOnFacebook": "Zobacz na Facebooku",
+    "noPosts": "Brak postów",
+    "errorLoading": "Błąd podczas ładowania postów z Facebooka"
+  },
+
+  "footer": {
+    "description": "Francusko-polski klub piłkarski z siedzibą w Poznaniu. Dołącz do nas !",
+    "quickLinks": "Szybkie linki",
+    "contact": "Kontakt",
+    "newsletter": "Newsletter",
+    "newsletterText": "Zapisz się, aby otrzymywać nasze najnowsze wiadomości",
+    "emailPlaceholder": "Twój email",
+    "subscribe": "Zapisz się",
+    "sponsors": "Nasi Partnerzy",
+    "viewAllSponsors": "Zobacz wszystkich partnerów",
+    "noSponsors": "Brak partnerów na razie",
+    "rights": "Wszelkie prawa zastrzeżone",
+    "legalNotice": "Informacje prawne",
+    "privacy": "Polityka prywatności",
+    "terms": "Regulamin"
+  },
+
+  "auth": {
+    "login": {
+      "title": "Logowanie",
+      "username": "Nazwa użytkownika",
+      "usernamePlaceholder": "Twoja nazwa użytkownika",
+      "password": "Hasło",
+      "passwordPlaceholder": "Twoje hasło",
+      "submit": "Zaloguj się",
+      "loading": "Logowanie...",
+      "error": "Nieprawidłowa nazwa użytkownika lub hasło",
+      "noAccount": "Nie masz jeszcze konta?",
+      "createAccount": "Utwórz konto"
+    },
+    "register": {
+      "title": "Rejestracja",
+      "firstName": "Imię",
+      "firstNamePlaceholder": "Anna",
+      "lastName": "Nazwisko",
+      "lastNamePlaceholder": "Kowalska",
+      "username": "Nazwa użytkownika",
+      "usernamePlaceholder": "ania_k",
+      "email": "Email",
+      "emailPlaceholder": "anna@example.pl",
+      "password": "Hasło",
+      "passwordPlaceholder": "Moje hasło",
+      "submit": "Utwórz konto",
+      "loading": "Rejestracja...",
+      "success": "Rejestracja udana! Witamy w Olympique Poznań!",
+      "errorAllFields": "Proszę wypełnić wszystkie pola",
+      "errorGeneral": "Błąd podczas rejestracji",
+      "hasAccount": "Masz już konto?",
+      "loginLink": "Zaloguj się",
+      "required": "*"
+    }
+  },
+
+  "club": {
+    "about": "Kim jesteśmy",
+    "coaches": "Nasi trenerzy",
+    "support": "Wsparcie Olimpijskie",
+    "partners": "Nasi partnerzy",
+    "status": "Statut klubu",
+    "documents": {
+      "title": "Ważne dokumenty",
+      "cgv": "Regulamin",
+      "statutes": "Statut",
+      "regulations": "Przepisy"
+    }
+  },
+
+  "camps": {
+    "title": "Obóz Olimpijski - Olympique Poznań",
+    "metaDescription": "Dołącz do Obóz Olimpijski w Poznaniu na niezapomniane piłkarskie doświadczenie! Intensywne treningi, warsztaty techniczne i gwarantowana zabawa.",
+    "hero": {
+      "title": "Obóz Olimpijski",
+      "subtitle": "Intensywne piłkarskie doświadczenie w sercu Poznania"
+    },
+    "intro": {
+      "text": "Obóz Olimpijski to wyjątkowa okazja dla młodych piłkarzy, aby zanurzyć się w intensywnym i ekscytującym środowisku treningowym. Odbywający się w sercu Poznania, nasz obóz oferuje starannie zaprojektowany program, który łączy techniczne szkolenie, taktyczne zrozumienie i elementy zabawy, aby stworzyć kompleksowe doświadczenie piłkarskie."
+    },
+    "benefits": {
+      "title": "Dlaczego wybrać Obóz Olimpijski?",
+      "training": "Intensywne treningi z wykwalifikowanymi trenerami",
+      "techniques": "Warsztaty techniczne poprawiające umiejętności",
+      "fun": "Zabawne aktywności i przyjacielskie zawody",
+      "teamSpirit": "Rozwój ducha zespołowego i fair play"
+    },
+    "register": {
+      "title": "Zapisz się już dziś!",
+      "text": "Nie przegap tej okazji, aby być częścią Obozu Olimpijskiego. Wypełnij poniższy formularz, aby się zapisać lub uzyskać więcej informacji.",
+      "formTitle": "Formularz zgłoszeniowy do Obozu Olimpijskiego"
+    },
+    "dates": "Daty obozu",
+    "lieu": "Miejsce",
+    "programme": "Program"
+  },
+
+  "teams": {
+    "seniors": {
+      "title": "Seniorzy",
+      "women": "Seniorki Kobiety",
+      "men": "Seniorzy Mężczyźni"
+    },
+    "ladies": "Panie",
+    "blues": "Niebiescy",
+    "giroud": "Olivier Giroud (2010/2011)",
+    "doue": {
+      "title": "Désiré Doué (2012)",
+      "players": {
+        "craczyk": "54 - CRACZYK",
+        "wutezi": "10 - WUTEZI",
+        "gartecki": "21 - GARTECKI",
+        "zok": "3 - ZOK",
+        "bielecki": "11 - BIELECKI",
+        "ceglowski": "40 - CEGLOWSKI",
+        "namysl": "7 - NAMYSL",
+        "wesolowski": "85 - WESOLOWSKI",
+        "wegner": "4 - WEGNER",
+        "majchrowicz": "12 - MAJCHROWICZ",
+        "pyzalka": "42 - PYZALKA"
+      }
+    },
+    "griezmann": "Antoine Griezmann (2013)",
+    "coman": "Kingsley Coman (2014)",
+    "diani": "Kadidiatou Diani (Junior)",
+    "renard": "Wendie Renard (Trampkarki)",
+    "lesommer": "Eugénie Le Sommer (Mlodziczki)",
+    "henry": "Amandine Henry (Orliczki)"
+  },
+
+  "about": {
+    "title": "O nas - Olympique Poznań",
+    "metaDescription": "Poznaj historię i wartości Olympique Poznań, klubu piłkarskiego szkolącego w sercu Poznania",
+    "hero": {
+      "title": "Olympique Poznań",
+      "subtitle": "Więcej niż klub, szkoła życia"
+    },
+    "intro": {
+      "text": "Położony w sercu dynamicznego miasta Poznań, Olympique Poznań to znacznie więcej niż zwykły klub piłkarski: to prawdziwa szkoła życia, miejsce, w którym spotykają się pasja, szkolenie i duch zespołowy, aby kształtować talenty przyszłości."
+    },
+    "values": {
+      "title": "Nasze wartości",
+      "excellence": {
+        "title": "Doskonałość",
+        "description": "Wysokiej jakości szkolenie z certyfikowanymi i zaangażowanymi trenerami od 2023 roku"
+      },
+      "teamSpirit": {
+        "title": "Duch zespołowy",
+        "description": "Przyjazna i integracyjna atmosfera, w której każdy zawodnik znajduje swoje miejsce"
+      },
+      "passion": {
+        "title": "Pasja",
+        "description": "Piłka nożna jako narzędzie rozwoju osobistego i zespołowego"
+      },
+      "training": {
+        "title": "Szkolenie",
+        "description": "Programy dostosowane do każdego wieku dla harmonijnego rozwoju"
+      }
+    },
+    "formation": {
+      "excellence": {
+        "title": "Szkolenie nastawione na doskonałość",
+        "text1": "Od momentu powstania w 2023 roku, Olympique Poznań szybko stał się punktem odniesienia w lokalnym krajobrazie sportowym. Klub kładzie nacisk na zapewnienie wysokiej jakości opieki, z certyfikowanymi i zaangażowanymi trenerami, którzy towarzyszą każdemu zawodnikowi w jego rozwoju technicznym, taktycznym i osobistym.",
+        "text2": "Programy szkoleniowe są zaprojektowane tak, aby odpowiadały specyficznym potrzebom każdej grupy wiekowej, sprzyjając harmonijnemu i dostosowanemu postępowi."
+      },
+      "coaches": {
+        "title": "Zespół oddanych trenerów",
+        "text1": "Opiekę zapewnia zespół wykwalifikowanych trenerów, z których niektórzy posiadają uznane certyfikaty, takie jak UEFA C. Ich podejście pedagogiczne, połączone z praktycznym doświadczeniem, gwarantuje stymulujące i życzliwe środowisko nauki.",
+        "text2": "Każdy trener wnosi swój osobisty styl, przyczyniając się do stworzenia rodzinnej i motywującej atmosfery."
+      },
+      "atmosphere": {
+        "title": "Przyjazna i integracyjna atmosfera",
+        "text1": "Olympique Poznań wyróżnia się ciepłą i integracyjną atmosferą. Klub przyjmuje zawodników z różnych środowisk, promując różnorodność i wzajemną pomoc. Wartości szacunku, solidarności i fair play są sednem każdego treningu i zawodów.",
+        "text2": "Ta filozofia tworzy silne poczucie przynależności, w którym każdy członek czuje się doceniony i wspierany."
+      }
+    },
+    "community": {
+      "title": "Dołącz do naszej społeczności",
+      "intro": "Śledź nas w mediach społecznościowych, aby być na bieżąco z aktualnościami klubu, zdjęciami z treningów, opiniami zawodników i wieloma innymi!",
+      "cta": {
+        "text": "Niezależnie od tego, czy jesteś młodym pasjonatem piłki nożnej, rodzicem szukającym klubu szkoleniowego dla swojego dziecka, czy po prostu miłośnikiem sportu chcącym zaangażować się w dynamiczną społeczność,",
+        "textBold": "Olympique Poznań otwiera swoje drzwi z entuzjazmem.",
+        "button": "Dołącz do przygody"
+      }
+    }
+  },
+
   "coaches": {
     "title": "Nasi Trenerzy - Olympique Poznań",
     "metaDescription": "Poznaj zespół pasjonatów i wykwalifikowanych trenerów Olympique Poznań",
@@ -34,8 +291,7 @@
       },
       "idol": {
         "title": "Idol z młodości i obecnie ulubiony zawodnik",
-        "text": "Thierry Henry – „Na zewnętrznej ścianie Emirates Stadium można przeczytać: I fell in love with Arsenal because of Ian Wright. To cytat Thierry'ego Henry'ego, mojego idola od czasów jego debiutu w AS Monaco, kiedy był jeszcze nastolatkiem. Dziś: Miles Lewis-Skelly – „Od zawsze fascynują mnie nastolatki wchodzące do świata profesjonalnej piłki nożnej."
-      },
+"text": "Thierry Henry – „Na zewnętrznej ścianie Emirates Stadium można przeczytać: I fell in love with Arsenal because of Ian Wright. To cytat Thierry'ego Henry'ego, mojego idola od czasów jego debiutu w AS Monaco, kiedy był jeszcze nastolatkiem\". Dziś: Miles Lewis-Skelly – „Od zawsze fascynują mnie nastolatki wchodzące do świata profesjonalnej piłki nożnej.\""      },
       "passion": {
         "title": "Inna pasja poza piłką nożną: MUZYKA",
         "text": "„Jestem melomanem. Co dziwne, moją pierwszą pasją jest muzyka. «Pożeram» astronomiczne ilości albumów każdego tygodnia, od hip-hopu po muzykę klasyczną. Każdego tygodnia muszę odkryć co najmniej dwóch nowych artystów. Platformy streamingowe mają mnie dość, bo fałszuję ich statystyki» 😊"
@@ -75,7 +331,7 @@
       },
       "idol": {
         "title": "Idol z młodości i obecnie ulubiony zawodnik",
-        "text": "Ronaldinho (FC Barcelona) „Mag piłki nożnej, dzięki niemu uśmiech nigdy nie schodził z mojej twarzy podczas meczów. Technicznie przewyższający wszystkich innych w swoich czasach oraz Łukasz Fabiański „Sam będąc bramkarzem nie mogę wybrać innego. Wspaniały i skromny chłopak, który ciężką pracą osiągnął wiele szczytów."
+        "text": "Ronaldinho (FC Barcelona) \"Mag piłki nożnej, dzięki niemu uśmiech nigdy nie schodził z mojej twarzy podczas meczów. Technicznie przewyższający wszystkich innych w swoich czasach\" oraz Łukasz Fabiański \"Sam będąc bramkarzem nie mogę wybrać innego. Wspaniały i skromny chłopak, który ciężką pracą osiągnął wiele szczytów.\""
       },
       "questions": {
         "title": "Oto trzy krótkie pytania zadane przez zawodników 😊",
@@ -106,7 +362,7 @@
       },
       "idol": {
         "title": "Idol z młodości i ulubiony zawodnik dziś",
-        "text": "Ronaldo Nazario. „Zawsze ten sam. To nie tylko świetny zawodnik, to prawdziwa ikona piłki nożnej. Uwielbiam jego styl gry – błyskawiczne przyspieszenia i nieprzewidywalną technikę. Był kompletnym napastnikiem: zdolnym do chłodnego zakończenia akcji, ale też do stworzenia okazji z niczego."
+        "text": "Ronaldo Nazario. „Zawsze ten sam. To nie tylko świetny zawodnik, to prawdziwa ikona piłki nożnej. Uwielbiam jego styl gry – błyskawiczne przyspieszenia i nieprzewidywalną technikę. Był kompletnym napastnikiem: zdolnym do chłodnego zakończenia akcji, ale też do stworzenia okazji z niczego.\""
       },
       "questions": {
         "title": "Jakie pytania zadali nasi zawodnicy trenerowi? 😊",
@@ -261,6 +517,104 @@
           "answer": "Podejście do treningu zgodne z moim. To nie wiek, ale obecne umiejętności powinny określać, z kim rywalizujemy. Co bym zmienił? Wszystko i nic. Wszystko, co wymaga zmian dla dobra dzieci, cokolwiek to jest. I nic, ponieważ to wspaniała społeczność, która stawia dzieci i młodzież na pierwszym miejscu."
         }
       }
+    }
+  },
+
+  "common": {
+    "loading": "Ładowanie...",
+    "error": "Wystąpił błąd",
+    "noData": "Brak danych",
+    "back": "Wstecz",
+    "close": "Zamknij",
+    "save": "Zapisz",
+    "cancel": "Anuluj",
+    "confirm": "Potwierdź",
+    "delete": "Usuń",
+    "edit": "Edytuj"
+  },
+
+  "contact": {
+    "title": "Kontakt - Olympique Poznań",
+    "metaDescription": "Skontaktuj się z Olympique Poznań, aby dołączyć do klubu lub zadać pytanie",
+    "hero": {
+      "title": "Skontaktuj się z nami",
+      "subtitle": "Dołącz do przygody Olympique Poznań"
+    },
+    "intro": {
+      "title": "Masz pytanie? Chcesz do nas dołączyć?",
+      "text": "Wypełnij poniższy formularz, a my odpowiemy najszybciej jak to możliwe. Niezależnie od tego, czy chcesz zostać zawodnikiem, trenerem czy wolontariuszem, chętnie z Tobą porozmawiamy!"
+    },
+    "form": {
+      "name": "Imię i nazwisko",
+      "lastName": "Nazwisko",
+      "nameRequired": "Proszę podać imię i nazwisko",
+      "emailRequired": "Proszę podać poprawny adres email",
+      "messageRequired": "Proszę wpisać wiadomość",
+      "categoryRequired": "Proszę wybrać kategorię",
+      "namePlaceholder": "Twoje imię i nazwisko",
+      "age": "Wiek uczestnika",
+      "tel": "Telefon",
+      "demande": "Wyślij moją prośbę",
+      "telPlaceholder": "+48 123 456 789",
+      "email": "Email",
+      "emailPlaceholder": "twoj.email@przyklad.pl",
+      "category": "Kategoria",
+      "categories": {
+        "coach": "Trener",
+        "junior": "Piłkarz Junior",
+        "senior": "Piłkarz Senior",
+        "veteran": "Piłkarz Weteran",
+        "volunteer": "Wolontariusz",
+        "sponsor": "Sponsor",
+        "other": "Inne"
+      },
+      "message": "Wiadomość",
+      "messagePlaceholder": "Opowiedz nam o sobie i swojej motywacji...",
+      "submit": "Wyślij wiadomość",
+      "sending": "Wysyłanie...",
+      "success": "Twoja wiadomość została wysłana! Odpowiemy wkrótce.",
+      "error": "Wystąpił błąd, spróbuj ponownie później.",
+      "errorRequired": "Proszę wypełnić wszystkie wymagane pola."
+    },
+    "info": {
+      "email": {
+        "title": "Email"
+      },
+      "social": {
+        "title": "Media społecznościowe"
+      }
+    }
+  },
+
+  "home": {
+    "teams": {
+      "title": "Drużyny Olympique Poznań",
+      "senior": {
+        "name": "Niebiescy",
+        "description": "..."
+      },
+      "junior": {
+        "name": "Akademia",
+        "description": "10 drużyn, trampoliny dla mistrzów jutra."
+      },
+      "feminine": {
+        "name": "Panie",
+        "description": "..."
+      }
+    },
+    "accompagnement": {
+      "title": "Rodzina zjednoczona pasją",
+      "paragraph1": "W sercu naszego klubu: każde dziecko zasługuje na swoją szansę.",
+      "paragraph2": "Pomagamy dzieciom dorastać, wierzyć w siebie, podnosić się po porażce. Nasi trenerzy słuchają, wspierają, przekazują.",
+      "paragraph3": "Francuzi, Polacy, z różnych środowisk: gramy razem. Nasze różnice są naszą siłą.",
+      "paragraph4": "Nasze różnice są naszą siłą.",
+      "highlight": "Od pierwszych kroków na boisku po mecze seniorów, Olympique Poznań towarzyszy każdemu zawodnikowi w jego drodze."
+    },
+    "performance": {
+      "title": "Wyżej. Mocniej. Dumniej.",
+      "paragraph1": "Na naszych boiskach dzieci uczą się przekraczać swoje granice. Przeciwko wątpliwościom, zmęczeniu, strachowi przed porażką.",
+      "paragraph2": "Nasi trenerzy pomagają im przekształcić wysiłek w dumę, wytrwałość w rezultaty.",
+      "highlight": "Czy masz 4 lata, czy 70, nasze boiska są po to, aby odkryć Twój potencjał. Bo mistrzowie jutra budują się na dzisiejszych treningach."
     }
   }
 }

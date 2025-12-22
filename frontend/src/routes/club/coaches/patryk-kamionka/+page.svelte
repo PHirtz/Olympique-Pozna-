@@ -5,14 +5,14 @@
 
 <script>
   import { _ } from 'svelte-i18n';
-  import Navigation from '$lib/components/ui/Navigation.svelte';
+  import Navigation2 from '$lib/components/ui/Navigation2.svelte';
   import Footer from '$lib/components/ui/Footer.svelte';
   import { Target, ArrowLeft } from 'lucide-svelte';
   
   export let data;
 </script>
 
-<Navigation {data} />
+<Navigation2 {data} />
 
 <div class="coach-page">
   <!-- Breadcrumb -->
