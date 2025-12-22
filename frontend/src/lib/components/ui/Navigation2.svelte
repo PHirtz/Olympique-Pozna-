@@ -155,7 +155,7 @@
             <a href="/club/about" class="dropdown-item" role="menuitem">{$_('club.about')}</a>
             <a href="/club/coaches" class="dropdown-item" role="menuitem">{$_('club.coaches')}</a>
             <a href="/club/partners" class="dropdown-item" role="menuitem">{$_('club.partners')}</a>
-            <a href="/club/status" class="dropdown-item" role="menuitem">{$_('club.status')}</a>
+            <a href="https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit?tab=t.0" class="dropdown-item" role="menuitem">{$_('club.status')}</a>
             <a href="https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit?tab=t.0" class="dropdown-item" role="menuitem">{$_('club.documents.title')}</a>
           </div>
         {/if}
@@ -365,7 +365,16 @@
               <li><a href="/club/about" on:click={close}>{$_('club.about')}</a></li>
               <li><a href="/club/coaches" on:click={close}>{$_('club.coaches')}</a></li>
               <li><a href="/club/partner" on:click={close}>{$_('club.partners')}</a></li>
-              <li><a href="/club/status" on:click={close}>{$_('club.status')}</a></li>  
+              <li>
+                                <a 
+                  href="https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit?tab=t.0" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  on:click={close}
+                >
+                  {$_('club.status')}
+                </a>
+              </li>
               <li>
                 <a 
                   href="https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit?tab=t.0" 
