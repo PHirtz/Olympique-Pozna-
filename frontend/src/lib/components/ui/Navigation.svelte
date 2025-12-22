@@ -139,10 +139,10 @@
         on:mouseenter={() => openDropdownMenu('club')}
         on:mouseleave={closeDropdownWithDelay}
       >
-        <button class="nav-link dropdown-trigger">
+        <a href="/club" class="nav-link dropdown-trigger">
           {$_('nav.club')}
           <ChevronDown size={16} />
-        </button>
+        </a>
         
         {#if openDropdown === 'club'}
           <div 
@@ -169,10 +169,10 @@
         on:mouseleave={closeDropdownWithDelay}
         role="group"
       >
-        <button class="nav-link dropdown-trigger">
+        <a href="/teams" class="nav-link dropdown-trigger">
           {$_('nav.teams')}
           <ChevronDown size={16} />
-        </button>
+        </a>
         
         {#if openDropdown === 'teams'}
           <div 

@@ -1,247 +1,28 @@
 {
-  "nav": {
-    "home": "Strona główna",
-    "news": "Aktualności",
-    "photo": "Zdjęcie",
-    "shop": "Sklep",
-    "club": "Klub",
-    "teams": "Nasze drużyny",
-    "camps": "Obóz Olimpijski",
-    "contact": "Kontakt",
-    "about": "O nas",
-    "coaches": "Nasi trenerzy",
-    "partners": "Nasi partnerzy",
-    "menu": "Menu",
-    "mobileMenu": "Menu nawigacji",
-    "mainNavigation": "Główna nawigacja mobilna"
-  },
-  "userMenu": {
-    "hello": "Cześć",
-    "logout": "Wyloguj",
-    "myProfile": "Mój profil",
-    "login": "Zaloguj się",
-    "register": "Dołącz"
-  },
-
-    "shop": {
-    "title": "Nasz Sklep",
-    "viewProduct": "Zobacz produkt",
-    "subtitle": "Odkryj nasze oficjalne produkty",
-    "items": {
-      "jacket": "Oficjalna Kurtka",
-      "winterJacket": "Kurtka Zimowa",
-      "bottle": "Oficjalny Bidon",
-      "roller": "Roller",
-      "socks": "Skarpety",
-      "rainJacket": "Oficjalna kurtka przeciwdeszczowa",
-      "whiteShorts": "Białe spodenki",
-      "blueShorts": "Niebieskie spodenki",
-      "sweatshirt": "Oficjalna Bluza",
-      "scarf": "Oficjalny Szalik",
-      "homeJersey": "Koszulka Domowa"
-    }
-  },
-  
-  "hero": {
-    "title": "Witamy na stronie Olympique Poznan",
-    "subtitle": "Klub piłkarski Poznania",
-    "description": "Pasja i dzielenie się to nasz motor"
-  },
-  "facebook": {
-    "latestPosts": "Śledź nas na Facebooku",
-    "followDescription": "Bądź na bieżąco z naszymi aktualnościami",
-    "pageLink": "Olympique Poznan na Facebooku",
-    "viewOnFacebook": "Zobacz na Facebooku",
-    "noPosts": "Brak postów",
-    "errorLoading": "Błąd podczas ładowania postów z Facebooka"
-  },
-  "footer": {
-    "description": "Francusko-polski klub piłkarski z siedzibą w Poznaniu. Dołącz do nas !",
-    "quickLinks": "Szybkie linki",
-    "contact": "Kontakt",
-    "newsletter": "Newsletter",
-    "newsletterText": "Zapisz się, aby otrzymywać nasze najnowsze wiadomości",
-    "emailPlaceholder": "Twój email",
-    "subscribe": "Zapisz się",
-    "sponsors": "Nasi Partnerzy",
-    "viewAllSponsors": "Zobacz wszystkich partnerów",
-    "noSponsors": "Brak partnerów na razie",
-    "rights": "Wszelkie prawa zastrzeżone",
-    "legalNotice": "Informacje prawne",
-    "privacy": "Polityka prywatności",
-    "terms": "Regulamin"
-  },
-  "auth": {
-    "login": {
-      "title": "Logowanie",
-      "username": "Nazwa użytkownika",
-      "usernamePlaceholder": "Twoja nazwa użytkownika",
-      "password": "Hasło",
-      "passwordPlaceholder": "Twoje hasło",
-      "submit": "Zaloguj się",
-      "loading": "Logowanie...",
-      "error": "Nieprawidłowa nazwa użytkownika lub hasło",
-      "noAccount": "Nie masz jeszcze konta?",
-      "createAccount": "Utwórz konto"
-    },
-    "register": {
-      "title": "Rejestracja",
-      "firstName": "Imię",
-      "firstNamePlaceholder": "Anna",
-      "lastName": "Nazwisko",
-      "lastNamePlaceholder": "Kowalska",
-      "username": "Nazwa użytkownika",
-      "usernamePlaceholder": "ania_k",
-      "email": "Email",
-      "emailPlaceholder": "anna@example.pl",
-      "password": "Hasło",
-      "passwordPlaceholder": "Moje hasło",
-      "submit": "Utwórz konto",
-      "loading": "Rejestracja...",
-      "success": "Rejestracja udana! Witamy w Olympique Poznań!",
-      "errorAllFields": "Proszę wypełnić wszystkie pola",
-      "errorGeneral": "Błąd podczas rejestracji",
-      "hasAccount": "Masz już konto?",
-      "loginLink": "Zaloguj się",
-      "required": "*"
-    }
-
-  },
-  "club": {
-    "about": "Kim jesteśmy",
-    "coaches": "Nasi trenerzy",
-    "support": "Wsparcie Olimpijskie",
-    "partners": "Nasi partnerzy",
-    "status": "Statut klubu",
-    "documents": {
-      "title": "Ważne dokumenty",
-      "cgv": "Regulamin",
-      "statutes": "Statut",
-      "regulations": "Przepisy"
-    }
-  },
-
-  "camps":{
-    "title": "Obóz Olimpijski - Olympique Poznań",
-    "metaDescription": "Dołącz do Obóz Olimpijski w Poznaniu na niezapomniane piłkarskie doświadczenie! Intensywne treningi, warsztaty techniczne i gwarantowana zabawa.",
-    "hero": {
-      "title": "Obóz Olimpijski",
-      "subtitle": "Intensywne piłkarskie doświadczenie w sercu Poznania"
-    },
-    "intro": {
-      "text": "Obóz Olimpijski to wyjątkowa okazja dla młodych piłkarzy, aby zanurzyć się w intensywnym i ekscytującym środowisku treningowym. Odbywający się w sercu Poznania, nasz obóz oferuje starannie zaprojektowany program, który łączy techniczne szkolenie, taktyczne zrozumienie i elementy zabawy, aby stworzyć kompleksowe doświadczenie piłkarskie."
-    },
-    "dates":"Daty obozu",
-    "register": "Zarejestruj się teraz",
-    "lieu": "Miejsce",
-    "programme": "Program"
-  },
-  "teams": {
-    "seniors": {
-      "title": "Seniorzy",
-      "women": "Seniorki Kobiety",
-      "men": "Seniorzy Mężczyźni"
-    },
-    "ladies": "Panie",
-    "blues": "Niebiescy",
-    "giroud": "Olivier Giroud (2010/2011)",
-    "doue": {
-      "title": "Désiré Doué (2012)",
-      "players": {
-        "craczyk": "54 - CRACZYK",
-        "wutezi": "10 - WUTEZI",
-        "gartecki": "21 - GARTECKI",
-        "zok": "3 - ZOK",
-        "bielecki": "11 - BIELECKI",
-        "ceglowski": "40 - CEGLOWSKI",
-        "namysl": "7 - NAMYSL",
-        "wesolowski": "85 - WESOLOWSKI",
-        "wegner": "4 - WEGNER",
-        "majchrowicz": "12 - MAJCHROWICZ",
-        "pyzalka": "42 - PYZALKA"
-      }
-    },
-    "griezmann": "Antoine Griezmann (2013)",
-    "coman": "Kingsley Coman (2014)",
-    "diani": "Kadidiatou Diani (Junior)",
-    "renard": "Wendie Renard (Trampkarki)",
-    "lesommer": "Eugénie Le Sommer (Mlodziczki)",
-    "henry": "Amandine Henry (Orliczki)"
-  },
-  "about": {
-    "title": "O nas - Olympique Poznań",
-    "metaDescription": "Poznaj historię i wartości Olympique Poznań, klubu piłkarskiego szkolącego w sercu Poznania",
-    "hero": {
-      "title": "Olympique Poznań",
-      "subtitle": "Więcej niż klub, szkoła życia"
-    },
-    "intro": {
-      "text": "Położony w sercu dynamicznego miasta Poznań, Olympique Poznań to znacznie więcej niż zwykły klub piłkarski: to prawdziwa szkoła życia, miejsce, w którym spotykają się pasja, szkolenie i duch zespołowy, aby kształtować talenty przyszłości."
-    },
-    "values": {
-      "title": "Nasze wartości",
-      "excellence": {
-        "title": "Doskonałość",
-        "description": "Wysokiej jakości szkolenie z certyfikowanymi i zaangażowanymi trenerami od 2023 roku"
-      },
-      "teamSpirit": {
-        "title": "Duch zespołowy",
-        "description": "Przyjazna i integracyjna atmosfera, w której każdy zawodnik znajduje swoje miejsce"
-      },
-      "passion": {
-        "title": "Pasja",
-        "description": "Piłka nożna jako narzędzie rozwoju osobistego i zespołowego"
-      },
-      "training": {
-        "title": "Szkolenie",
-        "description": "Programy dostosowane do każdego wieku dla harmonijnego rozwoju"
-      }
-    },
-    "formation": {
-      "excellence": {
-        "title": "Szkolenie nastawione na doskonałość",
-        "text1": "Od momentu powstania w 2023 roku, Olympique Poznań szybko stał się punktem odniesienia w lokalnym krajobrazie sportowym. Klub kładzie nacisk na zapewnienie wysokiej jakości opieki, z certyfikowanymi i zaangażowanymi trenerami, którzy towarzyszą każdemu zawodnikowi w jego rozwoju technicznym, taktycznym i osobistym.",
-        "text2": "Programy szkoleniowe są zaprojektowane tak, aby odpowiadały specyficznym potrzebom każdej grupy wiekowej, sprzyjając harmonijnemu i dostosowanemu postępowi."
-      },
-      "coaches": {
-        "title": "Zespół oddanych trenerów",
-        "text1": "Opiekę zapewnia zespół wykwalifikowanych trenerów, z których niektórzy posiadają uznane certyfikaty, takie jak UEFA C. Ich podejście pedagogiczne, połączone z praktycznym doświadczeniem, gwarantuje stymulujące i życzliwe środowisko nauki.",
-        "text2": "Każdy trener wnosi swój osobisty styl, przyczyniając się do stworzenia rodzinnej i motywującej atmosfery."
-      },
-      "atmosphere": {
-        "title": "Przyjazna i integracyjna atmosfera",
-        "text1": "Olympique Poznań wyróżnia się ciepłą i integracyjną atmosferą. Klub przyjmuje zawodników z różnych środowisk, promując różnorodność i wzajemną pomoc. Wartości szacunku, solidarności i fair play są sednem każdego treningu i zawodów.",
-        "text2": "Ta filozofia tworzy silne poczucie przynależności, w którym każdy członek czuje się doceniony i wspierany."
-      }
-    },
-    "community": {
-      "title": "Dołącz do naszej społeczności",
-      "intro": "Śledź nas w mediach społecznościowych, aby być na bieżąco z aktualnościami klubu, zdjęciami z treningów, opiniami zawodników i wieloma innymi!",
-      "cta": {
-        "text": "Niezależnie od tego, czy jesteś młodym pasjonatem piłki nożnej, rodzicem szukającym klubu szkoleniowego dla swojego dziecka, czy po prostu miłośnikiem sportu chcącym zaangażować się w dynamiczną społeczność,",
-        "textBold": "Olympique Poznań otwiera swoje drzwi z entuzjazmem.",
-        "button": "Dołącz do przygody"
-      }
-    }
-  },
   "coaches": {
     "title": "Nasi Trenerzy - Olympique Poznań",
-    "metaDescription": "Poznaj zespół zaangażowanych i wykwalifikowanych trenerów Olympique Poznań",
+    "metaDescription": "Poznaj zespół pasjonatów i wykwalifikowanych trenerów Olympique Poznań",
     "hero": {
       "title": "Olympique Poznań",
       "subtitle": "Nasi super trenerzy"
     },
+    "intro": {
+      "title": "Nasz Zespół Trenerski",
+      "description": "Profesjonaliści z pasją, oddani rozwojowi naszych zawodników"
+    },
+    "viewProfile": "Zobacz profil",
+    "backToCoaches": "Powrót do trenerów",
     "stephane": {
       "name": "STÉPHANE WUTEZI",
-      "tagline": "Architekt i filar klubu, mistrz organizacji, zaangażowany trener",
-      "since": "Trener od dzieciństwa 😆, oficjalnie od 2003 roku",
-      "motto": "Nigdy się nie poddawać",
+      "tagline": "Architekt i filar klubu, mistrz organizacji, pasjonat trenerstwa",
+      "since": "Trenerem od dzieciństwa 😆, oficjalnie od 2003 roku",
+      "motto": "Nigdy się nie poddawaj",
       "formations": {
         "title": "Szkolenia, kursy, warsztaty, uzyskane licencje",
         "uefa_c": "Licencja UEFA C (Liga Bretanii)",
         "uefa_b": "Licencja UEFA B (WZPN)",
         "stages": "Staże w: Tours FC, Stade Rennais FC, GKS Dopiewo, Warta Poznań",
-        "conferences": "Aktywny udział w konferencjach, warsztatach i szkoleniach dotyczących treningów, przygotowania fizycznego i aspektów taktycznych"
+        "conferences": "Aktywny udział w konferencjach, warsztatach i szkoleniach dotyczących treningu, przygotowania fizycznego i aspektów taktycznych"
       },
       "experience": {
         "coach": {
@@ -252,39 +33,39 @@
         }
       },
       "idol": {
-        "title": "Idol młodości i ulubiony zawodnik obecnie",
-        "text": "Thierry Henry – « Na zewnętrznej ścianie Emirates Stadium można przeczytać: I fell in love with Arsenal because of Ian Wright. To cytat Thierry'ego Henry'ego, mojego idola od jego debiutów w AS Monaco, gdy był jeszcze nastolatkiem ». Dziś: Miles Lewis-Skelly – « Od zawsze fascynują mnie nastolatki wkraczające do świata profesjonalnej piłki nożnej. »"
+        "title": "Idol z młodości i obecnie ulubiony zawodnik",
+        "text": "Thierry Henry – „Na zewnętrznej ścianie Emirates Stadium można przeczytać: I fell in love with Arsenal because of Ian Wright. To cytat Thierry'ego Henry'ego, mojego idola od czasów jego debiutu w AS Monaco, kiedy był jeszcze nastolatkiem. Dziś: Miles Lewis-Skelly – „Od zawsze fascynują mnie nastolatki wchodzące do świata profesjonalnej piłki nożnej."
       },
       "passion": {
-        "title": "Inna pasja niż piłka nożna: MUZYKA",
-        "text": "« Jestem melomanem. Co zaskakujące, moją pierwszą pasją jest muzyka. \"Pochłaniam\" astronomiczne ilości albumów każdego tygodnia, od hip-hopu po muzykę klasyczną. Co tydzień muszę odkryć co najmniej dwóch nowych artystów. Platformy streamingowe mają mnie dość, bo psuje ich statystyki » 😊"
+        "title": "Inna pasja poza piłką nożną: MUZYKA",
+        "text": "„Jestem melomanem. Co dziwne, moją pierwszą pasją jest muzyka. «Pożeram» astronomiczne ilości albumów każdego tygodnia, od hip-hopu po muzykę klasyczną. Każdego tygodnia muszę odkryć co najmniej dwóch nowych artystów. Platformy streamingowe mają mnie dość, bo fałszuję ich statystyki» 😊"
       },
       "questions": {
-        "title": "Chcesz wiedzieć więcej o trenerze Stéphanie? Nasi zawodnicy zadali mu kilka pytań 😊",
+        "title": "Jeszcze więcej o trenerze Stéphane? Nasi zawodnicy zadali mu kilka pytań 😊",
         "q1": {
           "question": "Skąd wzięła się nazwa klubu?",
-          "answer": "Olympique de Marseille i Olympique Lyonnais należą do najbardziej rozpoznawalnych francuskich klubów na scenie międzynarodowej. Tworząc klub z francuskim DNA, francuską filozofią szkolenia młodzieży, który grałby na dawnym stadionie Olimpii Poznań – klubu, który również nosił barwy trójkolorowe – ta nazwa narzuciła się naturalnie. Uwaga: Olympique to nie Olimpia. Olympique wymawia się [Olępik] 😊"
+          "answer": "Olympique de Marseille i Olympique Lyonnais należą do najbardziej rozpoznawalnych francuskich klubów na arenie międzynarodowej. Tworząc klub z francuskim DNA, francuską filozofią szkolenia młodzieży, który grałby na dawnym stadionie Olimpii Poznań – klubu również noszącego barwy tricolore – ta nazwa narzuciła się naturalnie. Uwaga: Olympique to nie Olimpia. Olympique wymawia się [Olępik] 😊"
         },
         "q2": {
           "question": "Dlaczego Polska?",
-          "answer": "Moja sąsiadka w akademiku w Bretanii gotowała dziwne i egzotyczne potrawy we wspólnej kuchni. Z ciekawości zagadałem ją, mówiąc o \"Lesz Posnan\" i \"Lesz Waleza\" – tak się wymawia po francusku, prawda? Dzięki miłości wiem już, jak się to wymawia poprawnie. Minęło dwadzieścia lat, mieszkam w Polsce, ta sąsiadka została moją żoną, wiceprezesem klubu, matką dwóch olimpijskich zawodników i wciąż miłością mojego życia 🥰"
+          "answer": "Moja sąsiadka w akademiku w Bretanii gotowała dziwne i egzotyczne potrawy we wspólnej kuchni. Z ciekawości zagadałem ją mówiąc o «Lesz Posnan» i «Lesz Waleza» – tak się to wymawia po francusku, prawda? Dzięki miłości teraz wiem, jak to prawidłowo wymawiać. Minęło dwadzieścia lat, mieszkam w Polsce, ta sąsiadka została moją żoną, wiceprezeską klubu, matką dwóch olimpijskich zawodników i wciąż miłością mojego życia 🥰"
         },
         "q3": {
           "question": "Dlaczego twoim ulubionym klubem jest Arsenal?",
-          "answer": "Jako paryżanin byłem na kilku meczach na Parc des Princes. W 1994 roku Arsenal zdobył Puchar Europy, pokonując PSG w półfinale. W ataku mieli Iana Wrighta, ikonę klubu, który nosił legendarną czerwoną koszulkę z numerem 8 i sponsorem JVC z przodu. Miałem 10 lat i « zakochałem się w Arsenalu dzięki Ianowi Wrightowi »."
+          "answer": "Jako paryżanin byłem na kilku meczach w Parc des Princes. W 1994 roku Arsenal wygrał puchar Europy pokonując PSG w półfinale. W ataku grał Ian Wright, ikona klubu, który nosił legendarną czerwoną koszulkę z numerem 8 i sponsorem JVC z przodu. Miałem 10 lat i «zakochałem się w Arsenalu dzięki Ianowi Wrightowi»."
         }
       }
     },
     "patryk_k": {
       "name": "PATRYK KAMIONKA",
-      "tagline": "Ciężko pracujący i urzekający bramkarzy",
-      "since": "Trener od 2018 roku",
+      "tagline": "Ciężko pracujący i urzekacz bramkarzy",
+      "since": "Trenerem od 2018 roku",
       "formations": {
         "title": "Szkolenia, kursy, warsztaty i uzyskane licencje",
         "wopr": "Ratownik WOPR",
         "teacher": "Nauczyciel wychowania fizycznego",
         "kinesiology": "Szkolenie z kinezygerontoprofilaktyki",
-        "goalkeeper": "Staż trenerski w Akademii Bramkarzy Wielkopolski (asystent)",
+        "goalkeeper": "Staż trenerski w Akademii Bramkarskiej Wielkopolski (asystent)",
         "uefa": "W trakcie przygotowań do szkoleń UEFA C i GOALKEEPER A"
       },
       "experience": {
@@ -293,45 +74,45 @@
         }
       },
       "idol": {
-        "title": "Idol młodości i ulubiony zawodnik obecnie",
-        "text": "Ronaldinho (FC Barcelona) « Czarodziej piłki nożnej, dzięki niemu uśmiech nigdy nie schodził z mojej twarzy podczas meczów. Technicznie przewyższał wszystkich innych w swojej epoce » i Łukasz Fabiański « Będąc sam bramkarzem, nie mogę go nie wybrać. Wspaniały i skromny chłopak, który osiągnął wiele szczytów ciężką pracą. »"
+        "title": "Idol z młodości i obecnie ulubiony zawodnik",
+        "text": "Ronaldinho (FC Barcelona) „Mag piłki nożnej, dzięki niemu uśmiech nigdy nie schodził z mojej twarzy podczas meczów. Technicznie przewyższający wszystkich innych w swoich czasach oraz Łukasz Fabiański „Sam będąc bramkarzem nie mogę wybrać innego. Wspaniały i skromny chłopak, który ciężką pracą osiągnął wiele szczytów."
       },
       "questions": {
         "title": "Oto trzy krótkie pytania zadane przez zawodników 😊",
         "q1": {
-          "question": "Co trener najbardziej ceni u zawodnika? Według niego, co jest ważniejsze: talent czy praca?",
-          "answer": "Najbardziej cenię cechy charakteru, które ujawniają, jakim typem zawodnika się jest. Talent to tylko mała część sukcesu w sporcie, trzeba go wzmocnić ciężką pracą, aby odnieść sukces. Świetnymi przykładami są Messi czy Cristiano Ronaldo. Więc bez wahania: ciężka praca."
+          "question": "Co trener najbardziej docenia u zawodnika? Jego zdaniem, co jest ważniejsze: talent czy praca?",
+          "answer": "Najbardziej doceniam cechy charakteru, które ujawniają, jakim typem zawodnika się jest. Talent to tylko mała część sukcesu w sporcie, trzeba go wzmocnić ciężką pracą, aby odnieść sukces. Wspaniałymi przykładami są Messi czy Cristiano Ronaldo. Więc bez wahania: ciężka praca."
         },
         "q2": {
-          "question": "Czego chciałbyś się nauczyć w dzieciństwie, ale nigdy nie miałeś okazji?",
+          "question": "Czego chciałbyś nauczyć się w dzieciństwie, ale nigdy nie miałeś okazji?",
           "answer": "Chciałbym nauczyć się grać na gitarze."
         },
         "q3": {
-          "question": "Gdybyś mógł się teleportować gdziekolwiek na świecie, dokąd byś poszedł i dlaczego?",
-          "answer": "Zawsze marzyłem o Islandii, o jej gorących wodach termalnych, wspaniałych krajobrazach, gdzie można się wykąpać i od razu wskoczyć w śnieżne góry!"
+          "question": "Gdybyś mógł teleportować się gdziekolwiek na świecie, dokąd byś pojechał i dlaczego?",
+          "answer": "Zawsze marzyłem o Islandii, o jej gorących wodach termalnych, pięknych krajobrazach, gdzie można się kąpać i skoczyć prosto w ośnieżone góry!"
         }
       }
     },
     "patryk_w": {
       "name": "PATRYK WESOŁOWSKI",
-      "tagline": "Specjalista pracy między słupkami",
-      "since": "Trener od 2020 roku",
+      "tagline": "Specjalista od pracy między słupkami",
+      "since": "Trenerem od 2020 roku",
       "formations": {
         "title": "Szkolenia, kursy, warsztaty i uzyskane licencje",
         "animator": "Animator piłki nożnej",
-        "camp": "Szkolenie instruktora kolonijnego",
+        "camp": "Szkolenie opiekuna kolonijnego",
         "reissa": "Staż trenerski w Akademii Piłkarskiej Reissa",
-        "conferences": "Ciągłe doskonalenie przez udział w specjalistycznych szkoleniach i konferencjach"
+        "conferences": "Ciągłe doskonalenie poprzez udział w specjalistycznych szkoleniach i konferencjach"
       },
       "idol": {
-        "title": "Idol młodości i ulubiony zawodnik dzisiaj",
-        "text": "Ronaldo Nazario. « Zawsze ten sam. To nie tylko wspaniały zawodnik, to prawdziwa ikona piłki nożnej. Uwielbiam jego styl gry – jego błyskawiczne przyspieszenia i nieprzewidywalną technikę. Był kompletnym napastnikiem: zdolnym do zimnego wykończenia akcji, ale także do stworzenia okazji z niczego. »"
+        "title": "Idol z młodości i ulubiony zawodnik dziś",
+        "text": "Ronaldo Nazario. „Zawsze ten sam. To nie tylko świetny zawodnik, to prawdziwa ikona piłki nożnej. Uwielbiam jego styl gry – błyskawiczne przyspieszenia i nieprzewidywalną technikę. Był kompletnym napastnikiem: zdolnym do chłodnego zakończenia akcji, ale też do stworzenia okazji z niczego."
       },
       "questions": {
-        "title": "Jakie pytania nasi zawodnicy zadali Trenerowi? 😊",
+        "title": "Jakie pytania zadali nasi zawodnicy trenerowi? 😊",
         "q1": {
-          "question": "Według Trenera, czy bramkarz musi być trochę szalony?",
-          "answer": "Tak, myślę, że bramkarz musi mieć w sobie odrobinę szaleństwa. To pozycja, która wymaga nie tylko wyjątkowych umiejętności fizycznych, ale także nadzwyczajnej psychologii. Ta część \"szaleństwa\" to odwaga, instynkt i czasami niemal przesadna wiara w siebie."
+          "question": "Czy zdaniem trenera bramkarz musi być trochę szalony?",
+          "answer": "Tak, uważam, że bramkarz musi mieć w sobie nutę szaleństwa. To pozycja, która wymaga nie tylko wyjątkowych umiejętności fizycznych, ale także niezwykłej psychiki. Ta nuta «szaleństwa» to odwaga, instynkt i czasem prawie przesadna pewność siebie."
         },
         "q2": {
           "question": "Jaka jest największa trudność w pracy z dziećmi?",
@@ -339,65 +120,65 @@
         },
         "q3": {
           "question": "Ulubiona książka i dlaczego?",
-          "answer": "Nie mam jednej ulubionej książki, ale najbardziej pasjonują mnie prace o jednostkach specjalnych i misjach wojskowych. Fascynuje mnie determinacja i dyscyplina wymagana w służbie w tych jednostkach."
+          "answer": "Nie mam konkretnej ulubionej książki, ale najbardziej pasjonują mnie publikacje o jednostkach specjalnych i misjach wojskowych. Fascynuje mnie determinacja i dyscyplina wymagana w służbie w tych jednostkach."
         }
       }
     },
     "dominika": {
       "name": "DOMINIKA KŁOSOWSKA",
       "tagline": "Najmłodsza w zespole trenerskim… i ulubienica żeńskiej sekcji zawodników",
-      "since": "Trenerka od marca 2024",
+      "since": "Trenerką od marca 2024",
       "formations": {
         "title": "Szkolenia, kursy, warsztaty, uzyskane licencje",
-        "assistant": "Certyfikowana Asystentka Trenera Piłki Nożnej",
-        "animator": "Certyfikowana Animatorka Piłki Nożnej",
-        "women": "Specjalistyczne szkolenie z piłki nożnej kobiet z Marzeną Bogdanowicz",
-        "intro_uefa": "Szkolenie wprowadzające do programu UEFA C",
+        "assistant": "Certyfikowany Asystent Trenera Piłki Nożnej",
+        "animator": "Certyfikowany Animator Piłki Nożnej",
+        "women": "Specjalistyczne szkolenie z piłki kobiecej z Marzeną Bogdanowicz",
+        "intro_uefa": "Szkolenie wprowadzające do ścieżki UEFA C",
         "uefa_progress": "W trakcie: Szkolenie UEFA C – trzymamy mocno kciuki! 😊💪"
       },
       "mottos": {
-        "title": "Dewizy życiowe",
+        "title": "Życiowe dewizy",
         "motto1": "Wybierz pracę, którą kochasz, a nie będziesz musiał pracować ani jednego dnia w życiu.",
-        "motto2": "Nie zawsze wygrywa najsilniejszy, najszybszy lub najbardziej utalentowany – wygrywa ten, kto myśli, że może to zrobić.",
+        "motto2": "Nie zawsze wygrywa najsilniejszy, najszybszy czy najbardziej utalentowany – wygrywa ten, kto myśli, że może to zrobić.",
         "motto3": "Jeśli możesz o tym marzyć, możesz to zrealizować."
       },
       "idol": {
         "title": "Idol: Cristiano Ronaldo",
-        "text": "Zawsze Cristiano Ronaldo, od dzieciństwa i to się nigdy nie zmieni. CR7 uosabia dla mnie żelazną dyscyplinę, rygor, stałość. Jego sukces pochodzi nie tylko z talentu, ale z ciężkiej pracy, ducha poświęcenia, nieustannego dążenia do perfekcji."
+        "text": "Zawsze Cristiano Ronaldo, od dzieciństwa i to się nigdy nie zmieni. CR7 uosabia dla mnie żelazną dyscyplinę, rygor, konsekwencję. Jego sukces nie pochodzi tylko z talentu, ale z ciężkiej pracy, ducha poświęcenia, nieustannego dążenia do perfekcji."
       },
       "questions": {
-        "title": "Zawodnicy zadali kilka pytań Trenerce 😊",
+        "title": "Zawodnicy zadali kilka pytań trenerze 😊",
         "q1": {
           "question": "Co sprawia największą radość w pracy z dziećmi?",
-          "answer": "Po roku treningów w Olympique mogę powiedzieć, że wszystkie dzieci mnie totalnie zaadoptowały. Najpiękniejszy moment? To kiedy po trudnym dniu przychodzę na boisko ze sprzętem i słyszę: « Och dzień dobry Trenerko! Tak czekaliśmy na ten moment z Panią! » Te słowa i pozytywna energia dzieci natychmiast wymazują zmęczenie."
+          "answer": "Po roku treningu w Olympique mogę powiedzieć, że wszystkie dzieci mnie totalnie zaadoptowały. Najpiękniejszy moment? To kiedy po ciężkim dniu przychodzę na boisko z całym sprzętem i słyszę: «O cześć Trenerko! Tak czekaliśmy na ten moment z Tobą!» Te słowa i pozytywna energia dzieci natychmiast zmazują zmęczenie."
         },
         "q2": {
-          "question": "Jak to jest pracować w zawodzie zwanym \"męskim\"?",
-          "answer": "Praca w \"męskim świecie\" to prawdziwe wyzwanie. Mimo postępów w piłce nożnej kobiet, wciąż postrzegana jest jako męski sport. Trenerki kobiety są nadal rzadkie, wręcz cenne. Ale zawsze miałam zainteresowania zwane \"męskimi\" i zawsze czułam się swobodnie w męskich grupach."
+          "question": "Jak to jest pracować w zawodzie uznawanym za «męski»?",
+          "answer": "Praca w «męskim świecie» to prawdziwe wyzwanie. Mimo postępów piłki kobiecej, wciąż jest postrzegana jako sport męski. Trenerki to wciąż rzadkość, wręcz cenne okazy. Ale zawsze miałam «męskie» zainteresowania i zawsze czułam się komfortowo w męskich grupach."
         },
         "q3": {
           "question": "Co chciałaby zmienić w piłce nożnej?",
-          "answer": "Piłka nożna to wspaniały sport, ale potrzebuje ewolucji w kilku punktach: oferować takie same szanse kobietom, promować więcej piłki nożnej kobiet, wzmacniać szacunek w sporcie, zmniejszyć absurdalne wynagrodzenia i bardziej sprawiedliwy podział funduszy."
+          "answer": "Piłka nożna to wspaniały sport, ale potrzebuje ewolucji w kilku aspektach: dawać takie same szanse kobietom, bardziej promować piłkę kobiecą, wzmacniać szacunek w sporcie, ograniczyć absurdalne wynagrodzenia i bardziej sprawiedliwy podział funduszy."
         }
       }
     },
     "jakub": {
       "name": "JAKUB GOLAŃSKI",
-      "tagline": "Szacunek i motywacja w jednym człowieku",
-      "since": "Trener z 15-letnim stażem",
-      "motto": "Pracuj w ciszy niech to wyniki robią hałas",
+      "tagline": "Szacunek i motywacja w jednej osobie",
+      "since": "Trener z 15-letnim doświadczeniem",
+      "motto": "Pracuj w ciszy, pozwól wynikom mówić głośno",
       "formations": {
-        "title": "Kursy, szkolenia, warsztaty, zdobyte licencje",
+        "title": "Kursy, szkolenia, warsztaty, uzyskane licencje",
         "uefa_a": "Licencja UEFA A",
-        "motor_coach": "Kurs trenera motorycznego",
+        "motor_coach": "Kurs trenera motoryki",
         "teacher": "Nauczyciel wychowania fizycznego",
-        "bachelor": "Licencjat wychowania fizycznego z gimnastyką korekcyjno-kompensacyjną",
+        "bachelor": "Licencjat z wychowania fizycznego z gimnastyką korekcyjno-kompensacyjną",
         "master": "Magister pedagogiki społecznej",
-        "warta": "Staż w Warta Poznań",
-        "ajax": "Camp dla trenerów Ajax Amsterdam w Krakowie",
+        "warta": "Staż w Warcie Poznań",
+        "ajax": "Obóz dla trenerów Ajax Amsterdam w Krakowie",
         "coerver": "Szkolenie Coerver Coaching",
         "first_aid": "Instruktor pierwszej pomocy",
-        "corrective": "Specjalista z gimnastyki korekcyjno-kompensacyjnej"
+        "corrective": "Specjalista gimnastyki korekcyjno-kompensacyjnej"
       },
       "experience": {
         "coach": {
@@ -409,41 +190,41 @@
       },
       "idol": {
         "title": "Idol piłkarski",
-        "text": "Ronaldo Luis Nazario de Lima – zdaniem Trenera Jakuba – jeden z najlepszych napastników na świecie, posiadający wybitne umiejętności indywidualne, człowiek, który potrafił wrócić mocniejszy po kontuzjach."
+        "text": "Ronaldo Luis Nazario de Lima – zdaniem trenera Jakuba – jeden z najlepszych napastników na świecie, posiadający wyjątkowe umiejętności indywidualne, człowiek, który potrafił wrócić silniejszy po kontuzjach."
       },
       "passion": {
-        "title": "Pasja inna niż piłka",
-        "text": "Dobra książka kryminalna, własny rozwój, podróże"
+        "title": "Inna pasja poza piłką nożną",
+        "text": "Dobry kryminał, rozwój osobisty, podróże"
       },
       "favorite_club": {
         "title": "Ulubiony klub piłkarski",
         "text": "Lech Poznań i FC Barcelona"
       },
       "questions": {
-        "title": "Nasi Zawodnicy zadali Trenerowi jeszcze takie pytania 😊",
+        "title": "Nasi zawodnicy zadali kilka pytań trenerowi 😊",
         "q1": {
-          "question": "Jaki był pierwszy klub, w którym Trener został trenerem i dlaczego?",
-          "answer": "Pierwszym klubem, w którym pracowałem jako trener to Złoci Złotkowo. Zostałem poproszony przez jednego z tamtejszych mieszkańców o stworzenie treningów dla dzieciaków i tak rozpoczęła się moja przygoda z trenerką."
+          "question": "Jaki był pierwszy klub, w którym trener został trenerem i dlaczego?",
+          "answer": "Pierwszym klubem, w którym pracowałem jako trener, był Złoci Złotkowo. Zostałem poproszony przez jednego z mieszkańców o stworzenie treningów dla dzieci i tak zaczęła się moja przygoda z trenerowaniem."
         },
         "q2": {
-          "question": "Na co należy zwrócić szczególną uwagę przy szkoleniu młodych osób?",
-          "answer": "Uważam, że głównym aspektem w rozwoju młodych zawodników to działania indywidualne w ataku i obronie. Ważne jest aby zaszczepić w dziecku miłość do sportu!!!"
+          "question": "Na co należy zwrócić szczególną uwagę podczas szkolenia młodzieży?",
+          "answer": "Myślę, że głównym aspektem rozwoju młodych zawodników są działania indywidualne w ataku i obronie. Ważne jest, aby zaszczepić w dziecku miłość do sportu!!!"
         },
         "q3": {
-          "question": "Kilka wskazówek jak poderwać dziewczynę",
-          "answer": "Ważna jest pewność siebie i bycie sobą. Rozmowa – kobiety uwielbiają być wysłuchane. Zadawaj pytania, bądź zainteresowany tym co mówi. Zapamiętaj imię dziewczyny!!!! która Cię interesuje. Dziwne teksty typu \"świecisz jak miliony monet\" nie na miejscu."
+          "question": "Kilka rad jak poderwać dziewczynę",
+          "answer": "Ważna jest pewność siebie i bycie sobą. Rozmowa – kobiety uwielbiają być wysłuchane. Zadawaj pytania, bądź zainteresowany tym, co mówi. Zapamiętaj imię dziewczyny!!!!, która cię interesuje. Dziwne frazy typu «świecisz jak milion monet» nie są odpowiednie."
         }
       }
     },
     "pawel": {
       "name": "PAWEŁ KULESA",
-      "tagline": "Szkoleniowiec o wyluzowanym stylu ale profesjonalnym podejściu",
-      "since": "Trener od 2014 r.",
+      "tagline": "Trener o swobodnym stylu, ale profesjonalnym podejściu",
+      "since": "Trenerem od 2014 roku",
       "motto": "Be the hero of your own movie",
       "formations": {
-        "title": "Kursy, szkolenia, warsztaty, zdobyte licencje",
+        "title": "Kursy, szkolenia, warsztaty, uzyskane licencje",
         "uefa": "Licencja UEFA B/PZPN C",
-        "conferences": "Uczestnictwo w konferencjach i szkoleniach doskonalących umiejętności"
+        "conferences": "Udział w konferencjach i szkoleniach doskonalących umiejętności"
       },
       "experience": {
         "coach": {
@@ -454,127 +235,32 @@
         }
       },
       "idol": {
-        "title": "Idol piłkarski \"za dzieciaka\" oraz ulubiony piłkarz obecnie",
-        "text": "Za dzieciaka brat Trenera - Karol Morawiec - \"...który pokazał mi piłkę nożną za dzieciaka, zawsze chciałem obserwować jak gra i pokopać z nim chociaż przez 5 minut\". Drugim idolem jest późniejszy szkoleniowiec Trenera - Tomasz Kiciński - \"...za czasów czynnego grania zawsze tylko jego obserwowałem w 3 lidze. Pamiętam jak dziś jego bramki z dystansu i prawie złote długie włosy, dzięki którym wyróżniał się tak samo jak umiejętnościami. Później mi zaufał jako 16-latkowi i wprowadzał mnie do zespołu seniorów. Do tej pory wspominam jego osobę, cudowny człowiek\". Obecnie ulubiony piłkarz to Konrad Laimer - Bayern Monachium oraz John Stones - Manchester City."
+        "title": "Idol piłkarski z dzieciństwa i obecnie ulubiony zawodnik",
+        "text": "Dzieciństwo: brat trenera - Karol Morawiec - \"...który pokazał mi piłkę jako dziecku, zawsze chciałem obserwować, jak gra i kopnąć z nim piłkę choćby 5 minut\". Drugim idolem jest późniejszy formator trenera - Tomasz Kiciński - \"...w czasach, gdy aktywnie grałem, zawsze go obserwowałem w 3. lidze. Pamiętam jak dziś jego bramki z daleka i jego długie prawie złote włosy, dzięki którym wyróżniał się tak samo jak umiejętnościami. Później obdarzył mnie zaufaniem w wieku 16 lat i wprowadził do drużyny seniorów. Nadal go pamiętam, cudowny człowiek\". Obecnie ulubionym zawodnikiem jest Konrad Laimer - Bayern Monachium i John Stones - Manchester City."
       },
       "passion": {
-        "title": "Pasja inna niż piłka",
-        "text": "Uwielbia sport szeroko pojęty, siłownia, bieganie, tenis ziemny. Wszystko co kręci się wokół sportu mimo, jak sam powiedział, \"Może nie widać\". Wielką pasją, zajawką jest gotowanie \"Lubię gotować dla rodziny (twierdzą, że się minąłem z powołaniem)\"."
+        "title": "Inna pasja poza piłką nożną",
+        "text": "Uwielbia sport w szerokim tego słowa znaczeniu, siłownia, bieganie, tenis. Wszystko, co związane ze sportem, nawet jeśli, jak sam powiedział, \"Może to nie widać\". Wielką pasją jest gotowanie \"Uwielbiam gotować dla rodziny (mówią, że pomyliłem powołanie)\"."
       },
       "favorite_club": {
         "title": "Ulubiony klub piłkarski",
-        "text": "Legia Warszawa - \"...dzięki mojemu bratu Karolowi od x lat kibicuję stołecznemu klubowi. Jednak w tym sezonie liczę na mistrzostwo dla Lecha!\" oraz zagraniczny klub Arsenal Londyn"
+        "text": "Legia Warszawa - \"...dzięki mojemu bratu Karolowi, kibicuję klubowi ze stolicy od x lat. Jednak w tym sezonie stawiam na mistrzostwo dla Lecha!\" oraz zagraniczny klub Arsenal Londyn"
       },
       "questions": {
-        "title": "Co chcieli wiedzieć o Trenerze nasi Zawodnicy? 😊",
+        "title": "Co nasi zawodnicy chcieli wiedzieć o trenerze? 😊",
         "q1": {
           "question": "Ulubiony trener na świecie i dlaczego?",
-          "answer": "Mam dwóch: 1. Jurgen Klopp - The Normal One, za to, że jest sobą i jest osobą wyrazistą w trenowaniu oraz zachowuje odpowiedni balans praca - życie. 2. Jakub Golański - za to jak profesjonalnie podchodzi do swoich obowiązków i za to, że w momencie mojego \"wypalenia\" miał ogromny wpływ na to, żeby ten ogień na nowo zapalić."
+          "answer": "Mam dwóch: 1. Jurgen Klopp - The Normal One, ponieważ jest sobą i jest wyróżniającą się osobą w trenowaniu, zachowując przy tym odpowiednią równowagę między pracą a życiem. 2. Jakub Golański - za profesjonalne podejście do swoich obowiązków i dlatego, że w momencie mojego «wypalenia» miał ogromny wpływ na ponowne rozpalenie tego płomienia."
         },
         "q2": {
-          "question": "Co Trener powiedziałby młodszemu sobie? Jaką życiową radę?",
-          "answer": "Strach to normalna reakcja na pewne sytuacje. Naucz się go kontrolować tak aby to był pozytywnych strach napędzający Twoje działania a nie paraliżujący. To tylko piłka nożna, ciesz się i pokaż na co Cię stać bez żadnych barier."
+          "question": "Co trener powiedziałby swojemu młodszemu ja? Jaka życiowa rada?",
+          "answer": "Strach to normalna reakcja na pewne sytuacje. Naucz się go kontrolować, aby był pozytywnym strachem napędzającym twoje działania, a nie paraliżującym. To tylko piłka nożna, baw się dobrze i pokaż, na co cię stać bez żadnych barier."
         },
         "q3": {
-          "question": "Dlaczego Olympique Poznań? Jaką jedną rzecz zmieniłby Trener w obecnym funkcjonowaniu Klubu?",
-          "answer": "Podejście do treningów zgodne z moim. Nie wiek a umiejętności w danym momencie powinny determinować z kim rywalizujemy. Co bym zmienił? Wszystko i nic. Wszystko to co wymaga zmian dla dobra dzieci cokolwiek to jest i będzie. I nic ponieważ jest to cudowne społeczeństwo stawiające dzieci i młodzież na pierwszym miejscu."
+          "question": "Dlaczego Olympique Poznań? Co trener zmieniłby w obecnym funkcjonowaniu klubu?",
+          "answer": "Podejście do treningu zgodne z moim. To nie wiek, ale obecne umiejętności powinny określać, z kim rywalizujemy. Co bym zmienił? Wszystko i nic. Wszystko, co wymaga zmian dla dobra dzieci, cokolwiek to jest. I nic, ponieważ to wspaniała społeczność, która stawia dzieci i młodzież na pierwszym miejscu."
         }
       }
-    }
-  },
-  "common": {
-    "loading": "Ładowanie...",
-    "error": "Wystąpił błąd",
-    "noData": "Brak danych",
-    "back": "Wstecz",
-    "close": "Zamknij",
-    "save": "Zapisz",
-    "cancel": "Anuluj",
-    "confirm": "Potwierdź",
-    "delete": "Usuń",
-    "edit": "Edytuj"
-  },
-  "contact": {
-    "title": "Kontakt - Olympique Poznań",
-    "metaDescription": "Skontaktuj się z Olympique Poznań, aby dołączyć do klubu lub zadać pytanie",
-    "hero": {
-      "title": "Skontaktuj się z nami",
-      "subtitle": "Dołącz do przygody Olympique Poznań"
-    },
-    "intro": {
-      "title": "Masz pytanie? Chcesz do nas dołączyć?",
-      "text": "Wypełnij poniższy formularz, a my odpowiemy najszybciej jak to możliwe. Niezależnie od tego, czy chcesz zostać zawodnikiem, trenerem czy wolontariuszem, chętnie z Tobą porozmawiamy!"
-    },
-    "form": {
-      "name": "Imię i nazwisko",
-      "lastName": "Nazwisko",
-      "nameRequired": "Proszę podać imię i nazwisko",
-      "emailRequired": "Proszę podać poprawny adres email",
-      "messageRequired": "Proszę wpisać wiadomość",
-      "categoryRequired": "Proszę wybrać kategorię",
-      "namePlaceholder": "Twoje imię i nazwisko",
-      "age": "Wiek uczestnika",
-      "tel": "Telefon",
-      "demande" : "Wyślij moją prośbę",
-      "telPlaceholder": "+48 123 456 789",
-      "email": "Email",
-      "emailPlaceholder": "twoj.email@przyklad.pl",
-      "category": "Kategoria",
-      "categories": {
-        "coach": "Trener",
-        "junior": "Piłkarz Junior",
-        "senior": "Piłkarz Senior",
-        "veteran": "Piłkarz Weteran",
-        "volunteer": "Wolontariusz",
-        "sponsor": "Sponsor",
-        "other": "Inne"
-      },
-      "message": "Wiadomość",
-      "messagePlaceholder": "Opowiedz nam o sobie i swojej motywacji...",
-      "submit": "Wyślij wiadomość",
-      "sending": "Wysyłanie...",
-      "success": "Twoja wiadomość została wysłana! Odpowiemy wkrótce.",
-      "error": "Wystąpił błąd, spróbuj ponownie później.",
-      "errorRequired": "Proszę wypełnić wszystkie wymagane pola."
-    },
-    "info": {
-      "email": {
-        "title": "Email"
-      },
-      "social": {
-        "title": "Media społecznościowe"
-      }
-    }
-  },
-  "home": {
-    "teams": {
-      "title": "Drużyny Olympique Poznań",
-      "senior": {
-        "name": "Niebiescy",
-        "description": "..."
-      },
-      "junior": {
-        "name": "Akademia",
-        "description": "10 drużyn, trampoliny dla mistrzów jutra."
-      },
-      "feminine": {
-        "name": "Panie",
-        "description": "..."
-      }
-    },
-    "accompagnement": {
-      "title": "Rodzina zjednoczona pasją",
-      "paragraph1": "W sercu naszego klubu: każde dziecko zasługuje na swoją szansę.",
-      "paragraph2": "Pomagamy dzieciom dorastać, wierzyć w siebie, podnosić się po porażce. Nasi trenerzy słuchają, wspierają, przekazują.",
-      "paragraph3": "Francuzi, Polacy, z różnych środowisk: gramy razem. Nasze różnice są naszą siłą.",
-      "paragraph4": "Nasze różnice są naszą siłą.",
-      "highlight": "Od pierwszych kroków na boisku po mecze seniorów, Olympique Poznań towarzyszy każdemu zawodnikowi w jego drodze."
-    },
-    "performance": {
-      "title": "Wyżej. Mocniej. Dumniej.",
-      "paragraph1": "Na naszych boiskach dzieci uczą się przekraczać swoje granice. Przeciwko wątpliwościom, zmęczeniu, strachowi przed porażką.",
-      "paragraph2": "Nasi trenerzy pomagają im przekształcić wysiłek w dumę, wytrwałość w rezultaty.",
-      "highlight": "Czy masz 4 lata, czy 70, nasze boiska są po to, aby odkryć Twój potencjał. Bo mistrzowie jutra budują się na dzisiejszych treningach."
     }
   }
 }

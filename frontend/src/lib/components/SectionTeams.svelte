@@ -6,19 +6,30 @@
   const teams = [
     {
       slug: 'feminine',
-      image: '../seniorsf/548748092_685055974624192_8235511687039625110_n.jpg'
+      image: '../seniorsf/548748092_685055974624192_8235511687039625110_n.jpg',
+      link: '/teams/ladies'
     },
 
     {
       slug: 'junior',
-      image: '../juniors/535057118_663522866777503_4651670088385010660_n.jpg'
+      image: '../juniors/535057118_663522866777503_4651670088385010660_n.jpg',
+      link: '/teams/academy'
     },
 
     {
       slug: 'senior',
-      image: '../seniorsh/565694409_714234655039657_3240198854373276417_n.jpg'
+      image: '../seniorsh/565694409_714234655039657_3240198854373276417_n.jpg',
+      link: '/teams/blues'
     }
   ];
+
+  /**
+   * Navigue vers la page de l'équipe
+   * @param {string} link
+   */
+  function navigateToTeam(link) {
+    goto(link);
+  }
 </script>
 
 <section class="teams-section">
@@ -28,7 +39,11 @@
   
   <div class="teams-cards">
     {#each teams as team}
-      <div class="team-card">
+      <a 
+        href={team.link} 
+        class="team-card"
+        aria-label={$_(`home.teams.${team.slug}.name`)}
+      >
         <div class="team-image">
           <img 
             src={team.image} 
@@ -40,7 +55,7 @@
           <h3>{$_(`home.teams.${team.slug}.name`)}</h3>
           <p>{$_(`home.teams.${team.slug}.description`)}</p>
         </div>
-      </div>
+      </a>
     {/each}
   </div>
 </section>
@@ -119,6 +134,10 @@
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    cursor: pointer;
   }
 
   .team-card:hover {
@@ -131,6 +150,19 @@
     height: 250px;
     overflow: hidden;
     background: var(--primary-color);
+    position: relative;
+  }
+
+  .team-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(26, 77, 122, 0);
+    transition: background 0.3s ease;
+  }
+
+  .team-card:hover .team-image::after {
+    background: rgba(26, 77, 122, 0.1);
   }
 
   .team-image img {
@@ -152,6 +184,11 @@
     font-size: 1.5rem;
     margin-bottom: 0.75rem;
     color: var(--primary-color);
+    transition: color 0.3s ease;
+  }
+
+  .team-card:hover .team-content h3 {
+    color: #c9a961;
   }
 
   .team-content p {
