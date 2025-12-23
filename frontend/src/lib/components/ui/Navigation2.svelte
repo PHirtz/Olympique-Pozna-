@@ -183,12 +183,12 @@
           >          
             <!-- Les Dames -->
             <a href="/teams/ladies" class="dropdown-item" role="menuitem" tabindex="0">
-              {$_('teams.ladies')}
+              {$_('home.teams.feminine.name')}
             </a>
             
             <!-- Les Bleus -->
             <a href="/teams/blues" class="dropdown-item" role="menuitem" tabindex="0">
-              {$_('teams.blues')}
+              {$_('home.teams.senior.name')}
             </a>
             
             <!-- Olivier Giroud -->
@@ -400,8 +400,8 @@
           
           {#if openDropdown === 'teams-mobile'}
             <ul class="mobile-submenu">
-              <li><a href="/teams/ladies" on:click={close}>{$_('teams.ladies')}</a></li>
-              <li><a href="/teams/blues" on:click={close}>{$_('teams.blues')}</a></li>
+              <li><a href="/teams/ladies" on:click={close}>{$_('home.teams.feminine.name')}</a></li>
+              <li><a href="/teams/blues" on:click={close}>{$_('home.teams.senior.name')}</a></li>
               <li><a href="/teams/giroud" on:click={close}>{$_('teams.giroud')}</a></li>
               
               <!-- Désiré Doué avec joueurs -->

@@ -89,6 +89,20 @@
     "terms": "Regulamin"
   },
 
+    "teams": {
+      "seniors": {
+        "title": "Seniorzy",
+        "women": "Seniorki Kobiety",
+        "men": "Seniorzy Mężczyźni"
+      },
+      "intro": {
+        "title": "Nasze Drużyny",
+        "description": "Poznaj nasze drużyny i ich zawodników"
+      },
+      "viewProfile": "Zobacz profil",
+      "backToTeams": "Powrót do drużyn"
+    },
+
   "auth": {
     "login": {
       "title": "Logowanie",

@@ -3,7 +3,7 @@
   import { partners as partnersAPI } from '$lib/api';
   import { locale as currentLocale } from 'svelte-i18n';
   import { get } from 'svelte/store';
-  import Navigation from '$lib/components/ui/Navigation.svelte';
+  import Navigation2 from '$lib/components/ui/Navigation2.svelte';
   import Footer from '$lib/components/ui/Footer.svelte';
   
   /** @type {import('./$types').PageData} */
@@ -57,7 +57,7 @@
   <meta name="description" content="Découvrez nos partenaires, merci à eux de nous soutenir dans tous nos projets" />
 </svelte:head>
 
-<Navigation {data} />
+<Navigation2 {data} />
 
 <div class="partners-page">
   <!-- Hero Section -->

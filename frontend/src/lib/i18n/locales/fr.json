@@ -255,6 +255,19 @@
       }
     }
   },
+  "teams": {
+    "title": "Nos Équipes - Olympique Poznań",
+    "metaDescription": "Découvrez les équipes de l'académie d'Olympique Poznań",
+    "hero": {
+      "title": "Olympique Poznań",
+      "subtitle": "Découvrez les équipes de l'académie d'Olympique Poznań"
+    },
+    "intro": {
+      "title": "Nos Équipes",
+      "description": "De la formation des jeunes talents aux compétitions seniors"
+    },
+    "viewProfile": "Voir le profil"
+  },
 
   "coaches": {
     "title": "Nos Entraîneurs - Olympique Poznań",
