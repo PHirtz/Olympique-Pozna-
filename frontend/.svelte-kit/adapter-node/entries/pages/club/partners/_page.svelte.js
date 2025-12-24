@@ -1,7 +1,7 @@
 import { h as head, d as bind_props } from "../../../../chunks/index2.js";
 import "clsx";
 import "../../../../chunks/runtime.js";
-import { N as Navigation } from "../../../../chunks/Navigation.js";
+import { N as Navigation2 } from "../../../../chunks/Navigation2.js";
 import { F as Footer } from "../../../../chunks/Footer.js";
 function _page($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
@@ -22,7 +22,7 @@ function _page($$renderer, $$props) {
       });
       $$renderer3.push(`<meta name="description" content="Découvrez nos partenaires, merci à eux de nous soutenir dans tous nos projets"/>`);
     });
-    Navigation($$renderer2);
+    Navigation2($$renderer2);
     $$renderer2.push(`<!----> <div class="partners-page svelte-1yqxcjh"><section class="hero-partners svelte-1yqxcjh"><div class="hero-overlay"></div> <div class="hero-content svelte-1yqxcjh"><h1 class="svelte-1yqxcjh">Nos Partenaires</h1> <p class="svelte-1yqxcjh">Merci à eux de nous soutenir et nous permettent de réaliser nos projets</p></div></section> <section class="partners-content svelte-1yqxcjh"><div class="container svelte-1yqxcjh">`);
     {
       $$renderer2.push("<!--[-->");

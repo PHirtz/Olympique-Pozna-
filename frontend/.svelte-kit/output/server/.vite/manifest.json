@@ -517,7 +517,18 @@
     "file": "entries/pages/club/_page.svelte.js",
     "name": "entries/pages/club/_page.svelte",
     "src": "src/routes/club/+page.svelte",
-    "isEntry": true
+    "isEntry": true,
+    "imports": [
+      "_index2.js",
+      "_Navigation2.js",
+      "_runtime.js",
+      "_exports.js",
+      "_utils.js",
+      "_state.svelte.js"
+    ],
+    "css": [
+      "_app/immutable/assets/Footer.BXR3axXK.css"
+    ]
   },
   "src/routes/club/about/+page.svelte": {
     "file": "entries/pages/club/about/_page.svelte.js",
@@ -680,7 +691,7 @@
     "imports": [
       "_index2.js",
       "_runtime.js",
-      "_Navigation.js",
+      "_Navigation2.js",
       "_Footer.js"
     ],
     "css": [
@@ -786,13 +797,12 @@
     "imports": [
       "_index2.js",
       "_runtime.js",
-      "_Navigation.js",
-      "_exports.js",
-      "_utils.js",
-      "_state.svelte.js"
+      "_Navigation2.js",
+      "_Footer.js",
+      "_context.js"
     ],
     "css": [
-      "_app/immutable/assets/Footer.BXR3axXK.css"
+      "_app/immutable/assets/_page.C0ZHWASN.css"
     ]
   },
   "src/routes/teams/blues/+page.svelte": {

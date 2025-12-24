@@ -1,4 +1,51 @@
 {
+
+  "teams": {
+    "title": "Nos Équipes - Olympique Poznań",
+    "metaDescription": "Découvrez les équipes de l'académie d'Olympique Poznań",
+    "hero": {
+      "title": "Olympique Poznań",
+      "subtitle": "Découvrez les équipes de l'académie d'Olympique Poznań"
+    },
+    "intro": {
+      "title": "Nos Équipes",
+      "description": "De la formation des jeunes talents aux compétitions seniors"
+    },
+    "viewProfile": "Voir le profil",
+    "seniors": {
+      "title": "Seniors",
+      "women": "Seniors Femmes",
+      "men": "Seniors Hommes"
+    },
+    "ladies": "Les Dames",
+    "ladies-subtitle": "L'équipe féminine d'Olympique Poznań",
+    "blues": "Les Bleus",
+    "blues-subtitle": "L'équipe masculine d'Olympique Poznań",
+    "giroud": "Olivier Giroud (2010/2011)",
+    "doue": {
+      "title": "Désiré Doué (2012)",
+      "players": {
+        "craczyk": "54 - CRACZYK",
+        "wutezi": "10 - WUTEZI",
+        "gartecki": "21 - GARTECKI",
+        "zok": "3 - ZOK",
+        "bielecki": "11 - BIELECKI",
+        "ceglowski": "40 - CEGLOWSKI",
+        "namysl": "7 - NAMYSL",
+        "wesolowski": "85 - WESOLOWSKI",
+        "wegner": "4 - WEGNER",
+        "majchrowicz": "12 - MAJCHROWICZ",
+        "pyzalka": "42 - PYZALKA"
+      }
+    },
+    "griezmann": "Antoine Griezmann (2013)",
+    "coman": "Kingsley Coman (2014)",
+    "diani": "Kadidiatou Diani (Junior)",
+    "renard": "Wendie Renard (Trampkarki)",
+    "lesommer": "Eugénie Le Sommer (Mlodziczki)",
+    "henry": "Amandine Henry (Orliczki)"
+  },
+
   "nav": {
     "home": "Accueil",
     "news": "News",
@@ -166,39 +213,6 @@
     }
   },
 
-  "teams": {
-    "seniors": {
-      "title": "Seniors",
-      "women": "Seniors Femmes",
-      "men": "Seniors Hommes"
-    },
-    "ladies": "Les Dames",
-    "blues": "Les Bleus",
-    "giroud": "Olivier Giroud (2010/2011)",
-    "doue": {
-      "title": "Désiré Doué (2012)",
-      "players": {
-        "craczyk": "54 - CRACZYK",
-        "wutezi": "10 - WUTEZI",
-        "gartecki": "21 - GARTECKI",
-        "zok": "3 - ZOK",
-        "bielecki": "11 - BIELECKI",
-        "ceglowski": "40 - CEGLOWSKI",
-        "namysl": "7 - NAMYSL",
-        "wesolowski": "85 - WESOLOWSKI",
-        "wegner": "4 - WEGNER",
-        "majchrowicz": "12 - MAJCHROWICZ",
-        "pyzalka": "42 - PYZALKA"
-      }
-    },
-    "griezmann": "Antoine Griezmann (2013)",
-    "coman": "Kingsley Coman (2014)",
-    "diani": "Kadidiatou Diani (Junior)",
-    "renard": "Wendie Renard (Trampkarki)",
-    "lesommer": "Eugénie Le Sommer (Mlodziczki)",
-    "henry": "Amandine Henry (Orliczki)"
-  },
-
   "about": {
     "title": "À propos - Olympique Poznań",
     "metaDescription": "Découvrez l'histoire et les valeurs d'Olympique Poznań, club de football formateur au cœur de Poznań",
@@ -254,19 +268,6 @@
         "button": "Rejoignez l'aventure"
       }
     }
-  },
-  "teams": {
-    "title": "Nos Équipes - Olympique Poznań",
-    "metaDescription": "Découvrez les équipes de l'académie d'Olympique Poznań",
-    "hero": {
-      "title": "Olympique Poznań",
-      "subtitle": "Découvrez les équipes de l'académie d'Olympique Poznań"
-    },
-    "intro": {
-      "title": "Nos Équipes",
-      "description": "De la formation des jeunes talents aux compétitions seniors"
-    },
-    "viewProfile": "Voir le profil"
   },
 
   "coaches": {

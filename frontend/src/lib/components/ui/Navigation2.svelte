@@ -80,13 +80,6 @@
   };
 
   /**
-   * @param {string} name
-   */
-  const toggleSubSubmenu = (name) => {
-    openSubSubmenu = openSubSubmenu === name ? null : name;
-  };
-
-  /**
    * Change la langue
    * @param {'fr' | 'pl'} lang
    */
@@ -191,72 +184,76 @@
               {$_('home.teams.senior.name')}
             </a>
             
-            <!-- Olivier Giroud -->
-            <a href="/teams/giroud" class="dropdown-item" role="menuitem" tabindex="0">
-              {$_('teams.giroud')}
-            </a>
-            
-            <!-- Désiré Doué avec sous-menu joueurs -->
+            <!-- L'Académie avec sous-menus -->
             <div 
               class="submenu" 
               role="group"
               on:mouseenter={cancelClose}
             >
-              <button class="dropdown-item submenu-trigger" role="menuitem" aria-haspopup="true" tabindex="0">
-                {$_('teams.doue.title')}
-                <span class="icon-rotate-90">
-                  <ChevronDown size={14} />
-                </span>
-              </button>
+            <a 
+              href="/teams/academy" 
+              class="dropdown-item submenu-trigger" 
+              role="menuitem" 
+              aria-haspopup="true" 
+              tabindex="0"
+              on:click={(e) => {
+                e.stopPropagation();
+                openDropdown = null;
+                openSubmenu = null;
+              }}
+            >
+              {$_('home.teams.junior.name')}
+              <span class="icon-rotate-90">
+                <ChevronDown size={14} />
+              </span>
+            </a>
               <div 
-                class="submenu-content" 
+                class="submenu-content academy-submenu" 
                 role="menu" 
                 tabindex="-1"
                 on:mouseenter={cancelClose}
               >
-                <a href="/teams/doue/players/craczyk" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.craczyk')}</a>
-                <a href="/teams/doue/players/wutezi" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.wutezi')}</a>
-                <a href="/teams/doue/players/gartecki" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.gartecki')}</a>
-                <a href="/teams/doue/players/zok" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.zok')}</a>
-                <a href="/teams/doue/players/bielecki" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.bielecki')}</a>
-                <a href="/teams/doue/players/ceglowski" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.ceglowski')}</a>
-                <a href="/teams/doue/players/namysl" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.namysl')}</a>
-                <a href="/teams/doue/players/wesolowski" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.wesolowski')}</a>
-                <a href="/teams/doue/players/wegner" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.wegner')}</a>
-                <a href="/teams/doue/players/majchrowicz" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.majchrowicz')}</a>
-                <a href="/teams/doue/players/pyzalka" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.players.pyzalka')}</a>
+                <!-- Olivier Giroud -->
+                <a href="/teams/giroud" class="submenu-item" role="menuitem" tabindex="0">
+                  {$_('teams.giroud')}
+                </a>
+                
+                <!-- Désiré Doué - LIEN SIMPLE vers la page d'équipe -->
+                <a href="/teams/doue" class="submenu-item" role="menuitem" tabindex="0">
+                  {$_('teams.doue.title')}
+                </a>
+                
+                <!-- Antoine Griezmann -->
+                <a href="/teams/griezmann" class="submenu-item" role="menuitem" tabindex="0">
+                  {$_('teams.griezmann')}
+                </a>
+                
+                <!-- Kingsley Coman -->
+                <a href="/teams/coman" class="submenu-item" role="menuitem" tabindex="0">
+                  {$_('teams.coman')}
+                </a>
+                
+                <!-- Kadidiatou Diani -->
+                <a href="/teams/diani" class="submenu-item" role="menuitem" tabindex="0">
+                  {$_('teams.diani')}
+                </a>
+                
+                <!-- Wendie Renard -->
+                <a href="/teams/renard" class="submenu-item" role="menuitem" tabindex="0">
+                  {$_('teams.renard')}
+                </a>
+                
+                <!-- Eugénie Le Sommer -->
+                <a href="/teams/lesommer" class="submenu-item" role="menuitem" tabindex="0">
+                  {$_('teams.lesommer')}
+                </a>
+                
+                <!-- Amandine Henry -->
+                <a href="/teams/henry" class="submenu-item" role="menuitem" tabindex="0">
+                  {$_('teams.henry')}
+                </a>
               </div>
             </div>
-            
-            <!-- Antoine Griezmann -->
-            <a href="/teams/griezmann" class="dropdown-item" role="menuitem" tabindex="0">
-              {$_('teams.griezmann')}
-            </a>
-            
-            <!-- Kingsley Coman -->
-            <a href="/teams/coman" class="dropdown-item" role="menuitem" tabindex="0">
-              {$_('teams.coman')}
-            </a>
-            
-            <!-- Kadidiatou Diani -->
-            <a href="/teams/diani" class="dropdown-item" role="menuitem" tabindex="0">
-              {$_('teams.diani')}
-            </a>
-            
-            <!-- Wendie Renard -->
-            <a href="/teams/renard" class="dropdown-item" role="menuitem" tabindex="0">
-              {$_('teams.renard')}
-            </a>
-            
-            <!-- Eugénie Le Sommer -->
-            <a href="/teams/lesommer" class="dropdown-item" role="menuitem" tabindex="0">
-              {$_('teams.lesommer')}
-            </a>
-            
-            <!-- Thierry Henry -->
-            <a href="/teams/henry" class="dropdown-item" role="menuitem" tabindex="0">
-              {$_('teams.henry')}
-            </a>
           </div>
         {/if}
       </div>
@@ -364,9 +361,9 @@
             <ul class="mobile-submenu">
               <li><a href="/club/about" on:click={close}>{$_('club.about')}</a></li>
               <li><a href="/club/coaches" on:click={close}>{$_('club.coaches')}</a></li>
-              <li><a href="/club/partner" on:click={close}>{$_('club.partners')}</a></li>
+              <li><a href="/club/partners" on:click={close}>{$_('club.partners')}</a></li>
               <li>
-                                <a 
+                <a 
                   href="https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit?tab=t.0" 
                   target="_blank"
                   rel="noopener noreferrer"
@@ -402,39 +399,31 @@
             <ul class="mobile-submenu">
               <li><a href="/teams/ladies" on:click={close}>{$_('home.teams.feminine.name')}</a></li>
               <li><a href="/teams/blues" on:click={close}>{$_('home.teams.senior.name')}</a></li>
-              <li><a href="/teams/giroud" on:click={close}>{$_('teams.giroud')}</a></li>
               
-              <!-- Désiré Doué avec joueurs -->
+              <!-- L'Académie -->
               <li class="mobile-subsubmenu">
-                <button class="mobile-subsubmenu-trigger" on:click={() => toggleSubmenu('doue-mobile')}>
-                  {$_('teams.doue.title')}
-                  <span class="icon-wrapper" class:rotate={openSubmenu === 'doue-mobile'}>
+                <a href="/teams/academy" class="mobile-subsubmenu-link">
+                  {$_('home.teams.junior.name')}
+                </a>
+                <button class="mobile-subsubmenu-trigger" on:click={() => toggleSubmenu('academy-mobile')}>
+                  <span class="icon-wrapper" class:rotate={openSubmenu === 'academy-mobile'}>
                     <ChevronDown size={14} />
                   </span>
                 </button>
                 
-                {#if openSubmenu === 'doue-mobile'}
+                {#if openSubmenu === 'academy-mobile'}
                   <ul class="mobile-subsubmenu-list">
-                    <li><a href="/teams/doue/players/craczyk" on:click={close}>{$_('teams.doue.players.craczyk')}</a></li>
-                    <li><a href="/teams/doue/players/wutezi" on:click={close}>{$_('teams.doue.players.wutezi')}</a></li>
-                    <li><a href="/teams/doue/players/gartecki" on:click={close}>{$_('teams.doue.players.gartecki')}</a></li>
-                    <li><a href="/teams/doue/players/zok" on:click={close}>{$_('teams.doue.players.zok')}</a></li>
-                    <li><a href="/teams/doue/players/bielecki" on:click={close}>{$_('teams.doue.players.bielecki')}</a></li>
-                    <li><a href="/teams/doue/players/ceglowski" on:click={close}>{$_('teams.doue.players.ceglowski')}</a></li>
-                    <li><a href="/teams/doue/players/namysl" on:click={close}>{$_('teams.doue.players.namysl')}</a></li>
-                    <li><a href="/teams/doue/players/wesolowski" on:click={close}>{$_('teams.doue.players.wesolowski')}</a></li>
-                    <li><a href="/teams/doue/players/wegner" on:click={close}>{$_('teams.doue.players.wegner')}</a></li>
-                    <li><a href="/teams/doue/players/majchrowicz" on:click={close}>{$_('teams.doue.players.majchrowicz')}</a></li>
-                    <li><a href="/teams/doue/players/pyzalka" on:click={close}>{$_('teams.doue.players.pyzalka')}</a></li>
+                    <li><a href="/teams/giroud" on:click={close}>{$_('teams.giroud')}</a></li>
+                    <li><a href="/teams/doue" on:click={close}>{$_('teams.doue.title')}</a></li>
+                    <li><a href="/teams/griezmann" on:click={close}>{$_('teams.griezmann')}</a></li>
+                    <li><a href="/teams/coman" on:click={close}>{$_('teams.coman')}</a></li>
+                    <li><a href="/teams/diani" on:click={close}>{$_('teams.diani')}</a></li>
+                    <li><a href="/teams/renard" on:click={close}>{$_('teams.renard')}</a></li>
+                    <li><a href="/teams/lesommer" on:click={close}>{$_('teams.lesommer')}</a></li>
+                    <li><a href="/teams/henry" on:click={close}>{$_('teams.henry')}</a></li>
                   </ul>
                 {/if}
               </li>
-              <li><a href="/teams/griezmann" on:click={close}>{$_('teams.griezmann')}</a></li>
-              <li><a href="/teams/coman" on:click={close}>{$_('teams.coman')}</a></li>
-              <li><a href="/teams/diani" on:click={close}>{$_('teams.diani')}</a></li>
-              <li><a href="/teams/renard" on:click={close}>{$_('teams.renard')}</a></li>
-              <li><a href="/teams/lesommer" on:click={close}>{$_('teams.lesommer')}</a></li>
-              <li><a href="/teams/henry" on:click={close}>{$_('teams.henry')}</a></li>
             </ul>
           {/if}
         </li>
@@ -516,7 +505,7 @@
   transform: rotate(180deg);
 }
 
-/* NAVIGATION PRINCIPALE */
+/* NAVIGATION PRINCIPALE - FOND BLEU */
 .nav {
   background: linear-gradient(135deg, #1a4d7a 0%, #0f2d4a 100%);
   backdrop-filter: blur(10px);
@@ -563,7 +552,7 @@
   display: none;
 }
 
-/* BURGER MENU (visible sur mobile) */
+/* BURGER MENU (visible sur mobile) - BLANC */
 .menu-toggle {
   display: flex;
   align-items: center;
@@ -582,7 +571,7 @@
 }
 
 /* ========================================
-   MOBILE DRAWER
+   MOBILE DRAWER - FOND BLEU
    ======================================== */
 
 .mobile-drawer {
@@ -591,7 +580,7 @@
   left: 0;
   height: 100vh;
   width: 280px;
-  background: linear-gradient(135deg, #1a4d7a 0%, #0f2d4a 100%); /* Fond bleu foncé */
+  background: linear-gradient(135deg, #1a4d7a 0%, #0f2d4a 100%);
   box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
   transform: translateX(-100%);
   transition: transform 0.3s ease;
@@ -624,7 +613,7 @@
   color: #d4af37;
 }
 
-/* MOBILE MENU */
+/* MOBILE MENU - TEXTE BLANC */
 .mobile-menu {
   list-style: none;
   padding: 0;
@@ -652,7 +641,7 @@
   color: #d4af37;
 }
 
-/* MOBILE DROPDOWN TRIGGER */
+/* MOBILE DROPDOWN TRIGGER - TEXTE BLANC */
 .mobile-dropdown-trigger {
   display: flex;
   justify-content: space-between;
@@ -676,7 +665,7 @@
   color: #d4af37;
 }
 
-/* MOBILE SUBMENU */
+/* MOBILE SUBMENU - TEXTE BLANC */
 .mobile-submenu {
   list-style: none;
   padding: 0;
@@ -702,7 +691,7 @@
   color: #d4af37;
 }
 
-/* MOBILE SUBSUBMENU */
+/* MOBILE SUBSUBMENU - TEXTE BLANC */
 .mobile-subsubmenu-trigger {
   display: flex;
   justify-content: space-between;
@@ -711,7 +700,7 @@
   padding: 0.75rem 1rem;
   background: none;
   border: none;
-  color: #555;
+  color: rgba(255, 255, 255, 0.9);
   font-size: 0.95rem;
   border-radius: 6px;
   cursor: pointer;
@@ -721,8 +710,8 @@
 }
 
 .mobile-subsubmenu-trigger:hover {
-  background: rgba(26, 77, 122, 0.1);
-  color: #1a4d7a;
+  background: rgba(212, 175, 55, 0.2);
+  color: #d4af37;
 }
 
 .mobile-subsubmenu-list {
@@ -734,15 +723,15 @@
 .mobile-subsubmenu-list a {
   display: block;
   padding: 0.65rem 1rem;
-  color: #666;
+  color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
   font-size: 0.9rem;
   border-radius: 4px;
 }
 
 .mobile-subsubmenu-list a:hover {
-  background: rgba(26, 77, 122, 0.08);
-  color: #1a4d7a;
+  background: rgba(212, 175, 55, 0.15);
+  color: #d4af37;
 }
 
 /* ========================================
@@ -771,7 +760,7 @@
   padding: 0.25rem 0.5rem;
   font-weight: 600;
   font-size: 0.95rem;
-  color: #666;
+  color: rgba(255, 255, 255, 0.8);
   cursor: pointer;
   border-radius: 0.25rem;
   transition: all 0.2s;
@@ -779,18 +768,18 @@
 }
 
 .lang-btn:hover {
-  color: #c9a961;
-  background: rgba(102, 126, 234, 0.1);
+  color: #d4af37;
+  background: rgba(212, 175, 55, 0.2);
 }
 
 .lang-btn.active {
-  color: #c9a961;
-  background: rgba(102, 126, 234, 0.15);
+  color: #d4af37;
+  background: rgba(212, 175, 55, 0.25);
   font-weight: 700;
 }
 
 .separator {
-  color: #ccc;
+  color: rgba(255, 255, 255, 0.4);
   font-weight: 300;
 }
 
@@ -807,9 +796,9 @@
   align-items: center;
   gap: 0.5rem;
   padding: 1rem;
-  background: rgba(102, 126, 234, 0.1);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 0.5rem;
-  color: #667eea;
+  color: #ffffff;
   font-weight: 600;
   justify-content: center;
 }
@@ -858,24 +847,23 @@
 }
 
 .btn-login {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: rgba(255, 255, 255, 0.15);
   color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .btn-login:hover {
+  background: rgba(255, 255, 255, 0.25);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
 .btn-register {
-  background: rgba(102, 126, 234, 0.1);
-  color: #667eea;
-  border: 1px solid #667eea;
+  background: #d4af37;
+  color: #0f2d4a;
 }
 
 .btn-register:hover {
-  background: #667eea;
-  color: white;
+  background: #c9a02d;
   transform: translateY(-2px);
 }
 
@@ -889,7 +877,7 @@
   gap: 1rem;
   margin-top: 2rem;
   padding-top: 2rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* OVERLAY */
@@ -1052,7 +1040,7 @@
 
   .nav-link {
     padding: 0.65rem 0.85rem;
-    color: #ffffff; /* Blanc au lieu de #ffffff existant */
+    color: #ffffff;
     text-decoration: none;
     font-weight: 600;
     font-size: 0.9rem;
@@ -1083,9 +1071,8 @@
 
   .nav-link:hover,
   .nav-link:focus {
-    color: #d4af37; /* Or */
-    background: rgba(255, 255, 255, 0.1);
-
+    color: #d4af37;
+    background: rgba(212, 175, 55, 0.2);
   }
 
   /* DESKTOP USER ACTIONS */
@@ -1101,9 +1088,9 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 0.75rem;
-    background: rgba(102, 126, 234, 0.1);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 0.5rem;
-    color: #667eea;
+    color: #ffffff;
     font-weight: 600;
     white-space: nowrap;
     font-size: 0.9rem;
@@ -1249,7 +1236,7 @@
     position: absolute;
     left: 100%;
     top: 0;
-    min-width: 200px;
+    min-width: 300px;
     background: white;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
