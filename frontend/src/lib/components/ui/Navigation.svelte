@@ -9,6 +9,8 @@
 
   let open = false;
   let visible = false;
+  let scrollY = 0;
+  let navOpacity = 0.1;
   
   /** @type {string | null} */
   let openDropdown = null;
@@ -95,11 +97,22 @@
     setTimeout(() => {
       visible = true;
     }, 100);
+
+    const handleScroll = () => {
+      scrollY = window.scrollY;
+      // De 0.1 (transparent) à 0.95 (quasi opaque) sur les 400 premiers pixels
+      navOpacity = Math.min(0.1 + (scrollY / 400) * 0.85, 0.95);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   });
 </script>
 
-<nav class="nav" class:visible>
-  <div class="nav-container">
+<nav class="nav" class:visible style="--nav-opacity: {navOpacity}; --text-opacity: {navOpacity}">  <div class="nav-container">
     <a href="/" class="logo-container">
       <img src="/logo.png" alt="Logo Olympique Poznań" class="logo-olympique-poznan" />
     </a>
@@ -469,7 +482,6 @@
     aria-label={$_('common.close')}
   ></div>
 {/if}
-
 <style>
 /* ========================================
    BASE : MOBILE FIRST (320px+)
@@ -485,16 +497,17 @@
   transform: rotate(180deg);
 }
 
-/* NAVIGATION PRINCIPALE - GLASSMORPHISM */
+/* NAVIGATION PRINCIPALE - GLASSMORPHISM PROGRESSIF */
 .nav {
-  background: rgba(255, 255, 255, 0.1);  /* ← Changez de 0.7 à 0.3 (ou moins) */
+  background: rgba(255, 255, 255, var(--nav-opacity, 0.1));
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, calc(var(--nav-opacity, 0.1) * 2));
+  box-shadow: 0 4px 24px rgba(0, 0, 0, calc(var(--nav-opacity, 0.1) * 0.15));
   position: sticky;
   top: 0;
   z-index: 999;
+  transition: background 0.3s ease, border-bottom 0.3s ease, box-shadow 0.3s ease;
 }
 
 .nav-container {
@@ -542,8 +555,8 @@
   border: none;
   cursor: pointer;
   padding: 0.5rem;
-  color: #1a4d7a;
-  transition: color 0.2s;
+  color: rgba(26, 77, 122, var(--text-opacity, 0.6));
+  transition: color 0.3s ease;
 }
 
 .menu-toggle:hover,
@@ -743,10 +756,10 @@
   padding: 0.25rem 0.5rem;
   font-weight: 600;
   font-size: 0.95rem;
-  color: #666;
+  color: rgba(102, 102, 102, var(--text-opacity, 0.6));
   cursor: pointer;
   border-radius: 0.25rem;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
   font-family: inherit;
 }
 
@@ -830,7 +843,7 @@
 }
 
 .btn-login {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #c9a961 0%, #ddc184 100%);
   color: white;
 }
 
@@ -841,12 +854,12 @@
 
 .btn-register {
   background: rgba(102, 126, 234, 0.1);
-  color: #667eea;
-  border: 1px solid #667eea;
+  color: #1a4d7a;
+  border: 1px solid #1a4d7a;
 }
 
 .btn-register:hover {
-  background: #667eea;
+  background: #1a4d7a;
   color: white;
   transform: translateY(-2px);
 }
@@ -1024,7 +1037,7 @@
 
   .nav-link {
     padding: 0.65rem 0.85rem;
-    color: #ccc;
+    color: rgba(204, 204, 204, var(--text-opacity, 0.5));
     text-decoration: none;
     font-weight: 600;
     font-size: 0.9rem;
@@ -1056,7 +1069,7 @@
 
   .nav-link:hover,
   .nav-link:focus {
-    color: #d4af37;
+    color: #d4af37 !important;
   }
 
   /* DESKTOP USER ACTIONS */
@@ -1074,10 +1087,11 @@
     padding: 0.5rem 0.75rem;
     background: rgba(102, 126, 234, 0.1);
     border-radius: 0.5rem;
-    color: #667eea;
+    color: rgba(102, 126, 234, var(--text-opacity, 0.7));
     font-weight: 600;
     white-space: nowrap;
     font-size: 0.9rem;
+    transition: color 0.3s ease;
   }
 
   .btn-logout {
