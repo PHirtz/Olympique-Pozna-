@@ -1,4 +1,4 @@
-import { b as attr_class, a as store_get, c as attr, u as unsubscribe_stores } from "./index2.js";
+import { b as attr_class, g as attr_style, a as store_get, c as attr, u as unsubscribe_stores, f as stringify } from "./index2.js";
 import { $ as $format, a as $locale } from "./runtime.js";
 import { u as user } from "./auth.js";
 import "@sveltejs/kit/internal";
@@ -14,8 +14,9 @@ function Navigation($$renderer, $$props) {
     var $$store_subs;
     let open = false;
     let visible = false;
+    let navOpacity = 0.1;
     let openDropdown = null;
-    $$renderer2.push(`<nav${attr_class("nav svelte-1huo92h", void 0, { "visible": visible })}><div class="nav-container svelte-1huo92h"><a href="/" class="logo-container svelte-1huo92h"><img src="/logo.png" alt="Logo Olympique Poznań" class="logo-olympique-poznan svelte-1huo92h"/></a> <div class="nav-links svelte-1huo92h"><a href="https://olympique.pl/" class="nav-link shop-link svelte-1huo92h" style="animation-delay: 0.2s">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("nav.shop"))} <span class="new-badge svelte-1huo92h"><span class="badge-text svelte-1huo92h">NEW</span> <span class="shine svelte-1huo92h"></span></span></a> <div class="dropdown svelte-1huo92h" style="animation-delay: 0.3s" role="group"><a href="/club" class="nav-link dropdown-trigger svelte-1huo92h">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("nav.club"))} `);
+    $$renderer2.push(`<nav${attr_class("nav svelte-1huo92h", void 0, { "visible": visible })}${attr_style(`--nav-opacity: ${stringify(navOpacity)}; --text-opacity: ${stringify(navOpacity)}`)}><div class="nav-container svelte-1huo92h"><a href="/" class="logo-container svelte-1huo92h"><img src="/logo.png" alt="Logo Olympique Poznań" class="logo-olympique-poznan svelte-1huo92h"/></a> <div class="nav-links svelte-1huo92h"><a href="https://olympique.pl/" class="nav-link shop-link svelte-1huo92h" style="animation-delay: 0.2s">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("nav.shop"))} <span class="new-badge svelte-1huo92h"><span class="badge-text svelte-1huo92h">NEW</span> <span class="shine svelte-1huo92h"></span></span></a> <div class="dropdown svelte-1huo92h" style="animation-delay: 0.3s" role="group"><a href="/club" class="nav-link dropdown-trigger svelte-1huo92h">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("nav.club"))} `);
     Chevron_down($$renderer2, { size: 16 });
     $$renderer2.push(`<!----></a> `);
     {

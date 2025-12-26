@@ -68,23 +68,6 @@ function SectionTeams($$renderer, $$props) {
     if ($$store_subs) unsubscribe_stores($$store_subs);
   });
 }
-function FacebookFeed($$renderer, $$props) {
-  $$renderer.component(($$renderer2) => {
-    var $$store_subs;
-    let pageUrl = fallback($$props["pageUrl"], "https://www.facebook.com/OlympiquePoznan");
-    let width = fallback($$props["width"], 500);
-    let height = fallback($$props["height"], 700);
-    store_get($$store_subs ??= {}, "$locale", $locale) === "pl" ? "pl_PL" : "fr_FR";
-    $$renderer2.push(`<section class="facebook-section svelte-1db8q2s"><h2 class="svelte-1db8q2s">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("facebook.latestPosts"))}</h2> <p class="facebook-subtitle svelte-1db8q2s">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("facebook.followDescription"))}</p> `);
-    {
-      $$renderer2.push("<!--[!-->");
-      $$renderer2.push(`<div class="loading svelte-1db8q2s"><p>⏳ ${escape_html(store_get($$store_subs ??= {}, "$_", $format)("common.loading"))}</p></div>`);
-    }
-    $$renderer2.push(`<!--]--></section>`);
-    if ($$store_subs) unsubscribe_stores($$store_subs);
-    bind_props($$props, { pageUrl, width, height });
-  });
-}
 function BanniereCamp($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
     var $$store_subs;
@@ -147,7 +130,7 @@ function BanniereCamp($$renderer, $$props) {
     if ($$store_subs) unsubscribe_stores($$store_subs);
   });
 }
-function BanniereShop($$renderer, $$props) {
+function Externe($$renderer, $$props) {
   $$renderer.component(($$renderer2) => {
     var $$store_subs;
     const shopImages = [
@@ -156,7 +139,6 @@ function BanniereShop($$renderer, $$props) {
         alt: "veste domicile Olympique Poznań",
         titleKey: "shop.items.jacket",
         link: ""
-        // À compléter avec l'URL du produit
       },
       {
         src: "../vitrine/maillot.jpg",
@@ -169,21 +151,18 @@ function BanniereShop($$renderer, $$props) {
         alt: "veste hiver Olympique Poznań",
         titleKey: "shop.items.scarf",
         link: ""
-        // À compléter avec l'URL du produit
       },
       {
         src: "../vitrine/Bidon.jpg",
         alt: "Gourde Olympique Poznań",
         titleKey: "shop.items.bottle",
         link: ""
-        // À compléter avec l'URL du produit
       },
       {
         src: "../vitrine/roller.png",
         alt: "Roller Olympique Poznań",
         titleKey: "shop.items.roller",
         link: ""
-        // À compléter avec l'URL du produit
       },
       {
         src: "../vitrine/chaussettes2.png",
@@ -196,7 +175,6 @@ function BanniereShop($$renderer, $$props) {
         alt: "Veste pluie officielle Olympique Poznań",
         titleKey: "shop.items.rainJacket",
         link: ""
-        // À compléter avec l'URL du produit
       },
       {
         src: "../vitrine/ShortBlanc3.png",
@@ -215,31 +193,38 @@ function BanniereShop($$renderer, $$props) {
         alt: "sweat Olympique Poznań",
         titleKey: "shop.items.sweatshirt",
         link: ""
-        // À compléter avec l'URL du produit
       }
     ];
+    let pageUrl = fallback($$props["pageUrl"], "https://www.facebook.com/OlympiquePoznan");
     let currentSlide = 0;
-    $$renderer2.push(`<section class="banniere-shop svelte-1w4bi4u"><div class="banniere-container svelte-1w4bi4u"><div class="content-wrapper svelte-1w4bi4u"><div class="text-content svelte-1w4bi4u"><h2 class="svelte-1w4bi4u">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("shop.banner.title"))}</h2> <button class="shop-btn svelte-1w4bi4u">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("shop.banner.cta"))}</button></div> <div class="slider svelte-1w4bi4u"><div class="slides svelte-1w4bi4u"${attr_style(`transform: translateX(-${stringify(currentSlide * 100)}%)`)}><!--[-->`);
+    store_get($$store_subs ??= {}, "$locale", $locale) === "pl" ? "pl_PL" : "fr_FR";
+    $$renderer2.push(`<section class="combined-section svelte-vo9vdt"><div class="container svelte-vo9vdt"><div class="shop-column svelte-vo9vdt"><div class="text-content svelte-vo9vdt"><h2 class="svelte-vo9vdt">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("shop.banner.title"))}</h2> <button class="shop-btn svelte-vo9vdt">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("shop.banner.cta"))}</button></div> <div class="slider svelte-vo9vdt"><div class="slides svelte-vo9vdt"${attr_style(`transform: translateX(-${stringify(currentSlide * 100)}%)`)}><!--[-->`);
     const each_array = ensure_array_like(shopImages);
-    for (let index = 0, $$length = each_array.length; index < $$length; index++) {
-      let product = each_array[index];
+    for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
+      let product = each_array[$$index];
       if (product.link) {
         $$renderer2.push("<!--[-->");
-        $$renderer2.push(`<button class="slide clickable svelte-1w4bi4u"${attr("aria-label", `Voir ${stringify(store_get($$store_subs ??= {}, "$_", $format)(product.titleKey))}`)}><img${attr("src", product.src)}${attr("alt", product.alt)} loading="lazy" class="svelte-1w4bi4u"/> <div class="product-info svelte-1w4bi4u"><h3 class="svelte-1w4bi4u">${escape_html(store_get($$store_subs ??= {}, "$_", $format)(product.titleKey))}</h3> <span class="view-product svelte-1w4bi4u">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("shop.viewProduct"))}</span></div></button>`);
+        $$renderer2.push(`<button class="slide clickable svelte-vo9vdt"${attr("aria-label", `Voir ${stringify(store_get($$store_subs ??= {}, "$_", $format)(product.titleKey))}`)}><img${attr("src", product.src)}${attr("alt", product.alt)} loading="lazy" class="svelte-vo9vdt"/> <div class="product-info svelte-vo9vdt"><h3 class="svelte-vo9vdt">${escape_html(store_get($$store_subs ??= {}, "$_", $format)(product.titleKey))}</h3> <span class="view-product svelte-vo9vdt">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("shop.viewProduct"))}</span></div></button>`);
       } else {
         $$renderer2.push("<!--[!-->");
-        $$renderer2.push(`<div class="slide svelte-1w4bi4u"><img${attr("src", product.src)}${attr("alt", product.alt)} loading="lazy" class="svelte-1w4bi4u"/> <div class="product-info svelte-1w4bi4u"><h3 class="svelte-1w4bi4u">${escape_html(store_get($$store_subs ??= {}, "$_", $format)(product.titleKey))}</h3></div></div>`);
+        $$renderer2.push(`<div class="slide svelte-vo9vdt"><img${attr("src", product.src)}${attr("alt", product.alt)} loading="lazy" class="svelte-vo9vdt"/> <div class="product-info svelte-vo9vdt"><h3 class="svelte-vo9vdt">${escape_html(store_get($$store_subs ??= {}, "$_", $format)(product.titleKey))}</h3></div></div>`);
       }
       $$renderer2.push(`<!--]-->`);
     }
-    $$renderer2.push(`<!--]--></div> <button class="nav-btn prev svelte-1w4bi4u" aria-label="Produit précédent"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg></button> <button class="nav-btn next svelte-1w4bi4u" aria-label="Produit suivant"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></button> <div class="indicators svelte-1w4bi4u"><!--[-->`);
+    $$renderer2.push(`<!--]--></div> <button class="nav-btn prev svelte-vo9vdt" aria-label="Produit précédent"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg></button> <button class="nav-btn next svelte-vo9vdt" aria-label="Produit suivant"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg></button> <div class="indicators svelte-vo9vdt"><!--[-->`);
     const each_array_1 = ensure_array_like(shopImages);
     for (let index = 0, $$length = each_array_1.length; index < $$length; index++) {
       each_array_1[index];
-      $$renderer2.push(`<button${attr_class("indicator svelte-1w4bi4u", void 0, { "active": currentSlide === index })}${attr("aria-label", `Voir produit ${stringify(index + 1)}`)}></button>`);
+      $$renderer2.push(`<button${attr_class("indicator svelte-vo9vdt", void 0, { "active": currentSlide === index })}${attr("aria-label", `Voir produit ${stringify(index + 1)}`)}></button>`);
     }
-    $$renderer2.push(`<!--]--></div></div></div></div></section>`);
+    $$renderer2.push(`<!--]--></div></div></div> <div class="facebook-column svelte-vo9vdt"><h2 class="svelte-vo9vdt">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("facebook.latestPosts"))}</h2> <p class="facebook-subtitle svelte-vo9vdt">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("facebook.followDescription"))}</p> `);
+    {
+      $$renderer2.push("<!--[!-->");
+      $$renderer2.push(`<div class="loading svelte-vo9vdt"><p>⏳ ${escape_html(store_get($$store_subs ??= {}, "$_", $format)("common.loading"))}</p></div>`);
+    }
+    $$renderer2.push(`<!--]--></div></div></section>`);
     if ($$store_subs) unsubscribe_stores($$store_subs);
+    bind_props($$props, { pageUrl });
   });
 }
 function _page($$renderer) {
@@ -262,11 +247,9 @@ function _page($$renderer) {
   Hero($$renderer, { images: heroImages });
   $$renderer.push(`<!----> `);
   SectionTeams($$renderer);
-  $$renderer.push(`<!----> <div class="content-grid svelte-1uha8ag"><div class="shop-section svelte-1uha8ag">`);
-  BanniereShop($$renderer);
-  $$renderer.push(`<!----></div> <div class="facebook-section svelte-1uha8ag">`);
-  FacebookFeed($$renderer, { pageUrl: "https://www.facebook.com/OlympiquePoz/" });
-  $$renderer.push(`<!----></div></div> `);
+  $$renderer.push(`<!----> `);
+  Externe($$renderer, {});
+  $$renderer.push(`<!----> `);
   BanniereCamp($$renderer);
   $$renderer.push(`<!----> `);
   Footer($$renderer);

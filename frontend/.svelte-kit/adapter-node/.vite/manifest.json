@@ -29,6 +29,10 @@
       "_app/immutable/assets/Footer.BXR3axXK.css"
     ]
   },
+  "_Navigation.DroNHX7g.css": {
+    "file": "_app/immutable/assets/Navigation.DroNHX7g.css",
+    "src": "_Navigation.DroNHX7g.css"
+  },
   "_Navigation.js": {
     "file": "chunks/Navigation.js",
     "name": "Navigation",
@@ -44,12 +48,8 @@
       "_context.js"
     ],
     "css": [
-      "_app/immutable/assets/Navigation.sCUOQSaz.css"
+      "_app/immutable/assets/Navigation.DroNHX7g.css"
     ]
-  },
-  "_Navigation.sCUOQSaz.css": {
-    "file": "_app/immutable/assets/Navigation.sCUOQSaz.css",
-    "src": "_Navigation.sCUOQSaz.css"
   },
   "_Navigation2.C_sRMsBM.css": {
     "file": "_app/immutable/assets/Navigation2.C_sRMsBM.css",
@@ -432,7 +432,7 @@
       "_Navigation.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.DXzhHaXe.css"
+      "_app/immutable/assets/_page.BiLsHSVi.css"
     ]
   },
   "src/routes/admin/+layout.svelte": {

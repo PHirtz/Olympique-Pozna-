@@ -1312,6 +1312,8 @@
   .nav-link {
     font-size: 1.05rem;
     padding: 1rem 1rem;
+    color: white;
+
   }
 
   .nav-links {
@@ -1334,6 +1336,7 @@
 
   .nav-links {
     gap: 4rem;
+    color: white;
   }
 }
 </style>
