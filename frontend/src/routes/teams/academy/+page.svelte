@@ -16,41 +16,49 @@
       id: 'giroud',
       name: 'Olivier Giroud',
       photo: '/team/giroud.png',
+      copyright: 'Richard Sellers / GettyImages',
     },
     {
       id: 'doue',
       name: 'Désiré Doué',
       photo: '/team/doue.jpg',
+      copyright: 'Aleteia / AFP',
     },
     {
       id: 'griezmann',
       name: 'Antoine Griezmann',
       photo: '/team/antoine.png',
+      copyright: 'Eurosport / Getty Images',
     },
     {
       id: 'coman',
       name: 'Kingsley Coman',
       photo: '/team/coman.jpg',
+      copyright: 'Action Press / SIPA',
     },
     {
       id: 'diani',
       name: 'Kadidiatou Diani',
       photo: '/team/diani.png',
+      copyright: 'Naomi Baker / GettyImages',
     },
     {
       id: 'renard',
       name: 'Wendie Renard',
       photo: '/team/wendie.jpg',
+      copyright: ' FRANCK FIFE / AFP',
     },
     {
       id: 'lesommer',
       name: 'Eugénie Le Sommer',
       photo: '/team/eugenie.jpg',
+      copyright: 'FRANCK FIFE / AFP',
     },
     {
       id: 'henry',
       name: 'Amandine Henry',
       photo: '/team/amandine.jpg',
+      copyright: 'Le progres / AFP',
     }
   ];
 </script>
@@ -82,6 +90,11 @@
                 alt={team.name} 
                 class="team-photo"
               />
+              {#if team.copyright}
+                <div class="photo-copyright">
+                  &copy; {team.copyright}
+                </div>
+              {/if}
             </div>
             
             <div class="team-info">
@@ -122,12 +135,6 @@
     margin-bottom: 1rem;
     color: #ffffff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  }
-
-  .hero-subtitle {
-    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-    opacity: 0.95;
-    font-weight: 300;
   }
 
   .container {
@@ -214,6 +221,20 @@
   .team-card:hover .view-profile {
     gap: 1rem;
     color: #d4af37;
+  }
+
+  .photo-copyright {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.65rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    z-index: 10;
+  }
+
+  .team-card:hover .photo-copyright {
+    opacity: 1;
   }
 
   /* Responsive */

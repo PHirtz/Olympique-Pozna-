@@ -53,7 +53,6 @@
         </div>
         <div class="team-content">
           <h3>{$_(`home.teams.${team.slug}.name`)}</h3>
-          <p>{$_(`home.teams.${team.slug}.description`)}</p>
         </div>
       </a>
     {/each}

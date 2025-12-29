@@ -10,6 +10,7 @@
   import BanniereCamp from '$lib/components/BanniereCamp.svelte';
   import Navigation from '$lib/components/ui/Navigation.svelte';
   import Externe from '$lib/components/Externe.svelte';
+	import SectionTeamsShort from '$lib/components/SectionTeamsShort.svelte';
 
   // Tableau d'images pour le slider Hero
   const heroImages = [
@@ -28,7 +29,7 @@
 <!-- Hero avec slider d'images -->
 <Hero images={heroImages} />
 
-<SectionTeams />
+<SectionTeamsShort />
 
 <Externe />
 

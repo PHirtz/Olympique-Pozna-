@@ -29,9 +29,9 @@
       "_app/immutable/assets/Footer.BXR3axXK.css"
     ]
   },
-  "_Navigation.BDhhzBBr.css": {
-    "file": "_app/immutable/assets/Navigation.BDhhzBBr.css",
-    "src": "_Navigation.BDhhzBBr.css"
+  "_Navigation.ClDJNL0K.css": {
+    "file": "_app/immutable/assets/Navigation.ClDJNL0K.css",
+    "src": "_Navigation.ClDJNL0K.css"
   },
   "_Navigation.js": {
     "file": "chunks/Navigation.js",
@@ -48,7 +48,7 @@
       "_context.js"
     ],
     "css": [
-      "_app/immutable/assets/Navigation.BDhhzBBr.css"
+      "_app/immutable/assets/Navigation.ClDJNL0K.css"
     ]
   },
   "_Navigation2.C_sRMsBM.css": {
@@ -582,12 +582,11 @@
       "_Navigation2.js",
       "_Footer.js",
       "_arrow-left.js",
-      "_x.js",
       "_heart.js",
       "_context.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.D1SiT3Bm.css"
+      "_app/immutable/assets/_page.D7Mikzfx.css"
     ]
   },
   "src/routes/club/coaches/jakub-golanski/+page.svelte": {
