@@ -68,7 +68,7 @@ function _page($$renderer, $$props) {
     const each_array = ensure_array_like(teams);
     for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
       let team = each_array[$$index];
-      $$renderer2.push(`<a${attr("href", `/club/teams/${team.id}`)} class="team-card svelte-i5ti3o"><div class="team-image-wrapper svelte-i5ti3o"><img${attr("src", team.photo)}${attr("alt", team.name)} class="team-photo svelte-i5ti3o"/> `);
+      $$renderer2.push(`<a${attr("href", `/teams/${team.id}`)} class="team-card svelte-i5ti3o"><div class="team-image-wrapper svelte-i5ti3o"><img${attr("src", team.photo)}${attr("alt", team.name)} class="team-photo svelte-i5ti3o"/> `);
       if (team.copyright) {
         $$renderer2.push("<!--[-->");
         $$renderer2.push(`<div class="photo-copyright svelte-i5ti3o">© ${escape_html(team.copyright)}</div>`);

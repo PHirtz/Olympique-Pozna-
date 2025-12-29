@@ -27,7 +27,7 @@ function _page($$renderer, $$props) {
       $$renderer3.push(`<meta name="description" content="Découvrez l'équipe masculine de l'Olympique Poznań"/>`);
     });
     Navigation2($$renderer2);
-    $$renderer2.push(`<!----> <div class="blues-page svelte-f0x6kf"><section class="hero-blues svelte-f0x6kf"><div class="hero-content svelte-f0x6kf"><h1 class="svelte-f0x6kf">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("teams.blues"))}</h1> <p class="hero-subtitle svelte-f0x6kf">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("teams.blues-subtitle"))}</p></div></section> <main class="main-content svelte-f0x6kf"><div class="container svelte-f0x6kf"><div class="teams-grid svelte-f0x6kf"><!--[-->`);
+    $$renderer2.push(`<!----> <div class="blues-page svelte-f0x6kf"><section class="hero-blues svelte-f0x6kf"><div class="hero-background svelte-f0x6kf"><img src="/seniorsh/552250913_691587517304371_2630196048960264861_n.jpg" alt="Les Bleus" class="hero-image svelte-f0x6kf"/> <div class="hero-overlay svelte-f0x6kf"></div></div> <div class="hero-content svelte-f0x6kf"><h1 class="svelte-f0x6kf">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("teams.blues"))}</h1> <p class="hero-subtitle svelte-f0x6kf">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("teams.blues-subtitle"))}</p></div></section> <main class="main-content svelte-f0x6kf"><div class="container svelte-f0x6kf"><div class="teams-grid svelte-f0x6kf"><!--[-->`);
     const each_array = ensure_array_like(blues);
     for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
       let player = each_array[$$index];

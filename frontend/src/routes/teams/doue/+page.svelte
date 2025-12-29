@@ -7,66 +7,154 @@
   import { _ } from 'svelte-i18n';
   import Navigation2 from '$lib/components/ui/Navigation2.svelte';
   import Footer from '$lib/components/ui/Footer.svelte';
+  import PlayerModal from '$lib/components/ui/PlayerModal.svelte';
   
   export let data;
+
+  // État de la modal
+  let isModalOpen = false;
+  let selectedPlayer = null;
 
   const doue = [
     {
       id: '10',
+      number: '10',
+      firstName: 'Oscar',
+      lastName: 'Wutezi',
       name: 'Oscar Wutezi',
       photo: '/team/doue/10.JPG',
+      position: 'Pomocnik',
+      origin: 'France / Polska',
+      nickname: 'Ozzy',
+      distinctions: []
     },
     {
       id: '28',
+      number: '28',
+      firstName: 'Aleks',
+      lastName: 'Zieliński',
       name: 'Aleks Zieliński',
       photo: '/team/doue/28.JPG',
+      position: 'Wahadłowy',
+      origin: 'Polska',
+      nickname: 'Zielu',
+      distinctions: []
     },
     {
       id: '19',
-      name: 'Krystian	Rulczyński',
+      number: '19',
+      firstName: 'Krystian',
+      lastName: 'Rulczyński',
+      name: 'Krystian Rulczyński',
       photo: '/team/doue/19.JPG',
+      position: 'Wahadłowy',
+      origin: 'Polska',
+      nickname: 'Rolex',
+      distinctions: []
     },
     {
       id: '30',
-      name: 'Adam	Nawrot',
+      number: '30',
+      firstName: 'Adam',
+      lastName: 'Nawrot',
+      name: 'Adam Nawrot',
       photo: '/team/doue/30.JPG',
+      position: 'Napastnik',
+      origin: 'Polska',
+      nickname: 'Nawrocik',
+      distinctions: []
     },
     {
       id: '54',
+      number: '54',
+      firstName: 'Szymon',
+      lastName: 'Craczyk',
       name: 'Szymon Craczyk',
       photo: '/team/doue/54.JPG',
+      position: 'Bramkarz',
+      origin: 'Polska',
+      nickname: null,
+      distinctions: []
     },
     {
       id: '13',
-      name: 'Antoni	Włodarczyk',
+      number: '13',
+      firstName: 'Antoni',
+      lastName: 'Włodarczyk',
+      name: 'Antoni Włodarczyk',
       photo: '/team/doue/13.JPG',
+      position: 'Pomocnik',
+      origin: 'Polska',
+      nickname: null,
+      distinctions: []
     },
     {
       id: '12',
-      name: 'Aleksander	Majchrowicz',
+      number: '12',
+      firstName: 'Aleksander',
+      lastName: 'Majchrowicz',
+      name: 'Aleksander Majchrowicz',
       photo: '/team/doue/12.JPG',
+      position: 'Pomocnik',
+      origin: 'Polska',
+      nickname: null,
+      distinctions: []
     },
     {
       id: '8',
+      number: '8',
+      firstName: 'Joueur',
+      lastName: '8',
       name: 'Joueur 8',
       photo: '/seniorsh/blues.png',
+      position: 'À déterminer',
+      origin: 'Poznań, Pologne',
+      nickname: null,
+      distinctions: []
     },
     {
       id: '9',
+      number: '9',
+      firstName: 'Joueur',
+      lastName: '9',
       name: 'Joueur 9',
       photo: '/seniorsh/blues.png',
+      position: 'À déterminer',
+      origin: 'Poznań, Pologne',
+      nickname: null,
+      distinctions: []
     },
     {
-      id: '10',
+      id: '10b',
+      number: '10',
+      firstName: 'Joueur',
+      lastName: '10',
       name: 'Joueur 10',
       photo: '/seniorsh/blues.png',
+      position: 'À déterminer',
+      origin: 'Poznań, Pologne',
+      nickname: null,
+      distinctions: []
     },
     {
       id: '11',
+      number: '11',
+      firstName: 'Joueur',
+      lastName: '11',
       name: 'Joueur 11',
       photo: '/seniorsh/blues.png',
+      position: 'À déterminer',
+      origin: 'Poznań, Pologne',
+      nickname: null,
+      distinctions: []
     }
   ];
+
+  // Fonction pour ouvrir la modal
+  function openPlayerModal(player) {
+    selectedPlayer = player;
+    isModalOpen = true;
+  }
 </script>
 
 <Navigation2 {data} />
@@ -88,10 +176,14 @@
 
   <main class="main-content">
     <div class="container">
-
       <div class="teams-grid">
         {#each doue as player}
-          <div class="team-card">
+          <!-- Rendre la card cliquable -->
+          <button 
+            class="team-card"
+            on:click={() => openPlayerModal(player)}
+            aria-label="Voir le profil de {player.name}"
+          >
             <div class="team-image-wrapper">
               <img 
                 src={player.photo} 
@@ -102,14 +194,21 @@
             
             <div class="team-info">
               <h3>{player.name}</h3>
-              <span class="player-number">#{player.id}</span>
+              <span class="player-number">#{player.number}</span>
             </div>
-          </div>
+          </button>
         {/each}
       </div>
     </div>
   </main>
 </div>
+
+<!-- Modal du joueur -->
+<PlayerModal
+  bind:isOpen={isModalOpen}
+  player={selectedPlayer}
+  on:close={() => isModalOpen = false}
+/>
 
 <Footer {data} />
 
@@ -166,7 +265,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center; /* Position par défaut (mobile) */
+    object-position: center;
   }
 
   .hero-content h1 {
@@ -186,21 +285,6 @@
     z-index: 1;
   }
 
-  .hero-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-
-.hero-overlay {
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.9) 0%,
-    rgba(26, 77, 122, 0.7) 50%,
-    rgba(15, 45, 74, 0.5) 100%
-  );
-}
   .hero-content {
     position: relative;
     z-index: 3;
@@ -233,6 +317,8 @@
     gap: 2rem;
     margin-bottom: 4rem;
   }
+
+  /* Card en button */
   .team-card {
     background: white;
     border-radius: 16px;
@@ -242,7 +328,12 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    height: 450px; /* Hauteur fixe pour la card */
+    height: 450px;
+    border: none; /* Enlever la bordure du button */
+    padding: 0; /* Enlever le padding du button */
+    cursor: pointer; /* Curseur pointer */
+    width: 100%; /* Prendre toute la largeur */
+    text-align: left; /* Aligner le texte à gauche */
   }
 
   .team-card:hover {
@@ -263,7 +354,7 @@
   .team-photo {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Cover au lieu de contain */
+    object-fit: cover;
     object-position: center;
     transition: transform 0.3s ease;
   }
@@ -289,7 +380,7 @@
 
   .team-info h3 {
     font-size: 1.3rem;
-    color: #ffffff; /* Blanc pour contraster avec le fond sombre */
+    color: #ffffff;
     margin: 0;
     font-weight: 700;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -300,7 +391,7 @@
     align-items: center;
     justify-content: center;
     padding: 0.25rem 0.75rem;
-    background: rgba(212, 175, 55, 0.95); /* Or semi-transparent */
+    background: rgba(212, 175, 55, 0.95);
     color: white;
     border-radius: 20px;
     font-size: 0.9rem;
@@ -343,7 +434,7 @@
       grid-template-columns: repeat(4, 1fr);
     }
     .hero-image {
-    object-position: center 20%;
-  }
+      object-position: center 20%;
+    }
   }
 </style>

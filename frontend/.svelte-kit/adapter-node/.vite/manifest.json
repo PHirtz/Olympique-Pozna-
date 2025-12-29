@@ -835,7 +835,39 @@
       "_context.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.B5l9RCw9.css"
+      "_app/immutable/assets/_page.DTUSsIrG.css"
+    ]
+  },
+  "src/routes/teams/coman/+page.svelte": {
+    "file": "entries/pages/teams/coman/_page.svelte.js",
+    "name": "entries/pages/teams/coman/_page.svelte",
+    "src": "src/routes/teams/coman/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index2.js",
+      "_runtime.js",
+      "_Navigation2.js",
+      "_Footer.js",
+      "_context.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.CFntVSlP.css"
+    ]
+  },
+  "src/routes/teams/diani/+page.svelte": {
+    "file": "entries/pages/teams/diani/_page.svelte.js",
+    "name": "entries/pages/teams/diani/_page.svelte",
+    "src": "src/routes/teams/diani/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index2.js",
+      "_runtime.js",
+      "_Navigation2.js",
+      "_Footer.js",
+      "_context.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.B0oPrDDp.css"
     ]
   },
   "src/routes/teams/doue/+page.svelte": {
@@ -870,6 +902,38 @@
       "_app/immutable/assets/_page.AMlpybzM.css"
     ]
   },
+  "src/routes/teams/griezmann/+page.svelte": {
+    "file": "entries/pages/teams/griezmann/_page.svelte.js",
+    "name": "entries/pages/teams/griezmann/_page.svelte",
+    "src": "src/routes/teams/griezmann/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index2.js",
+      "_runtime.js",
+      "_Navigation2.js",
+      "_Footer.js",
+      "_context.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.BmTQmiJz.css"
+    ]
+  },
+  "src/routes/teams/henry/+page.svelte": {
+    "file": "entries/pages/teams/henry/_page.svelte.js",
+    "name": "entries/pages/teams/henry/_page.svelte",
+    "src": "src/routes/teams/henry/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index2.js",
+      "_runtime.js",
+      "_Navigation2.js",
+      "_Footer.js",
+      "_context.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.B3TwzkSV.css"
+    ]
+  },
   "src/routes/teams/ladies/+page.svelte": {
     "file": "entries/pages/teams/ladies/_page.svelte.js",
     "name": "entries/pages/teams/ladies/_page.svelte",
@@ -883,7 +947,39 @@
       "_context.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.sj3JC6w-.css"
+      "_app/immutable/assets/_page.m9MHl7TW.css"
+    ]
+  },
+  "src/routes/teams/lesommer/+page.svelte": {
+    "file": "entries/pages/teams/lesommer/_page.svelte.js",
+    "name": "entries/pages/teams/lesommer/_page.svelte",
+    "src": "src/routes/teams/lesommer/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index2.js",
+      "_runtime.js",
+      "_Navigation2.js",
+      "_Footer.js",
+      "_context.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.B90CZEIa.css"
+    ]
+  },
+  "src/routes/teams/renard/+page.svelte": {
+    "file": "entries/pages/teams/renard/_page.svelte.js",
+    "name": "entries/pages/teams/renard/_page.svelte",
+    "src": "src/routes/teams/renard/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index2.js",
+      "_runtime.js",
+      "_Navigation2.js",
+      "_Footer.js",
+      "_context.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.foSe2fJG.css"
     ]
   }
 }

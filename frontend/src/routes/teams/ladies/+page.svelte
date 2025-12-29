@@ -160,21 +160,6 @@
     z-index: 2;
   }
 
-  .hero-copyright {
-    position: absolute;
-    bottom: 12px;
-    left: 12px;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.7rem;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
-    z-index: 4;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 6px 10px;
-    border-radius: 4px;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-  }
-
   .hero-content {
     position: relative;
     z-index: 3;
