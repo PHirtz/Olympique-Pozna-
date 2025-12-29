@@ -23,10 +23,6 @@
   </nav>
 
   <section class="hero-coach">
-    <div class="hero-badge">
-      <Star size={20} />
-      Coach Principal
-    </div>
     <div class="hero-content">
       <img 
         src="/trener/dominika-trener.jpg" 

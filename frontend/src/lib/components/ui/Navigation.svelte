@@ -93,23 +93,43 @@
     }
   };
 
-  onMount(() => {
-    setTimeout(() => {
-      visible = true;
-    }, 100);
+onMount(() => {
+  setTimeout(() => {
+    visible = true;
+  }, 100);
 
-    const handleScroll = () => {
-      scrollY = window.scrollY;
-      // De 0.1 (transparent) à 0.95 (quasi opaque) sur les 400 premiers pixels
-      navOpacity = Math.min(0.1 + (scrollY / 400) * 0.85, 0.95);
-    };
+  // ✅ INITIALISER les variables dès le début
+  document.documentElement.style.setProperty('--text-r', '255');
+  document.documentElement.style.setProperty('--text-g', '255');
+  document.documentElement.style.setProperty('--text-b', '255');
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+  const handleScroll = () => {
+    scrollY = window.scrollY;
+    
+    // Calculer l'opacité de 0.1 à 0.95
+    navOpacity = Math.min(0.1 + (scrollY / 400) * 0.85, 0.95);
+    
+    // Calculer la couleur du texte : interpolation de blanc (255,255,255) vers bleu (26,77,122)
+    const progress = Math.min(scrollY / 400, 1); // 0 à 1
+    const r = Math.round(255 - (255 - 26) * progress);
+    const g = Math.round(255 - (255 - 77) * progress);
+    const b = Math.round(255 - (255 - 122) * progress);
+    
+    document.documentElement.style.setProperty('--text-r', String(r));
+    document.documentElement.style.setProperty('--text-g', String(g));
+    document.documentElement.style.setProperty('--text-b', String(b));
+  };
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  });
+  // ✅ Appeler une première fois pour initialiser
+  handleScroll();
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+
+  return () => {
+    window.removeEventListener('scroll', handleScroll);
+  };
+});
+
 </script>
 
 <nav class="nav" class:visible style="--nav-opacity: {navOpacity}; --text-opacity: {navOpacity}">  <div class="nav-container">
@@ -480,8 +500,10 @@
     role="button"
     tabindex="0"
     aria-label={$_('common.close')}
-  ></div>
+  >
+</div>
 {/if}
+
 <style>
 /* ========================================
    BASE : MOBILE FIRST (320px+)
@@ -1037,18 +1059,18 @@
 
   .nav-link {
     padding: 0.65rem 0.85rem;
-    color: rgba(204, 204, 204, var(--text-opacity, 0.5));
+    color: rgb(var(--text-r, 255), var(--text-g, 255), var(--text-b, 255));
     text-decoration: none;
     font-weight: 600;
     font-size: 0.9rem;
-    transition: all 0.3s;
+    transition: color 0.1s ease;
     border-radius: 8px;
     white-space: nowrap;
     position: relative;
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    background: rgba(26, 77, 122, 0.05);
+    background:none;
     border: none;
     cursor: pointer;
     font-family: inherit;
@@ -1289,6 +1311,7 @@
   .nav-link {
     font-size: 1rem;
     padding: 0.875rem 1.25rem;
+    color: rgb(var(--text-r, 255), var(--text-g, 255), var(--text-b, 255)); 
   }
 
   .nav-links {
@@ -1312,8 +1335,7 @@
   .nav-link {
     font-size: 1.05rem;
     padding: 1rem 1rem;
-    color: white;
-
+    color: rgb(var(--text-r, 255), var(--text-g, 255), var(--text-b, 255)); 
   }
 
   .nav-links {
@@ -1336,7 +1358,6 @@
 
   .nav-links {
     gap: 4rem;
-    color: white;
   }
 }
 </style>

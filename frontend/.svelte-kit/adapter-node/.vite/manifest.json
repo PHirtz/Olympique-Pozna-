@@ -29,9 +29,9 @@
       "_app/immutable/assets/Footer.BXR3axXK.css"
     ]
   },
-  "_Navigation.DroNHX7g.css": {
-    "file": "_app/immutable/assets/Navigation.DroNHX7g.css",
-    "src": "_Navigation.DroNHX7g.css"
+  "_Navigation.BDhhzBBr.css": {
+    "file": "_app/immutable/assets/Navigation.BDhhzBBr.css",
+    "src": "_Navigation.BDhhzBBr.css"
   },
   "_Navigation.js": {
     "file": "chunks/Navigation.js",
@@ -48,7 +48,7 @@
       "_context.js"
     ],
     "css": [
-      "_app/immutable/assets/Navigation.DroNHX7g.css"
+      "_app/immutable/assets/Navigation.BDhhzBBr.css"
     ]
   },
   "_Navigation2.C_sRMsBM.css": {
