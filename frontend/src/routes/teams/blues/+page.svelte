@@ -72,8 +72,12 @@
 <Navigation2 {data} />
 
 <div class="blues-page">
-  <!-- Hero Section -->
+  <!-- Hero Section avec Image -->
   <section class="hero-blues">
+    <div class="hero-background">
+      <img src="/seniorsh/552250913_691587517304371_2630196048960264861_n.jpg" alt="Les Bleus" class="hero-image" />
+      <div class="hero-overlay"></div>
+    </div>
     <div class="hero-content">
       <h1>{$_('teams.blues')}</h1>
       <p class="hero-subtitle">{$_('teams.blues-subtitle')}</p>
@@ -82,7 +86,6 @@
 
   <main class="main-content">
     <div class="container">
-
       <div class="teams-grid">
         {#each blues as player}
           <div class="team-card">
@@ -113,12 +116,70 @@
     background: linear-gradient(to bottom, #f8fafc, #ffffff);
   }
 
-  /* Hero Section */
+  /* Hero Section avec Image Background */
   .hero-blues {
-    background: linear-gradient(135deg, #1a4d7a 0%, #0f2d4a 100%);
+    position: relative;
     color: white;
     padding: 8rem 2rem 4rem;
     text-align: center;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(26, 77, 122, 0.7) 50%,
+      rgba(15, 45, 74, 0.5) 100%
+    );
+    z-index: 2;
+  }
+
+  .hero-copyright {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.7rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
+    z-index: 4;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 6px 10px;
+    border-radius: 4px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .hero-content h1 {
@@ -126,13 +187,14 @@
     font-weight: 700;
     margin-bottom: 1rem;
     color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
   }
 
   .hero-subtitle {
     font-size: clamp(1.1rem, 2.5vw, 1.5rem);
     opacity: 0.95;
     font-weight: 300;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
   }
 
   .main-content {
@@ -152,6 +214,7 @@
     gap: 2rem;
     margin-bottom: 4rem;
   }
+
   .team-card {
     background: white;
     border-radius: 16px;
@@ -161,7 +224,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    height: 450px; /* Hauteur fixe pour la card */
+    height: 450px;
   }
 
   .team-card:hover {
@@ -182,7 +245,7 @@
   .team-photo {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Cover au lieu de contain */
+    object-fit: cover;
     object-position: center;
     transition: transform 0.3s ease;
   }
@@ -208,7 +271,7 @@
 
   .team-info h3 {
     font-size: 1.3rem;
-    color: #ffffff; /* Blanc pour contraster avec le fond sombre */
+    color: #ffffff;
     margin: 0;
     font-weight: 700;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -219,7 +282,7 @@
     align-items: center;
     justify-content: center;
     padding: 0.25rem 0.75rem;
-    background: rgba(212, 175, 55, 0.95); /* Or semi-transparent */
+    background: rgba(212, 175, 55, 0.95);
     color: white;
     border-radius: 20px;
     font-size: 0.9rem;
@@ -229,12 +292,17 @@
 
   /* Responsive */
   @media (max-width: 768px) {
-    .team-card {
-      height: 350px;
+    .hero-blues {
+      min-height: 400px;
+      padding: 6rem 1rem 3rem;
     }
 
-    .team-image-wrapper {
-      height: 300px;
+    .hero-image {
+      object-position: center 65%;
+    }
+
+    .team-card {
+      height: 350px;
     }
   }
 
@@ -248,11 +316,19 @@
     .teams-grid {
       grid-template-columns: repeat(3, 1fr);
     }
+
+    .hero-image {
+      object-position: center 70%;
+    }
   }
 
   @media (min-width: 1400px) {
     .teams-grid {
       grid-template-columns: repeat(4, 1fr);
+    }
+
+    .hero-image {
+      object-position: center 75%;
     }
   }
 </style>
