@@ -11,38 +11,50 @@ function _page($$renderer, $$props) {
       {
         id: "giroud",
         name: "Olivier Giroud",
-        photo: "/team/giroud.png"
+        photo: "/team/giroud.png",
+        copyright: "Richard Sellers / GettyImages"
       },
-      { id: "doue", name: "Désiré Doué", photo: "/team/doue.jpg" },
+      {
+        id: "doue",
+        name: "Désiré Doué",
+        photo: "/team/doue.jpg",
+        copyright: "Aleteia / AFP"
+      },
       {
         id: "griezmann",
         name: "Antoine Griezmann",
-        photo: "/team/antoine.png"
+        photo: "/team/antoine.png",
+        copyright: "Eurosport / Getty Images"
       },
       {
         id: "coman",
         name: "Kingsley Coman",
-        photo: "/team/coman.jpg"
+        photo: "/team/coman.jpg",
+        copyright: "Action Press / SIPA"
       },
       {
         id: "diani",
         name: "Kadidiatou Diani",
-        photo: "/team/diani.png"
+        photo: "/team/diani.png",
+        copyright: "Naomi Baker / GettyImages"
       },
       {
         id: "renard",
         name: "Wendie Renard",
-        photo: "/team/wendie.jpg"
+        photo: "/team/wendie.jpg",
+        copyright: " FRANCK FIFE / AFP"
       },
       {
         id: "lesommer",
         name: "Eugénie Le Sommer",
-        photo: "/team/eugenie.jpg"
+        photo: "/team/eugenie.jpg",
+        copyright: "FRANCK FIFE / AFP"
       },
       {
         id: "henry",
         name: "Amandine Henry",
-        photo: "/team/amandine.jpg"
+        photo: "/team/amandine.jpg",
+        copyright: "Le progres / AFP"
       }
     ];
     head("i5ti3o", $$renderer2, ($$renderer3) => {
@@ -56,7 +68,14 @@ function _page($$renderer, $$props) {
     const each_array = ensure_array_like(teams);
     for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
       let team = each_array[$$index];
-      $$renderer2.push(`<a${attr("href", `/club/teams/${team.id}`)} class="team-card svelte-i5ti3o"><div class="team-image-wrapper svelte-i5ti3o"><img${attr("src", team.photo)}${attr("alt", team.name)} class="team-photo svelte-i5ti3o"/></div> <div class="team-info svelte-i5ti3o"><h3 class="svelte-i5ti3o">${escape_html(team.name)}</h3> <span class="view-profile svelte-i5ti3o">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("teams.viewProfile"))}</span></div></a>`);
+      $$renderer2.push(`<a${attr("href", `/club/teams/${team.id}`)} class="team-card svelte-i5ti3o"><div class="team-image-wrapper svelte-i5ti3o"><img${attr("src", team.photo)}${attr("alt", team.name)} class="team-photo svelte-i5ti3o"/> `);
+      if (team.copyright) {
+        $$renderer2.push("<!--[-->");
+        $$renderer2.push(`<div class="photo-copyright svelte-i5ti3o">© ${escape_html(team.copyright)}</div>`);
+      } else {
+        $$renderer2.push("<!--[!-->");
+      }
+      $$renderer2.push(`<!--]--></div> <div class="team-info svelte-i5ti3o"><h3 class="svelte-i5ti3o">${escape_html(team.name)}</h3> <span class="view-profile svelte-i5ti3o">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("teams.viewProfile"))}</span></div></a>`);
     }
     $$renderer2.push(`<!--]--></div></div></main></div></div> `);
     Footer($$renderer2);

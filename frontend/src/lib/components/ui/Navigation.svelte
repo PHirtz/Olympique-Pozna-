@@ -98,7 +98,6 @@ onMount(() => {
     visible = true;
   }, 100);
 
-  // ✅ INITIALISER les variables dès le début
   document.documentElement.style.setProperty('--text-r', '255');
   document.documentElement.style.setProperty('--text-g', '255');
   document.documentElement.style.setProperty('--text-b', '255');
@@ -120,7 +119,6 @@ onMount(() => {
     document.documentElement.style.setProperty('--text-b', String(b));
   };
 
-  // ✅ Appeler une première fois pour initialiser
   handleScroll();
 
   window.addEventListener('scroll', handleScroll, { passive: true });

@@ -73,6 +73,10 @@
       "_app/immutable/assets/Navigation2.C_sRMsBM.css"
     ]
   },
+  "_SectionTeams.BcxjAFvG.css": {
+    "file": "_app/immutable/assets/SectionTeams.BcxjAFvG.css",
+    "src": "_SectionTeams.BcxjAFvG.css"
+  },
   "_SponsorForm.js": {
     "file": "chunks/SponsorForm.js",
     "name": "SponsorForm",
@@ -432,7 +436,8 @@
       "_Navigation.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.BiLsHSVi.css"
+      "_app/immutable/assets/_page.CHfDqByQ.css",
+      "_app/immutable/assets/SectionTeams.BcxjAFvG.css"
     ]
   },
   "src/routes/admin/+layout.svelte": {
@@ -786,7 +791,20 @@
     "file": "entries/pages/teams/_page.svelte.js",
     "name": "entries/pages/teams/_page.svelte",
     "src": "src/routes/teams/+page.svelte",
-    "isEntry": true
+    "isEntry": true,
+    "imports": [
+      "_Navigation2.js",
+      "_index2.js",
+      "_runtime.js",
+      "_exports.js",
+      "_utils.js",
+      "_state.svelte.js",
+      "_context.js",
+      "_Footer.js"
+    ],
+    "css": [
+      "_app/immutable/assets/SectionTeams.BcxjAFvG.css"
+    ]
   },
   "src/routes/teams/academy/+page.svelte": {
     "file": "entries/pages/teams/academy/_page.svelte.js",
@@ -801,7 +819,7 @@
       "_context.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.C0ZHWASN.css"
+      "_app/immutable/assets/_page.DJRfQYde.css"
     ]
   },
   "src/routes/teams/blues/+page.svelte": {
