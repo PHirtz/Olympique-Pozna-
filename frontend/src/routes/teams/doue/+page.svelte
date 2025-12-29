@@ -11,144 +11,38 @@
   
   export let data;
 
-  // État de la modal
   let isModalOpen = false;
   let selectedPlayer = null;
 
-  const doue = [
-    {
-      id: '10',
-      number: '10',
-      firstName: 'Oscar',
-      lastName: 'Wutezi',
-      name: 'Oscar Wutezi',
-      photo: '/team/doue/10.JPG',
-      position: 'Pomocnik',
-      origin: 'France / Polska',
-      nickname: 'Ozzy',
-      distinctions: []
-    },
-    {
-      id: '28',
-      number: '28',
-      firstName: 'Aleks',
-      lastName: 'Zieliński',
-      name: 'Aleks Zieliński',
-      photo: '/team/doue/28.JPG',
-      position: 'Wahadłowy',
-      origin: 'Polska',
-      nickname: 'Zielu',
-      distinctions: []
-    },
-    {
-      id: '19',
-      number: '19',
-      firstName: 'Krystian',
-      lastName: 'Rulczyński',
-      name: 'Krystian Rulczyński',
-      photo: '/team/doue/19.JPG',
-      position: 'Wahadłowy',
-      origin: 'Polska',
-      nickname: 'Rolex',
-      distinctions: []
-    },
-    {
-      id: '30',
-      number: '30',
-      firstName: 'Adam',
-      lastName: 'Nawrot',
-      name: 'Adam Nawrot',
-      photo: '/team/doue/30.JPG',
-      position: 'Napastnik',
-      origin: 'Polska',
-      nickname: 'Nawrocik',
-      distinctions: []
-    },
-    {
-      id: '54',
-      number: '54',
-      firstName: 'Szymon',
-      lastName: 'Craczyk',
-      name: 'Szymon Craczyk',
-      photo: '/team/doue/54.JPG',
-      position: 'Bramkarz',
-      origin: 'Polska',
-      nickname: null,
-      distinctions: []
-    },
-    {
-      id: '13',
-      number: '13',
-      firstName: 'Antoni',
-      lastName: 'Włodarczyk',
-      name: 'Antoni Włodarczyk',
-      photo: '/team/doue/13.JPG',
-      position: 'Pomocnik',
-      origin: 'Polska',
-      nickname: null,
-      distinctions: []
-    },
-    {
-      id: '12',
-      number: '12',
-      firstName: 'Aleksander',
-      lastName: 'Majchrowicz',
-      name: 'Aleksander Majchrowicz',
-      photo: '/team/doue/12.JPG',
-      position: 'Pomocnik',
-      origin: 'Polska',
-      nickname: null,
-      distinctions: []
-    },
-    {
-      id: '8',
-      number: '8',
-      firstName: 'Joueur',
-      lastName: '8',
-      name: 'Joueur 8',
-      photo: '/seniorsh/blues.png',
-      position: 'À déterminer',
-      origin: 'Poznań, Pologne',
-      nickname: null,
-      distinctions: []
-    },
-    {
-      id: '9',
-      number: '9',
-      firstName: 'Joueur',
-      lastName: '9',
-      name: 'Joueur 9',
-      photo: '/seniorsh/blues.png',
-      position: 'À déterminer',
-      origin: 'Poznań, Pologne',
-      nickname: null,
-      distinctions: []
-    },
-    {
-      id: '10b',
-      number: '10',
-      firstName: 'Joueur',
-      lastName: '10',
-      name: 'Joueur 10',
-      photo: '/seniorsh/blues.png',
-      position: 'À déterminer',
-      origin: 'Poznań, Pologne',
-      nickname: null,
-      distinctions: []
-    },
-    {
-      id: '11',
-      number: '11',
-      firstName: 'Joueur',
-      lastName: '11',
-      name: 'Joueur 11',
-      photo: '/seniorsh/blues.png',
-      position: 'À déterminer',
-      origin: 'Poznań, Pologne',
-      nickname: null,
-      distinctions: []
-    }
+  // Liste simple des joueurs avec photos
+  const playersData = [
+    { id: '10', photo: '/team/doue/10.JPG' },
+    { id: '28', photo: '/team/doue/28.JPG' },
+    { id: '19', photo: '/team/doue/19.JPG' },
+    { id: '30', photo: '/team/doue/30.JPG' },
+    { id: '54', photo: '/team/doue/54.JPG' },
+    { id: '13', photo: '/team/doue/13.JPG' },
+    { id: '12', photo: '/team/doue/12.JPG' },
   ];
+
+  // Enrichir avec les traductions
+  $: doue = playersData.map(p => {
+    const playerData = $_(`teams.doue.players.${p.id}`, { default: {} });
+    const position = $_(`teams.doue.positions.${playerData.positionKey || 'pomocnik'}`, { default: 'Milieu de terrain' });
+    
+    return {
+      id: p.id,
+      number: p.id,
+      firstName: playerData.firstName || 'Joueur',
+      lastName: playerData.lastName || p.id,
+      name: playerData.name || `Joueur ${p.id}`,
+      photo: p.photo,
+      position: position,
+      origin: playerData.origin || 'Poznań, Pologne',
+      nickname: playerData.nickname || null,
+      distinctions: playerData.distinctions || []
+    };
+  });
 
   // Fonction pour ouvrir la modal
   function openPlayerModal(player) {

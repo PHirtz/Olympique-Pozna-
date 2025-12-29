@@ -2,6 +2,7 @@
   import { createEventDispatcher } from "svelte";
   import { fade, fly } from "svelte/transition";
   import { X, MapPin, Award } from "lucide-svelte";
+  import { _ } from 'svelte-i18n'; 
 
   export let isOpen = false;
   export let player = null;
@@ -84,7 +85,8 @@
         <!-- Position -->
         {#if player.position}
           <div class="player-section">
-            <h3 class="section-title">Position</h3>
+            <!-- ✅ Traduction du label "Position" -->
+            <h3 class="section-title">{$_('teams.doue.labels.position')}</h3>
             <div class="position-badge">{player.position}</div>
           </div>
         {/if}
@@ -94,7 +96,7 @@
           <div class="player-section">
             <h3 class="section-title">
               <Award size={20} />
-              Distinctions
+              {$_('teams.doue.labels.distinctions')}
             </h3>
             <ul class="distinctions-list">
               {#each player.distinctions as distinction}

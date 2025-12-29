@@ -186,23 +186,101 @@
       "women": "Seniorki Kobiety",
       "men": "Seniorzy Mężczyźni"
     },
+    "position":"Pozycja",
+    "distinctions" : "Korona",
     "ladies": "Panie",
     "blues": "Niebiescy",
     "giroud": "Olivier Giroud (2010/2011)",
     "doue": {
+      "labels": {
+        "position": "Pozycja",
+        "distinctions": "Wyróżnienia"
+      },
       "title": "Désiré Doué (2012)",
+      "positions": {
+        "pomocnik": "Pomocnik",
+        "wahadlowy": "Wahadłowy",
+        "napastnik": "Napastnik",
+        "bramkarz": "Bramkarz"
+      },
       "players": {
-        "craczyk": "54 - CRACZYK",
-        "wutezi": "10 - WUTEZI",
-        "gartecki": "21 - GARTECKI",
-        "zok": "3 - ZOK",
-        "bielecki": "11 - BIELECKI",
-        "ceglowski": "40 - CEGLOWSKI",
-        "namysl": "7 - NAMYSL",
-        "wesolowski": "85 - WESOLOWSKI",
-        "wegner": "4 - WEGNER",
-        "majchrowicz": "12 - MAJCHROWICZ",
-        "pyzalka": "42 - PYZALKA"
+        "10": {
+          "firstName": "Oscar",
+          "lastName": "Wutezi",
+          "name": "Oscar Wutezi",
+          "nickname": "Ozzy",
+          "origin": "Francja",
+          "positionKey": "pomocnik",
+          "distinctions": [
+            "Kadra WZPN U13",
+            "2x Król Strelców 2014/25 (78 bramek)",
+            "XI Miesiąca - maj 2025r.",
+            "Zaproszenia (Miedź Legnica, Poznańska 13, Warta Poznań, APR Opalenica)"
+          ]
+        },
+        "28": {
+          "firstName": "Aleks",
+          "lastName": "Zieliński",
+          "name": "Aleks Zieliński",
+          "nickname": "Zielu",
+          "origin": "Polska",
+          "positionKey": "wahadlowy",
+          "distinctions": [
+            "XI Miesiąca - kwiecień 2025r."
+          ]
+        },
+        "19": {
+          "firstName": "Krystian",
+          "lastName": "Rulczyński",
+          "name": "Krystian Rulczyński",
+          "nickname": "Rolex",
+          "origin": "Polska",
+          "positionKey": "wahadlowy",
+          "distinctions": [
+            "XI Miesiąca - wrzesień 2025r.",
+            "Zaproszenia (Poznańska 13)"
+          ]
+        },
+        "30": {
+          "firstName": "Adam",
+          "lastName": "Nawrot",
+          "name": "Adam Nawrot",
+          "nickname": "Nawrocik",
+          "origin": "Polska",
+          "positionKey": "napastnik",
+          "distinctions": [
+            "Zaproszenia (Przemysław Poznań)"
+          ]
+        },
+        "54": {
+          "firstName": "Szymon",
+          "lastName": "Graczyk",
+          "name": "Szymon Graczyk",
+          "nickname": null,
+          "origin": "Polska",
+          "positionKey": "bramkarz",
+          "distinctions": [
+            "Zaproszenia (Warta Poznań)"
+          ]
+        },
+        "13": {
+          "firstName": "Antoni",
+          "lastName": "Włodarczyk",
+          "name": "Antoni Włodarczyk",
+          "nickname": "Włodi",
+          "origin": "Polska",
+          "positionKey": "pomocnik",
+          "distinctions": []
+        },
+        "12": {
+          "firstName": "Aleksander",
+          "lastName": "Majchrowicz",
+          "name": "Aleksander Majchrowicz",
+          "nickname": "Majo",
+          "origin": "Polska",
+          "positionKey": "pomocnik",
+          "distinctions": []
+        }
       }
     },
     "griezmann": "Antoine Griezmann (2013)",
