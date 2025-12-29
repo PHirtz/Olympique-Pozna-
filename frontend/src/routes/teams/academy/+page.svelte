@@ -81,7 +81,7 @@
       <div class="teams-grid">
         {#each teams as team}
           <a 
-            href={`/club/teams/${team.id}`} 
+            href={`/teams/${team.id}`} 
             class="team-card"
           >
             <div class="team-image-wrapper">

@@ -838,6 +838,38 @@
       "_app/immutable/assets/_page.B5l9RCw9.css"
     ]
   },
+  "src/routes/teams/doue/+page.svelte": {
+    "file": "entries/pages/teams/doue/_page.svelte.js",
+    "name": "entries/pages/teams/doue/_page.svelte",
+    "src": "src/routes/teams/doue/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index2.js",
+      "_runtime.js",
+      "_Navigation2.js",
+      "_Footer.js",
+      "_context.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.CoCwNnVK.css"
+    ]
+  },
+  "src/routes/teams/giroud/+page.svelte": {
+    "file": "entries/pages/teams/giroud/_page.svelte.js",
+    "name": "entries/pages/teams/giroud/_page.svelte",
+    "src": "src/routes/teams/giroud/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index2.js",
+      "_runtime.js",
+      "_Navigation2.js",
+      "_Footer.js",
+      "_context.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.AMlpybzM.css"
+    ]
+  },
   "src/routes/teams/ladies/+page.svelte": {
     "file": "entries/pages/teams/ladies/_page.svelte.js",
     "name": "entries/pages/teams/ladies/_page.svelte",
