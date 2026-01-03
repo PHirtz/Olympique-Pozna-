@@ -2,7 +2,7 @@
   import { _ } from 'svelte-i18n';
   import { Send, Calendar, MapPin, Users, Phone, Mail } from 'lucide-svelte';
   import { contact } from '$lib/api';
-  import Navigation from '$lib/components/ui/Navigation.svelte';
+  import Navigation2 from '$lib/components/ui/Navigation2.svelte';
   import Footer from '$lib/components/ui/Footer.svelte';
   
   /** @type {import('./$types').PageData} */
@@ -73,7 +73,7 @@
   <meta name="description" content="Rejoignez le Camp Olympique à Skarbimierz ! Stage de football intensif avec hébergement et activités." />
 </svelte:head>
 
-<Navigation {data} />
+<Navigation2 {data} />
 
 <div class="camps-page">
   <!-- Hero avec pub -->

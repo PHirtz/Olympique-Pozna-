@@ -1,4 +1,4 @@
-import { B as BROWSER } from "./false.js";
+import { D as DEV } from "./false.js";
 import "clsx";
 var is_array = Array.isArray;
 var index_of = Array.prototype.indexOf;
@@ -582,12 +582,12 @@ function flush_effects() {
       var batch = Batch.ensure();
       if (flush_count++ > 1e3) {
         var updates, entry;
-        if (BROWSER) ;
+        if (DEV) ;
         infinite_loop_guard();
       }
       batch.process(queued_root_effects);
       old_values.clear();
-      if (BROWSER) ;
+      if (DEV) ;
     }
   } finally {
     is_flushing = false;
@@ -1644,7 +1644,7 @@ function update_effect(effect) {
     effect.teardown = typeof teardown === "function" ? teardown : null;
     effect.wv = write_version;
     var dep;
-    if (BROWSER && tracing_mode_flag && (effect.f & DIRTY) !== 0 && effect.deps !== null) ;
+    if (DEV && tracing_mode_flag && (effect.f & DIRTY) !== 0 && effect.deps !== null) ;
   } finally {
     is_updating_effect = was_updating_effect;
     active_effect = previous_effect;

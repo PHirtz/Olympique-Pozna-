@@ -1,6 +1,6 @@
 import { g as getToken, l as logout } from "../../chunks/auth.js";
-import { B as BROWSER } from "../../chunks/false.js";
-const browser = BROWSER;
+import { D as DEV } from "../../chunks/false.js";
+const browser = DEV;
 const PUBLIC_API_URL = "http://localhost:5000/api";
 async function apiRequest(endpoint, options = {}) {
   const url = `${PUBLIC_API_URL}${endpoint}`;

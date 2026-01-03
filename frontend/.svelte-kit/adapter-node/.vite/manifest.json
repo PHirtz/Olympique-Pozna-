@@ -880,10 +880,13 @@
       "_runtime.js",
       "_Navigation2.js",
       "_Footer.js",
+      "_utils2.js",
+      "_x.js",
+      "_award.js",
       "_context.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.CoCwNnVK.css"
+      "_app/immutable/assets/_page.CEOt0Kuc.css"
     ]
   },
   "src/routes/teams/giroud/+page.svelte": {

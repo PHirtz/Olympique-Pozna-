@@ -538,6 +538,8 @@ onMount(() => {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* LOGO */
@@ -1098,6 +1100,8 @@ onMount(() => {
     align-items: center;
     gap: 0.5rem;
     flex-shrink: 0;
+    min-width: fit-content;
+    white-space: nowrap; /* Empêcher retour à la ligne */
   }
 
   .user-info {
@@ -1112,18 +1116,21 @@ onMount(() => {
     white-space: nowrap;
     font-size: 0.9rem;
     transition: color 0.3s ease;
+    flex-shrink: 0;
   }
 
   .btn-logout {
     padding: 0.5rem 0.75rem;
     white-space: nowrap;
     font-size: 0.9rem;
+    flex-shrink: 0;
   }
 
   .btn-auth {
     padding: 0.5rem 0.75rem;
     white-space: nowrap;
     font-size: 0.9rem;
+    flex-shrink: 0;
   }
 
   /* NEW BADGE DESKTOP */
