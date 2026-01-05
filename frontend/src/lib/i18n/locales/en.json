@@ -1,0 +1,710 @@
+{
+  "teams": {
+    "title": "Our Teams - Olympique Poznań",
+    "metaDescription": "Discover the teams of Olympique Poznań academy",
+    "hero": {
+      "title": "Olympique Poznań",
+      "subtitle": "Discover the teams of Olympique Poznań academy"
+    },
+    "intro": {
+      "title": "Our Teams",
+      "description": "From training young talents to senior competitions"
+    },
+    "viewProfile": "View profile",
+    "seniors": {
+      "title": "Seniors",
+      "women": "Women Seniors",
+      "men": "Men Seniors"
+    },
+    "position":"Position",
+    "disctinctions" : "Distinctions",
+    "ladies": "The Ladies",
+    "ladies-subtitle": "Olympique Poznań women's team",
+    "blues": "The Blues",
+    "blues-subtitle": "Olympique Poznań men's team",
+    "giroud": "Olivier Giroud (2010/2011)",
+    "doue": {
+      "labels": {
+        "position": "Position",
+        "distinctions": "Distinctions"
+      },
+      "title": "Désiré Doué (2012)",
+      "positions": {
+        "pomocnik": "Midfielder",
+        "wahadlowy": "Winger",
+        "napastnik": "Forward",
+        "bramkarz": "Goalkeeper"
+      },
+      "players": {
+        "10": {
+          "firstName": "Oscar",
+          "lastName": "Wutezi",
+          "name": "Oscar Wutezi",
+          "nickname": "Ozzy",
+          "origin": "France",
+          "positionKey": "pomocnik",
+          "distinctions": [
+            "WZPN U13 Selection",
+            "2x Top Scorer 2014/25 (78 goals)",
+            "Team of the Month - May 2025",
+            "Invitations (Miedź Legnica, Poznańska 13, Warta Poznań, APR Opalenica)"
+          ]
+        },
+        "28": {
+          "firstName": "Aleks",
+          "lastName": "Zieliński",
+          "name": "Aleks Zieliński",
+          "nickname": "Zielu",
+          "origin": "Poland",
+          "positionKey": "wahadlowy",
+          "distinctions": [
+            "Team of the Month - April 2025"
+          ]
+        },
+        "19": {
+          "firstName": "Krystian",
+          "lastName": "Rulczyński",
+          "name": "Krystian Rulczyński",
+          "nickname": "Rolex",
+          "origin": "Poland",
+          "positionKey": "wahadlowy",
+          "distinctions": [
+            "Team of the Month - September 2025",
+            "Invitations (Poznańska 13)"
+          ]
+        },
+        "30": {
+          "firstName": "Adam",
+          "lastName": "Nawrot",
+          "name": "Adam Nawrot",
+          "nickname": "Nawrocik",
+          "origin": "Poland",
+          "positionKey": "napastnik",
+          "distinctions": [
+            "Invitations (Przemysław Poznań)"
+          ]
+        },
+        "54": {
+          "firstName": "Szymon",
+          "lastName": "Graczyk",
+          "name": "Szymon Graczyk",
+          "nickname": null,
+          "origin": "Poland",
+          "positionKey": "bramkarz",
+          "distinctions": [
+            "Invitations (Warta Poznań)"
+          ]
+        },
+        "13": {
+          "firstName": "Antoni",
+          "lastName": "Włodarczyk",
+          "name": "Antoni Włodarczyk",
+          "nickname": "Włodi",
+          "origin": "Poland",
+          "positionKey": "pomocnik",
+          "distinctions": []
+        },
+        "12": {
+          "firstName": "Aleksander",
+          "lastName": "Majchrowicz",
+          "name": "Aleksander Majchrowicz",
+          "nickname": "Majo",
+          "origin": "Poland",
+          "positionKey": "pomocnik",
+          "distinctions": []
+        }
+      }
+    },
+    "griezmann": "Antoine Griezmann (2013)",
+    "coman": "Kingsley Coman (2014)",
+    "diani": "Kadidiatou Diani (Junior)",
+    "renard": "Wendie Renard (Trampkarki)",
+    "lesommer": "Eugénie Le Sommer (Mlodziczki)",
+    "henry": "Amandine Henry (Orliczki)"
+  },
+
+  "nav": {
+    "home": "Home",
+    "news": "News",
+    "photo": "Photos",
+    "shop": "Shop",
+    "club": "The Club",
+    "teams": "Our Teams",
+    "camps": "Olympic Camp",
+    "contact": "Contact",
+    "about": "About",
+    "coaches": "Our Coaches",
+    "partners": "Our Partners",
+    "menu": "Menu",
+    "mobileMenu": "Navigation menu",
+    "mainNavigation": "Main mobile navigation"
+  },
+
+  "coach": {
+    "intro": {
+      "title": "Our Coaching Team",
+      "description": "Passionate professionals dedicated to our players' development"
+    },
+    "viewProfile": "View profile",
+    "backToCoaches": "Back to coaches"
+  },
+
+  "camps": {
+    "title": "Olympic Camp - Olympique Poznań",
+    "metaDescription": "Join the Poznań Olympic Camp for an unforgettable football experience! Intensive training, technical workshops and guaranteed fun.",
+    "hero": {
+      "title": "Olympic Camp",
+      "subtitle": "Join us for an unforgettable football experience!"
+    },
+    "intro": {
+      "text": "The Olympic Camp is a unique opportunity for young football enthusiasts to live an immersive experience in the world of football. Whether you're a beginner or an experienced player, our camp is designed to offer a stimulating and fun learning environment."
+    },
+    "benefits": {
+      "title": "Why choose the Olympic Camp?",
+      "training": "Intensive training with qualified coaches",
+      "techniques": "Technical workshops to improve your skills",
+      "fun": "Fun activities and friendly competitions",
+      "teamSpirit": "Development of team spirit and fair play"
+    },
+    "register": {
+      "title": "Register today!",
+      "text": "Don't miss this opportunity to be part of the Olympic Camp. Fill out the form below to register or get more information.",
+      "formTitle": "Olympic Camp Registration Form"
+    },
+    "lieu": "Location",
+    "dates": "Dates",
+    "programme": "Program"
+  },
+
+  "userMenu": {
+    "hello": "Hello",
+    "logout": "Logout",
+    "myProfile": "My profile",
+    "login": "Login",
+    "register": "Join"
+  },
+
+  "shop": {
+    "title": "Our Shop",
+    "viewProduct": "View product",
+    "subtitle": "Discover our official products",
+    "banner": {
+      "title": "Official Olympique Poznań Shop",
+      "subtitle": "Show your support with our exclusive collection of Olympique Poznań items!",
+      "cta": "Visit the shop"
+    },
+    "items": {
+      "jacket": "Official Jacket",
+      "winterJacket": "Winter Jacket",
+      "bottle": "Official Water Bottle",
+      "roller": "Roller",
+      "socks": "Socks",
+      "rainJacket": "Official Rain Jacket",
+      "whiteShorts": "White Shorts",
+      "blueShorts": "Blue Shorts",
+      "sweatshirt": "Official Sweatshirt",
+      "homeJersey": "Official Home Jersey",
+      "scarf": "Official Scarf"
+    }
+  },
+
+  "hero": {
+    "title": "Welcome to Olympique Poznań",
+    "subtitle": "Poznań Football Club",
+    "description": "Passion and sharing are our driving forces"
+  },
+
+  "facebook": {
+    "latestPosts": "Follow us on Facebook",
+    "followDescription": "Stay informed of all our news",
+    "pageLink": "Olympique Poznań on Facebook",
+    "viewOnFacebook": "View on Facebook",
+    "noPosts": "No posts at the moment",
+    "errorLoading": "Error loading Facebook posts"
+  },
+
+  "footer": {
+    "description": "Franco-Polish football club based in Poznań. Join us!",
+    "quickLinks": "Quick links",
+    "contact": "Contact",
+    "newsletter": "Newsletter",
+    "newsletterText": "Subscribe to receive our latest news",
+    "emailPlaceholder": "Your email",
+    "subscribe": "Subscribe",
+    "sponsors": "Our Partners",
+    "viewAllSponsors": "View all our partners",
+    "noSponsors": "No partners at the moment",
+    "rights": "All rights reserved",
+    "legalNotice": "Legal notice",
+    "privacy": "Privacy policy",
+    "terms": "Terms and conditions"
+  },
+
+  "auth": {
+    "login": {
+      "title": "Login",
+      "username": "Username",
+      "usernamePlaceholder": "Your username",
+      "password": "Password",
+      "passwordPlaceholder": "Your password",
+      "submit": "Login",
+      "loading": "Logging in...",
+      "error": "Incorrect username or password",
+      "noAccount": "Not registered yet?",
+      "createAccount": "Create an account"
+    },
+    "register": {
+      "title": "Registration",
+      "firstName": "First name",
+      "firstNamePlaceholder": "Pauline",
+      "lastName": "Last name",
+      "lastNamePlaceholder": "Hirtz",
+      "username": "Username",
+      "usernamePlaceholder": "Kàmii",
+      "email": "Email",
+      "emailPlaceholder": "pauline@kamiicode.com",
+      "password": "Password",
+      "passwordPlaceholder": "My password",
+      "submit": "Create my account",
+      "loading": "Registration in progress...",
+      "success": "Registration successful! Welcome to Olympique Poznań!",
+      "errorAllFields": "Please fill in all fields",
+      "errorGeneral": "Registration error",
+      "hasAccount": "Already registered?",
+      "loginLink": "Login",
+      "required": "*"
+    }
+  },
+
+  "club": {
+    "about": "Who we are",
+    "coaches": "Our coaches",
+    "support": "Olympic Support",
+    "partners": "Our Partners",
+    "status": "Club statutes",
+    "documents": {
+      "title": "Important documents",
+      "cgv": "Terms and conditions",
+      "statutes": "Statutes",
+      "regulations": "Regulations"
+    }
+  },
+
+  "about": {
+    "title": "About - Olympique Poznań",
+    "metaDescription": "Discover the history and values of Olympique Poznań, a training football club in the heart of Poznań",
+    "hero": {
+      "title": "Olympique Poznań",
+      "subtitle": "More than a club, a school of life"
+    },
+    "intro": {
+      "text": "Located in the heart of the dynamic city of Poznań, Olympique Poznań is much more than just a football club: it's a true school of life, a place where passion, training and team spirit come together to shape tomorrow's talents."
+    },
+    "values": {
+      "title": "Our values",
+      "excellence": {
+        "title": "Excellence",
+        "description": "Quality training with certified and passionate coaches since 2023"
+      },
+      "teamSpirit": {
+        "title": "Team spirit",
+        "description": "A friendly and inclusive atmosphere where every player finds their place"
+      },
+      "passion": {
+        "title": "Passion",
+        "description": "Football as a vector for personal and collective development"
+      },
+      "training": {
+        "title": "Training",
+        "description": "Programs adapted to each age for harmonious progression"
+      }
+    },
+    "formation": {
+      "excellence": {
+        "title": "Training focused on excellence",
+        "text1": "Since its creation in 2023, Olympique Poznań has quickly established itself as a reference in the local sports landscape. The club takes pride in offering quality supervision, with certified and passionate coaches who accompany each player in their technical, tactical and personal development.",
+        "text2": "Training programs are designed to meet the specific needs of each age group, thus promoting harmonious and adapted progression."
+      },
+      "coaches": {
+        "title": "A team of dedicated coaches",
+        "text1": "Supervision is provided by a team of qualified coaches, some of whom hold recognized certifications such as UEFA C. Their pedagogical approach, combined with practical experience, guarantees a stimulating and caring learning environment.",
+        "text2": "Each coach brings their personal touch, contributing to creating a family and motivating atmosphere."
+      },
+      "atmosphere": {
+        "title": "A friendly and inclusive atmosphere",
+        "text1": "Olympique Poznań stands out for its warm and inclusive atmosphere. The club welcomes players from all backgrounds, promoting diversity and mutual support. The values of respect, solidarity and fair play are at the heart of every training session and competition.",
+        "text2": "This philosophy creates a strong sense of belonging, where each member feels valued and supported."
+      }
+    },
+    "community": {
+      "title": "Join our community",
+      "intro": "Follow us on our social networks to not miss any club news, training photos, player testimonials and much more!",
+      "cta": {
+        "text": "Whether you're a young football enthusiast, a parent looking for a training club for your child, or simply a sports fan wanting to get involved in a dynamic community,",
+        "textBold": "Olympique Poznań welcomes you with enthusiasm.",
+        "button": "Join the adventure"
+      }
+    }
+  },
+
+  "coaches": {
+    "title": "Our Coaches - Olympique Poznań",
+    "metaDescription": "Discover the team of passionate and qualified coaches at Olympique Poznań",
+    "hero": {
+      "title": "Olympique Poznań",
+      "subtitle": "Our super coaches"
+    },
+    "intro": {
+      "title": "Our Coaching Team",
+      "description": "Passionate professionals dedicated to our players' development"
+    },
+    "viewProfile": "View profile",
+    "backToCoaches": "Back to coaches",
+    "stephane": {
+      "name": "STÉPHANE WUTEZI",
+      "tagline": "Architect and pillar of the club, master of organization, passionate coach",
+      "since": "Coach since childhood 😆, officially since 2003",
+      "motto": "Never give up",
+      "formations": {
+        "title": "Training courses, workshops, licenses obtained",
+        "uefa_c": "UEFA C License (Brittany League)",
+        "uefa_b": "UEFA B License (WZPN)",
+        "stages": "Internships at: Tours FC, Stade Rennais FC, GKS Dopiewo, Warta Poznań",
+        "conferences": "Active participation in conferences, workshops and training on coaching, physical preparation and tactical aspects"
+      },
+      "experience": {
+        "coach": {
+          "title": "Field experience as a coach"
+        },
+        "player": {
+          "title": "Field experience as a player"
+        }
+      },
+      "idol": {
+        "title": "Childhood idol and current favorite player",
+        "text": "Thierry Henry – \"On an exterior wall of the Emirates Stadium, you can read: I fell in love with Arsenal because of Ian Wright. It's a quote from Thierry Henry, my idol since his beginnings at AS Monaco, when he was still just a teenager\". Today: Miles Lewis-Skelly – \"I've always been fascinated by teenagers entering the world of professional football.\""
+      },
+      "passion": {
+        "title": "Other passion than football: MUSIC",
+        "text": "\"I'm a music lover. Surprisingly, my first passion is music. I 'devour' astronomical quantities of albums every week, from hip-hop to classical music. Every week, I must discover at least two new artists. Streaming platforms are fed up with me because I skew their statistics\" 😊"
+      },
+      "questions": {
+        "title": "Want to know more about Coach Stéphane? Our players asked him a few questions 😊",
+        "q1": {
+          "question": "Where does the club name come from?",
+          "answer": "Olympique de Marseille and Olympique Lyonnais are among the most recognized French clubs on the international scene. By creating a club with French DNA, a French philosophy of youth training, which would play in the former Olimpia Poznań stadium – a club that also wore the tricolor colors – this name was a natural choice. Be careful though: Olympique is not Olimpia. Olympique is pronounced [Olępik] 😊"
+        },
+        "q2": {
+          "question": "Why Poland?",
+          "answer": "My neighbor in university residence in Brittany cooked strange and exotic dishes in the shared kitchen. Out of curiosity, I approached her talking about \"Lesz Posnan\" and \"Lesz Waleza\" – that's how you pronounce it in French, right? Thanks to love, I now know how to pronounce them correctly. Twenty years have passed, I live in Poland, this neighbor has become my wife, vice-president of the club, mother of two Olympic players and still the love of my life 🥰"
+        },
+        "q3": {
+          "question": "Why is Arsenal your favorite club?",
+          "answer": "As a Parisian, I attended several matches at the Parc des Princes. In 1994, Arsenal won a European cup by beating PSG in the semi-final. They had Ian Wright in attack, a club icon, who wore the legendary red jersey with the number 8 and the JVC sponsor on the front. I was 10 years old and \"I fell in love with Arsenal thanks to Ian Wright\"."
+        }
+      }
+    },
+    "patryk_k": {
+      "name": "PATRYK KAMIONKA",
+      "tagline": "Hard worker and goalkeeper charmer",
+      "since": "Coach since 2018",
+      "formations": {
+        "title": "Training courses, workshops and licenses obtained",
+        "wopr": "WOPR Lifeguard",
+        "teacher": "Physical Education Teacher",
+        "kinesiology": "Training in kinesiogerontoprophylaxis",
+        "goalkeeper": "Coaching internship at the Greater Poland Goalkeeper Academy (assistant)",
+        "uefa": "Currently preparing to follow UEFA C and GOALKEEPER A training"
+      },
+      "experience": {
+        "player": {
+          "title": "Field experience as a player (goalkeeper)"
+        }
+      },
+      "idol": {
+        "title": "Childhood idol and current favorite player",
+        "text": "Ronaldinho (FC Barcelona) \"A football magician, thanks to him a smile never left my face during matches. Technically superior to all others of his era\" and Łukasz Fabiański \"Being a goalkeeper myself, I can only choose him. A wonderful and humble boy, who reached many peaks through hard work.\""
+      },
+      "questions": {
+        "title": "Here are three short questions asked by the players 😊",
+        "q1": {
+          "question": "What does the coach appreciate most in a player? According to him, what is most important: talent or work?",
+          "answer": "What I appreciate most are the character traits that reveal what type of player you are. Talent is only a small part of success in sport, it must be reinforced by hard work to succeed. Great examples are Messi or Cristiano Ronaldo. So, without hesitation: hard work."
+        },
+        "q2": {
+          "question": "What would you have liked to learn in your childhood, but never had the opportunity?",
+          "answer": "I would have liked to learn to play the guitar."
+        },
+        "q3": {
+          "question": "If you could teleport anywhere in the world, where would you go and why?",
+          "answer": "I've always dreamed of Iceland, for its hot thermal waters, its magnificent landscapes, where you can bathe and jump directly into the snowy mountains!"
+        }
+      }
+    },
+    "patryk_w": {
+      "name": "PATRYK WESOŁOWSKI",
+      "tagline": "Specialist in work between the posts",
+      "since": "Coach since 2020",
+      "formations": {
+        "title": "Training courses, workshops and licenses obtained",
+        "animator": "Football Animator",
+        "camp": "Camp counselor training",
+        "reissa": "Coaching internship at Reissa Football Academy",
+        "conferences": "Continuous improvement through participation in specialized training and conferences"
+      },
+      "idol": {
+        "title": "Childhood idol and favorite player today",
+        "text": "Ronaldo Nazario. \"Always the same. He's not just an excellent player, he's a true football icon. I love his playing style – his lightning-fast accelerations and unpredictable technique. He was a complete striker: capable of coldly finishing an action, but also creating an opportunity out of nothing.\""
+      },
+      "questions": {
+        "title": "What questions did our players ask the coach? 😊",
+        "q1": {
+          "question": "According to the coach, does a goalkeeper have to be a little crazy?",
+          "answer": "Yes, I think a goalkeeper must have a part of madness. It's a position that requires not only exceptional physical qualities, but also extraordinary psychology. This part of \"madness\" is courage, instinct, and sometimes almost excessive self-confidence."
+        },
+        "q2": {
+          "question": "What is the greatest difficulty in working with children?",
+          "answer": "The greatest difficulty, for me, is meeting the needs of very different personalities. Each child is unique – some need more attention, others challenges, still others support and patience."
+        },
+        "q3": {
+          "question": "Favorite book and why?",
+          "answer": "I don't have a particular favorite book, but what fascinates me most are books about special units and military missions. I'm fascinated by the determination and discipline required to serve in these units."
+        }
+      }
+    },
+    "dominika": {
+      "name": "DOMINIKA KŁOSOWSKA",
+      "tagline": "The youngest of the coaching team… and the favorite of the female section of players",
+      "since": "Coach since March 2024",
+      "formations": {
+        "title": "Training courses, workshops, licenses obtained",
+        "assistant": "Certified Assistant Football Coach",
+        "animator": "Certified Football Animator",
+        "women": "Specialized training on women's football with Marzena Bogdanowicz",
+        "intro_uefa": "Introductory training to UEFA C curriculum",
+        "uefa_progress": "In progress: UEFA C Training – fingers crossed! 😊💪"
+      },
+      "mottos": {
+        "title": "Life mottos",
+        "motto1": "Choose a job you love, and you will never have to work a day in your life.",
+        "motto2": "It's not always the strongest, fastest or most talented who wins – it's the one who thinks they can do it.",
+        "motto3": "If you can dream it, you can do it."
+      },
+      "idol": {
+        "title": "Idol: Cristiano Ronaldo",
+        "text": "Always Cristiano Ronaldo, since childhood, and it will never change. CR7 embodies iron discipline, rigor, constancy for me. His success comes not only from talent, but from hard work, a spirit of sacrifice, an incessant quest for perfection."
+      },
+      "questions": {
+        "title": "Players asked the coach a few questions 😊",
+        "q1": {
+          "question": "What gives the most joy in working with children?",
+          "answer": "After a year of training at Olympique, I can say that all the children have totally adopted me. The most beautiful moment? It's when, after a difficult day, I arrive on the field with all the equipment and I hear: 'Oh hello Coach! We were really looking forward to this moment with you!' These words and the positive energy of the children immediately erase the fatigue."
+        },
+        "q2": {
+          "question": "How do you live working in a so-called 'men's profession'?",
+          "answer": "Working in a 'men's world' is a real challenge. Despite the progress of women's football, it is still perceived as a male sport. Female coaches remain rare, even precious. But I've always had so-called 'masculine' interests, and I've always been comfortable in groups of men."
+        },
+        "q3": {
+          "question": "What would she like to change in football?",
+          "answer": "Football is a beautiful sport, but it needs to evolve on several points: offer the same opportunities to women, promote women's football more, strengthen respect in sport, reduce absurd salaries, and a more equitable distribution of funds."
+        }
+      }
+    },
+    "jakub": {
+      "name": "JAKUB GOLAŃSKI",
+      "tagline": "Respect and motivation in one person",
+      "since": "Coach with 15 years of experience",
+      "motto": "Work in silence, let results make noise",
+      "formations": {
+        "title": "Courses, training, workshops, licenses obtained",
+        "uefa_a": "UEFA A License",
+        "motor_coach": "Motor coach course",
+        "teacher": "Physical Education Teacher",
+        "bachelor": "Bachelor's degree in physical education with corrective-compensatory gymnastics",
+        "master": "Master's degree in social pedagogy",
+        "warta": "Internship at Warta Poznań",
+        "ajax": "Camp for Ajax Amsterdam coaches in Krakow",
+        "coerver": "Coerver Coaching Training",
+        "first_aid": "First aid instructor",
+        "corrective": "Specialist in corrective-compensatory gymnastics"
+      },
+      "experience": {
+        "coach": {
+          "title": "Field experience as a coach"
+        },
+        "player": {
+          "title": "Field experience as a player"
+        }
+      },
+      "idol": {
+        "title": "Football idol",
+        "text": "Ronaldo Luis Nazario de Lima – according to Coach Jakub – one of the best strikers in the world, possessing exceptional individual skills, a man who knew how to come back stronger after injuries."
+      },
+      "passion": {
+        "title": "Other passion than football",
+        "text": "A good detective novel, personal development, travel"
+      },
+      "favorite_club": {
+        "title": "Favorite football club",
+        "text": "Lech Poznań and FC Barcelona"
+      },
+      "questions": {
+        "title": "Our players asked the coach a few questions 😊",
+        "q1": {
+          "question": "What was the first club where the coach became a coach and why?",
+          "answer": "The first club where I worked as a coach was Złoci Złotkowo. I was approached by one of the local residents to create training sessions for children and that's how my coaching adventure began."
+        },
+        "q2": {
+          "question": "What should we pay particular attention to when training young people?",
+          "answer": "I think the main aspect of young players' development is individual actions in attack and defense. It's important to instill in the child a love of sport!!!"
+        },
+        "q3": {
+          "question": "Some tips for charming a girl",
+          "answer": "Self-confidence and being yourself are important. Conversation – women love to be listened to. Ask questions, be interested in what she says. Remember the name of the girl!!!! who interests you. Weird phrases like 'you shine like a million coins' are not appropriate."
+        }
+      }
+    },
+    "pawel": {
+      "name": "PAWEŁ KULESA",
+      "tagline": "Trainer with a relaxed style but professional approach",
+      "since": "Coach since 2014",
+      "motto": "Be the hero of your own movie",
+      "formations": {
+        "title": "Courses, training, workshops, licenses obtained",
+        "uefa": "UEFA B/PZPN C License",
+        "conferences": "Participation in conferences and training improving skills"
+      },
+      "experience": {
+        "coach": {
+          "title": "Field experience as a coach"
+        },
+        "player": {
+          "title": "Field experience as a player"
+        }
+      },
+      "idol": {
+        "title": "\"Childhood\" football idol and current favorite player",
+        "text": "Child: the coach's brother - Karol Morawiec - \"...who showed me football as a child, I always wanted to watch how he played and kick the ball with him even for just 5 minutes\". The second idol is the coach's later trainer - Tomasz Kiciński - \"...at the time when I was actively playing, I always watched him in the 3rd league. I remember as if it were yesterday his long-range goals and his almost golden long hair, thanks to which he stood out as much as by his skills. Later, he trusted me at 16 and introduced me to the senior team. I still remember him, a wonderful man\". Currently, favorite player is Konrad Laimer - Bayern Munich and John Stones - Manchester City."
+      },
+      "passion": {
+        "title": "Other passion than football",
+        "text": "Loves sport in the broad sense, gym, running, tennis. Everything related to sport even if, as he said himself, \"It may not show\". A great passion, enthusiasm is cooking \"I love cooking for my family (they say I missed my calling)\"."
+      },
+      "favorite_club": {
+        "title": "Favorite football club",
+        "text": "Legia Warsaw - \"...thanks to my brother Karol, I've been supporting the capital's club for x years. However, this season, I'm counting on the championship for Lech!\" and the foreign club Arsenal London"
+      },
+      "questions": {
+        "title": "What did our players want to know about the coach? 😊",
+        "q1": {
+          "question": "Favorite coach in the world and why?",
+          "answer": "I have two: 1. Jurgen Klopp - The Normal One, because he is himself and is a distinctive person in coaching while maintaining an appropriate work-life balance. 2. Jakub Golański - for his professional approach to his responsibilities and because at the time of my \"burn-out\", he had a huge influence in reigniting that flame."
+        },
+        "q2": {
+          "question": "What would the coach say to his younger self? What life advice?",
+          "answer": "Fear is a normal reaction to certain situations. Learn to control it so that it is a positive fear that fuels your actions and not paralyzing. It's only football, have fun and show what you can do without any barriers."
+        },
+        "q3": {
+          "question": "Why Olympique Poznań? What would the coach change in the club's current operation?",
+          "answer": "The training approach consistent with mine. It's not age but current skills that should determine who we compete with. What would I change? Everything and nothing. Everything that requires changes for the good of the children, whatever it is and will be. And nothing because it's a wonderful community that puts children and young people first."
+        }
+      }
+    }
+  },
+
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "noData": "No data available",
+    "back": "Back",
+    "close": "Close",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "edit": "Edit"
+  },
+
+  "contact": {
+    "title": "Contact - Olympique Poznań",
+    "metaDescription": "Contact Olympique Poznań to join the club or for any questions",
+    "hero": {
+      "title": "Contact us",
+      "subtitle": "Join the Olympique Poznań adventure"
+    },
+    "intro": {
+      "title": "A question? Want to join us?",
+      "text": "Fill out the form below and we will respond to you as soon as possible. Whether you want to become a player, coach or volunteer, we will be happy to exchange with you!"
+    },
+    "form": {
+      "name": "Name",
+      "lastName": "First name",
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "categoryRequired": "Category is required",
+      "namePlaceholder": "Your full name",
+      "email": "Email",
+      "tel": "Phone",
+      "emailPlaceholder": "your.email@example.com",
+      "category": "Category",
+      "age": "Participant's age",
+      "demande": "Send my request",
+      "categories": {
+        "coach": "Coach",
+        "junior": "Junior Footballer",
+        "senior": "Senior Footballer",
+        "veteran": "Veteran Footballer",
+        "sponsor": "Sponsor",
+        "volunteer": "Volunteer",
+        "other": "Other"
+      },
+      "message": "Message",
+      "messagePlaceholder": "Tell us about yourself and your motivation...",
+      "submit": "Send message",
+      "sending": "Sending...",
+      "success": "Your message has been sent! We will respond to you quickly.",
+      "error": "An error occurred, please try again later.",
+      "errorRequired": "Please fill in all required fields."
+    },
+    "info": {
+      "email": {
+        "title": "Email"
+      },
+      "social": {
+        "title": "Social networks"
+      }
+    }
+  },
+
+  "home": {
+    "teams": {
+      "title": "Olympique Poznań teams",
+      "senior": {
+        "name": "The Blues",
+        "description": "..."
+      },
+      "junior": {
+        "name": "The academy",
+        "description": "10 Teams, springboards for tomorrow's champions."
+      },
+      "feminine": {
+        "name": "The Ladies",
+        "description": "..."
+      }
+    },
+    "accompagnement": {
+      "title": "A family united by passion",
+      "paragraph1": "At the heart of our club: every child deserves their chance.",
+      "paragraph2": "We help children grow, believe in themselves, get back up. Our coaches listen, encourage, transmit.",
+      "paragraph3": "French, Polish, from all backgrounds: we play together. Our differences make our strength.",
+      "paragraph4": "Our differences make our strength.",
+      "highlight": "From first steps on the field to senior matches, Olympique Poznań accompanies each player on their journey."
+    },
+    "performance": {
+      "title": "Higher. Stronger. Prouder.",
+      "paragraph1": "On our fields, children learn to surpass themselves. Against doubt, fatigue, fear of failure.",
+      "paragraph2": "Our coaches support them to transform effort into pride, perseverance into results.",
+      "highlight": "Whether you're 4 or 70 years old, our fields are there to reveal your potential. Because tomorrow's champions are built in today's training sessions."
+    }
+  }
+}
