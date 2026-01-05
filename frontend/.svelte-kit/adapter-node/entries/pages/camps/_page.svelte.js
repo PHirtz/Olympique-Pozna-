@@ -1,6 +1,6 @@
 import { j as sanitize_props, k as spread_props, s as slot, h as head, a as store_get, c as attr, u as unsubscribe_stores, d as bind_props } from "../../../chunks/index2.js";
 import { $ as $format } from "../../../chunks/runtime.js";
-import { N as Navigation } from "../../../chunks/Navigation.js";
+import { N as Navigation2 } from "../../../chunks/Navigation2.js";
 import { M as Map_pin, P as Phone, a as Mail, F as Footer } from "../../../chunks/Footer.js";
 import { I as Icon } from "../../../chunks/x.js";
 import { U as Users } from "../../../chunks/users.js";
@@ -62,7 +62,7 @@ function _page($$renderer, $$props) {
       });
       $$renderer3.push(`<meta name="description" content="Rejoignez le Camp Olympique à Skarbimierz ! Stage de football intensif avec hébergement et activités."/>`);
     });
-    Navigation($$renderer2);
+    Navigation2($$renderer2);
     $$renderer2.push(`<!----> <div class="camps-page"><section class="hero-camps svelte-cff0ph"><div class="container svelte-cff0ph"><img src="/pubcamp.png" alt="Le Camp Olympique - Luty 2026" class="camp-poster svelte-cff0ph"/></div></section> <section class="camp-info svelte-cff0ph"><div class="container svelte-cff0ph"><div class="info-grid svelte-cff0ph"><div class="info-card svelte-cff0ph">`);
     Calendar($$renderer2, { size: 32 });
     $$renderer2.push(`<!----> <h3 class="svelte-cff0ph">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("camps.dates"))}</h3> <p class="svelte-cff0ph"><strong>15-21 Février 2026</strong></p> <p class="detail svelte-cff0ph">7 dni sportů!</p></div> <div class="info-card svelte-cff0ph">`);

@@ -29,9 +29,9 @@
       "_app/immutable/assets/Footer.BXR3axXK.css"
     ]
   },
-  "_Navigation.ClDJNL0K.css": {
-    "file": "_app/immutable/assets/Navigation.ClDJNL0K.css",
-    "src": "_Navigation.ClDJNL0K.css"
+  "_Navigation.CW7q6ha0.css": {
+    "file": "_app/immutable/assets/Navigation.CW7q6ha0.css",
+    "src": "_Navigation.CW7q6ha0.css"
   },
   "_Navigation.js": {
     "file": "chunks/Navigation.js",
@@ -48,7 +48,7 @@
       "_context.js"
     ],
     "css": [
-      "_app/immutable/assets/Navigation.ClDJNL0K.css"
+      "_app/immutable/assets/Navigation.CW7q6ha0.css"
     ]
   },
   "_Navigation2.C_sRMsBM.css": {
@@ -507,7 +507,7 @@
     "imports": [
       "_index2.js",
       "_runtime.js",
-      "_Navigation.js",
+      "_Navigation2.js",
       "_Footer.js",
       "_x.js",
       "_users.js",

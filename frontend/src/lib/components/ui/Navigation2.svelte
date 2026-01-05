@@ -81,7 +81,7 @@
 
   /**
    * Change la langue
-   * @param {'fr' | 'pl'} lang
+   * @param {'fr' | 'pl' | 'en'} lang
    */
   function changeLanguage(lang) {
     locale.set(lang);
@@ -111,6 +111,9 @@
   <div class="nav-container">
     <a href="/" class="logo-container">
       <img src="/logo.png" alt="Logo Olympique Poznań" class="logo-olympique-poznan" />
+    </a>
+    <a href="/" class="logo-container">
+      <img src="/home.png" alt="Logo Home" class="logo-home" />
     </a>
 
     <!-- DESKTOP NAVIGATION -->
@@ -287,6 +290,15 @@
           aria-label="Polski"
         >
           PL
+        </button>
+        <span class="separator">|</span>
+        <button 
+          on:click={() => changeLanguage('en')} 
+          class="lang-btn" 
+          class:active={$locale === 'en'}
+          aria-label="English"
+        >
+          EN
         </button>
       </div>
 
@@ -524,6 +536,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* LOGO */
@@ -540,6 +554,10 @@
 
 .logo-olympique-poznan {
   height: 50px;
+}
+
+.logo-home {
+  height: 20px;
 }
 
 /* LIENS DE NAVIGATION (cachés sur mobile) */
@@ -692,12 +710,21 @@
 }
 
 /* MOBILE SUBSUBMENU - TEXTE BLANC */
+.mobile-subsubmenu {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mobile-subsubmenu-link {
+  flex: 1;
+}
+
 .mobile-subsubmenu-trigger {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  width: 100%;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem;
   background: none;
   border: none;
   color: rgba(255, 255, 255, 0.9);
@@ -706,7 +733,7 @@
   cursor: pointer;
   transition: all 0.2s;
   font-family: inherit;
-  text-align: left;
+  flex-shrink: 0;
 }
 
 .mobile-subsubmenu-trigger:hover {
@@ -1017,14 +1044,17 @@
 
 @media (min-width: 768px) {
   .nav-container {
-    padding: 1rem 1.5rem;
-    gap: 1.5rem;
+    padding: 0.75rem 1rem;
+    gap: 0.5rem;
   }
 
   .logo-olympique-poznan {
-    height: 60px;
+    height: 50px;
   }
 
+  .logo-home {
+    height: 25px;
+  }
   /* Cacher le burger, afficher la nav desktop */
   .menu-toggle {
     display: none;
@@ -1035,15 +1065,16 @@
     flex: 1;
     justify-content: center;
     align-items: center;
-    gap: 1.5rem;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
   }
 
   .nav-link {
-    padding: 0.65rem 0.85rem;
+    padding: 0.5rem 0.65rem;
     color: #ffffff;
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     transition: all 0.3s;
     border-radius: 8px;
     white-space: nowrap;
@@ -1079,33 +1110,38 @@
   .desktop-user-actions {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.4rem;
     flex-shrink: 0;
+    min-width: fit-content;
+    white-space: nowrap;
   }
 
   .user-info {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 0.75rem;
+    gap: 0.4rem;
+    padding: 0.4rem 0.6rem;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 0.5rem;
     color: #ffffff;
     font-weight: 600;
     white-space: nowrap;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    flex-shrink: 0;
   }
 
   .btn-logout {
-    padding: 0.5rem 0.75rem;
+    padding: 0.4rem 0.6rem;
     white-space: nowrap;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    flex-shrink: 0;
   }
 
   .btn-auth {
-    padding: 0.5rem 0.75rem;
+    padding: 0.4rem 0.6rem;
     white-space: nowrap;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    flex-shrink: 0;
   }
 
   /* NEW BADGE DESKTOP */
@@ -1274,21 +1310,39 @@
 
 @media (min-width: 1024px) {
   .logo-olympique-poznan {
-    height: 70px;
+    height: 60px;
+  }
+  .logo-home {
+    height: 30px;
   }
 
   .nav-container {
-    padding: 1.25rem 3rem;
-    gap: 3rem;
+    padding: 1rem 2rem;
+    gap: 1rem;
   }
 
   .nav-link {
-    font-size: 1rem;
-    padding: 0.875rem 1.25rem;
+    font-size: 0.95rem;
+    padding: 0.65rem 0.85rem;
   }
 
   .nav-links {
-    gap: 2.5rem;
+    gap: 1rem;
+  }
+
+  .desktop-user-actions {
+    gap: 0.5rem;
+  }
+
+  .user-info {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .btn-logout,
+  .btn-auth {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
   }
 }
 
@@ -1298,20 +1352,33 @@
 
 @media (min-width: 1200px) {
   .logo-olympique-poznan {
-    height: 80px;
+    height: 70px;
+  }
+  .logo-home {
+    height: 40px;
   }
 
   .nav-container {
-    padding: 1.25rem 1rem;
+    padding: 1.25rem 3rem;
+    gap: 1.5rem;
   }
 
   .nav-link {
-    font-size: 1.05rem;
-    padding: 1rem 1rem;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
   }
 
   .nav-links {
-    gap: 2rem;
+    gap: 1.5rem;
+  }
+
+  .user-info {
+    font-size: 0.95rem;
+  }
+
+  .btn-logout,
+  .btn-auth {
+    font-size: 0.95rem;
   }
 }
 
@@ -1321,15 +1388,24 @@
 
 @media (min-width: 1400px) {
   .logo-olympique-poznan {
-    height: 90px;
+    height: 80px;
+  }
+  .logo-home {
+    height: 50px;
   }
 
   .nav-container {
-    padding: 1.5rem 5rem;
+    padding: 1.5rem 4rem;
+    gap: 2rem;
+  }
+
+  .nav-link {
+    font-size: 1.05rem;
+    padding: 0.875rem 1.25rem;
   }
 
   .nav-links {
-    gap: 4rem;
+    gap: 2rem;
   }
 }
 </style>
