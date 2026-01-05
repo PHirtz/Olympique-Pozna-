@@ -165,14 +165,14 @@
           <span class="icon">📧</span>
           <div>
             <strong>Email</strong>
-            <p>s.wutezi@wutezi.com</p>
+            <p>olympique.poznan@wielkopolskizpn.pl</p>
           </div>
         </div>
         <div class="info-item">
           <span class="icon">📞</span>
           <div>
             <strong>Téléphone</strong>
-            <p>+48 123 456 789</p>
+            <p>+48 669 091 910</p>
           </div>
         </div>
         <div class="info-item">

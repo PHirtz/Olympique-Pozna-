@@ -73,7 +73,7 @@
   },
 
   "footer": {
-    "description": "Francusko-polski klub piłkarski z siedzibą w Poznaniu. Dołącz do nas !",
+    "description": "Dołącz do nas !",
     "quickLinks": "Szybkie linki",
     "contact": "Kontakt",
     "newsletter": "Newsletter",
@@ -189,7 +189,9 @@
     "position":"Pozycja",
     "distinctions" : "Korona",
     "ladies": "Panie",
+    "ladies-subtitle": "Reprezentacja kobiet Olympique Poznań",
     "blues": "Niebiescy",
+    "blues-subtitle": "Męska drużyna Olympique Poznań",
     "giroud": "Olivier Giroud (2010/2011)",
     "doue": {
       "labels": {

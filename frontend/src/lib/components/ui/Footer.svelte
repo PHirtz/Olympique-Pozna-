@@ -58,9 +58,8 @@
       <ul class="footer-links">
         <li><a href="/club">{$_('nav.club')}</a></li>
         <li><a href="/teams">{$_('nav.teams')}</a></li>
-        <li><a href="/news">{$_('nav.news')}</a></li>
         <li><a href="/camps">{$_('nav.camps')}</a></li>
-        <li><a href="/shop">{$_('nav.shop')}</a></li>
+        <li><a href="https://olympique.pl/">{$_('nav.shop')}</a></li>
         <li><a href="/contact">{$_('nav.contact')}</a></li>
       </ul>
     </div>
@@ -75,11 +74,11 @@
         </li>
         <li>
           <Phone size={18} />
-          <span>+48 XXX XXX XXX</span>
+          <span>+48 669 091 910</span>
         </li>
         <li>
           <Mail size={18} />
-          <span>s.wutezi@wutezi.com</span>
+          <span>olympique.poznan@wielkopolskizpn.pl</span>
         </li>
       </ul>
     </div>
