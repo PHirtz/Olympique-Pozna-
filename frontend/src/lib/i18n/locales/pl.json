@@ -58,7 +58,7 @@
   },
 
   "hero": {
-    "title": "Witamy na stronie Olympique Poznan",
+    "title": "Witamy na stronie Olympique Poznań",
     "subtitle": "Klub piłkarski Poznania",
     "description": "Pasja i dzielenie się to nasz motor"
   },
@@ -66,7 +66,7 @@
   "facebook": {
     "latestPosts": "Śledź nas na Facebooku",
     "followDescription": "Bądź na bieżąco z naszymi aktualnościami",
-    "pageLink": "Olympique Poznan na Facebooku",
+    "pageLink": "Olympique Poznań na Facebooku",
     "viewOnFacebook": "Zobacz na Facebooku",
     "noPosts": "Brak postów",
     "errorLoading": "Błąd podczas ładowania postów z Facebooka"

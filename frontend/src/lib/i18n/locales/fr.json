@@ -210,7 +210,7 @@
   },
 
   "hero": {
-    "title": "Bienvenue sur le site d'Olympique Poznan",
+    "title": "Bienvenue sur le site d'Olympique Poznań",
     "subtitle": "Club de football de Poznań",
     "description": "Passion et partage sont nos moteurs"
   },
@@ -218,7 +218,7 @@
   "facebook": {
     "latestPosts": "Suivez-nous sur Facebook",
     "followDescription": "Restez informés de toutes nos actualités",
-    "pageLink": "Olympique Poznan sur Facebook",
+    "pageLink": "Olympique Poznań sur Facebook",
     "viewOnFacebook": "Voir sur Facebook",
     "noPosts": "Aucun post pour le moment",
     "errorLoading": "Erreur lors du chargement des posts Facebook"
@@ -268,7 +268,7 @@
       "passwordPlaceholder": "Mon mot de passe",
       "submit": "Créer mon compte",
       "loading": "Inscription en cours...",
-      "success": "Inscription réussie ! Bienvenue sur Olympique Poznan !",
+      "success": "Inscription réussie ! Bienvenue sur Olympique Poznań !",
       "errorAllFields": "Veuillez remplir tous les champs",
       "errorGeneral": "Erreur lors de l'inscription",
       "hasAccount": "Déjà inscrit ?",
