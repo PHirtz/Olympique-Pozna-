@@ -29,9 +29,9 @@
       "_app/immutable/assets/Footer.BXR3axXK.css"
     ]
   },
-  "_Navigation.CW7q6ha0.css": {
-    "file": "_app/immutable/assets/Navigation.CW7q6ha0.css",
-    "src": "_Navigation.CW7q6ha0.css"
+  "_Navigation.Dd_X-4Nt.css": {
+    "file": "_app/immutable/assets/Navigation.Dd_X-4Nt.css",
+    "src": "_Navigation.Dd_X-4Nt.css"
   },
   "_Navigation.js": {
     "file": "chunks/Navigation.js",
@@ -48,12 +48,12 @@
       "_context.js"
     ],
     "css": [
-      "_app/immutable/assets/Navigation.CW7q6ha0.css"
+      "_app/immutable/assets/Navigation.Dd_X-4Nt.css"
     ]
   },
-  "_Navigation2.C_sRMsBM.css": {
-    "file": "_app/immutable/assets/Navigation2.C_sRMsBM.css",
-    "src": "_Navigation2.C_sRMsBM.css"
+  "_Navigation2.BOYvF0Oc.css": {
+    "file": "_app/immutable/assets/Navigation2.BOYvF0Oc.css",
+    "src": "_Navigation2.BOYvF0Oc.css"
   },
   "_Navigation2.js": {
     "file": "chunks/Navigation2.js",
@@ -70,7 +70,7 @@
       "_context.js"
     ],
     "css": [
-      "_app/immutable/assets/Navigation2.C_sRMsBM.css"
+      "_app/immutable/assets/Navigation2.BOYvF0Oc.css"
     ]
   },
   "_SectionTeams.BcxjAFvG.css": {
@@ -152,7 +152,8 @@
     ],
     "dynamicImports": [
       "src/lib/i18n/locales/fr.json",
-      "src/lib/i18n/locales/pl.json"
+      "src/lib/i18n/locales/pl.json",
+      "src/lib/i18n/locales/en.json"
     ]
   },
   "_index.js": {
@@ -357,6 +358,12 @@
       "_internal.js"
     ]
   },
+  "src/lib/i18n/locales/en.json": {
+    "file": "chunks/en.js",
+    "name": "en",
+    "src": "src/lib/i18n/locales/en.json",
+    "isDynamicEntry": true
+  },
   "src/lib/i18n/locales/fr.json": {
     "file": "chunks/fr.js",
     "name": "fr",
@@ -436,7 +443,7 @@
       "_Navigation.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.CHfDqByQ.css",
+      "_app/immutable/assets/_page.1a00lk2c.css",
       "_app/immutable/assets/SectionTeams.BcxjAFvG.css"
     ]
   },

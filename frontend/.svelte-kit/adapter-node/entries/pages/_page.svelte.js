@@ -1,6 +1,6 @@
 import { e as ensure_array_like, b as attr_class, c as attr, a as store_get, u as unsubscribe_stores, d as bind_props, f as stringify, g as attr_style, h as head } from "../../chunks/index2.js";
 import { U as fallback } from "../../chunks/utils2.js";
-import { $ as $format, a as $locale } from "../../chunks/runtime.js";
+import { $ as $format } from "../../chunks/runtime.js";
 import { e as escape_html } from "../../chunks/context.js";
 import { F as Footer } from "../../chunks/Footer.js";
 import "@sveltejs/kit/internal";
@@ -169,7 +169,6 @@ function Externe($$renderer, $$props) {
     ];
     let pageUrl = fallback($$props["pageUrl"], "https://www.facebook.com/OlympiquePoznan");
     let currentSlide = 0;
-    store_get($$store_subs ??= {}, "$locale", $locale) === "pl" ? "pl_PL" : "fr_FR";
     $$renderer2.push(`<section class="combined-section svelte-vo9vdt"><div class="container svelte-vo9vdt"><div class="shop-column svelte-vo9vdt"><div class="text-content svelte-vo9vdt"><h2 class="svelte-vo9vdt">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("shop.banner.title"))}</h2> <button class="shop-btn svelte-vo9vdt">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("shop.banner.cta"))}</button></div> <div class="slider svelte-vo9vdt"><div class="slides svelte-vo9vdt"${attr_style(`transform: translateX(-${stringify(currentSlide * 100)}%)`)}><!--[-->`);
     const each_array = ensure_array_like(shopImages);
     for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
@@ -189,12 +188,7 @@ function Externe($$renderer, $$props) {
       each_array_1[index];
       $$renderer2.push(`<button${attr_class("indicator svelte-vo9vdt", void 0, { "active": currentSlide === index })}${attr("aria-label", `Voir produit ${stringify(index + 1)}`)}></button>`);
     }
-    $$renderer2.push(`<!--]--></div></div></div> <div class="facebook-column svelte-vo9vdt"><h2 class="svelte-vo9vdt">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("facebook.latestPosts"))}</h2> <p class="facebook-subtitle svelte-vo9vdt">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("facebook.followDescription"))}</p> `);
-    {
-      $$renderer2.push("<!--[!-->");
-      $$renderer2.push(`<div class="loading svelte-vo9vdt"><p>⏳ ${escape_html(store_get($$store_subs ??= {}, "$_", $format)("common.loading"))}</p></div>`);
-    }
-    $$renderer2.push(`<!--]--></div></div></section>`);
+    $$renderer2.push(`<!--]--></div></div></div> <div class="facebook-column svelte-vo9vdt"><h2 class="svelte-vo9vdt">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("facebook.latestPosts"))}</h2> <p class="facebook-subtitle svelte-vo9vdt">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("facebook.followDescription"))}</p> <div class="facebook-card svelte-vo9vdt"><div class="facebook-header svelte-vo9vdt"><div class="facebook-logo svelte-vo9vdt"><svg viewBox="0 0 24 24" fill="currentColor" class="svelte-vo9vdt"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></div> <div class="page-info svelte-vo9vdt"><h3 class="svelte-vo9vdt">Olympique Poznań</h3> <p class="svelte-vo9vdt">@OlympiquePoznan</p></div></div> <div class="facebook-content svelte-vo9vdt"><div class="cover-image svelte-vo9vdt"><img src="/logo.png" alt="Olympique Poznań" class="svelte-vo9vdt"/></div> <div class="facebook-description svelte-vo9vdt"><p class="svelte-vo9vdt">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("footer.description"))}</p></div> <div class="facebook-stats svelte-vo9vdt"><div class="stat svelte-vo9vdt"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="svelte-vo9vdt"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> <span class="svelte-vo9vdt">1.2K+</span></div> <div class="stat svelte-vo9vdt"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="svelte-vo9vdt"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg> <span class="svelte-vo9vdt">Followers</span></div></div></div> <button class="facebook-cta svelte-vo9vdt"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="svelte-vo9vdt"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg> ${escape_html(store_get($$store_subs ??= {}, "$_", $format)("facebook.viewOnFacebook"))}</button></div></div></div></section>`);
     if ($$store_subs) unsubscribe_stores($$store_subs);
     bind_props($$props, { pageUrl });
   });

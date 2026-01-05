@@ -15,7 +15,7 @@ function Navigation2($$renderer, $$props) {
     let open = false;
     let visible = false;
     let openDropdown = null;
-    $$renderer2.push(`<nav${attr_class("nav svelte-12zdypz", void 0, { "visible": visible })}><div class="nav-container svelte-12zdypz"><a href="/" class="logo-container svelte-12zdypz"><img src="/logo.png" alt="Logo Olympique Poznań" class="logo-olympique-poznan svelte-12zdypz"/></a> <div class="nav-links svelte-12zdypz"><a href="https://olympique.pl/" class="nav-link shop-link svelte-12zdypz" style="animation-delay: 0.2s">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("nav.shop"))} <span class="new-badge svelte-12zdypz"><span class="badge-text svelte-12zdypz">NEW</span> <span class="shine svelte-12zdypz"></span></span></a> <div class="dropdown svelte-12zdypz" style="animation-delay: 0.3s" role="group"><a href="/club" class="nav-link dropdown-trigger svelte-12zdypz">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("nav.club"))} `);
+    $$renderer2.push(`<nav${attr_class("nav svelte-12zdypz", void 0, { "visible": visible })}><div class="nav-container svelte-12zdypz"><a href="/" class="logo-container svelte-12zdypz"><img src="/logo.png" alt="Logo Olympique Poznań" class="logo-olympique-poznan svelte-12zdypz"/></a> <a href="/" class="logo-container svelte-12zdypz"><img src="/home.png" alt="Logo Home" class="logo-home svelte-12zdypz"/></a> <div class="nav-links svelte-12zdypz"><a href="https://olympique.pl/" class="nav-link shop-link svelte-12zdypz" style="animation-delay: 0.2s">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("nav.shop"))} <span class="new-badge svelte-12zdypz"><span class="badge-text svelte-12zdypz">NEW</span> <span class="shine svelte-12zdypz"></span></span></a> <div class="dropdown svelte-12zdypz" style="animation-delay: 0.3s" role="group"><a href="/club" class="nav-link dropdown-trigger svelte-12zdypz">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("nav.club"))} `);
     Chevron_down($$renderer2, { size: 16 });
     $$renderer2.push(`<!----></a> `);
     {
@@ -31,7 +31,9 @@ function Navigation2($$renderer, $$props) {
       "active": store_get($$store_subs ??= {}, "$locale", $locale) === "fr"
     })} aria-label="Français">FR</button> <span class="separator svelte-12zdypz">|</span> <button${attr_class("lang-btn svelte-12zdypz", void 0, {
       "active": store_get($$store_subs ??= {}, "$locale", $locale) === "pl"
-    })} aria-label="Polski">PL</button></div> `);
+    })} aria-label="Polski">PL</button> <span class="separator svelte-12zdypz">|</span> <button${attr_class("lang-btn svelte-12zdypz", void 0, {
+      "active": store_get($$store_subs ??= {}, "$locale", $locale) === "en"
+    })} aria-label="English">EN</button></div> `);
     if (store_get($$store_subs ??= {}, "$user", user)) {
       $$renderer2.push("<!--[-->");
       $$renderer2.push(`<div class="user-info svelte-12zdypz">`);
