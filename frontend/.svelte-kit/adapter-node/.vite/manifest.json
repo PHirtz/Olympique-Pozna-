@@ -9,9 +9,9 @@
       "_environment.js"
     ]
   },
-  "_Footer.BXR3axXK.css": {
-    "file": "_app/immutable/assets/Footer.BXR3axXK.css",
-    "src": "_Footer.BXR3axXK.css"
+  "_Footer.DmUUcsfW.css": {
+    "file": "_app/immutable/assets/Footer.DmUUcsfW.css",
+    "src": "_Footer.DmUUcsfW.css"
   },
   "_Footer.js": {
     "file": "chunks/Footer.js",
@@ -26,7 +26,7 @@
       "_x.js"
     ],
     "css": [
-      "_app/immutable/assets/Footer.BXR3axXK.css"
+      "_app/immutable/assets/Footer.DmUUcsfW.css"
     ]
   },
   "_Navigation.Dd_X-4Nt.css": {
@@ -539,7 +539,7 @@
       "_state.svelte.js"
     ],
     "css": [
-      "_app/immutable/assets/Footer.BXR3axXK.css"
+      "_app/immutable/assets/Footer.DmUUcsfW.css"
     ]
   },
   "src/routes/club/about/+page.svelte": {

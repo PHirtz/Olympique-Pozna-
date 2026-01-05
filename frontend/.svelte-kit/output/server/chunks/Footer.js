@@ -250,7 +250,7 @@ function Footer($$renderer, $$props) {
       $$renderer2.push("<!--[-->");
       $$renderer2.push(`<div class="sponsors-loading svelte-1s9pw74"><div class="mini-spinner svelte-1s9pw74"></div></div>`);
     }
-    $$renderer2.push(`<!--]--></div></div> <div class="footer-bottom svelte-1s9pw74"><div class="footer-bottom-container svelte-1s9pw74"><p class="svelte-1s9pw74">© ${escape_html((/* @__PURE__ */ new Date()).getFullYear())} Kamiicode &amp; Olympique Poznań. ${escape_html(store_get($$store_subs ??= {}, "$_", $format)("footer.rights"))}</p> <div class="footer-legal svelte-1s9pw74"><a href="/mentions-legales" class="svelte-1s9pw74">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("footer.legalNotice"))}</a> <span class="svelte-1s9pw74">•</span> <button type="button" class="svelte-1s9pw74">Politique de confidentialité</button> <span class="svelte-1s9pw74">•</span> <a href="/cgv" class="svelte-1s9pw74">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("footer.terms"))}</a></div></div></div></footer>`);
+    $$renderer2.push(`<!--]--></div></div> <div class="footer-bottom svelte-1s9pw74"><div class="footer-bottom-container svelte-1s9pw74"><p class="svelte-1s9pw74">© ${escape_html((/* @__PURE__ */ new Date()).getFullYear())} Kamiicode &amp; Olympique Poznań. ${escape_html(store_get($$store_subs ??= {}, "$_", $format)("footer.rights"))}</p></div></div></footer>`);
     if ($$store_subs) unsubscribe_stores($$store_subs);
   });
 }
