@@ -133,15 +133,6 @@
   <div class="footer-bottom">
     <div class="footer-bottom-container">
       <p>&copy; {new Date().getFullYear()} Kamiicode & Olympique Poznań. {$_('footer.rights')}</p>
-      <div class="footer-legal">
-        <a href="/mentions-legales">{$_('footer.legalNotice')}</a>
-        <span>•</span>
-        <button type="button" on:click={() => goto('/privacy')}>
-          Politique de confidentialité
-        </button>
-        <span>•</span>
-        <a href="/cgv">{$_('footer.terms')}</a>
-      </div>
     </div>
   </div>
 </footer>
@@ -413,36 +404,6 @@
     margin: 0;
   }
 
-  .footer-legal {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .footer-legal a,
-  .footer-legal button {
-    color: #8a8a9f;
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: color 0.2s;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    font-family: inherit;
-  }
-
-  .footer-legal a:hover,
-  .footer-legal button:hover {
-    color: #667eea;
-  }
-
-  .footer-legal span {
-    color: #8a8a9f;
-  }
-
   /* ========================================
      TABLET (640px+)
      ======================================== */
@@ -488,10 +449,6 @@
       flex-direction: row;
       justify-content: space-between;
       padding: 0 2rem;
-    }
-
-    .footer-legal {
-      justify-content: flex-end;
     }
   }
 
