@@ -5,7 +5,7 @@
 
 <script>
   import { _ } from 'svelte-i18n';
-  import Navigation from '$lib/components/ui/Navigation.svelte';
+  import Navigation2 from '$lib/components/ui/Navigation2.svelte';
   import Footer from '$lib/components/ui/Footer.svelte';
   import { Mail, User, MessageSquare, Send } from 'lucide-svelte';
   import { onMount } from 'svelte';
@@ -62,7 +62,7 @@
   };
 </script>
 
-<Navigation {data} />
+<Navigation2 {data} />
 
 <div class="contact-page">
   <!-- Hero Section -->

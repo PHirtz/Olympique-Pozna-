@@ -11,7 +11,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Créer les dossiers d'upload s'ils n'existent pas
-const uploadsDir = path.join(__dirname, '..', 'public', 'uploads');
+const uploadsDir = path.join(__dirname, '..', '..', 'public', 'uploads');
 const sponsorsDir = path.join(uploadsDir, 'sponsors');
 const playersDir = path.join(uploadsDir, 'players');
 

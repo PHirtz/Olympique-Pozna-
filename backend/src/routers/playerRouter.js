@@ -59,39 +59,47 @@ router.get('/',
         ? 'WHERE ' + whereConditions.join(' AND ') 
         : '';
 
-      // Récupérer les joueurs avec infos de l'équipe
-      const [players] = await db.query(`
-        SELECT 
-          p.*,
-          t.name as teamName,
-          t.name_pl as teamNamePl,
-          t.category as teamCategory
-        FROM players p
-        LEFT JOIN teams t ON p.team_id = t.id
-        ${whereClause}
-        ORDER BY t.name, p.last_name, p.first_name
-        LIMIT :limit OFFSET :offset
-      `, { ...replacements, limit: parseInt(limit), offset: parseInt(offset) });
+    // Récupérer les joueurs avec infos de l'équipe
+    const players = await db.query(`
+      SELECT 
+        p.*,
+        t.name as teamName,
+        t.name_pl as teamNamePl,
+        t.category as teamCategory
+      FROM players p
+      LEFT JOIN teams t ON p.team_id = t.id
+      ${whereClause}
+      ORDER BY t.name, p.last_name, p.first_name
+      LIMIT ? OFFSET ?
+    `, { 
+      replacements: [...Object.values(replacements), parseInt(limit), parseInt(offset)],
+      type: db.QueryTypes.SELECT 
+    });
 
-      // Compter le total
-      const [[{ total }]] = await db.query(`
-        SELECT COUNT(*) as total
-        FROM players p
-        ${whereClause}
-      `, replacements);
+    // Compter le total
+    const countResult = await db.query(`
+      SELECT COUNT(*) as total
+      FROM players p
+      ${whereClause}
+    `, { 
+      replacements: Object.values(replacements),
+      type: db.QueryTypes.SELECT 
+    });
 
-      res.json({
-        success: true,
-        data: {
-          players: players.map(formatPlayer),
-          pagination: {
-            total: parseInt(total),
-            page: parseInt(page),
-            limit: parseInt(limit),
-            totalPages: Math.ceil(total / limit)
-          }
+    const total = countResult && countResult.length > 0 ? countResult[0].total : 0;
+
+    res.json({
+      success: true,
+      data: {
+        players: players.map(formatPlayer),
+        pagination: {
+          total: parseInt(total),
+          page: parseInt(page),
+          limit: parseInt(limit),
+          totalPages: Math.ceil(total / limit)
         }
-      });
+      }
+    });
     } catch (error) {
       console.error('Erreur récupération joueurs:', error);
       res.status(500).json({ 

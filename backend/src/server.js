@@ -3,15 +3,20 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 import db from './database/db.js';
 import routers from './routers/indexRouter.js';
 
 // Import models and associations
 import './models/associations.js';
-
 import './models/contact.model.js';
 
 dotenv.config();
+
+// Pour servir les fichiers statiques
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,6 +30,10 @@ app.use(cors({
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+
+// ========== SERVIR LES FICHIERS STATIQUES ==========
+app.use('/uploads', express.static(join(__dirname, '../public/uploads')));
 
 // Routes
 app.get('/', (req, res) => {
