@@ -158,7 +158,7 @@
             <div class="info-card">
               <Mail size={32} />
               <h3>{$_('contact.info.email.title')}</h3>
-              <a href="mailto:s.wutezi@wutezi.com">s.wutezi@wutezi.com</a>
+              <a href="mailto:olympique.poznan@wielkopolskizpn.pl">olympique.poznan@wielkopolskizpn.pl</a>
             </div>
 
             <div class="info-card">
