@@ -37,9 +37,9 @@
       "_utils2.js"
     ]
   },
-  "_Navigation.CJqfd4kX.css": {
-    "file": "_app/immutable/assets/Navigation.CJqfd4kX.css",
-    "src": "_Navigation.CJqfd4kX.css"
+  "_Navigation.D3LhcijO.css": {
+    "file": "_app/immutable/assets/Navigation.D3LhcijO.css",
+    "src": "_Navigation.D3LhcijO.css"
   },
   "_Navigation.js": {
     "file": "chunks/Navigation.js",
@@ -56,7 +56,7 @@
       "_context.js"
     ],
     "css": [
-      "_app/immutable/assets/Navigation.CJqfd4kX.css"
+      "_app/immutable/assets/Navigation.D3LhcijO.css"
     ]
   },
   "_Navigation2.BS65n8eL.css": {
