@@ -241,11 +241,11 @@
         <div class="contact-details">
           <a href="tel:669091910" class="contact-link">
             <Phone size={20} />
-            <span>06 XX XX XX XX</span>
+            <span>+48 669 091 910</span>
           </a>
-          <a href="mailto:os.wutezi@wutezi.com<" class="contact-link">
+          <a href="mailto:olympique.poznan@wielkopolskizpn.pl" class="contact-link">
             <Mail size={20} />
-            <span>s.wutezi@wutezi.com</span>
+            <span>olympique.poznan@wielkopolskizpn.pl</span>
           </a>
         </div>
       </div>

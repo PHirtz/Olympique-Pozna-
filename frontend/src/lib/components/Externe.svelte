@@ -68,7 +68,7 @@
   ];
 
   // Configuration Facebook
-  export let pageUrl = 'https://www.facebook.com/OlympiquePoznan';
+  export let pageUrl = 'https://www.facebook.com/OlympiquePoz';
   
   let currentSlide = 0;
   let interval;

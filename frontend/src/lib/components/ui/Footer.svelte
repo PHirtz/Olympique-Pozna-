@@ -59,7 +59,7 @@
         <li><a href="/club">{$_('nav.club')}</a></li>
         <li><a href="/teams">{$_('nav.teams')}</a></li>
         <li><a href="/camps">{$_('nav.camps')}</a></li>
-        <li><a href="https://olympique.pl/">{$_('nav.shop')}</a></li>
+        <li><a href="https://olympique.pl/" target="_blank" rel="noopener noreferrer">{$_('nav.shop')}</a></li>
         <li><a href="/contact">{$_('nav.contact')}</a></li>
       </ul>
     </div>
