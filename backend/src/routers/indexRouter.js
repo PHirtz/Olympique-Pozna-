@@ -1,6 +1,6 @@
 import express from 'express';
 import { validate } from '../middlewares/validate.middleware.js';
-import { authMiddleware, requireRole } from '../middlewares/auth.middleware.js'; // ← NOUVEAU
+import { authMiddleware, requireRole } from '../middlewares/auth.middleware.js';
 
 // Import controllers
 import userController from '../controllers/user.controller.js';
@@ -34,7 +34,20 @@ import {
 } from '../schemas/others.schema.js';
 import { contactCreateSchema } from '../schemas/contact.schema.js';
 
+import playerRouter from './playerRouter.js';
+
 const router = express.Router();
+
+// ========== STATIC FILES (UPLOADS) ==========
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// ========== PLAYER ROUTES ==========
+
+router.use('/players', playerRouter);
 
 // ========== USER ROUTES ==========
 const userRouter = express.Router();

@@ -8,7 +8,7 @@ import "./utils.js";
 import "@sveltejs/kit/internal/server";
 import "./state.svelte.js";
 /* empty css                                     */
-import { I as Icon } from "./x.js";
+import { I as Icon } from "./Icon.js";
 function Facebook($$renderer, $$props) {
   const $$sanitized_props = sanitize_props($$props);
   const iconNode = [

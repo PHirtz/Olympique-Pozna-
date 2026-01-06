@@ -5,7 +5,8 @@ import "./exports.js";
 import "./utils.js";
 import "@sveltejs/kit/internal/server";
 import "./state.svelte.js";
-import { I as Icon, X } from "./x.js";
+import { X } from "./x.js";
+import { I as Icon } from "./Icon.js";
 import { e as escape_html } from "./context.js";
 function Save($$renderer, $$props) {
   const $$sanitized_props = sanitize_props($$props);

@@ -2,7 +2,7 @@ import { j as sanitize_props, k as spread_props, s as slot, h as head, a as stor
 import { $ as $format } from "../../../../chunks/runtime.js";
 import { N as Navigation2 } from "../../../../chunks/Navigation2.js";
 import { I as Instagram, b as Facebook, F as Footer } from "../../../../chunks/Footer.js";
-import { I as Icon } from "../../../../chunks/x.js";
+import { I as Icon } from "../../../../chunks/Icon.js";
 import { U as Users } from "../../../../chunks/users.js";
 import { H as Heart } from "../../../../chunks/heart.js";
 import { T as Target } from "../../../../chunks/target.js";

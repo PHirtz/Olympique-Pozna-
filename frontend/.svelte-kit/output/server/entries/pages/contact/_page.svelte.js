@@ -8,7 +8,7 @@ import "../../../chunks/utils.js";
 import "@sveltejs/kit/internal/server";
 import "../../../chunks/state.svelte.js";
 import { U as User } from "../../../chunks/user.js";
-import { I as Icon } from "../../../chunks/x.js";
+import { I as Icon } from "../../../chunks/Icon.js";
 import { S as Send } from "../../../chunks/send.js";
 import { e as escape_html } from "../../../chunks/context.js";
 function Message_square($$renderer, $$props) {

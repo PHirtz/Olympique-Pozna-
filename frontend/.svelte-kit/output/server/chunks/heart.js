@@ -1,5 +1,5 @@
 import { j as sanitize_props, k as spread_props, s as slot } from "./index2.js";
-import { I as Icon } from "./x.js";
+import { I as Icon } from "./Icon.js";
 function Heart($$renderer, $$props) {
   const $$sanitized_props = sanitize_props($$props);
   const iconNode = [

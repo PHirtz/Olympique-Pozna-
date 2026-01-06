@@ -1,7 +1,7 @@
 import { g as getToken, l as logout } from "../../chunks/auth.js";
 import { D as DEV } from "../../chunks/false.js";
 const browser = DEV;
-const PUBLIC_API_URL = "http://localhost:5000/api";
+const PUBLIC_API_URL = "https://olympiquepoznan.pl/api";
 async function apiRequest(endpoint, options = {}) {
   const url = `${PUBLIC_API_URL}${endpoint}`;
   const token = getToken();

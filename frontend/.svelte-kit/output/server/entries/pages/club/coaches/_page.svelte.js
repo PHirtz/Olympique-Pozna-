@@ -2,7 +2,7 @@ import { j as sanitize_props, k as spread_props, s as slot, e as ensure_array_li
 import { $ as $format } from "../../../../chunks/runtime.js";
 import { N as Navigation } from "../../../../chunks/Navigation.js";
 import { U as fallback } from "../../../../chunks/utils2.js";
-import { I as Icon } from "../../../../chunks/x.js";
+import { I as Icon } from "../../../../chunks/Icon.js";
 import { e as escape_html } from "../../../../chunks/context.js";
 import { F as Footer } from "../../../../chunks/Footer.js";
 import { A as Award } from "../../../../chunks/award.js";
