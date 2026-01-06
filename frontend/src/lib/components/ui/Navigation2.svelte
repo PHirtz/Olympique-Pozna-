@@ -151,8 +151,22 @@
             <a href="/club/about" class="dropdown-item" role="menuitem">{$_('club.about')}</a>
             <a href="/club/coaches" class="dropdown-item" role="menuitem">{$_('club.coaches')}</a>
             <a href="/club/partners" class="dropdown-item" role="menuitem">{$_('club.partners')}</a>
-            <a href="https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit?tab=t.0" class="dropdown-item" role="menuitem">{$_('club.status')}</a>
-            <a href="https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit?tab=t.0" class="dropdown-item" role="menuitem">{$_('club.documents.title')}</a>
+                <a 
+                  href="https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit?tab=t.0" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="dropdown-item external-link"
+                >
+                  {$_('club.status')}
+            </a>
+            <a 
+              href="https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit"
+              class="dropdown-item external-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {$_('club.documents.title')}
+            </a>
           </div>
         {/if}
       </div>
@@ -265,9 +279,14 @@
         {$_('nav.camps')}
       </a>
       
-      <a href="https://drive.google.com/drive/folders/1Qm9yOZJ9_sKRuJ70V8KSa1FrcSgxwXRW" class="nav-link" style="animation-delay: 0.1s">
-        {$_('nav.photo')}
-      </a>
+      <a 
+          href="https://drive.google.com/drive/folders/1Qm9yOZJ9_sKRuJ70V8KSa1FrcSgxwXRW"
+          class="nav-link external-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {$_('nav.photo')}
+        </a>
     </div>
 
     <!-- Actions à droite (desktop) -->
@@ -379,20 +398,20 @@
                   href="https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit?tab=t.0" 
                   target="_blank"
                   rel="noopener noreferrer"
-                  on:click={close}
+                  class="external-link"
                 >
                   {$_('club.status')}
                 </a>
               </li>
               <li>
-                <a 
-                  href="https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit?tab=t.0" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  on:click={close}
-                >
-                  {$_('club.documents.title')}
-                </a>
+              <a 
+              href="https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit"
+              class="dropdown-item external-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              >
+              {$_('club.documents.title')}
+            </a>
               </li>
             </ul>
           {/if}
@@ -440,7 +459,15 @@
           {/if}
         </li>
         <li><a href="/camps" on:click={close}>{$_('nav.camps')}</a></li>
-        <li><a href="https://drive.google.com/drive/folders/1Qm9yOZJ9_sKRuJ70V8KSa1FrcSgxwXRW" on:click={close}>{$_('nav.photo')}</a></li>          
+        <li><a 
+          href="https://drive.google.com/drive/folders/1Qm9yOZJ9_sKRuJ70V8KSa1FrcSgxwXRW"
+          class="nav-link external-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {$_('nav.photo')}
+        </a>
+        </li>  
       </ul>
     </nav>
 
@@ -503,6 +530,12 @@
 {/if}
 
 <style>
+
+  .external-link::after {
+  content: "➮";
+  font-size: 0.75em;
+  margin-left: 0.25rem;
+  }
 /* ========================================
    BASE : MOBILE FIRST (320px+)
    ======================================== */

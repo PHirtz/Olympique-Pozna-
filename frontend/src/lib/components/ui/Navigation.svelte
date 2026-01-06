@@ -177,7 +177,7 @@
                   href="https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit?tab=t.0" 
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="dropdown-itemexternal-link"
+                  class="dropdown-item external-link"
                 >
                   {$_('club.status')}
             </a>
@@ -542,7 +542,7 @@
 
 <style>
   .external-link::after {
-  content: "↗";
+  content: "➮";
   font-size: 0.75em;
   margin-left: 0.25rem;
 }

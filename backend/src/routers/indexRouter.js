@@ -2,6 +2,8 @@ import express from 'express';
 import { validate } from '../middlewares/validate.middleware.js';
 import { authMiddleware, requireRole } from '../middlewares/auth.middleware.js';
 
+import playerRouter from './playerRouter.js';
+
 // Import controllers
 import userController from '../controllers/user.controller.js';
 import campController from '../controllers/camp.controller.js';
@@ -34,9 +36,8 @@ import {
 } from '../schemas/others.schema.js';
 import { contactCreateSchema } from '../schemas/contact.schema.js';
 
-import playerRouter from './playerRouter.js';
-
 const router = express.Router();
+
 
 // ========== STATIC FILES (UPLOADS) ==========
 import { fileURLToPath } from 'url';
@@ -44,6 +45,9 @@ import { dirname, join } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+// Servir les fichiers uploadés
+router.use('/uploads', express.static(join(__dirname, '../../public/uploads')));
 
 // ========== PLAYER ROUTES ==========
 
