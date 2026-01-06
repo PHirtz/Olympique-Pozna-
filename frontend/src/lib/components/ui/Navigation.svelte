@@ -1163,7 +1163,7 @@
     padding: 0.4rem 0.6rem;
     background: rgba(102, 126, 234, 0.1);
     border-radius: 0.5rem;
-    color: rgba(102, 126, 234, var(--text-opacity, 0.7));
+    color: rgb(var(--text-r, 255), var(--text-g, 255), var(--text-b, 255));
     font-weight: 600;
     white-space: nowrap;
     font-size: 0.85rem;

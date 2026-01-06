@@ -37,9 +37,9 @@
       "_utils2.js"
     ]
   },
-  "_Navigation.Dd_X-4Nt.css": {
-    "file": "_app/immutable/assets/Navigation.Dd_X-4Nt.css",
-    "src": "_Navigation.Dd_X-4Nt.css"
+  "_Navigation.CJqfd4kX.css": {
+    "file": "_app/immutable/assets/Navigation.CJqfd4kX.css",
+    "src": "_Navigation.CJqfd4kX.css"
   },
   "_Navigation.js": {
     "file": "chunks/Navigation.js",
@@ -56,12 +56,12 @@
       "_context.js"
     ],
     "css": [
-      "_app/immutable/assets/Navigation.Dd_X-4Nt.css"
+      "_app/immutable/assets/Navigation.CJqfd4kX.css"
     ]
   },
-  "_Navigation2.BOYvF0Oc.css": {
-    "file": "_app/immutable/assets/Navigation2.BOYvF0Oc.css",
-    "src": "_Navigation2.BOYvF0Oc.css"
+  "_Navigation2.BS65n8eL.css": {
+    "file": "_app/immutable/assets/Navigation2.BS65n8eL.css",
+    "src": "_Navigation2.BS65n8eL.css"
   },
   "_Navigation2.js": {
     "file": "chunks/Navigation2.js",
@@ -78,7 +78,7 @@
       "_context.js"
     ],
     "css": [
-      "_app/immutable/assets/Navigation2.BOYvF0Oc.css"
+      "_app/immutable/assets/Navigation2.BS65n8eL.css"
     ]
   },
   "_SectionTeams.BcxjAFvG.css": {
@@ -95,7 +95,7 @@
       "_utils.js",
       "_state.svelte.js",
       "_x.js",
-      "_Icon.js",
+      "_save.js",
       "_context.js"
     ],
     "css": [
@@ -205,6 +205,14 @@
       "_index.js"
     ]
   },
+  "_save.js": {
+    "file": "chunks/save.js",
+    "name": "save",
+    "imports": [
+      "_index2.js",
+      "_Icon.js"
+    ]
+  },
   "_send.js": {
     "file": "chunks/send.js",
     "name": "send",
@@ -240,6 +248,14 @@
   "_target.js": {
     "file": "chunks/target.js",
     "name": "target",
+    "imports": [
+      "_index2.js",
+      "_Icon.js"
+    ]
+  },
+  "_upload.js": {
+    "file": "chunks/upload.js",
+    "name": "upload",
     "imports": [
       "_index2.js",
       "_Icon.js"
@@ -486,7 +502,61 @@
     "src": "src/routes/admin/+page.svelte",
     "isEntry": true,
     "css": [
-      "_app/immutable/assets/_page.BdZpmoma.css"
+      "_app/immutable/assets/_page.DLslOL44.css"
+    ]
+  },
+  "src/routes/admin/players/+page.svelte": {
+    "file": "entries/pages/admin/players/_page.svelte.js",
+    "name": "entries/pages/admin/players/_page.svelte",
+    "src": "src/routes/admin/players/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index2.js",
+      "_users.js",
+      "_Icon.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.BsFe1vCU.css"
+    ]
+  },
+  "src/routes/admin/players/[id]/edit/+page.svelte": {
+    "file": "entries/pages/admin/players/_id_/edit/_page.svelte.js",
+    "name": "entries/pages/admin/players/_id_/edit/_page.svelte",
+    "src": "src/routes/admin/players/[id]/edit/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index2.js",
+      "_exports.js",
+      "_utils.js",
+      "_state.svelte.js",
+      "_users.js",
+      "_upload.js",
+      "_x.js",
+      "_save.js",
+      "_context.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.sGDW2Aet.css"
+    ]
+  },
+  "src/routes/admin/players/create/+page.svelte": {
+    "file": "entries/pages/admin/players/create/_page.svelte.js",
+    "name": "entries/pages/admin/players/create/_page.svelte",
+    "src": "src/routes/admin/players/create/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index2.js",
+      "_exports.js",
+      "_utils.js",
+      "_state.svelte.js",
+      "_users.js",
+      "_upload.js",
+      "_x.js",
+      "_save.js",
+      "_context.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.OGrbYbDc.css"
     ]
   },
   "src/routes/admin/sponsors/[id]/edit/+page.svelte": {
@@ -734,7 +804,7 @@
     "imports": [
       "_index2.js",
       "_runtime.js",
-      "_Navigation.js",
+      "_Navigation2.js",
       "_Footer.js",
       "_exports.js",
       "_utils.js",

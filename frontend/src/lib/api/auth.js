@@ -1,5 +1,10 @@
 import { apiRequest } from './client.js';
-import { loginUser as setLoginUser, logout as clearAuth, getToken, user } from '$lib/stores/auth';
+import {
+  loginUser as setLoginUser,
+  logout as clearAuth,
+  getToken,
+  user
+} from '$lib/stores/auth';
 import { get } from 'svelte/store';
 
 /**
@@ -7,12 +12,11 @@ import { get } from 'svelte/store';
  * @param {Object} userData - Données utilisateur
  */
 export async function register(userData) {
-  const response = await apiRequest('/users/register', {
+  // ✅ route correcte côté backend
+  return apiRequest('/users', {
     method: 'POST',
     body: JSON.stringify(userData),
   });
-  
-  return response;
 }
 
 /**
@@ -26,8 +30,7 @@ export async function login(username, password) {
     body: JSON.stringify({ username, password }),
   });
 
-  if (response.success && response.data) {
-    // Stocker l'utilisateur et le token
+  if (response?.success && response?.data) {
     setLoginUser(response.data.user, response.data.token);
   }
 
@@ -44,7 +47,6 @@ export async function logout() {
 
 /**
  * Vérifier si l'utilisateur est authentifié
- * @returns {boolean}
  */
 export function isAuthenticated() {
   return !!getToken();
@@ -52,7 +54,6 @@ export function isAuthenticated() {
 
 /**
  * Vérifier si l'utilisateur est admin
- * @returns {boolean}
  */
 export function isAdmin() {
   const currentUser = get(user);
@@ -61,7 +62,6 @@ export function isAdmin() {
 
 /**
  * Récupérer l'utilisateur actuel
- * @returns {Object|null}
  */
 export function getCurrentUser() {
   return get(user);

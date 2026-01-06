@@ -2,7 +2,7 @@
 
 export const index = 8;
 let component_cache;
-export const component = async () => component_cache ??= (await import('../entries/pages/club/_page.svelte.js')).default;
-export const imports = ["_app/immutable/nodes/8.CzTKiaKF.js","_app/immutable/chunks/D-Zhd6ZT.js","_app/immutable/chunks/CpzJ3qQk.js","_app/immutable/chunks/O3BCfsb6.js","_app/immutable/chunks/NnfbyZn6.js","_app/immutable/chunks/DLIu55oR.js","_app/immutable/chunks/CdieeoNT.js","_app/immutable/chunks/BHvbcu51.js","_app/immutable/chunks/NKF_jTli.js","_app/immutable/chunks/BVWvtNzj.js","_app/immutable/chunks/C0q6uhCM.js","_app/immutable/chunks/D9oBpOY9.js","_app/immutable/chunks/Bun_Vau5.js","_app/immutable/chunks/B8Cme7ZM.js","_app/immutable/chunks/BgfPmvqu.js","_app/immutable/chunks/Ciq-Lzyx.js","_app/immutable/chunks/CUs-5Hm4.js","_app/immutable/chunks/YIdFPYzK.js","_app/immutable/chunks/BQtgZ_ru.js","_app/immutable/chunks/DB7QSW03.js"];
-export const stylesheets = ["_app/immutable/assets/Navigation2.BwudpUge.css","_app/immutable/assets/Footer.DmUUcsfW.css"];
+export const component = async () => component_cache ??= (await import('../entries/pages/admin/sponsors/_id_/edit/_page.svelte.js')).default;
+export const imports = ["_app/immutable/nodes/8.CmIF8kcI.js","_app/immutable/chunks/ClJk8BT9.js","_app/immutable/chunks/ZI_zDGFJ.js","_app/immutable/chunks/1A2Anh5z.js","_app/immutable/chunks/CUvkkpnr.js","_app/immutable/chunks/dKFdvfCl.js","_app/immutable/chunks/cvZuFovX.js","_app/immutable/chunks/BVsfWQA1.js","_app/immutable/chunks/D2QY8sKc.js","_app/immutable/chunks/f0ANnpuX.js","_app/immutable/chunks/wE-5lYDp.js","_app/immutable/chunks/CXqmAC--.js","_app/immutable/chunks/aPGRaC7W.js","_app/immutable/chunks/BOvlz4Jb.js","_app/immutable/chunks/S5Xovg3P.js","_app/immutable/chunks/D4Caz1gY.js","_app/immutable/chunks/Bs6CiPz4.js","_app/immutable/chunks/CLoaOhKX.js","_app/immutable/chunks/DXSEQRAC.js","_app/immutable/chunks/C_Q_ZZ7P.js"];
+export const stylesheets = ["_app/immutable/assets/SponsorForm.qnJzoxRE.css","_app/immutable/assets/8.BQgefftM.css"];
 export const fonts = [];

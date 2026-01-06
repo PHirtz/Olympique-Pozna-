@@ -1,6 +1,6 @@
 import { j as sanitize_props, k as spread_props, s as slot, h as head, a as store_get, c as attr, u as unsubscribe_stores, d as bind_props } from "../../../chunks/index2.js";
 import { $ as $format } from "../../../chunks/runtime.js";
-import { N as Navigation } from "../../../chunks/Navigation.js";
+import { N as Navigation2 } from "../../../chunks/Navigation2.js";
 import { a as Mail, F as Footer } from "../../../chunks/Footer.js";
 import "@sveltejs/kit/internal";
 import "../../../chunks/exports.js";
@@ -61,7 +61,7 @@ function _page($$renderer, $$props) {
       });
       $$renderer3.push(`<meta name="description"${attr("content", store_get($$store_subs ??= {}, "$_", $format)("contact.metaDescription"))}/>`);
     });
-    Navigation($$renderer2);
+    Navigation2($$renderer2);
     $$renderer2.push(`<!----> <div class="contact-page svelte-1bv7ezn"><section class="hero-contact svelte-1bv7ezn"><div class="hero-content svelte-1bv7ezn"><h1 class="svelte-1bv7ezn">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("contact.hero.title"))}</h1> <p class="hero-subtitle svelte-1bv7ezn">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("contact.hero.subtitle"))}</p></div></section> <main class="main-content"><section class="contact-section"><div class="container svelte-1bv7ezn"><div class="contact-intro svelte-1bv7ezn"><h2 class="svelte-1bv7ezn">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("contact.intro.title"))}</h2> <p class="svelte-1bv7ezn">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("contact.intro.text"))}</p></div> <div class="form-container svelte-1bv7ezn"><form class="contact-form svelte-1bv7ezn"><div class="form-group svelte-1bv7ezn"><label for="name" class="svelte-1bv7ezn">`);
     User($$renderer2, { size: 20 });
     $$renderer2.push(`<!----> ${escape_html(store_get($$store_subs ??= {}, "$_", $format)("contact.form.name"))}*</label> <input type="text" id="name"${attr("value", name)}${attr("placeholder", store_get($$store_subs ??= {}, "$_", $format)("contact.form.namePlaceholder"))} required class="svelte-1bv7ezn"/></div> <div class="form-group svelte-1bv7ezn"><label for="email" class="svelte-1bv7ezn">`);
@@ -108,7 +108,7 @@ function _page($$renderer, $$props) {
     }
     $$renderer2.push(`<!--]--></button></form> <div class="contact-info svelte-1bv7ezn"><div class="info-card svelte-1bv7ezn">`);
     Mail($$renderer2, { size: 32 });
-    $$renderer2.push(`<!----> <h3 class="svelte-1bv7ezn">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("contact.info.email.title"))}</h3> <a href="mailto:s.wutezi@wutezi.com" class="svelte-1bv7ezn">s.wutezi@wutezi.com</a></div> <div class="info-card svelte-1bv7ezn">`);
+    $$renderer2.push(`<!----> <h3 class="svelte-1bv7ezn">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("contact.info.email.title"))}</h3> <a href="mailto:olympique.poznan@wielkopolskizpn.pl" class="svelte-1bv7ezn">olympique.poznan@wielkopolskizpn.pl</a></div> <div class="info-card svelte-1bv7ezn">`);
     Message_square($$renderer2, { size: 32 });
     $$renderer2.push(`<!----> <h3 class="svelte-1bv7ezn">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("contact.info.social.title"))}</h3> <div class="social-links svelte-1bv7ezn"><a href="https://www.facebook.com/OlympiquePoz" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="svelte-1bv7ezn">Facebook</a> <a href="https://www.instagram.com/olympiquepoznan/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="svelte-1bv7ezn">Instagram</a> <a href="https://www.tiktok.com/tag/olympiquepozna%C5%84" target="_blank" rel="noopener noreferrer" aria-label="Tiktok" class="svelte-1bv7ezn">TikTok</a></div></div></div></div></div></section></main></div> `);
     Footer($$renderer2);

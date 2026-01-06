@@ -167,7 +167,7 @@ function Externe($$renderer, $$props) {
         link: ""
       }
     ];
-    let pageUrl = fallback($$props["pageUrl"], "https://www.facebook.com/OlympiquePoznan");
+    let pageUrl = fallback($$props["pageUrl"], "https://www.facebook.com/OlympiquePoz");
     let currentSlide = 0;
     $$renderer2.push(`<section class="combined-section svelte-vo9vdt"><div class="container svelte-vo9vdt"><div class="shop-column svelte-vo9vdt"><div class="text-content svelte-vo9vdt"><h2 class="svelte-vo9vdt">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("shop.banner.title"))}</h2> <button class="shop-btn svelte-vo9vdt">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("shop.banner.cta"))}</button></div> <div class="slider svelte-vo9vdt"><div class="slides svelte-vo9vdt"${attr_style(`transform: translateX(-${stringify(currentSlide * 100)}%)`)}><!--[-->`);
     const each_array = ensure_array_like(shopImages);

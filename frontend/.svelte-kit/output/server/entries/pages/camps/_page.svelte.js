@@ -108,9 +108,9 @@ function _page($$renderer, $$props) {
     }
     $$renderer2.push(`<!--]--></button></form> <div class="contact-info svelte-cff0ph"><h3 class="svelte-cff0ph">Contact direct</h3> <div class="contact-details svelte-cff0ph"><a href="tel:669091910" class="contact-link svelte-cff0ph">`);
     Phone($$renderer2, { size: 20 });
-    $$renderer2.push(`<!----> <span>06 XX XX XX XX</span></a> <a href="mailto:os.wutezi@wutezi.com&lt;" class="contact-link svelte-cff0ph">`);
+    $$renderer2.push(`<!----> <span>+48 669 091 910</span></a> <a href="mailto:olympique.poznan@wielkopolskizpn.pl" class="contact-link svelte-cff0ph">`);
     Mail($$renderer2, { size: 20 });
-    $$renderer2.push(`<!----> <span>s.wutezi@wutezi.com</span></a></div></div></div></section></div> `);
+    $$renderer2.push(`<!----> <span>olympique.poznan@wielkopolskizpn.pl</span></a></div></div></div></section></div> `);
     Footer($$renderer2);
     $$renderer2.push(`<!---->`);
     if ($$store_subs) unsubscribe_stores($$store_subs);
