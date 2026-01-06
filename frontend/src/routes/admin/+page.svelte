@@ -199,9 +199,24 @@
 
       {#if sections.teams}
         <div class="fm-section-content">
-          <p class="fm-empty">Fonctionnalité à venir...</p>
+          <div class="fm-actions">
+            <a href="/admin/players" class="fm-btn fm-btn-primary">
+              <Users size={16} />
+              Gérer les joueurs
+            </a>
+          </div>
+          <p class="fm-empty">Section équipes à venir...</p>
         </div>
       {/if}
+    </div>
+
+    <!-- Section Joueurs -->
+    <div class="fm-section">
+      <a href="/admin/players" class="fm-section-header-link">
+        <Users size={20} />
+        <span>JOUEURS</span>
+        <ChevronRight size={16} style="margin-left: auto;" />
+      </a>
     </div>
 
     <!-- Section Boutique -->
@@ -250,6 +265,28 @@
      ============================================ */
      
   /* Base - Mobile (0px+) */
+
+  .fm-section-header-link {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 0.875rem;
+    background: linear-gradient(180deg, #f8f8f8 0%, #e8e8e8 100%);
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.8125rem;
+    color: #1a4d7a;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: background 0.2s;
+  }
+
+  .fm-section-header-link:hover {
+    background: linear-gradient(180deg, #f0f0f0 0%, #e0e0e0 100%);
+  }
+
   .fm-container {
     max-width: 1400px;
     margin: 0 auto;
