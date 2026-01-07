@@ -4,47 +4,75 @@
 </svelte:head>
 
 <script>
+  import { onMount } from 'svelte';
   import { _ } from 'svelte-i18n';
   import Navigation2 from '$lib/components/ui/Navigation2.svelte';
   import Footer from '$lib/components/ui/Footer.svelte';
   import PlayerModal from '$lib/components/ui/PlayerModal.svelte';
+  import * as playersApi from '$lib/api/players.js';
   
   export let data;
 
   let isModalOpen = false;
   let selectedPlayer = null;
+  let players = [];
+  let loading = true;
+  let error = null;
 
-  // Liste simple des joueurs avec photos
-  const playersData = [
-    { id: '10', photo: '/team/doue/10.JPG' },
-    { id: '28', photo: '/team/doue/28.JPG' },
-    { id: '19', photo: '/team/doue/19.JPG' },
-    { id: '30', photo: '/team/doue/30.JPG' },
-    { id: '54', photo: '/team/doue/54.JPG' },
-    { id: '13', photo: '/team/doue/13.JPG' },
-    { id: '12', photo: '/team/doue/12.JPG' },
-  ];
+  // ID de l'équipe Doué (à adapter selon ta BDD)
+  const DOUE_TEAM_ID = 4;
 
-  // Enrichir avec les traductions
-  $: doue = playersData.map(p => {
-    const playerData = $_(`teams.doue.players.${p.id}`, { default: {} });
-    const position = $_(`teams.doue.positions.${playerData.positionKey || 'pomocnik'}`, { default: 'Milieu de terrain' });
-    
-    return {
-      id: p.id,
-      number: p.id,
-      firstName: playerData.firstName || 'Joueur',
-      lastName: playerData.lastName || p.id,
-      name: playerData.name || `Joueur ${p.id}`,
-      photo: p.photo,
-      position: position,
-      origin: playerData.origin || 'Poznań, Pologne',
-      nickname: playerData.nickname || null,
-      distinctions: playerData.distinctions || []
-    };
+  onMount(async () => {
+    await loadPlayers();
   });
 
-  // Fonction pour ouvrir la modal
+  async function loadPlayers() {
+    try {
+      loading = true;
+      error = null;
+      
+      const response = await playersApi.getPlayersByTeam(DOUE_TEAM_ID);
+      
+      console.log('📦 Response complète:', response);
+      console.log('📦 Response.data:', response.data);
+      console.log('📦 Response.data.players:', response.data?.players);
+      
+      if (response.success && response.data?.players) {
+        players = response.data.players.map(player => ({
+          id: player.id,
+          number: player.jerseyNumber,
+          firstName: player.firstName,
+          lastName: player.lastName,
+          name: `${player.firstName} ${player.lastName}`,
+          photo: player.photoPath || '/team/default-player.jpg',
+          position: player.position,
+          positionPl: player.positionPl,
+          origin: player.nationality,
+          originPl: player.nationalityPl,
+          nickname: player.nickname,
+          birthYear: player.birthYear,
+          distinctions: [
+            player.distinction1,
+            player.distinction2,
+            player.distinction3,
+            player.distinction4,
+            player.distinction5
+          ].filter(Boolean)
+        }));
+        
+        console.log('✅ Joueurs formatés:', players);
+      } else {
+        console.log('⚠️ Pas de joueurs ou response.success est false');
+        players = [];
+      }
+    } catch (err) {
+      console.error('❌ Erreur chargement joueurs:', err);
+      error = 'Impossible de charger les joueurs';
+    } finally {
+      loading = false;
+    }
+  }
+
   function openPlayerModal(player) {
     selectedPlayer = player;
     isModalOpen = true;
@@ -70,34 +98,56 @@
 
   <main class="main-content">
     <div class="container">
-      <div class="teams-grid">
-        {#each doue as player}
-          <!-- Rendre la card cliquable -->
-          <button 
-            class="team-card"
-            on:click={() => openPlayerModal(player)}
-            aria-label="Voir le profil de {player.name}"
-          >
-            <div class="team-image-wrapper">
-              <img 
-                src={player.photo} 
-                alt={player.name} 
-                class="team-photo"
-              />
-            </div>
-            
-            <div class="team-info">
-              <h3>{player.name}</h3>
-              <span class="player-number">#{player.number}</span>
-            </div>
+      {#if loading}
+        <div class="loading-state">
+          <div class="loading-spinner"></div>
+          <p>Chargement de l'équipe...</p>
+        </div>
+      {:else if error}
+        <div class="error-state">
+          <p>{error}</p>
+          <button on:click={loadPlayers} class="btn-retry">
+            Réessayer
           </button>
-        {/each}
-      </div>
+        </div>
+      {:else if players.length === 0}
+        <div class="empty-state">
+          <p>Aucun joueur dans cette équipe pour le moment.</p>
+        </div>
+      {:else}
+        <div class="teams-grid">
+          {#each players as player}
+            <button 
+              class="team-card"
+              on:click={() => openPlayerModal(player)}
+              aria-label="Voir le profil de {player.name}"
+            >
+              <div class="team-image-wrapper">
+                <img 
+                  src={player.photo} 
+                  alt={player.name} 
+                  class="team-photo"
+                  on:error={(e) => {
+                    e.target.src = '/team/default-player.jpg';
+                  }}
+                />
+              </div>
+              
+              <div class="team-info">
+                <h3>{player.name}</h3>
+                {#if player.nickname}
+                  <span class="player-nickname">"{player.nickname}"</span>
+                {/if}
+                <span class="player-number">#{player.number}</span>
+              </div>
+            </button>
+          {/each}
+        </div>
+      {/if}
     </div>
   </main>
 </div>
 
-<!-- Modal du joueur -->
 <PlayerModal
   bind:isOpen={isModalOpen}
   player={selectedPlayer}
@@ -202,6 +252,52 @@
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 2rem;
+  }
+
+  /* Loading, Error, Empty States */
+    .loading-state, .error-state, .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #666;
+  }
+
+  .loading-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #1a4d7a;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .btn-retry {
+    padding: 0.75rem 1.5rem;
+    background: #1a4d7a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 1rem;
+    transition: background 0.3s ease;
+  }
+
+  .btn-retry:hover {
+    background: #0f2d4a;
+  }
+
+  .player-nickname {
+    display: block;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-style: italic;
+    margin: 0.25rem 0;
   }
 
   /* Teams Grid */

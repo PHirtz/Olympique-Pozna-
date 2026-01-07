@@ -322,7 +322,6 @@
   .fm-container {
     max-width: 1400px;
     margin: 0 auto;
-    padding-top: 1rem;
     margin-bottom: 2rem;
   }
 

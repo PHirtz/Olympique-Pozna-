@@ -18,13 +18,9 @@
 
 <style>
   .fm-container {
-    max-width: 1400px;
+    max-width: 1000px;
     margin: 0 auto;
     padding-top: 1rem;
-  }
-
-  .fm-breadcrumb {
-    margin-bottom: 1.5rem;
   }
 
   .fm-breadcrumb-link {

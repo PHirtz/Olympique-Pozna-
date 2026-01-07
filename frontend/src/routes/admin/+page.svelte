@@ -109,6 +109,40 @@
       </div>
     </div>
 
+    <!-- Section Équipes & Joueurs -->
+    <div class="fm-section">
+      <button class="fm-section-header" on:click={() => toggleSection('teams')}>
+        {#if sections.teams}
+          <ChevronDown size={20} />
+        {:else}
+          <ChevronRight size={20} />
+        {/if}
+        <Trophy size={20} />
+        <span>ÉQUIPES & JOUEURS ({stats.teams})</span>
+      </button>
+
+      {#if sections.teams}
+        <div class="fm-section-content">
+          <div class="fm-actions">
+            <a href="/admin/players" class="fm-btn fm-btn-primary">
+              <Users size={16} />
+              Gérer les joueurs
+            </a>
+          </div>
+          <p class="fm-empty">Section équipes à venir...</p>
+        </div>
+      {/if}
+    </div>
+
+    <!-- Section Joueurs -->
+    <div class="fm-section">
+      <a href="/admin/players" class="fm-section-header-link">
+        <Users size={20} />
+        <span>JOUEURS</span>
+        <ChevronRight size={16} style="margin-left: auto;" />
+      </a>
+    </div>
+
     <!-- Section Sponsors -->
     <div class="fm-section">
       <button class="fm-section-header" on:click={() => toggleSection('sponsors')}>
@@ -185,77 +219,9 @@
       {/if}
     </div>
 
-    <!-- Section Équipes & Joueurs -->
-    <div class="fm-section">
-      <button class="fm-section-header" on:click={() => toggleSection('teams')}>
-        {#if sections.teams}
-          <ChevronDown size={20} />
-        {:else}
-          <ChevronRight size={20} />
-        {/if}
-        <Trophy size={20} />
-        <span>ÉQUIPES & JOUEURS ({stats.teams})</span>
-      </button>
 
-      {#if sections.teams}
-        <div class="fm-section-content">
-          <div class="fm-actions">
-            <a href="/admin/players" class="fm-btn fm-btn-primary">
-              <Users size={16} />
-              Gérer les joueurs
-            </a>
-          </div>
-          <p class="fm-empty">Section équipes à venir...</p>
-        </div>
-      {/if}
-    </div>
 
-    <!-- Section Joueurs -->
-    <div class="fm-section">
-      <a href="/admin/players" class="fm-section-header-link">
-        <Users size={20} />
-        <span>JOUEURS</span>
-        <ChevronRight size={16} style="margin-left: auto;" />
-      </a>
-    </div>
 
-    <!-- Section Boutique -->
-    <div class="fm-section">
-      <button class="fm-section-header" on:click={() => toggleSection('shop')}>
-        {#if sections.shop}
-          <ChevronDown size={20} />
-        {:else}
-          <ChevronRight size={20} />
-        {/if}
-        <ShoppingBag size={20} />
-        <span>BOUTIQUE ({stats.products})</span>
-      </button>
-
-      {#if sections.shop}
-        <div class="fm-section-content">
-          <p class="fm-empty">Fonctionnalité à venir...</p>
-        </div>
-      {/if}
-    </div>
-
-    <!-- Section News -->
-    <div class="fm-section">
-      <button class="fm-section-header" on:click={() => toggleSection('news')}>
-        {#if sections.news}
-          <ChevronDown size={20} />
-        {:else}
-          <ChevronRight size={20} />
-        {/if}
-        <span class="fm-icon">📰</span>
-        <span>NEWS</span>
-      </button>
-
-      {#if sections.news}
-        <div class="fm-section-content">
-          <p class="fm-empty">Fonctionnalité à venir...</p>
-        </div>
-      {/if}
-    </div>
   {/if}
 </div>
 
