@@ -119,7 +119,7 @@
     <!-- DESKTOP NAVIGATION -->
     <div class="nav-links">
       
-      <a href="https://olympique.pl/" class="nav-link shop-link" style="animation-delay: 0.2s">
+      <a href="https://olympique.pl/" target="_blank" rel="noopener noreferrer" class="nav-link shop-link" style="animation-delay: 0.2s">
         {$_('nav.shop')}
         <span class="new-badge">
           <span class="badge-text">NEW</span>
@@ -155,13 +155,13 @@
                   href="https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit?tab=t.0" 
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="dropdown-item external-link"
+                  class="dropdown-item"
                 >
                   {$_('club.status')}
             </a>
             <a 
               href="https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit"
-              class="dropdown-item external-link"
+              class="dropdown-item"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -281,7 +281,7 @@
       
       <a 
           href="https://drive.google.com/drive/folders/1Qm9yOZJ9_sKRuJ70V8KSa1FrcSgxwXRW"
-          class="nav-link external-link"
+          class="nav-link"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -398,7 +398,7 @@
                   href="https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit?tab=t.0" 
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="external-link"
+                  class="dropdown-item"
                 >
                   {$_('club.status')}
                 </a>
@@ -406,7 +406,7 @@
               <li>
               <a 
               href="https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit"
-              class="dropdown-item external-link"
+              class="dropdown-item"
               target="_blank"
               rel="noopener noreferrer"
               >
@@ -461,7 +461,7 @@
         <li><a href="/camps" on:click={close}>{$_('nav.camps')}</a></li>
         <li><a 
           href="https://drive.google.com/drive/folders/1Qm9yOZJ9_sKRuJ70V8KSa1FrcSgxwXRW"
-          class="nav-link external-link"
+          class="nav-link"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -530,12 +530,6 @@
 {/if}
 
 <style>
-
-  .external-link::after {
-  content: "➮";
-  font-size: 0.75em;
-  margin-left: 0.25rem;
-  }
 /* ========================================
    BASE : MOBILE FIRST (320px+)
    ======================================== */

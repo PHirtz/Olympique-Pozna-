@@ -277,6 +277,9 @@
   },
 
   "club": {
+    "shop": "Shop",
+    "title": "The Club - Olympique Poznań",
+    "subtitle": "Our club",
     "about": "Who we are",
     "coaches": "Our coaches",
     "support": "Olympic Support",

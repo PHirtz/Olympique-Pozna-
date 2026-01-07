@@ -140,6 +140,9 @@
   },
 
   "club": {
+    "shop": "Sklep",
+    "title": "Klub - Olympique Poznań",
+    "subtitle": "Nasz klub",
     "about": "Kim jesteśmy",
     "coaches": "Nasi trenerzy",
     "support": "Wsparcie Olimpijskie",

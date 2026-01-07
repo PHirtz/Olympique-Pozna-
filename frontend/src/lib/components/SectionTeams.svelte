@@ -190,12 +190,6 @@
     color: #c9a961;
   }
 
-  .team-content p {
-    color: var(--text-secondary);
-    margin-bottom: 1.25rem;
-    line-height: 1.6;
-  }
-
   /* Section Accompagnement */
   .accompagnement {
     padding: 5rem 2rem;
