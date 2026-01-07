@@ -144,7 +144,7 @@
       </label>
 
       {#if error}
-        <p class="error">{error}</p>
+        <p class="error">{$_('auth.login.error')}</p>
       {/if}
 
       <button type="submit" disabled={loading}>

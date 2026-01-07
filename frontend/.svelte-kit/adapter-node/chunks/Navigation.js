@@ -28,7 +28,7 @@ function Navigation($$renderer, $$props) {
     {
       $$renderer2.push("<!--[!-->");
     }
-    $$renderer2.push(`<!--]--></div> <a href="/camps" class="nav-link svelte-1huo92h" style="animation-delay: 0.5s">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("nav.camps"))}</a> <a href="https://drive.google.com/drive/folders/1Qm9yOZJ9_sKRuJ70V8KSa1FrcSgxwXRW" class="nav-link external-link svelte-1huo92h" target="_blank" rel="noopener noreferrer">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("nav.photo"))}</a></div> <div class="desktop-user-actions svelte-1huo92h"><div class="language-selector svelte-1huo92h"><button${attr_class("lang-btn svelte-1huo92h", void 0, {
+    $$renderer2.push(`<!--]--></div> <a href="/camps" class="nav-link svelte-1huo92h" style="animation-delay: 0.5s">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("nav.camps"))}</a> <a href="https://drive.google.com/drive/folders/1Qm9yOZJ9_sKRuJ70V8KSa1FrcSgxwXRW" class="nav-link svelte-1huo92h" target="_blank" rel="noopener noreferrer">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("nav.photo"))}</a></div> <div class="desktop-user-actions svelte-1huo92h"><div class="language-selector svelte-1huo92h"><button${attr_class("lang-btn svelte-1huo92h", void 0, {
       "active": store_get($$store_subs ??= {}, "$locale", $locale) === "fr"
     })} aria-label="Français">FR</button> <span class="separator svelte-1huo92h">|</span> <button${attr_class("lang-btn svelte-1huo92h", void 0, {
       "active": store_get($$store_subs ??= {}, "$locale", $locale) === "pl"
@@ -69,7 +69,7 @@ function Navigation($$renderer, $$props) {
     {
       $$renderer2.push("<!--[!-->");
     }
-    $$renderer2.push(`<!--]--></li> <li class="svelte-1huo92h"><a href="/camps" class="svelte-1huo92h">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("nav.camps"))}</a></li> <li class="svelte-1huo92h"><a href="https://drive.google.com/drive/folders/1Qm9yOZJ9_sKRuJ70V8KSa1FrcSgxwXRW" class="nav-link external-link svelte-1huo92h" target="_blank" rel="noopener noreferrer">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("nav.photo"))}</a></li></ul></nav> <div class="mobile-user-actions svelte-1huo92h"><div class="language-selector mobile svelte-1huo92h"><button${attr_class("lang-btn svelte-1huo92h", void 0, {
+    $$renderer2.push(`<!--]--></li> <li class="svelte-1huo92h"><a href="/camps" class="svelte-1huo92h">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("nav.camps"))}</a></li> <li class="svelte-1huo92h"><a href="https://drive.google.com/drive/folders/1Qm9yOZJ9_sKRuJ70V8KSa1FrcSgxwXRW" class="nav-link svelte-1huo92h" target="_blank" rel="noopener noreferrer">${escape_html(store_get($$store_subs ??= {}, "$_", $format)("nav.photo"))}</a></li></ul></nav> <div class="mobile-user-actions svelte-1huo92h"><div class="language-selector mobile svelte-1huo92h"><button${attr_class("lang-btn svelte-1huo92h", void 0, {
       "active": store_get($$store_subs ??= {}, "$locale", $locale) === "fr"
     })} aria-label="Français">FR</button> <span class="separator svelte-1huo92h">|</span> <button${attr_class("lang-btn svelte-1huo92h", void 0, {
       "active": store_get($$store_subs ??= {}, "$locale", $locale) === "pl"
