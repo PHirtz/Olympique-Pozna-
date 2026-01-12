@@ -28,7 +28,6 @@ const validate = (req, res, next) => {
 // ==============================================
 // GET /api/players - Liste tous les joueurs
 // ==============================================
-
 router.get('/',
   [
     query('teamId').optional().isInt(),
@@ -42,64 +41,82 @@ router.get('/',
       const { teamId, isActive, page = 1, limit = 20 } = req.query;
       const offset = (page - 1) * limit;
 
+      console.log('🔍 Query params:', { teamId, isActive, page, limit });
+
       let whereConditions = [];
-      let replacements = {};
+      let values = [];
 
       if (teamId) {
-        whereConditions.push('p.team_id = :teamId');
-        replacements.teamId = teamId;
+        whereConditions.push('p.team_id = ?');
+        values.push(parseInt(teamId, 10));  // ← Ajoute parseInt()
       }
 
       if (isActive !== undefined) {
-        whereConditions.push('p.is_active = :isActive');
-        replacements.isActive = isActive === 'true' ? 1 : 0;
+        whereConditions.push('p.is_active = ?');
+        values.push(isActive === 'true' ? 1 : 0);
       }
 
       const whereClause = whereConditions.length > 0 
         ? 'WHERE ' + whereConditions.join(' AND ') 
         : '';
 
-    // Récupérer les joueurs avec infos de l'équipe
-    const players = await db.query(`
-      SELECT 
-        p.*,
-        t.name as teamName,
-        t.name_pl as teamNamePl,
-        t.category as teamCategory
-      FROM players p
-      LEFT JOIN teams t ON p.team_id = t.id
-      ${whereClause}
-      ORDER BY t.name, p.last_name, p.first_name
-      LIMIT ? OFFSET ?
-    `, { 
-      replacements: [...Object.values(replacements), parseInt(limit), parseInt(offset)],
-      type: db.QueryTypes.SELECT 
-    });
+      console.log('🔍 WHERE clause:', whereClause);
+      console.log('🔍 Values:', values);
 
-    // Compter le total
-    const countResult = await db.query(`
-      SELECT COUNT(*) as total
-      FROM players p
-      ${whereClause}
-    `, { 
-      replacements: Object.values(replacements),
-      type: db.QueryTypes.SELECT 
-    });
+      // Récupérer les joueurs
+      const players = await db.query(`
+        SELECT 
+          p.*,
+          t.name as teamName,
+          t.name_pl as teamNamePl,
+          t.category as teamCategory
+        FROM players p
+        LEFT JOIN teams t ON p.team_id = t.id
+        ${whereClause}
+        ORDER BY t.name, p.last_name, p.first_name
+        LIMIT ? OFFSET ?
+      `, {
+        replacements: [...values, parseInt(limit, 10), parseInt(offset, 10)],  // ← Force parseInt
+        type: db.QueryTypes.SELECT
+      });
 
-    const total = countResult && countResult.length > 0 ? countResult[0].total : 0;
+      console.log('✅ Players found:', players.length);
+      console.log('✅ First player:', players[0]);
 
-    res.json({
-      success: true,
-      data: {
-        players: players.map(formatPlayer),
-        pagination: {
-          total: parseInt(total),
-          page: parseInt(page),
-          limit: parseInt(limit),
-          totalPages: Math.ceil(total / limit)
+      console.log('✅ First player:', players[0]);
+
+      // TEST: Requête sans WHERE
+      const testPlayers = await db.query(`
+        SELECT COUNT(*) as total FROM players WHERE team_id = 1 AND is_active = 1
+      `, {
+        type: db.QueryTypes.SELECT
+      });
+      console.log('🧪 TEST direct SQL:', testPlayers[0]);
+
+      // Compter le total
+      const countResult = await db.query(`
+        SELECT COUNT(*) as total
+        FROM players p
+        ${whereClause}
+      `, {
+        replacements: values,
+        type: db.QueryTypes.SELECT
+      });
+
+      const total = countResult[0]?.total || 0;
+
+      res.json({
+        success: true,
+        data: {
+          players: players.map(formatPlayer),
+          pagination: {
+            total: Number(total),
+            page: Number(page),
+            limit: Number(limit),
+            totalPages: Math.ceil(total / limit)
+          }
         }
-      }
-    });
+      });
     } catch (error) {
       console.error('Erreur récupération joueurs:', error);
       res.status(500).json({ 
@@ -109,7 +126,7 @@ router.get('/',
     }
   }
 );
-
+      
 // ==============================================
 // GET /api/players/:id - Détails d'un joueur
 // ==============================================
@@ -119,7 +136,7 @@ router.get('/:id',
   validate,
   async (req, res) => {
     try {
-      const [players] = await db.query(`
+      const players = await db.query(`
         SELECT 
           p.*,
           t.name as teamName,
@@ -128,7 +145,10 @@ router.get('/:id',
         FROM players p
         LEFT JOIN teams t ON p.team_id = t.id
         WHERE p.id = ?
-      `, [req.params.id]);
+      `, {
+        replacements: [req.params.id],
+        type: db.QueryTypes.SELECT
+      });
 
       if (players.length === 0) {
         return res.status(404).json({ 
@@ -187,25 +207,29 @@ router.post('/',
         isActive = true
       } = req.body;
 
-      // Générer le chemin de la photo si uploadée
       const photoPath = req.file ? getPublicUrl(req.file.filename, 'players') : null;
 
-      const [result] = await db.query(`
+      const result = await db.query(`
         INSERT INTO players (
           team_id, first_name, last_name, nickname, jersey_number,
           position, position_pl, birth_year, nationality, nationality_pl,
           photo_path, distinction1, distinction2, distinction3, distinction4, distinction5,
           is_active, created_at, updated_at
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())
-      `, [
-        teamId, firstName, lastName, nickname || null, jerseyNumber || null,
-        position, positionPl, birthYear, nationality, nationalityPl,
-        photoPath, distinction1 || null, distinction2 || null, distinction3 || null,
-        distinction4 || null, distinction5 || null, isActive ? 1 : 0
-      ]);
+      `, {
+        replacements: [
+          teamId, firstName, lastName, nickname || null, jerseyNumber || null,
+          position, positionPl, birthYear, nationality, nationalityPl,
+          photoPath, distinction1 || null, distinction2 || null, distinction3 || null,
+          distinction4 || null, distinction5 || null, isActive ? 1 : 0
+        ],
+        type: db.QueryTypes.INSERT
+      });
 
-      // Récupérer le joueur créé
-      const [players] = await db.query('SELECT * FROM players WHERE id = ?', [result.insertId]);
+      const players = await db.query('SELECT * FROM players WHERE id = ?', {
+        replacements: [result[0]],
+        type: db.QueryTypes.SELECT
+      });
 
       res.status(201).json({
         success: true,
@@ -213,7 +237,6 @@ router.post('/',
         data: formatPlayer(players[0])
       });
     } catch (error) {
-      // Supprimer la photo si erreur
       if (req.file) {
         deleteFile(getPublicUrl(req.file.filename, 'players'));
       }
@@ -256,8 +279,10 @@ router.put('/:id',
   validate,
   async (req, res) => {
     try {
-      // Vérifier que le joueur existe
-      const [existingPlayers] = await db.query('SELECT * FROM players WHERE id = ?', [req.params.id]);
+      const existingPlayers = await db.query('SELECT * FROM players WHERE id = ?', {
+        replacements: [req.params.id],
+        type: db.QueryTypes.SELECT
+      });
       
       if (existingPlayers.length === 0) {
         if (req.file) {
@@ -272,16 +297,13 @@ router.put('/:id',
       const existingPlayer = existingPlayers[0];
       const updates = { ...req.body };
 
-      // Gérer la nouvelle photo
       if (req.file) {
-        // Supprimer l'ancienne photo
         if (existingPlayer.photo_path) {
           deleteFile(existingPlayer.photo_path);
         }
         updates.photoPath = getPublicUrl(req.file.filename, 'players');
       }
 
-      // Construire la requête UPDATE dynamiquement
       const fields = [];
       const values = [];
 
@@ -320,11 +342,16 @@ router.put('/:id',
           UPDATE players 
           SET ${fields.join(', ')}
           WHERE id = ?
-        `, values);
+        `, {
+          replacements: values,
+          type: db.QueryTypes.UPDATE
+        });
       }
 
-      // Récupérer le joueur mis à jour
-      const [updatedPlayers] = await db.query('SELECT * FROM players WHERE id = ?', [req.params.id]);
+      const updatedPlayers = await db.query('SELECT * FROM players WHERE id = ?', {
+        replacements: [req.params.id],
+        type: db.QueryTypes.SELECT
+      });
 
       res.json({
         success: true,
@@ -355,8 +382,10 @@ router.delete('/:id',
   validate,
   async (req, res) => {
     try {
-      // Récupérer le joueur pour supprimer sa photo
-      const [players] = await db.query('SELECT photo_path FROM players WHERE id = ?', [req.params.id]);
+      const players = await db.query('SELECT photo_path FROM players WHERE id = ?', {
+        replacements: [req.params.id],
+        type: db.QueryTypes.SELECT
+      });
       
       if (players.length === 0) {
         return res.status(404).json({ 
@@ -365,13 +394,14 @@ router.delete('/:id',
         });
       }
 
-      // Supprimer la photo
       if (players[0].photo_path) {
         deleteFile(players[0].photo_path);
       }
 
-      // Supprimer le joueur
-      await db.query('DELETE FROM players WHERE id = ?', [req.params.id]);
+      await db.query('DELETE FROM players WHERE id = ?', {
+        replacements: [req.params.id],
+        type: db.QueryTypes.DELETE
+      });
 
       res.json({
         success: true,

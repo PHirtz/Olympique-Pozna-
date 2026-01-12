@@ -85,6 +85,10 @@
     "file": "_app/immutable/assets/SectionTeams.BcxjAFvG.css",
     "src": "_SectionTeams.BcxjAFvG.css"
   },
+  "_SponsorForm.D9-pYt38.css": {
+    "file": "_app/immutable/assets/SponsorForm.D9-pYt38.css",
+    "src": "_SponsorForm.D9-pYt38.css"
+  },
   "_SponsorForm.js": {
     "file": "chunks/SponsorForm.js",
     "name": "SponsorForm",
@@ -99,12 +103,8 @@
       "_context.js"
     ],
     "css": [
-      "_app/immutable/assets/SponsorForm.qnJzoxRE.css"
+      "_app/immutable/assets/SponsorForm.D9-pYt38.css"
     ]
-  },
-  "_SponsorForm.qnJzoxRE.css": {
-    "file": "_app/immutable/assets/SponsorForm.qnJzoxRE.css",
-    "src": "_SponsorForm.qnJzoxRE.css"
   },
   "_arrow-left.js": {
     "file": "chunks/arrow-left.js",
@@ -502,7 +502,7 @@
     "src": "src/routes/admin/+page.svelte",
     "isEntry": true,
     "css": [
-      "_app/immutable/assets/_page.DLslOL44.css"
+      "_app/immutable/assets/_page.BgDmcvqj.css"
     ]
   },
   "src/routes/admin/players/+page.svelte": {
@@ -584,7 +584,7 @@
       "_arrow-left.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.BHwZyL4X.css"
+      "_app/immutable/assets/_page.CockAFWC.css"
     ]
   },
   "src/routes/api/[...path]/+server.js": {
@@ -984,7 +984,7 @@
       "_context.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.CEOt0Kuc.css"
+      "_app/immutable/assets/_page.CpWytxMR.css"
     ]
   },
   "src/routes/teams/giroud/+page.svelte": {

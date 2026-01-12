@@ -19,8 +19,8 @@
   let loading = true;
   let error = null;
 
-  // ID de l'équipe Doué (à adapter selon ta BDD)
-  const DOUE_TEAM_ID = 4;
+  
+  const DOUE_TEAM_ID = 1;
 
   onMount(async () => {
     await loadPlayers();

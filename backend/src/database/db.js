@@ -13,6 +13,10 @@ const sequelize = new Sequelize(
     dialect: process.env.DB_DIALECT || 'mysql',
     logging: false,
     timezone: '+01:00',
+    charset: 'utf8mb4',
+    dialectOptions: {
+      charset: 'utf8mb4'
+    },
     define: {
       charset: 'utf8mb4',
       collate: 'utf8mb4_unicode_ci',

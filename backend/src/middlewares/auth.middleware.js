@@ -44,6 +44,7 @@ export const authMiddleware = (req, res, next) => {
  */
 export const requireRole = (...allowedRoles) => {
   return (req, res, next) => {
+    console.log('ROLE DANS TOKEN =', req.userRole);
     if (!req.userRole) {
       return next(new HttpUnauthorizedError('Authentification requise'));
     }
