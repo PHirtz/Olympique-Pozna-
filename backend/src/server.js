@@ -24,7 +24,12 @@ const PORT = process.env.PORT || 3000;
 // Middlewares
 app.use(helmet());
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: [
+    'https://olympiquepoznan.pl',
+    'https://www.olympiquepoznan.pl',
+    'http://localhost:5173',
+    'http://localhost:5174'
+  ],
   credentials: true
 }));
 app.use(morgan('dev'));

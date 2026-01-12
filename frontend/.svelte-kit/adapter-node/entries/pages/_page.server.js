@@ -5,13 +5,15 @@ const PUBLIC_API_URL = "https://olympiquepoznan.pl/api";
 async function apiRequest(endpoint, options = {}) {
   const url = `${PUBLIC_API_URL}${endpoint}`;
   const token = getToken();
+  const isFormData = options.body instanceof FormData;
+  const headers = {
+    ...token ? { Authorization: `Bearer ${token}` } : {},
+    ...isFormData ? {} : { "Content-Type": "application/json" },
+    ...options.headers || {}
+  };
   const config = {
     ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...token ? { "Authorization": `Bearer ${token}` } : {},
-      ...options.headers || {}
-    }
+    headers
   };
   try {
     const response = await fetch(url, config);
