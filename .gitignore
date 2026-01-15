@@ -8,3 +8,7 @@ node_modules/
 frontend/.svelte-kit/
 frontend/build/
 *.log
+ecosystem.config.cjs
+deploy.sh
+*.env
+.env.local
