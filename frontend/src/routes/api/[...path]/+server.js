@@ -1,6 +1,6 @@
 /** @type {import('./$types').RequestHandler} */
 export async function GET({ params, url, request }) {
-  const backendUrl = `http://localhost:5000/${params.path}${url.search}`;
+  const backendUrl = `http://localhost:5000/api/${params.path}${url.search}`;
   
   try {
     const response = await fetch(backendUrl, {
@@ -27,7 +27,7 @@ export async function GET({ params, url, request }) {
 
 /** @type {import('./$types').RequestHandler} */
 export async function POST({ params, url, request }) {
-  const backendUrl = `http://localhost:5000/${params.path}${url.search}`;
+  const backendUrl = `http://localhost:5000/api/${params.path}${url.search}`;
   
   try {
     const body = await request.text();
@@ -57,7 +57,7 @@ export async function POST({ params, url, request }) {
 
 /** @type {import('./$types').RequestHandler} */
 export async function PUT({ params, url, request }) {
-  const backendUrl = `http://localhost:5000/${params.path}${url.search}`;
+  const backendUrl = `http://localhost:5000/api/${params.path}${url.search}`;
   
   try {
     const body = await request.text();
@@ -87,7 +87,7 @@ export async function PUT({ params, url, request }) {
 
 /** @type {import('./$types').RequestHandler} */
 export async function DELETE({ params, url, request }) {
-  const backendUrl = `http://localhost:5000/${params.path}${url.search}`;
+  const backendUrl = `http://localhost:5000/api/${params.path}${url.search}`;
   
   try {
     const response = await fetch(backendUrl, {
@@ -114,7 +114,7 @@ export async function DELETE({ params, url, request }) {
 
 /** @type {import('./$types').RequestHandler} */
 export async function PATCH({ params, url, request }) {
-  const backendUrl = `http://localhost:5000/${params.path}${url.search}`;
+  const backendUrl = `http://localhost:5000/api/${params.path}${url.search}`;
   
   try {
     const body = await request.text();
