@@ -1,2 +1,4 @@
 frontend/deploy.tar.gz
 *.tar.gz
+frontend/.svelte-kit/
+frontend/build/
