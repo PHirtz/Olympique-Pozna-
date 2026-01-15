@@ -22,9 +22,9 @@ router.get('/dashboard', (req, res) => {
     message: 'Bienvenue dans l\'administration',
     data: {
       user: {
-        id: req.userId,
-        role: req.userRole,
-        email: req.userEmail
+        id: req.user.id,
+        role: req.user.role,
+        email: req.user.email
       }
     }
   });

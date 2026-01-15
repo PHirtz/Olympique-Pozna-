@@ -102,10 +102,10 @@
         isActive: player.isActive
       };
 
-      if (player.photoPath) {
-        existingPhotoPath = player.photoPath;
-        photoPreview = player.photoPath;
-      }
+    if (player.photoUrl) { 
+      existingPhotoPath = player.photoUrl;
+      photoPreview = player.photoUrl;
+    }
     } catch (error) {
       console.error('Erreur:', error);
       alert('Erreur lors du chargement du joueur');

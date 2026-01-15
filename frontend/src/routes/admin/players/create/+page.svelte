@@ -17,7 +17,7 @@
 
   // Formulaire
   let formData = {
-    teamId: '',
+    teamId: '1',
     firstName: '',
     lastName: '',
     nickname: '',
@@ -134,28 +134,34 @@
     return Object.keys(errors).length === 0;
   }
 
-  async function handleSubmit() {
-    if (!validateForm()) {
-      alert('Veuillez corriger les erreurs du formulaire');
-      return;
+async function handleSubmit() {
+  if (!validateForm()) {
+    alert('Veuillez corriger les erreurs du formulaire');
+    return;
+  }
+
+  try {
+    saving = true;
+
+    const data = new FormData();
+    
+    console.log('📤 formData avant envoi:', formData);
+    
+    Object.entries(formData).forEach(([key, value]) => {
+      data.append(key, value);
+    });
+
+    if (photoFile) {
+      data.append('photo', photoFile);
+    }
+    
+    // Debug FormData
+    console.log('📤 FormData entries:');
+    for (let [key, value] of data.entries()) {
+      console.log(`  ${key}:`, value);
     }
 
-    try {
-      saving = true;
-
-      const data = new FormData();
-      
-      Object.entries(formData).forEach(([key, value]) => {
-        if (value !== '' && value !== null) {
-          data.append(key, value);
-        }
-      });
-
-      if (photoFile) {
-        data.append('photo', photoFile);
-      }
-
-      await adminPlayers.create(data);
+    await adminPlayers.create(data);
       alert('Joueur créé avec succès !');
       goto('/admin/players');
     } catch (error) {

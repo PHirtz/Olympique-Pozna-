@@ -42,8 +42,8 @@ class UserController {
 
   async getProfile(req, res, next) {
     try {
-      // req.userId vient du middleware d'auth JWT
-      const user = await userService.getUserPrivateProfile(req.userId);
+      // req.user.id vient du middleware d'auth JWT
+      const user = await userService.getUserPrivateProfile(req.user.id);
       res.status(200).json({
         success: true,
         data: user
@@ -68,8 +68,8 @@ class UserController {
 
   async updateProfile(req, res, next) {
     try {
-      // req.userId vient du middleware d'auth JWT
-      const user = await userService.updateUserProfile(req.userId, req.body);
+      // req.user.id vient du middleware d'auth JWT
+      const user = await userService.updateUserProfile(req.user.id, req.body);
       res.status(200).json({
         success: true,
         message: 'Profil mis à jour avec succès',
@@ -88,8 +88,8 @@ class UserController {
         throw new HttpBadRequestError('Mot de passe actuel et nouveau mot de passe requis');
       }
 
-      // req.userId vient du middleware d'auth JWT
-      await userService.updateUserPassword(req.userId, currentPassword, newPassword);
+      // req.user.id vient du middleware d'auth JWT
+      await userService.updateUserPassword(req.user.id, currentPassword, newPassword);
       
       res.status(200).json({
         success: true,
@@ -108,8 +108,8 @@ class UserController {
         throw new HttpBadRequestError('URL de l\'image requise');
       }
 
-      // req.userId vient du middleware d'auth JWT
-      const user = await userService.updateUserProfilePicture(req.userId, imageUrl, imagePath);
+      // req.user.id vient du middleware d'auth JWT
+      const user = await userService.updateUserProfilePicture(req.user.id, imageUrl, imagePath);
       
       res.status(200).json({
         success: true,
@@ -138,6 +138,7 @@ class UserController {
       const { username, password } = req.body;
       
       const user = await userService.getUserByUsername(username);
+      console.log('User role:', user.role);
       if (!user) {
         throw new HttpBadRequestError('Identifiants incorrects');
       }

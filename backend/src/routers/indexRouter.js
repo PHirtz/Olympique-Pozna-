@@ -203,11 +203,7 @@ adminRouter.get('/dashboard', (req, res) => {
     success: true,
     message: 'Bienvenue dans l\'administration',
     data: {
-      user: {
-        id: req.userId,
-        role: req.userRole,
-        email: req.userEmail
-      }
+      user: req.user
     }
   });
 });

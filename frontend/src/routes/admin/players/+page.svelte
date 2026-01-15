@@ -166,9 +166,9 @@
           {#each players as player, i}
             <tr class:row-alt={i % 2 === 1}>
               <td class="photo-cell">
-                {#if player.photoPath}
+                {#if player.photoUrl}
                   <img 
-                    src={player.photoPath} 
+                    src={player.photoUrl} 
                     alt={`${player.firstName} ${player.lastName}`}
                     class="player-photo"
                   />

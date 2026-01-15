@@ -44,7 +44,7 @@
           firstName: player.firstName,
           lastName: player.lastName,
           name: `${player.firstName} ${player.lastName}`,
-          photo: player.photoPath || '/team/default-player.jpg',
+          photo: player.photoUrl || '/team/default-player.jpg',
           position: player.position,
           positionPl: player.positionPl,
           origin: player.nationality,

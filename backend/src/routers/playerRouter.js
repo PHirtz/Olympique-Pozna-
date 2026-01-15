@@ -177,7 +177,7 @@ router.get('/:id',
 
 router.post('/',
   authenticateToken,
-  requireRole(['admin', 'coach']),
+  requireRole('admin'),
   upload.single('photo'),
   [
     body('teamId').isInt().withMessage('Team ID requis'),
@@ -206,6 +206,9 @@ router.post('/',
         distinction1, distinction2, distinction3, distinction4, distinction5,
         isActive = true
       } = req.body;
+
+      console.log('🔍 req.body reçu:', req.body);
+      console.log('🔍 req.file reçu:', req.file);
 
       const photoPath = req.file ? getPublicUrl(req.file.filename, 'players') : null;
 
@@ -255,7 +258,7 @@ router.post('/',
 
 router.put('/:id',
   authenticateToken,
-  requireRole(['admin', 'coach']),
+  requireRole('admin'),
   upload.single('photo'),
   [
     param('id').isInt(),
@@ -278,6 +281,13 @@ router.put('/:id',
   ],
   validate,
   async (req, res) => {
+    console.log('🔍 User making request:', {
+      userId: req.user?.id,
+      role: req.user?.role,
+      email: req.user?.email
+    });
+    console.log('🔍 Required roles: admin');
+    
     try {
       const existingPlayers = await db.query('SELECT * FROM players WHERE id = ?', {
         replacements: [req.params.id],
@@ -377,7 +387,7 @@ router.put('/:id',
 
 router.delete('/:id',
   authenticateToken,
-  requireRole(['admin']),
+  requireRole('admin'),
   [param('id').isInt()],
   validate,
   async (req, res) => {
@@ -422,6 +432,8 @@ router.delete('/:id',
 // ==============================================
 
 function formatPlayer(player) {
+  const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:5000';
+  
   return {
     id: player.id,
     teamId: player.team_id,
@@ -437,7 +449,7 @@ function formatPlayer(player) {
     birthYear: player.birth_year,
     nationality: player.nationality,
     nationalityPl: player.nationality_pl,
-    photoUrl: player.photo_url,
+    photoUrl: player.photo_path ? `${BACKEND_URL}${player.photo_path}` : null,  // ← URL COMPLÈTE
     photoPath: player.photo_path,
     distinction1: player.distinction1,
     distinction2: player.distinction2,

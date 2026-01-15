@@ -4,11 +4,11 @@ import { HttpUnauthorizedError, HttpForbiddenError } from '../errors/http.errors
 /**
  * Middleware d'authentification JWT
  * Vérifie la présence et la validité du token JWT
- * Ajoute userId et userRole à req
+ * Ajoute userId et req.user.role à req
  */
+
 export const authMiddleware = (req, res, next) => {
   try {
-    // Récupérer le token depuis le header Authorization
     const authHeader = req.headers.authorization;
     
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -16,15 +16,16 @@ export const authMiddleware = (req, res, next) => {
     }
 
     const token = authHeader.split(' ')[1];
-
-    // Vérifier et décoder le token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    // Ajouter les informations utilisateur à la requête
-    req.userId = decoded.userId;
-    req.userRole = decoded.role;
-    req.userEmail = decoded.email;
+    req.user = {
+      id: decoded.userId,
+      role: decoded.role?.toLowerCase(),
+      email: decoded.email,
+      username: decoded.username
+    };
 
+    console.log("✅ Auth user:", req.user);
     next();
   } catch (error) {
     if (error.name === 'JsonWebTokenError') {
@@ -42,14 +43,23 @@ export const authMiddleware = (req, res, next) => {
  * Vérifie que l'utilisateur a l'un des rôles autorisés
  * À utiliser APRÈS authMiddleware
  */
+
 export const requireRole = (...allowedRoles) => {
   return (req, res, next) => {
-    console.log('ROLE DANS TOKEN =', req.userRole);
-    if (!req.userRole) {
+    if (!req.user || !req.user.role) {
       return next(new HttpUnauthorizedError('Authentification requise'));
     }
 
-    if (!allowedRoles.includes(req.userRole)) {
+    // ✅ Normaliser les rôles autorisés en minuscules
+    const normalizedAllowedRoles = allowedRoles.map(role => role.toLowerCase());
+    
+    if (!normalizedAllowedRoles.includes(req.user.role)) {
+      // ✅ Ajouter des logs pour déboguer
+      console.log('❌ Rôle refusé:', {
+        userRole: req.user.role,
+        allowedRoles: normalizedAllowedRoles,
+        originalRoles: allowedRoles
+      });
       return next(new HttpForbiddenError('Accès refusé : rôle insuffisant'));
     }
 
@@ -61,24 +71,27 @@ export const requireRole = (...allowedRoles) => {
  * Middleware optionnel : authentification si token présent
  * Utile pour des routes publiques qui peuvent avoir un comportement différent pour les users connectés
  */
+
 export const optionalAuth = (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
     
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return next(); // Pas de token, on continue quand même
+      return next();
     }
 
     const token = authHeader.split(' ')[1];
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    req.userId = decoded.userId;
-    req.userRole = decoded.role;
-    req.userEmail = decoded.email;
+    req.user = {
+      id: decoded.userId,
+      role: decoded.role?.toLowerCase(),
+      email: decoded.email,
+      username: decoded.username
+    };
 
     next();
   } catch (error) {
-    // En cas d'erreur, on continue sans authentification
     next();
   }
 };
@@ -91,8 +104,8 @@ export const optionalAuth = (req, res, next) => {
 export const requireOwnership = (resourceUserIdField = 'userId') => {
   return (req, res, next) => {
     const resourceUserId = parseInt(req.params[resourceUserIdField] || req.params.id);
-    const currentUserId = req.userId;
-    const isAdmin = req.userRole === 'admin';
+    const currentUserId = req.user.id;
+    const isAdmin = req.user.role === 'admin';
 
     if (!isAdmin && resourceUserId !== currentUserId) {
       return next(new HttpForbiddenError('Accès refusé : vous n\'êtes pas le propriétaire de cette ressource'));
@@ -109,7 +122,7 @@ export const generateToken = (user) => {
   return jwt.sign(
     {
       userId: user.id,
-      role: user.role,
+      role: user.role?.toLowerCase(),
       email: user.email,
       username: user.username
     },

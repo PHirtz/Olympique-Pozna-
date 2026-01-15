@@ -31,9 +31,10 @@ export async function apiRequest(endpoint, options = {}) {
       throw new Error('Session expirée. Veuillez vous reconnecter.');
     }
 
-    if (!response.ok) {
-      throw new Error(data.message || 'Une erreur est survenue');
-    }
+      if (!response.ok) {
+        console.log('🔴 Erreur complète:', JSON.stringify(data, null, 2));
+        throw new Error(data.message || 'Une erreur est survenue');
+      }
 
     return data;
   } catch (error) {
