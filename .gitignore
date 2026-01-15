@@ -2,3 +2,9 @@ frontend/deploy.tar.gz
 *.tar.gz
 frontend/.svelte-kit/
 frontend/build/
+node_modules/
+.env
+.env.local
+frontend/.svelte-kit/
+frontend/build/
+*.log
