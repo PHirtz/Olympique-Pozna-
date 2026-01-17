@@ -13,6 +13,11 @@ Team.init(
       type: DataTypes.STRING(100),
       allowNull: true
     },
+    slug: {
+      type: DataTypes.STRING(100),
+      allowNull: true,
+      unique: true
+    },
     category: {
       type: DataTypes.ENUM('senior', 'u19', 'u17', 'u15', 'u13', 'u11', 'u9', 'u7'),
       allowNull: false
@@ -25,7 +30,6 @@ Team.init(
     season: {
       type: DataTypes.STRING(20),
       allowNull: false
-      // Ex: '2024-2025'
     },
     description: {
       type: DataTypes.TEXT,

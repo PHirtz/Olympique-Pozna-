@@ -12,7 +12,6 @@ export function getPlayer(id) {
 export function getPlayersByTeam(teamId) {
   return getPlayers({
     teamId,
-    // isActive: true,
     limit: 100
   });
 }

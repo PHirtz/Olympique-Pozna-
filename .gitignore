@@ -12,3 +12,11 @@ ecosystem.config.cjs
 deploy.sh
 *.env
 .env.local
+
+# Uploaded files
+static/uploads/
+media/
+uploads/
+ecosystem.config.cjs
+deploy.sh
+*.env

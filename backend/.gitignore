@@ -37,3 +37,5 @@ coverage/
 # Uploads (si tu stockes des fichiers localement)
 uploads/
 public/uploads/
+static/uploads/
+media/

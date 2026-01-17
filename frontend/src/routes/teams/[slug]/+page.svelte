@@ -1,50 +1,54 @@
-<svelte:head>
-  <title>L'équipe Doué - Olympique Poznań</title>
-  <meta name="description" content="Découvrez l'équipe Doué de l'Olympique Poznań" />
-</svelte:head>
-
 <script>
   import { onMount } from 'svelte';
+  import { page } from '$app/stores';
   import { _ } from 'svelte-i18n';
   import Navigation2 from '$lib/components/ui/Navigation2.svelte';
   import Footer from '$lib/components/ui/Footer.svelte';
   import PlayerModal from '$lib/components/ui/PlayerModal.svelte';
+  import * as teamsApi from '$lib/api/teams.js';
   import * as playersApi from '$lib/api/players.js';
   
   export let data;
 
   let isModalOpen = false;
   let selectedPlayer = null;
+  let team = null;
   let players = [];
   let loading = true;
   let error = null;
 
-  
-  const DOUE_TEAM_ID = 1;
+  $: slug = $page.params.slug;
 
   onMount(async () => {
-    await loadPlayers();
+    await loadTeamData();
   });
 
-  async function loadPlayers() {
+  async function loadTeamData() {
     try {
       loading = true;
       error = null;
       
-      const response = await playersApi.getPlayersByTeam(DOUE_TEAM_ID);
+      // Récupère l'équipe par slug
+      const teamResponse = await teamsApi.getTeamBySlug(slug);
       
-      console.log('📦 Response complète:', response);
-      console.log('📦 Response.data:', response.data);
-      console.log('📦 Response.data.players:', response.data?.players);
+      if (!teamResponse.success) {
+        error = 'Équipe introuvable';
+        return;
+      }
       
-      if (response.success && response.data?.players) {
-        players = response.data.players.map(player => ({
+      team = teamResponse.data;
+      
+      // Récupère les joueurs de cette équipe
+      const playersResponse = await playersApi.getPlayersByTeam(team.id);
+      
+      if (playersResponse.success && playersResponse.data?.players) {
+        players = playersResponse.data.players.map(player => ({
           id: player.id,
           number: player.jerseyNumber,
           firstName: player.firstName,
           lastName: player.lastName,
           name: `${player.firstName} ${player.lastName}`,
-          photo: player.photoUrl || '/team/default-player.jpg',
+          photo: player.photoUrl || '/img-communes/gazon.jpg',
           position: player.position,
           positionPl: player.positionPl,
           origin: player.nationality,
@@ -59,15 +63,10 @@
             player.distinction5
           ].filter(Boolean)
         }));
-        
-        console.log('✅ Joueurs formatés:', players);
-      } else {
-        console.log('⚠️ Pas de joueurs ou response.success est false');
-        players = [];
       }
     } catch (err) {
-      console.error('❌ Erreur chargement joueurs:', err);
-      error = 'Impossible de charger les joueurs';
+      console.error('❌ Erreur chargement équipe:', err);
+      error = 'Impossible de charger l\'équipe';
     } finally {
       loading = false;
     }
@@ -79,73 +78,90 @@
   }
 </script>
 
+<svelte:head>
+  {#if team}
+    <title>{team.name} - Olympique Poznań</title>
+    <meta name="description" content={team.description} />
+  {/if}
+</svelte:head>
+
 <Navigation2 {data} />
 
-<div class="doue-page">
-  <!-- Hero Section -->
-  <section class="hero-doue">
-    <div class="hero-background">
-      <img src="/team/doue.jpg" alt="Doué" class="hero-image" />
-      <div class="hero-overlay"></div>
-      <div class="hero-copyright">
-        &copy; Aleteia/AFP
+<div class="team-page">
+  {#if loading}
+    <div class="loading-state">
+      <div class="loading-spinner"></div>
+      <p>Chargement de l'équipe...</p>
+    </div>
+  {:else if error}
+    <div class="error-state">
+      <p>{error}</p>
+      <a href="/teams" class="btn-back">← Retour aux équipes</a>
+    </div>
+  {:else if team}
+    <!-- Hero Section avec image dynamique -->
+    <section class="hero-team">
+      <div class="hero-background">
+        <img 
+          src={team.imagePath || `/team/${slug}.jpg`} 
+          alt={team.name} 
+          class="hero-image"
+          on:error={(e) => {
+            e.target.src = '/img-communes/fondteam.jpeg';
+          }}
+        />
+        <div class="hero-overlay"></div>
       </div>
-    </div>
-    <div class="hero-content">
-      <h1>{$_('teams.doue.title')}</h1>
-    </div>
-  </section>
+      <div class="hero-content">
+        <h1>{team.name}</h1>
+        <p class="team-category">{team.category.toUpperCase()} • {team.season}</p>
+        {#if team.description}
+          <p class="team-description">{team.description}</p>
+        {/if}
+      </div>
+    </section>
 
-  <main class="main-content">
-    <div class="container">
-      {#if loading}
-        <div class="loading-state">
-          <div class="loading-spinner"></div>
-          <p>Chargement de l'équipe...</p>
-        </div>
-      {:else if error}
-        <div class="error-state">
-          <p>{error}</p>
-          <button on:click={loadPlayers} class="btn-retry">
-            Réessayer
-          </button>
-        </div>
-      {:else if players.length === 0}
-        <div class="empty-state">
-          <p>Aucun joueur dans cette équipe pour le moment.</p>
-        </div>
-      {:else}
-        <div class="teams-grid">
-          {#each players as player}
-            <button 
-              class="team-card"
-              on:click={() => openPlayerModal(player)}
-              aria-label="Voir le profil de {player.name}"
-            >
-              <div class="team-image-wrapper">
-                <img 
-                  src={player.photo} 
-                  alt={player.name} 
-                  class="team-photo"
-                  on:error={(e) => {
-                    e.target.src = '/team/default-player.jpg';
-                  }}
-                />
-              </div>
-              
-              <div class="team-info">
-                <h3>{player.name}</h3>
-                {#if player.nickname}
-                  <span class="player-nickname">"{player.nickname}"</span>
-                {/if}
-                <span class="player-number">#{player.number}</span>
-              </div>
-            </button>
-          {/each}
-        </div>
-      {/if}
-    </div>
-  </main>
+    <main class="main-content">
+      <div class="container">
+        {#if players.length === 0}
+          <div class="empty-state">
+            <p>Aucun joueur dans cette équipe pour le moment.</p>
+          </div>
+        {:else}
+          <div class="teams-grid">
+            {#each players as player}
+              <button 
+                class="team-card"
+                on:click={() => openPlayerModal(player)}
+                aria-label="Voir le profil de {player.name}"
+              >
+                <div class="team-image-wrapper">
+                  <img 
+                    src={player.photo} 
+                    alt={player.name} 
+                    class="team-photo"
+                    on:error={(e) => {
+                      e.target.src = '/img-communes/gazon.jpg';
+                    }}
+                  />
+                </div>
+                
+                <div class="team-info">
+                  <h3>{player.name}</h3>
+                  {#if player.nickname}
+                    <span class="player-nickname">"{player.nickname}"</span>
+                  {/if}
+                  {#if player.number}
+                    <span class="player-number">#{player.number}</span>
+                  {/if}
+                </div>
+              </button>
+            {/each}
+          </div>
+        {/if}
+      </div>
+    </main>
+  {/if}
 </div>
 
 <PlayerModal
@@ -157,13 +173,13 @@
 <Footer {data} />
 
 <style>
-  .doue-page {
+  .team-page {
     min-height: 100vh;
     background: linear-gradient(to bottom, #f8fafc, #ffffff);
   }
 
   /* Hero Section */
-  .hero-doue {
+  .hero-team {
     position: relative;
     color: white;
     padding: 8rem 2rem 4rem;
@@ -175,19 +191,20 @@
     overflow: hidden;
   }
 
-  .hero-copyright {
+  .hero-background {
     position: absolute;
-    bottom: 12px;
-    left: 12px;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.7rem;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
-    z-index: 4; 
-    background: rgba(0, 0, 0, 0.5);
-    padding: 6px 10px;
-    border-radius: 4px;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   .hero-overlay {
@@ -205,30 +222,6 @@
     z-index: 2;
   }
 
-  .hero-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-
-  .hero-content h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  }
-
-  .hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-  }
-
   .hero-content {
     position: relative;
     z-index: 3;
@@ -239,9 +232,25 @@
   .hero-content h1 {
     font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 700;
-    margin: 0;
+    margin-bottom: 1rem;
     color: #ffffff;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  }
+
+  .team-category {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+  }
+
+  .team-description {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
   }
 
   .main-content {
@@ -255,7 +264,7 @@
   }
 
   /* Loading, Error, Empty States */
-    .loading-state, .error-state, .empty-state {
+  .loading-state, .error-state, .empty-state {
     text-align: center;
     padding: 4rem 2rem;
     color: #666;
@@ -276,19 +285,19 @@
     100% { transform: rotate(360deg); }
   }
 
-  .btn-retry {
+  .btn-back {
+    display: inline-block;
     padding: 0.75rem 1.5rem;
     background: #1a4d7a;
     color: white;
-    border: none;
+    text-decoration: none;
     border-radius: 8px;
-    cursor: pointer;
     font-weight: 600;
     margin-top: 1rem;
     transition: background 0.3s ease;
   }
 
-  .btn-retry:hover {
+  .btn-back:hover {
     background: #0f2d4a;
   }
 
@@ -319,11 +328,11 @@
     flex-direction: column;
     position: relative;
     height: 450px;
-    border: none; /* Enlever la bordure du button */
-    padding: 0; /* Enlever le padding du button */
-    cursor: pointer; /* Curseur pointer */
-    width: 100%; /* Prendre toute la largeur */
-    text-align: left; /* Aligner le texte à gauche */
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
   }
 
   .team-card:hover {
@@ -391,7 +400,7 @@
 
   /* Responsive */
   @media (max-width: 768px) {
-    .hero-doue {
+    .hero-team {
       min-height: 400px;
       padding: 6rem 1rem 3rem;
     }

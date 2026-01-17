@@ -32,6 +32,15 @@ class TeamController {
     }
   }
 
+  async getBySlug(req, res) {
+    try {
+      const team = await teamService.getTeamBySlug(req.params.slug);
+      res.status(200).json({ success: true, data: team });
+    } catch (error) {
+      res.status(404).json({ success: false, message: error.message });
+    }
+  }
+
   async update(req, res) {
     try {
       const team = await teamService.updateTeam(req.params.id, req.body);

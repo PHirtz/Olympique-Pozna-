@@ -42,3 +42,10 @@ export async function updateTeam(id, data) {
 export async function deleteTeam(id) {
   return apiRequest(`/teams/${id}`, { method: 'DELETE' });
 }
+
+/**
+ * @param {string} slug
+ */
+export async function getTeamBySlug(slug) {
+  return apiRequest(`/teams/slug/${slug}`);
+}

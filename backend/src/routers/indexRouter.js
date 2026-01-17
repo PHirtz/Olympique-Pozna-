@@ -80,6 +80,9 @@ userRouter.get('/:id/statistics', userController.getUserWithStatistics);
 
 // ========== TEAM ROUTES ==========
 const teamRouter = express.Router();
+
+teamRouter.get('/slug/:slug', teamController.getBySlug);
+
 teamRouter.post('/', validate(teamCreateSchema), teamController.create);
 teamRouter.get('/', validate(teamQuerySchema), teamController.getAll);
 teamRouter.get('/:id', teamController.getById);

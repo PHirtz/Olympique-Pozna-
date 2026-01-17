@@ -1,6 +1,11 @@
+import { PUBLIC_BACKEND_URL } from '$env/static/public';
+
+// Utilise PUBLIC_BACKEND_URL depuis les variables d'environnement
+const BACKEND_BASE = PUBLIC_BACKEND_URL || 'http://localhost:5000';
+
 /** @type {import('./$types').RequestHandler} */
 export async function GET({ params, url, request }) {
-  const backendUrl = `http://localhost:5000/api/${params.path}${url.search}`;
+  const backendUrl = `${BACKEND_BASE}/api/${params.path}${url.search}`;
   
   try {
     const response = await fetch(backendUrl, {
@@ -16,8 +21,8 @@ export async function GET({ params, url, request }) {
         'Content-Type': response.headers.get('Content-Type') || 'application/json'
       }
     });
-  } catch (error) {
-    console.error('Proxy error:', error);
+  } catch (err) {
+    console.error('Proxy error:', err);
     return new Response(JSON.stringify({ error: 'Backend unavailable' }), {
       status: 503,
       headers: { 'Content-Type': 'application/json' }
@@ -27,7 +32,7 @@ export async function GET({ params, url, request }) {
 
 /** @type {import('./$types').RequestHandler} */
 export async function POST({ params, url, request }) {
-  const backendUrl = `http://localhost:5000/api/${params.path}${url.search}`;
+  const backendUrl = `${BACKEND_BASE}/api/${params.path}${url.search}`;
   
   try {
     const body = await request.text();
@@ -46,8 +51,8 @@ export async function POST({ params, url, request }) {
         'Content-Type': response.headers.get('Content-Type') || 'application/json'
       }
     });
-  } catch (error) {
-    console.error('Proxy error:', error);
+  } catch (err) {
+    console.error('Proxy error:', err);
     return new Response(JSON.stringify({ error: 'Backend unavailable' }), {
       status: 503,
       headers: { 'Content-Type': 'application/json' }
@@ -57,7 +62,7 @@ export async function POST({ params, url, request }) {
 
 /** @type {import('./$types').RequestHandler} */
 export async function PUT({ params, url, request }) {
-  const backendUrl = `http://localhost:5000/api/${params.path}${url.search}`;
+  const backendUrl = `${BACKEND_BASE}/api/${params.path}${url.search}`;
   
   try {
     const body = await request.text();
@@ -76,8 +81,8 @@ export async function PUT({ params, url, request }) {
         'Content-Type': response.headers.get('Content-Type') || 'application/json'
       }
     });
-  } catch (error) {
-    console.error('Proxy error:', error);
+  } catch (err) {
+    console.error('Proxy error:', err);
     return new Response(JSON.stringify({ error: 'Backend unavailable' }), {
       status: 503,
       headers: { 'Content-Type': 'application/json' }
@@ -87,7 +92,7 @@ export async function PUT({ params, url, request }) {
 
 /** @type {import('./$types').RequestHandler} */
 export async function DELETE({ params, url, request }) {
-  const backendUrl = `http://localhost:5000/api/${params.path}${url.search}`;
+  const backendUrl = `${BACKEND_BASE}/api/${params.path}${url.search}`;
   
   try {
     const response = await fetch(backendUrl, {
@@ -103,8 +108,8 @@ export async function DELETE({ params, url, request }) {
         'Content-Type': response.headers.get('Content-Type') || 'application/json'
       }
     });
-  } catch (error) {
-    console.error('Proxy error:', error);
+  } catch (err) {
+    console.error('Proxy error:', err);
     return new Response(JSON.stringify({ error: 'Backend unavailable' }), {
       status: 503,
       headers: { 'Content-Type': 'application/json' }
@@ -114,7 +119,7 @@ export async function DELETE({ params, url, request }) {
 
 /** @type {import('./$types').RequestHandler} */
 export async function PATCH({ params, url, request }) {
-  const backendUrl = `http://localhost:5000/api/${params.path}${url.search}`;
+  const backendUrl = `${BACKEND_BASE}/api/${params.path}${url.search}`;
   
   try {
     const body = await request.text();
@@ -133,8 +138,8 @@ export async function PATCH({ params, url, request }) {
         'Content-Type': response.headers.get('Content-Type') || 'application/json'
       }
     });
-  } catch (error) {
-    console.error('Proxy error:', error);
+  } catch (err) {
+    console.error('Proxy error:', err);
     return new Response(JSON.stringify({ error: 'Backend unavailable' }), {
       status: 503,
       headers: { 'Content-Type': 'application/json' }

@@ -87,50 +87,50 @@
     goto('/');
   }
 
-  const handleKeydown = (e) => {
-    if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
+  const handleKeydown = (/** @type {KeyboardEvent} */ e) => {
+    if (e.key === 'Escape') {
       close();
     }
   };
 
   onMount(() => {
     setTimeout(() => {
-     visible = true;
-  }, 100);
+      visible = true;
+    }, 100);
 
-  document.documentElement.style.setProperty('--text-r', '255');
-  document.documentElement.style.setProperty('--text-g', '255');
-  document.documentElement.style.setProperty('--text-b', '255');
+    document.documentElement.style.setProperty('--text-r', '255');
+    document.documentElement.style.setProperty('--text-g', '255');
+    document.documentElement.style.setProperty('--text-b', '255');
 
-  const handleScroll = () => {
-    scrollY = window.scrollY;
-    
-    // Calculer l'opacité de 0.1 à 0.95
-    navOpacity = Math.min(0.1 + (scrollY / 400) * 0.85, 0.95);
-    
-    // Calculer la couleur du texte : interpolation de blanc (255,255,255) vers bleu (26,77,122)
-    const progress = Math.min(scrollY / 400, 1); // 0 à 1
-    const r = Math.round(255 - (255 - 26) * progress);
-    const g = Math.round(255 - (255 - 77) * progress);
-    const b = Math.round(255 - (255 - 122) * progress);
-    
-    document.documentElement.style.setProperty('--text-r', String(r));
-    document.documentElement.style.setProperty('--text-g', String(g));
-    document.documentElement.style.setProperty('--text-b', String(b));
-  };
+    const handleScroll = () => {
+      scrollY = window.scrollY;
+      
+      // Calculer l'opacité de 0.1 à 0.95
+      navOpacity = Math.min(0.1 + (scrollY / 400) * 0.85, 0.95);
+      
+      // Calculer la couleur du texte : interpolation de blanc (255,255,255) vers bleu (26,77,122)
+      const progress = Math.min(scrollY / 400, 1); // 0 à 1
+      const r = Math.round(255 - (255 - 26) * progress);
+      const g = Math.round(255 - (255 - 77) * progress);
+      const b = Math.round(255 - (255 - 122) * progress);
+      
+      document.documentElement.style.setProperty('--text-r', String(r));
+      document.documentElement.style.setProperty('--text-g', String(g));
+      document.documentElement.style.setProperty('--text-b', String(b));
+    };
 
-  handleScroll();
+    handleScroll();
 
-  window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
-  return () => {
-    window.removeEventListener('scroll', handleScroll);
-  };
-});
-
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  });
 </script>
 
-<nav class="nav" class:visible style="--nav-opacity: {navOpacity}; --text-opacity: {navOpacity}">  <div class="nav-container">
+<nav class="nav" class:visible style="--nav-opacity: {navOpacity}; --text-opacity: {navOpacity}">
+  <div class="nav-container">
     <a href="/" class="logo-container">
       <img src="/logo.png" alt="Logo Olympique Poznań" class="logo-olympique-poznan" />
     </a>
@@ -173,13 +173,13 @@
             <a href="/club/about" class="dropdown-item" role="menuitem">{$_('club.about')}</a>
             <a href="/club/coaches" class="dropdown-item" role="menuitem">{$_('club.coaches')}</a>
             <a href="/club/partners" class="dropdown-item" role="menuitem">{$_('club.partners')}</a>
-                <a 
-                  href="https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit?tab=t.0" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="dropdown-item"
-                >
-                  {$_('club.status')}
+            <a 
+              href="https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit?tab=t.0" 
+              target="_blank"
+              rel="noopener noreferrer"
+              class="dropdown-item"
+            >
+              {$_('club.status')}
             </a>
             <a 
               href="https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit"
@@ -214,12 +214,12 @@
             on:mouseenter={cancelClose}
           >          
             <!-- Les Dames -->
-            <a href="/teams/ladies" class="dropdown-item" role="menuitem" tabindex="0">
+            <a href="/teams/dames" class="dropdown-item" role="menuitem" tabindex="0">
               {$_('home.teams.feminine.name')}
             </a>
             
             <!-- Les Bleus -->
-            <a href="/teams/blues" class="dropdown-item" role="menuitem" tabindex="0">
+            <a href="/teams/bleus" class="dropdown-item" role="menuitem" tabindex="0">
               {$_('home.teams.senior.name')}
             </a>
             
@@ -229,7 +229,18 @@
               role="group"
               on:mouseenter={cancelClose}
             >
-              <a href="/teams/academy" class="dropdown-item submenu-trigger" role="menuitem" aria-haspopup="true" tabindex="0">
+              <a 
+                href="/teams/academy" 
+                class="dropdown-item submenu-trigger" 
+                role="menuitem" 
+                aria-haspopup="true" 
+                tabindex="0"
+                on:click={(e) => {
+                  e.stopPropagation();
+                  openDropdown = null;
+                  openSubmenu = null;
+                }}
+              >
                 {$_('home.teams.junior.name')}
                 <span class="icon-rotate-90">
                   <ChevronDown size={14} />
@@ -260,6 +271,11 @@
                 <a href="/teams/coman" class="submenu-item" role="menuitem" tabindex="0">
                   {$_('teams.coman')}
                 </a>
+
+                <!-- Kylian Mbappé -->
+                <a href="/teams/mbappe" class="submenu-item" role="menuitem" tabindex="0">
+                  {$_('teams.mbappe')}
+                </a>
                 
                 <!-- Kadidiatou Diani -->
                 <a href="/teams/diani" class="submenu-item" role="menuitem" tabindex="0">
@@ -289,14 +305,15 @@
       <a href="/camps" class="nav-link" style="animation-delay: 0.5s">
         {$_('nav.camps')}
       </a>
+      
       <a 
-          href="https://drive.google.com/drive/folders/1Qm9yOZJ9_sKRuJ70V8KSa1FrcSgxwXRW"
-          class="nav-link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {$_('nav.photo')}
-        </a>
+        href="https://drive.google.com/drive/folders/1Qm9yOZJ9_sKRuJ70V8KSa1FrcSgxwXRW"
+        class="nav-link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {$_('nav.photo')}
+      </a>
     </div>
 
     <!-- Actions à droite (desktop) -->
@@ -320,7 +337,7 @@
         >
           PL
         </button>
-                <span class="separator">|</span>
+        <span class="separator">|</span>
         <button 
           on:click={() => changeLanguage('en')} 
           class="lang-btn" 
@@ -381,7 +398,7 @@
       <ul class="mobile-menu">
         <li><a href="/" on:click={close}>{$_('nav.home')}</a></li>
         <li>
-          <a href="https://olympique.pl/" target="_blank" rel="noopener noreferrer" class="shop-mobile-link">
+          <a href="https://olympique.pl/" target="_blank" rel="noopener noreferrer" on:click={close} class="shop-mobile-link">
             {$_('nav.shop')}
             <span class="new-badge">
               <span class="badge-text">NEW</span>
@@ -389,75 +406,102 @@
             </span>
           </a>
         </li>        
+        
         <!-- Le Club (mobile) -->
         <li class="mobile-dropdown">
-          <button class="mobile-dropdown-trigger" on:click={() => toggleDropdown('club-mobile')}>
-            {$_('nav.club')}
-            <span class="icon-wrapper" class:rotate={openDropdown === 'club-mobile'}>
-              <ChevronDown size={16} />
-            </span>          
-          </button>
-          
+          <div class="mobile-dropdown-row">
+            <!-- LIEN PRINCIPAL -->
+            <a href="/club" class="mobile-dropdown-link" on:click={close}>
+              {$_('nav.club')}
+            </a>
+
+            <!-- BOUTON CHEVRON -->
+            <button
+              class="mobile-dropdown-trigger"
+              aria-label="Ouvrir le menu Club"
+              on:click={() => toggleDropdown('club-mobile')}
+            >
+              <span class="icon-wrapper" class:rotate={openDropdown === 'club-mobile'}>
+                <ChevronDown size={16} />
+              </span>
+            </button>
+          </div>
+
           {#if openDropdown === 'club-mobile'}
             <ul class="mobile-submenu">
               <li><a href="/club/about" on:click={close}>{$_('club.about')}</a></li>
               <li><a href="/club/coaches" on:click={close}>{$_('club.coaches')}</a></li>
               <li><a href="/club/partners" on:click={close}>{$_('club.partners')}</a></li>
-              <li>
-                <a 
-                  href="https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit?tab=t.0" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="dropdown-item"
-                >
-                  {$_('club.status')}
-                </a>
-              </li>
-              <li>
-              <a 
-              href="https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit"
-              class="dropdown-item"
-              target="_blank"
-              rel="noopener noreferrer"
-              >
-              {$_('club.documents.title')}
-            </a>
-              </li>
             </ul>
           {/if}
         </li>
-        
+    
         <!-- Nos Équipes (mobile) -->
         <li class="mobile-dropdown">
-          <button class="mobile-dropdown-trigger" on:click={() => toggleDropdown('teams-mobile')}>
-            {$_('nav.teams')}
-            <span class="icon-wrapper" class:rotate={openDropdown === 'teams-mobile'}>
-              <ChevronDown size={16} />
-            </span>
-          </button>
-          
+          <div class="mobile-dropdown-row">
+            <!-- LIEN PRINCIPAL -->
+            <a href="/teams" class="mobile-dropdown-link" on:click={close}>
+              {$_('nav.teams')}
+            </a>
+
+            <!-- BOUTON CHEVRON -->
+            <button
+              class="mobile-dropdown-trigger"
+              aria-label="Ouvrir le menu Équipes"
+              on:click={() => toggleDropdown('teams-mobile')}
+            >
+              <span class="icon-wrapper" class:rotate={openDropdown === 'teams-mobile'}>
+                <ChevronDown size={16} />
+              </span>
+            </button>
+          </div>
+
           {#if openDropdown === 'teams-mobile'}
             <ul class="mobile-submenu">
-              <li><a href="/teams/ladies" on:click={close}>{$_('home.teams.feminine.name')}</a></li>
-              <li><a href="/teams/blues" on:click={close}>{$_('home.teams.senior.name')}</a></li>
-              
-              <!-- L'Académie -->
-              <li class="mobile-subsubmenu">
-                <a href="/teams/academy" class="mobile-subsubmenu-link">
-                  {$_('home.teams.junior.name')}
+              <li>
+                <a href="/teams/dames" on:click={close}>
+                  {$_('home.teams.feminine.name')}
                 </a>
-                <button class="mobile-subsubmenu-trigger" on:click={() => toggleSubmenu('academy-mobile')}>
-                  <span class="icon-wrapper" class:rotate={openSubmenu === 'academy-mobile'}>
-                    <ChevronDown size={14} />
-                  </span>
-                </button>
-                
+              </li>
+
+              <li>
+                <a href="/teams/bleus" on:click={close}>
+                  {$_('home.teams.senior.name')}
+                </a>
+              </li>
+
+              <!-- Académie -->
+              <li class="mobile-subsubmenu">
+                <div class="mobile-subsubmenu-row">
+                  <a
+                    href="/teams/academy"
+                    class="mobile-subsubmenu-link"
+                    on:click={close}
+                  >
+                    {$_('home.teams.junior.name')}
+                  </a>
+
+                  <button
+                    class="mobile-subsubmenu-trigger"
+                    aria-label="Ouvrir le menu Académie"
+                    on:click={() => toggleSubmenu('academy-mobile')}
+                  >
+                    <span
+                      class="icon-wrapper"
+                      class:rotate={openSubmenu === 'academy-mobile'}
+                    >
+                      <ChevronDown size={14} />
+                    </span>
+                  </button>
+                </div>
+
                 {#if openSubmenu === 'academy-mobile'}
                   <ul class="mobile-subsubmenu-list">
                     <li><a href="/teams/giroud" on:click={close}>{$_('teams.giroud')}</a></li>
                     <li><a href="/teams/doue" on:click={close}>{$_('teams.doue.title')}</a></li>
                     <li><a href="/teams/griezmann" on:click={close}>{$_('teams.griezmann')}</a></li>
                     <li><a href="/teams/coman" on:click={close}>{$_('teams.coman')}</a></li>
+                    <li><a href="/teams/mbappe" on:click={close}>{$_('teams.mbappe')}</a></li>
                     <li><a href="/teams/diani" on:click={close}>{$_('teams.diani')}</a></li>
                     <li><a href="/teams/renard" on:click={close}>{$_('teams.renard')}</a></li>
                     <li><a href="/teams/lesommer" on:click={close}>{$_('teams.lesommer')}</a></li>
@@ -468,16 +512,18 @@
             </ul>
           {/if}
         </li>
+
         <li><a href="/camps" on:click={close}>{$_('nav.camps')}</a></li>
-        <li><a 
-          href="https://drive.google.com/drive/folders/1Qm9yOZJ9_sKRuJ70V8KSa1FrcSgxwXRW"
-          class="nav-link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {$_('nav.photo')}
-        </a>
-        </li>          
+        <li>
+          <a 
+            href="https://drive.google.com/drive/folders/1Qm9yOZJ9_sKRuJ70V8KSa1FrcSgxwXRW"
+            target="_blank"
+            rel="noopener noreferrer"
+            on:click={close}
+          >
+            {$_('nav.photo')}
+          </a>
+        </li>  
       </ul>
     </nav>
 
@@ -501,6 +547,15 @@
           aria-label="Polski"
         >
           PL
+        </button>
+        <span class="separator">|</span>
+        <button
+          on:click={() => changeLanguage('en')} 
+          class="lang-btn" 
+          class:active={$locale === 'en'}
+          aria-label="English"
+        >
+          EN
         </button>
       </div>
 
@@ -536,8 +591,7 @@
     role="button"
     tabindex="0"
     aria-label={$_('common.close')}
-  >
-</div>
+  ></div>
 {/if}
 
 <style>
@@ -595,8 +649,9 @@
 .logo-olympique-poznan {
   height: 50px;
 }
+
 .logo-home {
-  height: 20px;
+  height: 35px;
 }
 
 /* LIENS DE NAVIGATION (cachés sur mobile) */
@@ -700,23 +755,43 @@
   color: #0f2d4a;
 }
 
-/* MOBILE DROPDOWN TRIGGER */
-.mobile-dropdown-trigger {
+/* MOBILE DROPDOWN */
+.mobile-dropdown {
+  margin: 0.5rem 0;
+}
+
+.mobile-dropdown-row {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 100%;
+  justify-content: space-between;
+  gap: 0;
+}
+
+.mobile-dropdown-link {
+  flex: 1;
+  padding: 1rem;
+  color: #1a4d7a;
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border-radius: 8px 0 0 8px;
+  transition: all 0.2s;
+}
+
+.mobile-dropdown-link:hover {
+  background: rgba(26, 77, 122, 0.1);
+  color: #0f2d4a;
+}
+
+.mobile-dropdown-trigger {
   padding: 1rem;
   background: none;
   border: none;
-  color: #1a4d7a;
-  font-size: 1.05rem;
-  font-weight: 600;
-  border-radius: 8px;
   cursor: pointer;
+  color: #1a4d7a;
+  border-radius: 0 8px 8px 0;
   transition: all 0.2s;
-  font-family: inherit;
-  text-align: left;
+  flex-shrink: 0;
 }
 
 .mobile-dropdown-trigger:hover {
@@ -735,7 +810,7 @@
   margin: 0.25rem 0;
 }
 
-.mobile-submenu a {
+.mobile-submenu > li > a {
   display: block;
   padding: 0.75rem 1rem;
   color: #555;
@@ -745,27 +820,47 @@
   transition: all 0.2s;
 }
 
-.mobile-submenu a:hover {
+.mobile-submenu > li > a:hover {
   background: rgba(26, 77, 122, 0.08);
   color: #1a4d7a;
 }
 
 /* MOBILE SUBSUBMENU */
-.mobile-subsubmenu-trigger {
+.mobile-subsubmenu {
+  margin: 0.25rem 0;
+}
+
+.mobile-subsubmenu-row {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 100%;
+  justify-content: space-between;
+  gap: 0;
+}
+
+.mobile-subsubmenu-link {
+  flex: 1;
   padding: 0.75rem 1rem;
+  color: #555;
+  text-decoration: none;
+  font-size: 0.95rem;
+  border-radius: 6px 0 0 6px;
+  transition: all 0.2s;
+}
+
+.mobile-subsubmenu-link:hover {
+  background: rgba(26, 77, 122, 0.08);
+  color: #1a4d7a;
+}
+
+.mobile-subsubmenu-trigger {
+  padding: 0.75rem;
   background: none;
   border: none;
   color: #555;
-  font-size: 0.95rem;
-  border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s;
-  font-family: inherit;
-  text-align: left;
+  flex-shrink: 0;
+  border-radius: 0 6px 6px 0;
 }
 
 .mobile-subsubmenu-trigger:hover {
@@ -779,6 +874,10 @@
   margin: 0.25rem 0 0 1rem;
 }
 
+.mobile-subsubmenu-list li {
+  margin: 0.15rem 0;
+}
+
 .mobile-subsubmenu-list a {
   display: block;
   padding: 0.65rem 1rem;
@@ -786,6 +885,7 @@
   text-decoration: none;
   font-size: 0.9rem;
   border-radius: 4px;
+  transition: all 0.2s;
 }
 
 .mobile-subsubmenu-list a:hover {
@@ -805,7 +905,6 @@
   background: rgba(102, 126, 234, 0.08);
   border-radius: 0.5rem;
   border: 1px solid rgba(102, 126, 234, 0.2);
-  color:#ccc;
 }
 
 .language-selector.mobile {
@@ -820,7 +919,7 @@
   padding: 0.25rem 0.5rem;
   font-weight: 600;
   font-size: 0.95rem;
-  color: white(102, 102, 102, var(--text-opacity, 0.6));
+  color: rgba(102, 102, 102, var(--text-opacity, 0.6));
   cursor: pointer;
   border-radius: 0.25rem;
   transition: all 0.3s ease;
@@ -1086,7 +1185,7 @@
     height: 50px;
   }
   .logo-home {
-    height: 25px;
+    height: 35px;
   }
 
   /* Cacher le burger, afficher la nav desktop */
@@ -1116,7 +1215,7 @@
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    background:none;
+    background: none;
     border: none;
     cursor: pointer;
     font-family: inherit;
@@ -1354,7 +1453,7 @@
     height: 60px;
   }
   .logo-home {
-    height: 30px;
+    height: 40px;
   }
 
   .nav-container {
@@ -1396,7 +1495,7 @@
     height: 70px;
   }
   .logo-home {
-    height: 40px;
+    height: 45px;
   }
 
   .nav-container {
@@ -1432,7 +1531,7 @@
     height: 80px;
   }
   .logo-home {
-    height: 50px;
+    height: 55px;
   }
 
   .nav-container {

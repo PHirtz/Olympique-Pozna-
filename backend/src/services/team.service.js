@@ -8,66 +8,66 @@ class TeamService {
   }
 
   async getAllTeams(filters = {}) {
-    const { category, gender, season, isActive, page = 1, limit = 20 } = filters;
-    const offset = (page - 1) * limit;
-
-    const where = {};
-    if (category) where.category = category;
-    if (gender) where.gender = gender;
-    if (season) where.season = season;
-    if (isActive !== undefined) where.isActive = isActive;
-
-    const { count, rows } = await Team.findAndCountAll({
-      where,
-      include: [
-        {
-          model: User,
-          as: 'coach',
-          attributes: ['id', 'firstName', 'lastName', 'imageUrl']
-        },
-        {
-          model: User,
-          as: 'players',
-          attributes: ['id', 'firstName', 'lastName', 'playerNumber', 'position', 'imageUrl']
+    try {
+      const { category, gender, season, isActive, page = 1, limit = 20 } = filters;
+      const offset = (page - 1) * limit;
+      const where = {};
+      
+      if (category) where.category = category;
+      if (gender) where.gender = gender;
+      if (season) where.season = season;
+      if (isActive !== undefined) where.isActive = isActive;
+      
+      const { count, rows } = await Team.findAndCountAll({
+        where,
+        include: [
+          {
+            model: User,
+            as: 'coach',
+            attributes: ['id', 'firstName', 'lastName', 'imageUrl']
+          },
+          {
+            model: User,
+            as: 'players',
+            attributes: ['id', 'firstName', 'lastName', 'playerNumber', 'position', 'imageUrl']
+          }
+        ],
+        limit,
+        offset,
+        order: [['category', 'ASC'], ['createdAt', 'DESC']]
+      });
+      
+      return {
+        teams: rows,
+        pagination: {
+          total: count,
+          page: parseInt(page),
+          limit: parseInt(limit),
+          totalPages: Math.ceil(count / limit)
         }
-      ],
-      limit,
-      offset,
-      order: [['category', 'ASC'], ['createdAt', 'DESC']]
-    });
-
-    return {
-      teams: rows,
-      pagination: {
-        total: count,
-        page: parseInt(page),
-        limit: parseInt(limit),
-        totalPages: Math.ceil(count / limit)
-      }
-    };
+      };
+    } catch (error) {
+      console.error('❌ Erreur dans getAllTeams:', error);
+      throw error;
+    }
   }
 
-  async getTeamById(id) {
-    const team = await Team.findByPk(id, {
+  async getTeamBySlug(slug) {
+    const team = await Team.findOne({
+      where: { slug, isActive: true },
       include: [
         {
           model: User,
           as: 'coach',
           attributes: ['id', 'firstName', 'lastName', 'email', 'phoneNumber', 'imageUrl']
-        },
-        {
-          model: User,
-          as: 'players',
-          attributes: ['id', 'firstName', 'lastName', 'playerNumber', 'position', 'dateOfBirth', 'imageUrl'],
-          order: [['playerNumber', 'ASC']]
         }
       ]
     });
-
+    
     if (!team) {
       throw new Error('Équipe introuvable');
     }
-
+    
     return team;
   }
 
@@ -119,6 +119,30 @@ class TeamService {
       ],
       order: [['season', 'DESC']]
     });
+  }
+
+  async getTeamById(id) {
+    const team = await Team.findByPk(id, {
+      include: [
+        {
+          model: User,
+          as: 'coach',
+          attributes: ['id', 'firstName', 'lastName', 'email', 'phoneNumber', 'imageUrl']
+        },
+        {
+          model: User,
+          as: 'players',
+          attributes: ['id', 'firstName', 'lastName', 'playerNumber', 'position', 'dateOfBirth', 'imageUrl'],
+          order: [['playerNumber', 'ASC']]
+        }
+      ]
+    });
+
+    if (!team) {
+      throw new Error('Équipe introuvable');
+    }
+
+    return team;
   }
 }
 

@@ -7,7 +7,7 @@
     {
       slug: 'feminine',
       image: '../seniorsf/548748092_685055974624192_8235511687039625110_n.jpg',
-      link: '/teams/ladies'
+      link: '/teams/dames'
     },
 
     {
@@ -19,7 +19,7 @@
     {
       slug: 'senior',
       image: '../seniorsh/565694409_714234655039657_3240198854373276417_n.jpg',
-      link: '/teams/blues'
+      link: '/teams/bleus'
     }
   ];
 

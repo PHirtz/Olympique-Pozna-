@@ -1,66 +1,49 @@
 <svelte:head>
-  <title>L'académie</title>
-  <meta name="description" content="Découvrez l'académie de l'Olympique Poznan et ses équipes jeunes" />
+  <title>{$_('teams.academy.title')} - Olympique Poznań</title>
+  <meta name="description" content={$_('teams.academy.subtitle')} />
 </svelte:head>
 
 <script>
+  import { onMount } from 'svelte';
   import { _ } from 'svelte-i18n';
   import Navigation2 from '$lib/components/ui/Navigation2.svelte';
   import Footer from '$lib/components/ui/Footer.svelte';
-  import { Award, Heart, Target } from 'lucide-svelte';
+  import * as teamsApi from '$lib/api/teams.js';
   
   export let data;
 
-  const teams = [
-    {
-      id: 'giroud',
-      name: 'Olivier Giroud',
-      photo: '/team/giroud.png',
-      copyright: 'Richard Sellers / GettyImages',
-    },
-    {
-      id: 'doue',
-      name: 'Désiré Doué',
-      photo: '/team/doue.jpg',
-      copyright: 'Aleteia / AFP',
-    },
-    {
-      id: 'griezmann',
-      name: 'Antoine Griezmann',
-      photo: '/team/antoine.png',
-      copyright: 'Eurosport / Getty Images',
-    },
-    {
-      id: 'coman',
-      name: 'Kingsley Coman',
-      photo: '/team/coman.jpg',
-      copyright: 'Action Press / SIPA',
-    },
-    {
-      id: 'diani',
-      name: 'Kadidiatou Diani',
-      photo: '/team/diani.png',
-      copyright: 'Naomi Baker / GettyImages',
-    },
-    {
-      id: 'renard',
-      name: 'Wendie Renard',
-      photo: '/team/wendie.jpg',
-      copyright: ' FRANCK FIFE / AFP',
-    },
-    {
-      id: 'lesommer',
-      name: 'Eugénie Le Sommer',
-      photo: '/team/eugenie.jpg',
-      copyright: 'FRANCK FIFE / AFP',
-    },
-    {
-      id: 'henry',
-      name: 'Amandine Henry',
-      photo: '/team/amandine.jpg',
-      copyright: 'Le progres / AFP',
+  let teams = [];
+  let loading = true;
+  let error = null;
+
+  // Catégories de l'académie (toutes les équipes jeunes)
+  const academyCategories = ['u11', 'u13', 'u15', 'u17', 'u19'];
+
+  onMount(async () => {
+    await loadAcademyTeams();
+  });
+
+  async function loadAcademyTeams() {
+    try {
+      loading = true;
+      error = null;
+      
+      // Récupère toutes les équipes
+      const response = await teamsApi.getAllTeams({ isActive: true });
+      
+      if (response.success && response.data?.teams) {
+        // Filtre uniquement les équipes de l'académie
+        teams = response.data.teams.filter(team => 
+          academyCategories.includes(team.category.toLowerCase())
+        );
+      }
+    } catch (err) {
+      console.error('❌ Erreur chargement académie:', err);
+      error = 'Impossible de charger les équipes';
+    } finally {
+      loading = false;
     }
-  ];
+  }
 </script>
 
 <Navigation2 {data} />
@@ -74,56 +57,76 @@
     </div>
   </section>
 
-<div class="teams-page">
-  <main class="main-content">
-    <div class="container">
-
-      <div class="teams-grid">
-        {#each teams as team}
-          <a 
-            href={`/teams/${team.id}`} 
-            class="team-card"
-          >
-            <div class="team-image-wrapper">
-              <img 
-                src={team.photo} 
-                alt={team.name} 
-                class="team-photo"
-              />
-              {#if team.copyright}
-                <div class="photo-copyright">
-                  &copy; {team.copyright}
+  <div class="teams-page">
+    <main class="main-content">
+      <div class="container">
+        {#if loading}
+          <div class="loading-state">
+            <div class="loading-spinner"></div>
+            <p>Chargement des équipes...</p>
+          </div>
+        {:else if error}
+          <div class="error-state">
+            <p>{error}</p>
+            <button on:click={loadAcademyTeams} class="btn-retry">
+              Réessayer
+            </button>
+          </div>
+        {:else if teams.length === 0}
+          <div class="empty-state">
+            <p>Aucune équipe pour le moment.</p>
+          </div>
+        {:else}
+          <div class="teams-grid">
+            {#each teams as team}
+              <a 
+                href={`/teams/${team.slug}`} 
+                class="team-card"
+              >
+                <div class="team-image-wrapper">
+                  <img 
+                    src={team.imagePath || `/team/${team.slug}.jpg`}
+                    alt={team.name}
+                    class="team-photo"
+                    on:error={(e) => {
+                      e.target.src = '/img-communes/fondteam.jpeg';
+                    }}
+                  />
                 </div>
-              {/if}
-            </div>
-            
-            <div class="team-info">
-              <h3>{team.name}</h3>
-              <span class="view-profile">{$_('teams.viewProfile')}</span>
-            </div>
-          </a>
-        {/each}
+                
+                <div class="team-info">
+                  <h3>{team.name}</h3>
+                  <p class="team-category">{team.category.toUpperCase()}</p>
+                  {#if team.description}
+                    <p class="team-description">{team.description}</p>
+                  {/if}
+                  <span class="view-profile">{$_('teams.viewProfile')}</span>
+                </div>
+              </a>
+            {/each}
+          </div>
+        {/if}
       </div>
-    </div>
-  </main>
-</div>
+    </main>
+  </div>
 </div>
 
 <Footer {data} />
 
 <style>
+  .academy-page {
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #f8fafc, #ffffff);
+  }
+
   .teams-page {
     min-height: 100vh;
     background: linear-gradient(to bottom, #f8fafc, #ffffff);
   }
 
-  .main-content {
-    padding: 4rem 0;
-  }
-
   /* Hero Section */
   .hero-academy {
-    background:linear-gradient(135deg, #1a4d7a 0%, #0f2d4a 100%);
+    background: linear-gradient(135deg, #1a4d7a 0%, #0f2d4a 100%);
     color: white;
     padding: 8rem 2rem 4rem;
     text-align: center;
@@ -137,10 +140,57 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   }
 
+  .teams-hero-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .main-content {
+    padding: 4rem 0;
+  }
+
   .container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 2rem;
+  }
+
+  /* Loading, Error, Empty States */
+  .loading-state, .error-state, .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #666;
+  }
+
+  .loading-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #1a4d7a;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .btn-retry {
+    padding: 0.75rem 1.5rem;
+    background: #1a4d7a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 1rem;
+    transition: background 0.3s ease;
+  }
+
+  .btn-retry:hover {
+    background: #0f2d4a;
   }
 
   /* Teams Grid */
@@ -172,16 +222,16 @@
   .team-image-wrapper {
     position: relative;
     width: 100%;
-    height: 450px;
+    height: 300px;
     overflow: hidden;
     background: linear-gradient(135deg, #1a4d7a 0%, #0f2d4a 100%);
   }
 
   .team-photo {
-    width: 110%;
+    width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 1%;
+    object-position: center;
     transition: transform 0.3s ease;
   }
 
@@ -193,7 +243,7 @@
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.5rem;
   }
 
   .team-info h3 {
@@ -201,6 +251,22 @@
     color: #1a4d7a;
     margin: 0;
     font-weight: 700;
+  }
+
+  .team-category {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #c9a961;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+  }
+
+  .team-description {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.5;
+    margin: 0.5rem 0;
   }
 
   .view-profile {
@@ -223,20 +289,6 @@
     color: #d4af37;
   }
 
-  .photo-copyright {
-    position: absolute;
-    bottom: 8px;
-    left: 8px;
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.65rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-    z-index: 10;
-  }
-
-  .team-card:hover .photo-copyright {
-    opacity: 1;
-  }
-
   /* Responsive */
   @media (max-width: 768px) {
     .teams-grid {
@@ -244,7 +296,7 @@
     }
 
     .team-image-wrapper {
-      height: 350px;
+      height: 250px;
     }
   }
 
