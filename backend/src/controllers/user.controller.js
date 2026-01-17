@@ -137,14 +137,25 @@ class UserController {
     try {
       const { username, password } = req.body;
       
+      console.log('🔐 Tentative de connexion:', username);
+      
+      if (!username || !password) {
+        throw new HttpBadRequestError('Nom d\'utilisateur et mot de passe requis');
+      }
+      
       const user = await userService.getUserByUsername(username);
-      console.log('User role:', user.role);
+      
+      // VÉRIFIER D'ABORD si user existe
       if (!user) {
+        console.log('❌ Utilisateur non trouvé:', username);
         throw new HttpBadRequestError('Identifiants incorrects');
       }
 
+      console.log('✅ Utilisateur trouvé:', user.username, 'Role:', user.role);
+      
       const isPasswordValid = await userService.verifyPassword(user, password);
       if (!isPasswordValid) {
+        console.log('❌ Mot de passe incorrect');
         throw new HttpBadRequestError('Identifiants incorrects');
       }
 
@@ -154,6 +165,8 @@ class UserController {
       // Générer les tokens JWT
       const token = generateToken(user);
       const refreshToken = generateRefreshToken(user);
+
+      console.log('✅ Connexion réussie');
 
       res.status(200).json({
         success: true,
@@ -165,6 +178,7 @@ class UserController {
         }
       });
     } catch (error) {
+      console.error('❌ Erreur login:', error.message);
       next(error);
     }
   }
