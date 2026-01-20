@@ -8,6 +8,7 @@ import playerRouter from './playerRouter.js';
 import userController from '../controllers/user.controller.js';
 import campController from '../controllers/camp.controller.js';
 import campRegistrationController from '../controllers/camp-registration.controller.js';
+import { playerController } from '../controllers/player.controller.js'; 
 import { 
   teamController, 
   matchController, 
@@ -218,6 +219,13 @@ adminRouter.get('/partners/:id', partnerController.getById);
 adminRouter.put('/partners/:id', validate(partnerUpdateSchema), partnerController.update);
 adminRouter.delete('/partners/:id', partnerController.delete);
 
+// PLAYERS (NOUVEAU)
+adminRouter.post('/players', playerController.create);
+adminRouter.get('/players', playerController.getAll);
+adminRouter.get('/players/:id', playerController.getById);
+adminRouter.put('/players/:id', playerController.update);
+adminRouter.delete('/players/:id', playerController.delete);
+
 // À ajouter plus tard :
 // USERS
 // adminRouter.get('/users', userController.getAll);
@@ -244,6 +252,6 @@ router.use('/statistics', statisticsRouter);
 router.use('/camps', campRouter);
 router.use('/camp-registrations', campRegistrationRouter);
 router.use('/contact', contactRouter);
-router.use('/admin', adminRouter); // ← NOUVEAU : Routes admin protégées
+router.use('/admin', adminRouter);
 
 export default router;

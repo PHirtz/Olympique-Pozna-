@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import * as adminPlayers from '$lib/api/admin/players.js';
+  import PlayerPhoto from '$lib/components/ui/PlayerPhoto.svelte';
   import { 
     Users,
     Plus,
@@ -166,17 +167,11 @@
           {#each players as player, i}
             <tr class:row-alt={i % 2 === 1}>
               <td class="photo-cell">
-                {#if player.photoUrl}
-                  <img 
-                    src={player.photoUrl} 
-                    alt={`${player.firstName} ${player.lastName}`}
-                    class="player-photo"
-                  />
-                {:else}
-                  <div class="player-photo-placeholder">
-                    <Users size={16} />
-                  </div>
-                {/if}
+                <PlayerPhoto 
+                  src={player.photoUrl} 
+                  alt={`${player.firstName} ${player.lastName}`}
+                  className="player-photo"
+                />
               </td>
               <td class="text-bold">
                 {player.firstName} {player.lastName}

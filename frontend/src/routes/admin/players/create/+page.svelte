@@ -1,5 +1,4 @@
 <script>
-  import { onMount } from 'svelte';
   import { goto } from '$app/navigation';
   import * as adminPlayers from '$lib/api/admin/players.js';
   import { 
@@ -7,13 +6,16 @@
     Save,
     X,
     Upload,
-    Trash2
+    Trash2,
+    Link
   } from 'lucide-svelte';
 
   // Données
-  let loading = false;
   let saving = false;
   let errors = {};
+
+  // MODE UPLOAD : 'file' ou 'url'
+  let uploadMode = 'file';
 
   // Formulaire
   let formData = {
@@ -27,6 +29,7 @@
     birthYear: new Date().getFullYear() - 10,
     nationality: 'Poland',
     nationalityPl: 'Polska',
+    photoUrl: '', // ← NOUVEAU : URL externe
     distinction1: '',
     distinction2: '',
     distinction3: '',
@@ -35,7 +38,7 @@
     isActive: true
   };
 
-  // Photo
+  // Photo (fichier)
   let photoFile = null;
   let photoPreview = null;
 
@@ -67,20 +70,41 @@
     'Belarus': 'Białoruś'
   };
 
+  // ======================================
+  // GESTION UPLOAD MODE
+  // ======================================
+
+  function handleUploadModeChange() {
+    // Réinitialiser les données quand on change de mode
+    photoFile = null;
+    photoPreview = null;
+    formData.photoUrl = '';
+    errors.photo = null;
+    errors.photoUrl = null;
+    
+    const fileInput = document.getElementById('photo');
+    if (fileInput) fileInput.value = '';
+  }
+
+  // ======================================
+  // GESTION FICHIER
+  // ======================================
+
   function handlePhotoChange(event) {
     const file = event.target.files[0];
     if (!file) return;
 
     if (!file.type.startsWith('image/')) {
-      alert('Veuillez sélectionner une image');
+      errors.photo = 'Veuillez sélectionner une image';
       return;
     }
 
-    if (file.size > 5 * 1024 * 1024) {
-      alert('L\'image ne doit pas dépasser 5MB');
+    if (file.size > 10 * 1024 * 1024) {
+      errors.photo = 'L\'image ne doit pas dépasser 10MB';
       return;
     }
 
+    errors.photo = null;
     photoFile = file;
 
     const reader = new FileReader();
@@ -93,10 +117,38 @@
   function removePhoto() {
     photoFile = null;
     photoPreview = null;
+    errors.photo = null;
     
     const fileInput = document.getElementById('photo');
     if (fileInput) fileInput.value = '';
   }
+
+  // ======================================
+  // GESTION URL
+  // ======================================
+
+  function handlePhotoUrlChange() {
+    errors.photoUrl = null;
+    
+    if (!formData.photoUrl) {
+      photoPreview = null;
+      return;
+    }
+
+    // Validation basique de l'URL
+    try {
+      new URL(formData.photoUrl);
+      photoPreview = formData.photoUrl;
+      errors.photoUrl = null;
+    } catch {
+      errors.photoUrl = 'URL invalide';
+      photoPreview = null;
+    }
+  }
+
+  // ======================================
+  // AUTRES HANDLERS
+  // ======================================
 
   function handlePositionChange() {
     if (formData.position && positions[formData.position]) {
@@ -109,6 +161,10 @@
       formData.nationalityPl = nationalities[formData.nationality];
     }
   }
+
+  // ======================================
+  // VALIDATION
+  // ======================================
 
   function validateForm() {
     errors = {};
@@ -131,37 +187,48 @@
       errors.birthYear = `Année entre 1950 et ${currentYear}`;
     }
 
+    // Validation photo selon le mode
+    if (uploadMode === 'url' && formData.photoUrl) {
+      try {
+        new URL(formData.photoUrl);
+      } catch {
+        errors.photoUrl = 'URL invalide';
+      }
+    }
+
     return Object.keys(errors).length === 0;
   }
 
-async function handleSubmit() {
-  if (!validateForm()) {
-    alert('Veuillez corriger les erreurs du formulaire');
-    return;
-  }
+  // ======================================
+  // SUBMIT
+  // ======================================
 
-  try {
-    saving = true;
-
-    const data = new FormData();
-    
-    console.log('📤 formData avant envoi:', formData);
-    
-    Object.entries(formData).forEach(([key, value]) => {
-      data.append(key, value);
-    });
-
-    if (photoFile) {
-      data.append('photo', photoFile);
-    }
-    
-    // Debug FormData
-    console.log('📤 FormData entries:');
-    for (let [key, value] of data.entries()) {
-      console.log(`  ${key}:`, value);
+  async function handleSubmit() {
+    if (!validateForm()) {
+      alert('Veuillez corriger les erreurs du formulaire');
+      return;
     }
 
-    await adminPlayers.create(data);
+    try {
+      saving = true;
+
+      const data = new FormData();
+      
+      // Ajouter tous les champs sauf photoUrl (on le gère après)
+      Object.entries(formData).forEach(([key, value]) => {
+        if (key !== 'photoUrl' && value !== '' && value !== null) {
+          data.append(key, value);
+        }
+      });
+
+      // Gestion de la photo selon le mode
+      if (uploadMode === 'file' && photoFile) {
+        data.append('photo', photoFile);
+      } else if (uploadMode === 'url' && formData.photoUrl) {
+        data.append('photoUrl', formData.photoUrl);
+      }
+
+      await adminPlayers.create(data);
       alert('Joueur créé avec succès !');
       goto('/admin/players');
     } catch (error) {
@@ -173,7 +240,7 @@ async function handleSubmit() {
   }
 
   function handleCancel() {
-    if (confirm('Annuler les modifications ?')) {
+    if (confirm('Annuler la création ?')) {
       goto('/admin/players');
     }
   }
@@ -192,6 +259,39 @@ async function handleSubmit() {
     <!-- Photo -->
     <div class="form-section">
       <h3 class="section-title">Photo du joueur</h3>
+      
+      <!-- Mode selection -->
+      <div class="upload-mode-selector">
+        <label class="mode-option">
+          <input
+            type="radio"
+            name="uploadMode"
+            value="file"
+            bind:group={uploadMode}
+            on:change={handleUploadModeChange}
+          />
+          <div class="mode-content">
+            <Upload size={20} />
+            <span>Uploader un fichier</span>
+          </div>
+        </label>
+        
+        <label class="mode-option">
+          <input
+            type="radio"
+            name="uploadMode"
+            value="url"
+            bind:group={uploadMode}
+            on:change={handleUploadModeChange}
+          />
+          <div class="mode-content">
+            <Link size={20} />
+            <span>Utiliser une URL</span>
+          </div>
+        </label>
+      </div>
+
+      <!-- Preview -->
       <div class="photo-upload">
         {#if photoPreview}
           <div class="photo-preview">
@@ -199,7 +299,7 @@ async function handleSubmit() {
             <button
               type="button"
               class="photo-remove"
-              on:click={removePhoto}
+              on:click={uploadMode === 'file' ? removePhoto : () => { formData.photoUrl = ''; photoPreview = null; }}
               title="Supprimer"
             >
               <Trash2 size={16} />
@@ -211,19 +311,51 @@ async function handleSubmit() {
             <p>Aucune photo</p>
           </div>
         {/if}
-        
-        <label for="photo" class="btn-secondary">
-          <Upload size={16} />
-          {photoPreview ? 'Changer la photo' : 'Upload photo'}
-        </label>
-        <input
-          type="file"
-          id="photo"
-          accept="image/*"
-          on:change={handlePhotoChange}
-          style="display: none;"
-        />
-        <p class="help-text">JPEG, PNG, GIF, WebP - Max 5MB</p>
+
+        <!-- Mode FICHIER -->
+        {#if uploadMode === 'file'}
+          <label for="photo" class="btn-secondary">
+            <Upload size={16} />
+            {photoPreview ? 'Changer la photo' : 'Sélectionner un fichier'}
+          </label>
+          <input
+            type="file"
+            id="photo"
+            accept="image/*"
+            on:change={handlePhotoChange}
+            style="display: none;"
+          />
+          <p class="help-text">JPEG, PNG, GIF, WebP - Max 10MB</p>
+          {#if errors.photo}
+            <span class="error-text">{errors.photo}</span>
+          {/if}
+        {/if}
+
+        <!-- Mode URL -->
+        {#if uploadMode === 'url'}
+          <div class="url-input-group">
+            <input
+              type="url"
+              bind:value={formData.photoUrl}
+              on:input={handlePhotoUrlChange}
+              placeholder="https://example.com/photo.jpg"
+              class="url-input"
+              class:error={errors.photoUrl}
+            />
+            <button
+              type="button"
+              class="btn-secondary"
+              on:click={handlePhotoUrlChange}
+              disabled={!formData.photoUrl}
+            >
+              Prévisualiser
+            </button>
+          </div>
+          <p class="help-text">URL de l'image (https://...)</p>
+          {#if errors.photoUrl}
+            <span class="error-text">{errors.photoUrl}</span>
+          {/if}
+        {/if}
       </div>
     </div>
 
@@ -232,7 +364,7 @@ async function handleSubmit() {
       <h3 class="section-title">INFORMATIONS PRINCIPALES</h3>
       
       <div class="form-grid">
-        <!-- Équipe (TODO: charger dynamiquement) -->
+        <!-- Équipe -->
         <div class="form-field">
           <label for="teamId">Équipe <span class="required">*</span></label>
           <input
@@ -240,7 +372,7 @@ async function handleSubmit() {
             type="number"
             bind:value={formData.teamId}
             class:error={errors.teamId}
-            placeholder="ID de l'équipe (temporaire)"
+            placeholder="ID de l'équipe"
           />
           {#if errors.teamId}
             <span class="error-text">{errors.teamId}</span>
@@ -325,7 +457,6 @@ async function handleSubmit() {
       <h3 class="section-title">POSTE</h3>
       
       <div class="form-grid">
-        <!-- Position (FR) -->
         <div class="form-field">
           <label for="position">Poste (FR) <span class="required">*</span></label>
           <select
@@ -344,7 +475,6 @@ async function handleSubmit() {
           {/if}
         </div>
 
-        <!-- Position (PL) -->
         <div class="form-field">
           <label for="positionPl">Poste (PL) <span class="required">*</span></label>
           <input
@@ -365,7 +495,6 @@ async function handleSubmit() {
       <h3 class="section-title">NATIONALITÉ</h3>
       
       <div class="form-grid">
-        <!-- Nationalité (EN) -->
         <div class="form-field">
           <label for="nationality">Nationalité (EN) <span class="required">*</span></label>
           <select
@@ -384,7 +513,6 @@ async function handleSubmit() {
           {/if}
         </div>
 
-        <!-- Nationalité (PL) -->
         <div class="form-field">
           <label for="nationalityPl">Nationalité (PL) <span class="required">*</span></label>
           <input
@@ -447,10 +575,10 @@ async function handleSubmit() {
         disabled={saving}
       >
         {#if saving}
-          Sauvegarde...
+          Création...
         {:else}
           <Save size={16} />
-          Créer
+          Créer le joueur
         {/if}
       </button>
     </div>
@@ -458,6 +586,45 @@ async function handleSubmit() {
 </div>
 
 <style>
+  /* Mode selector */
+  .upload-mode-selector {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .mode-option {
+    flex: 1;
+    cursor: pointer;
+  }
+
+  .mode-option input[type="radio"] {
+    display: none;
+  }
+
+  .mode-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    border: 2px solid #d0d0d0;
+    border-radius: 8px;
+    background: white;
+    transition: all 0.2s;
+  }
+
+  .mode-option input[type="radio"]:checked + .mode-content {
+    border-color: #1976d2;
+    background: #e3f2fd;
+    color: #1976d2;
+  }
+
+  .mode-content:hover {
+    border-color: #1976d2;
+  }
+
+  /* Photo upload */
   .photo-upload {
     display: flex;
     flex-direction: column;
@@ -515,6 +682,27 @@ async function handleSubmit() {
     color: #999;
   }
 
+  /* URL input */
+  .url-input-group {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .url-input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 2px solid #d0d0d0;
+    border-radius: 4px;
+    font-size: 0.875rem;
+  }
+
+  .url-input:focus {
+    outline: none;
+    border-color: #1976d2;
+  }
+
   .help-text {
     font-size: 0.75rem;
     color: #666;
@@ -533,6 +721,7 @@ async function handleSubmit() {
     font-size: 0.75rem;
     color: #d32f2f;
     margin-top: 0.25rem;
+    display: block;
   }
 
   .checkbox-label {

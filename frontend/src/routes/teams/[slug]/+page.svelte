@@ -5,6 +5,7 @@
   import Navigation2 from '$lib/components/ui/Navigation2.svelte';
   import Footer from '$lib/components/ui/Footer.svelte';
   import PlayerModal from '$lib/components/ui/PlayerModal.svelte';
+  import PlayerPhoto from '$lib/components/ui/PlayerPhoto.svelte';
   import * as teamsApi from '$lib/api/teams.js';
   import * as playersApi from '$lib/api/players.js';
   
@@ -48,7 +49,7 @@
           firstName: player.firstName,
           lastName: player.lastName,
           name: `${player.firstName} ${player.lastName}`,
-          photo: player.photoUrl || '/img-communes/gazon.jpg',
+          photo: player.photoUrl || '/no-pics.jpg',
           position: player.position,
           positionPl: player.positionPl,
           origin: player.nationality,
@@ -106,9 +107,6 @@
           src={team.imagePath || `/team/${slug}.jpg`} 
           alt={team.name} 
           class="hero-image"
-          on:error={(e) => {
-            e.target.src = '/img-communes/fondteam.jpeg';
-          }}
         />
         <div class="hero-overlay"></div>
       </div>
@@ -136,14 +134,11 @@
                 aria-label="Voir le profil de {player.name}"
               >
                 <div class="team-image-wrapper">
-                  <img 
-                    src={player.photo} 
-                    alt={player.name} 
-                    class="team-photo"
-                    on:error={(e) => {
-                      e.target.src = '/img-communes/gazon.jpg';
-                    }}
-                  />
+                <PlayerPhoto 
+                  src={player.photo} 
+                  alt={player.name} 
+                  className="team-photo"
+                />
                 </div>
                 
                 <div class="team-info">

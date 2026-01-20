@@ -8,15 +8,18 @@
     Save,
     X,
     Upload,
-    Trash2
+    Trash2,
+    Link
   } from 'lucide-svelte';
 
   let playerId = null;
-  let isEditMode = true;
   let loading = true;
   let saving = false;
   let errors = {};
   let existingPhotoPath = null;
+
+  // MODE UPLOAD : 'file' ou 'url'
+  let uploadMode = 'file';
 
   // Formulaire
   let formData = {
@@ -30,6 +33,7 @@
     birthYear: new Date().getFullYear() - 10,
     nationality: 'Poland',
     nationalityPl: 'Polska',
+    photoUrl: '', // ← NOUVEAU : URL externe
     distinction1: '',
     distinction2: '',
     distinction3: '',
@@ -94,6 +98,7 @@
         birthYear: player.birthYear,
         nationality: player.nationality,
         nationalityPl: player.nationalityPl,
+        photoUrl: '',
         distinction1: player.distinction1 || '',
         distinction2: player.distinction2 || '',
         distinction3: player.distinction3 || '',
@@ -102,10 +107,19 @@
         isActive: player.isActive
       };
 
-    if (player.photoUrl) { 
-      existingPhotoPath = player.photoUrl;
-      photoPreview = player.photoUrl;
-    }
+      if (player.photoUrl) { 
+        existingPhotoPath = player.photoUrl;
+        photoPreview = player.photoUrl;
+        
+        // Détecter si c'est une URL externe ou un fichier local
+        if (player.photoUrl.startsWith('http://') || player.photoUrl.startsWith('https://')) {
+          // Si c'est une URL complète et qu'elle ne contient pas notre backend
+          if (!player.photoUrl.includes('localhost') && !player.photoUrl.includes('olympiquepoznan.pl')) {
+            uploadMode = 'url';
+            formData.photoUrl = player.photoUrl;
+          }
+        }
+      }
     } catch (error) {
       console.error('Erreur:', error);
       alert('Erreur lors du chargement du joueur');
@@ -113,20 +127,46 @@
     }
   }
 
+  // ======================================
+  // GESTION UPLOAD MODE
+  // ======================================
+
+  function handleUploadModeChange() {
+    // Réinitialiser les données selon le mode
+    photoFile = null;
+    errors.photo = null;
+    errors.photoUrl = null;
+    
+    if (uploadMode === 'file') {
+      formData.photoUrl = '';
+      photoPreview = existingPhotoPath;
+    } else {
+      photoPreview = formData.photoUrl || null;
+    }
+    
+    const fileInput = document.getElementById('photo');
+    if (fileInput) fileInput.value = '';
+  }
+
+  // ======================================
+  // GESTION FICHIER
+  // ======================================
+
   function handlePhotoChange(event) {
     const file = event.target.files[0];
     if (!file) return;
 
     if (!file.type.startsWith('image/')) {
-      alert('Veuillez sélectionner une image');
+      errors.photo = 'Veuillez sélectionner une image';
       return;
     }
 
-    if (file.size > 5 * 1024 * 1024) {
-      alert('L\'image ne doit pas dépasser 5MB');
+    if (file.size > 10 * 1024 * 1024) {
+      errors.photo = 'L\'image ne doit pas dépasser 10MB';
       return;
     }
 
+    errors.photo = null;
     photoFile = file;
 
     const reader = new FileReader();
@@ -139,10 +179,38 @@
   function removePhoto() {
     photoFile = null;
     photoPreview = existingPhotoPath || null;
+    errors.photo = null;
     
     const fileInput = document.getElementById('photo');
     if (fileInput) fileInput.value = '';
   }
+
+  // ======================================
+  // GESTION URL
+  // ======================================
+
+  function handlePhotoUrlChange() {
+    errors.photoUrl = null;
+    
+    if (!formData.photoUrl) {
+      photoPreview = existingPhotoPath;
+      return;
+    }
+
+    // Validation basique de l'URL
+    try {
+      new URL(formData.photoUrl);
+      photoPreview = formData.photoUrl;
+      errors.photoUrl = null;
+    } catch {
+      errors.photoUrl = 'URL invalide';
+      photoPreview = existingPhotoPath;
+    }
+  }
+
+  // ======================================
+  // AUTRES HANDLERS
+  // ======================================
 
   function handlePositionChange() {
     if (formData.position && positions[formData.position]) {
@@ -155,6 +223,10 @@
       formData.nationalityPl = nationalities[formData.nationality];
     }
   }
+
+  // ======================================
+  // VALIDATION
+  // ======================================
 
   function validateForm() {
     errors = {};
@@ -177,8 +249,21 @@
       errors.birthYear = `Année entre 1950 et ${currentYear}`;
     }
 
+    // Validation photo selon le mode
+    if (uploadMode === 'url' && formData.photoUrl) {
+      try {
+        new URL(formData.photoUrl);
+      } catch {
+        errors.photoUrl = 'URL invalide';
+      }
+    }
+
     return Object.keys(errors).length === 0;
   }
+
+  // ======================================
+  // SUBMIT
+  // ======================================
 
   async function handleSubmit() {
     if (!validateForm()) {
@@ -191,14 +276,18 @@
 
       const data = new FormData();
       
+      // Ajouter tous les champs sauf photoUrl (on le gère après)
       Object.entries(formData).forEach(([key, value]) => {
-        if (value !== '' && value !== null) {
+        if (key !== 'photoUrl' && value !== '' && value !== null) {
           data.append(key, value);
         }
       });
 
-      if (photoFile) {
+      // Gestion de la photo selon le mode
+      if (uploadMode === 'file' && photoFile) {
         data.append('photo', photoFile);
+      } else if (uploadMode === 'url' && formData.photoUrl) {
+        data.append('photoUrl', formData.photoUrl);
       }
 
       await adminPlayers.update(playerId, data);
@@ -227,277 +316,381 @@
     </div>
   </div>
 
-  <form on:submit|preventDefault={handleSubmit} class="admin-form">
-    
-    <!-- Photo -->
-    <div class="form-section">
-      <h3 class="section-title">Photo du joueur</h3>
-      <div class="photo-upload">
-        {#if photoPreview}
-          <div class="photo-preview">
-            <img src={photoPreview} alt="Prévisualisation" />
-            <button
-              type="button"
-              class="photo-remove"
-              on:click={removePhoto}
-              title="Supprimer"
-            >
-              <Trash2 size={16} />
-            </button>
-          </div>
-        {:else}
-          <div class="photo-placeholder">
-            <Users size={48} />
-            <p>Aucune photo</p>
-          </div>
-        {/if}
+  {#if loading}
+    <div class="loading">Chargement...</div>
+  {:else}
+    <form on:submit|preventDefault={handleSubmit} class="admin-form">
+      
+      <!-- Photo -->
+      <div class="form-section">
+        <h3 class="section-title">Photo du joueur</h3>
         
-        <label for="photo" class="btn-secondary">
-          <Upload size={16} />
-          {photoPreview ? 'Changer la photo' : 'Upload photo'}
-        </label>
-        <input
-          type="file"
-          id="photo"
-          accept="image/*"
-          on:change={handlePhotoChange}
-          style="display: none;"
-        />
-        <p class="help-text">JPEG, PNG, GIF, WebP - Max 5MB</p>
-      </div>
-    </div>
-
-    <!-- Informations principales -->
-    <div class="form-section">
-      <h3 class="section-title">INFORMATIONS PRINCIPALES</h3>
-      
-      <div class="form-grid">
-        <!-- Équipe (TODO: charger dynamiquement) -->
-        <div class="form-field">
-          <label for="teamId">Équipe <span class="required">*</span></label>
-          <input
-            id="teamId"
-            type="number"
-            bind:value={formData.teamId}
-            class:error={errors.teamId}
-            placeholder="ID de l'équipe (temporaire)"
-          />
-          {#if errors.teamId}
-            <span class="error-text">{errors.teamId}</span>
-          {/if}
-        </div>
-
-        <!-- Prénom -->
-        <div class="form-field">
-          <label for="firstName">Prénom <span class="required">*</span></label>
-          <input
-            id="firstName"
-            type="text"
-            bind:value={formData.firstName}
-            class:error={errors.firstName}
-          />
-          {#if errors.firstName}
-            <span class="error-text">{errors.firstName}</span>
-          {/if}
-        </div>
-
-        <!-- Nom -->
-        <div class="form-field">
-          <label for="lastName">Nom <span class="required">*</span></label>
-          <input
-            id="lastName"
-            type="text"
-            bind:value={formData.lastName}
-            class:error={errors.lastName}
-          />
-          {#if errors.lastName}
-            <span class="error-text">{errors.lastName}</span>
-          {/if}
-        </div>
-
-        <!-- Surnom -->
-        <div class="form-field">
-          <label for="nickname">Surnom</label>
-          <input
-            id="nickname"
-            type="text"
-            bind:value={formData.nickname}
-            placeholder="Ex: Ozzy, Guti..."
-          />
-        </div>
-
-        <!-- Numéro de maillot -->
-        <div class="form-field">
-          <label for="jerseyNumber">Numéro de maillot</label>
-          <input
-            id="jerseyNumber"
-            type="number"
-            min="0"
-            max="99"
-            bind:value={formData.jerseyNumber}
-            class:error={errors.jerseyNumber}
-          />
-          {#if errors.jerseyNumber}
-            <span class="error-text">{errors.jerseyNumber}</span>
-          {/if}
-        </div>
-
-        <!-- Année de naissance -->
-        <div class="form-field">
-          <label for="birthYear">Année de naissance <span class="required">*</span></label>
-          <input
-            id="birthYear"
-            type="number"
-            min="1950"
-            max={new Date().getFullYear()}
-            bind:value={formData.birthYear}
-            class:error={errors.birthYear}
-          />
-          {#if errors.birthYear}
-            <span class="error-text">{errors.birthYear}</span>
-          {/if}
-        </div>
-      </div>
-    </div>
-
-    <!-- Poste -->
-    <div class="form-section">
-      <h3 class="section-title">POSTE</h3>
-      
-      <div class="form-grid">
-        <!-- Position (FR) -->
-        <div class="form-field">
-          <label for="position">Poste (FR) <span class="required">*</span></label>
-          <select
-            id="position"
-            bind:value={formData.position}
-            on:change={handlePositionChange}
-            class:error={errors.position}
-          >
-            <option value="">Sélectionner</option>
-            {#each Object.keys(positions) as pos}
-              <option value={pos}>{pos}</option>
-            {/each}
-          </select>
-          {#if errors.position}
-            <span class="error-text">{errors.position}</span>
-          {/if}
-        </div>
-
-        <!-- Position (PL) -->
-        <div class="form-field">
-          <label for="positionPl">Poste (PL) <span class="required">*</span></label>
-          <input
-            id="positionPl"
-            type="text"
-            bind:value={formData.positionPl}
-            class:error={errors.positionPl}
-          />
-          {#if errors.positionPl}
-            <span class="error-text">{errors.positionPl}</span>
-          {/if}
-        </div>
-      </div>
-    </div>
-
-    <!-- Nationalité -->
-    <div class="form-section">
-      <h3 class="section-title">NATIONALITÉ</h3>
-      
-      <div class="form-grid">
-        <!-- Nationalité (EN) -->
-        <div class="form-field">
-          <label for="nationality">Nationalité (EN) <span class="required">*</span></label>
-          <select
-            id="nationality"
-            bind:value={formData.nationality}
-            on:change={handleNationalityChange}
-            class:error={errors.nationality}
-          >
-            <option value="">Sélectionner</option>
-            {#each Object.keys(nationalities) as nat}
-              <option value={nat}>{nat}</option>
-            {/each}
-          </select>
-          {#if errors.nationality}
-            <span class="error-text">{errors.nationality}</span>
-          {/if}
-        </div>
-
-        <!-- Nationalité (PL) -->
-        <div class="form-field">
-          <label for="nationalityPl">Nationalité (PL) <span class="required">*</span></label>
-          <input
-            id="nationalityPl"
-            type="text"
-            bind:value={formData.nationalityPl}
-            class:error={errors.nationalityPl}
-          />
-          {#if errors.nationalityPl}
-            <span class="error-text">{errors.nationalityPl}</span>
-          {/if}
-        </div>
-      </div>
-    </div>
-
-    <!-- Distinctions -->
-    <div class="form-section">
-      <h3 class="section-title">DISTINCTIONS</h3>
-      
-      <div class="form-grid">
-        {#each [1, 2, 3, 4, 5] as i}
-          <div class="form-field">
-            <label for="distinction{i}">Distinction {i}</label>
+        <!-- Mode selection -->
+        <div class="upload-mode-selector">
+          <label class="mode-option">
             <input
-              id="distinction{i}"
+              type="radio"
+              name="uploadMode"
+              value="file"
+              bind:group={uploadMode}
+              on:change={handleUploadModeChange}
+            />
+            <div class="mode-content">
+              <Upload size={20} />
+              <span>Uploader un fichier</span>
+            </div>
+          </label>
+          
+          <label class="mode-option">
+            <input
+              type="radio"
+              name="uploadMode"
+              value="url"
+              bind:group={uploadMode}
+              on:change={handleUploadModeChange}
+            />
+            <div class="mode-content">
+              <Link size={20} />
+              <span>Utiliser une URL</span>
+            </div>
+          </label>
+        </div>
+
+        <!-- Preview -->
+        <div class="photo-upload">
+          {#if photoPreview}
+            <div class="photo-preview">
+              <img src={photoPreview} alt="Prévisualisation" />
+              <button
+                type="button"
+                class="photo-remove"
+                on:click={uploadMode === 'file' ? removePhoto : () => { formData.photoUrl = ''; photoPreview = existingPhotoPath; }}
+                title="Supprimer"
+              >
+                <Trash2 size={16} />
+              </button>
+            </div>
+          {:else}
+            <div class="photo-placeholder">
+              <Users size={48} />
+              <p>Aucune photo</p>
+            </div>
+          {/if}
+
+          <!-- Mode FICHIER -->
+          {#if uploadMode === 'file'}
+            <label for="photo" class="btn-secondary">
+              <Upload size={16} />
+              {photoFile ? 'Changer la photo' : (existingPhotoPath ? 'Remplacer la photo' : 'Sélectionner un fichier')}
+            </label>
+            <input
+              type="file"
+              id="photo"
+              accept="image/*"
+              on:change={handlePhotoChange}
+              style="display: none;"
+            />
+            <p class="help-text">JPEG, PNG, GIF, WebP - Max 10MB</p>
+            {#if errors.photo}
+              <span class="error-text">{errors.photo}</span>
+            {/if}
+          {/if}
+
+          <!-- Mode URL -->
+          {#if uploadMode === 'url'}
+            <div class="url-input-group">
+              <input
+                type="url"
+                bind:value={formData.photoUrl}
+                on:input={handlePhotoUrlChange}
+                placeholder="https://example.com/photo.jpg"
+                class="url-input"
+                class:error={errors.photoUrl}
+              />
+              <button
+                type="button"
+                class="btn-secondary"
+                on:click={handlePhotoUrlChange}
+                disabled={!formData.photoUrl}
+              >
+                Prévisualiser
+              </button>
+            </div>
+            <p class="help-text">URL de l'image (https://...)</p>
+            {#if errors.photoUrl}
+              <span class="error-text">{errors.photoUrl}</span>
+            {/if}
+          {/if}
+        </div>
+      </div>
+
+      <!-- Informations principales -->
+      <div class="form-section">
+        <h3 class="section-title">INFORMATIONS PRINCIPALES</h3>
+        
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="teamId">Équipe <span class="required">*</span></label>
+            <input
+              id="teamId"
+              type="number"
+              bind:value={formData.teamId}
+              class:error={errors.teamId}
+              placeholder="ID de l'équipe"
+            />
+            {#if errors.teamId}
+              <span class="error-text">{errors.teamId}</span>
+            {/if}
+          </div>
+
+          <div class="form-field">
+            <label for="firstName">Prénom <span class="required">*</span></label>
+            <input
+              id="firstName"
               type="text"
-              bind:value={formData[`distinction${i}`]}
-              placeholder="Ex: Cadre WZPN U13..."
+              bind:value={formData.firstName}
+              class:error={errors.firstName}
+            />
+            {#if errors.firstName}
+              <span class="error-text">{errors.firstName}</span>
+            {/if}
+          </div>
+
+          <div class="form-field">
+            <label for="lastName">Nom <span class="required">*</span></label>
+            <input
+              id="lastName"
+              type="text"
+              bind:value={formData.lastName}
+              class:error={errors.lastName}
+            />
+            {#if errors.lastName}
+              <span class="error-text">{errors.lastName}</span>
+            {/if}
+          </div>
+
+          <div class="form-field">
+            <label for="nickname">Surnom</label>
+            <input
+              id="nickname"
+              type="text"
+              bind:value={formData.nickname}
+              placeholder="Ex: Ozzy, Guti..."
             />
           </div>
-        {/each}
+
+          <div class="form-field">
+            <label for="jerseyNumber">Numéro de maillot</label>
+            <input
+              id="jerseyNumber"
+              type="number"
+              min="0"
+              max="99"
+              bind:value={formData.jerseyNumber}
+              class:error={errors.jerseyNumber}
+            />
+            {#if errors.jerseyNumber}
+              <span class="error-text">{errors.jerseyNumber}</span>
+            {/if}
+          </div>
+
+          <div class="form-field">
+            <label for="birthYear">Année de naissance <span class="required">*</span></label>
+            <input
+              id="birthYear"
+              type="number"
+              min="1950"
+              max={new Date().getFullYear()}
+              bind:value={formData.birthYear}
+              class:error={errors.birthYear}
+            />
+            {#if errors.birthYear}
+              <span class="error-text">{errors.birthYear}</span>
+            {/if}
+          </div>
+        </div>
       </div>
-    </div>
 
-    <!-- Statut -->
-    <div class="form-section">
-      <label class="checkbox-label">
-        <input
-          type="checkbox"
-          bind:checked={formData.isActive}
-        />
-        <span>Joueur actif</span>
-      </label>
-    </div>
+      <!-- Poste -->
+      <div class="form-section">
+        <h3 class="section-title">POSTE</h3>
+        
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="position">Poste (FR) <span class="required">*</span></label>
+            <select
+              id="position"
+              bind:value={formData.position}
+              on:change={handlePositionChange}
+              class:error={errors.position}
+            >
+              <option value="">Sélectionner</option>
+              {#each Object.keys(positions) as pos}
+                <option value={pos}>{pos}</option>
+              {/each}
+            </select>
+            {#if errors.position}
+              <span class="error-text">{errors.position}</span>
+            {/if}
+          </div>
 
-    <!-- Actions -->
-    <div class="form-actions">
-      <button
-        type="button"
-        on:click={handleCancel}
-        class="btn-secondary"
-        disabled={saving}
-      >
-        <X size={16} />
-        Annuler
-      </button>
-      <button
-        type="submit"
-        class="btn-primary"
-        disabled={saving}
-      >
-        {#if saving}
-          Sauvegarde...
-        {:else}
-        <Save size={16} />
-        Enregistrer
-        {/if}
-      </button>
-    </div>
-  </form>
+          <div class="form-field">
+            <label for="positionPl">Poste (PL) <span class="required">*</span></label>
+            <input
+              id="positionPl"
+              type="text"
+              bind:value={formData.positionPl}
+              class:error={errors.positionPl}
+            />
+            {#if errors.positionPl}
+              <span class="error-text">{errors.positionPl}</span>
+            {/if}
+          </div>
+        </div>
+      </div>
+
+      <!-- Nationalité -->
+      <div class="form-section">
+        <h3 class="section-title">NATIONALITÉ</h3>
+        
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="nationality">Nationalité (EN) <span class="required">*</span></label>
+            <select
+              id="nationality"
+              bind:value={formData.nationality}
+              on:change={handleNationalityChange}
+              class:error={errors.nationality}
+            >
+              <option value="">Sélectionner</option>
+              {#each Object.keys(nationalities) as nat}
+                <option value={nat}>{nat}</option>
+              {/each}
+            </select>
+            {#if errors.nationality}
+              <span class="error-text">{errors.nationality}</span>
+            {/if}
+          </div>
+
+          <div class="form-field">
+            <label for="nationalityPl">Nationalité (PL) <span class="required">*</span></label>
+            <input
+              id="nationalityPl"
+              type="text"
+              bind:value={formData.nationalityPl}
+              class:error={errors.nationalityPl}
+            />
+            {#if errors.nationalityPl}
+              <span class="error-text">{errors.nationalityPl}</span>
+            {/if}
+          </div>
+        </div>
+      </div>
+
+      <!-- Distinctions -->
+      <div class="form-section">
+        <h3 class="section-title">DISTINCTIONS</h3>
+        
+        <div class="form-grid">
+          {#each [1, 2, 3, 4, 5] as i}
+            <div class="form-field">
+              <label for="distinction{i}">Distinction {i}</label>
+              <input
+                id="distinction{i}"
+                type="text"
+                bind:value={formData[`distinction${i}`]}
+                placeholder="Ex: Cadre WZPN U13..."
+              />
+            </div>
+          {/each}
+        </div>
+      </div>
+
+      <!-- Statut -->
+      <div class="form-section">
+        <label class="checkbox-label">
+          <input
+            type="checkbox"
+            bind:checked={formData.isActive}
+          />
+          <span>Joueur actif</span>
+        </label>
+      </div>
+
+      <!-- Actions -->
+      <div class="form-actions">
+        <button
+          type="button"
+          on:click={handleCancel}
+          class="btn-secondary"
+          disabled={saving}
+        >
+          <X size={16} />
+          Annuler
+        </button>
+        <button
+          type="submit"
+          class="btn-primary"
+          disabled={saving}
+        >
+          {#if saving}
+            Sauvegarde...
+          {:else}
+            <Save size={16} />
+            Enregistrer
+          {/if}
+        </button>
+      </div>
+    </form>
+  {/if}
 </div>
 
 <style>
+  .loading {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+  }
+
+  /* Mode selector */
+  .upload-mode-selector {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .mode-option {
+    flex: 1;
+    cursor: pointer;
+  }
+
+  .mode-option input[type="radio"] {
+    display: none;
+  }
+
+  .mode-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    border: 2px solid #d0d0d0;
+    border-radius: 8px;
+    background: white;
+    transition: all 0.2s;
+  }
+
+  .mode-option input[type="radio"]:checked + .mode-content {
+    border-color: #1976d2;
+    background: #e3f2fd;
+    color: #1976d2;
+  }
+
+  .mode-content:hover {
+    border-color: #1976d2;
+  }
+
+  /* Photo upload */
   .photo-upload {
     display: flex;
     flex-direction: column;
@@ -555,6 +748,27 @@
     color: #999;
   }
 
+  /* URL input */
+  .url-input-group {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .url-input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 2px solid #d0d0d0;
+    border-radius: 4px;
+    font-size: 0.875rem;
+  }
+
+  .url-input:focus {
+    outline: none;
+    border-color: #1976d2;
+  }
+
   .help-text {
     font-size: 0.75rem;
     color: #666;
@@ -573,6 +787,7 @@
     font-size: 0.75rem;
     color: #d32f2f;
     margin-top: 0.25rem;
+    display: block;
   }
 
   .checkbox-label {

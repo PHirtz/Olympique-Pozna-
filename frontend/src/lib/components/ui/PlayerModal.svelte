@@ -1,5 +1,6 @@
 <script>
   import { createEventDispatcher } from "svelte";
+  import PlayerPhoto from "$lib/components/ui/PlayerPhoto.svelte";
   import { fade, fly } from "svelte/transition";
   import { X, MapPin, Award } from "lucide-svelte";
   import { _ } from 'svelte-i18n'; 
@@ -55,10 +56,11 @@
       <div class="player-header">
         <!-- Photo du joueur -->
         <div class="player-photo-wrapper">
-          <img 
+          <!-- ✅ REMPLACE <img> PAR <PlayerPhoto> -->
+          <PlayerPhoto 
             src={player.photo} 
             alt={player.name} 
-            class="player-photo"
+            className="player-photo"
           />
           <div class="player-number-badge">#{player.number}</div>
         </div>
@@ -85,7 +87,6 @@
         <!-- Position -->
         {#if player.position}
           <div class="player-section">
-            <!-- ✅ Traduction du label "Position" -->
             <h3 class="section-title">{$_('teams.doue.labels.position')}</h3>
             <div class="position-badge">{player.position}</div>
           </div>
@@ -115,7 +116,6 @@
     </div>
   </div>
 {/if}
-
 <style>
   /* Overlay */
   .modal-overlay {
@@ -132,7 +132,6 @@
     justify-content: center;
     z-index: 1000;
     padding: 1rem;
-    overflow-y: auto;
   }
 
   /* Modal Container */
