@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte';
-  import { adminPartners } from '$lib/api';
+  import { adminPartners, adminPlayers } from '$lib/api';
   import { 
     Handshake, 
     Trophy, 
@@ -11,8 +11,7 @@
     ChevronRight,
     Pencil,
     Trash2,
-    Save,
-    X
+    ChevronLeft
   } from 'lucide-svelte';
 
   let stats = {
@@ -24,14 +23,26 @@
   
   let loading = true;
   let sponsors = [];
+  let players = [];
+  let playersCurrentPage = 1;
+  let playersPerPage = 10;
+  let totalPlayers = 0;
   
   // États des sections dépliables
   let sections = {
     sponsors: true,
-    teams: false,
+    teams: true,
     shop: false,
     news: false
   };
+
+  // Computed - Pagination des joueurs
+  $: paginatedPlayers = players.slice(
+    (playersCurrentPage - 1) * playersPerPage,
+    playersCurrentPage * playersPerPage
+  );
+  
+  $: totalPlayersPages = Math.ceil(totalPlayers / playersPerPage);
 
   onMount(async () => {
     await loadData();
@@ -40,13 +51,20 @@
   async function loadData() {
     try {
       loading = true;
+      
+      // Charger les sponsors
       const partnersResponse = await adminPartners.getAll();
       sponsors = partnersResponse.data?.partners || partnersResponse.data || [];
       stats.sponsors = sponsors.length;
       
-      // TODO: Charger teams, users, products
+      // Charger les joueurs
+      const playersResponse = await adminPlayers.getAll();
+      players = playersResponse.data?.players || playersResponse.data || [];
+      totalPlayers = players.length;
+      stats.users = totalPlayers;
+      
+      // Stats à venir
       stats.teams = '-';
-      stats.users = '-';
       stats.products = '-';
     } catch (error) {
       console.error('Erreur chargement:', error);
@@ -69,12 +87,40 @@
     }
   }
 
+  async function deletePlayer(id, firstName, lastName) {
+    if (!confirm(`Supprimer "${firstName} ${lastName}" ?`)) return;
+    try {
+      await adminPlayers.deletePlayer(id);
+      await loadData();
+      // Ajuster la page si nécessaire
+      if (paginatedPlayers.length === 0 && playersCurrentPage > 1) {
+        playersCurrentPage--;
+      }
+    } catch (err) {
+      alert('Erreur: ' + err.message);
+    }
+  }
+
   function getCategoryLabel(cat) {
     const labels = {
       main_sponsor: 'Principal',
       supplier: 'Fournisseur'
     };
     return labels[cat] || cat;
+  }
+
+  function getPositionLabel(pos) {
+    const positions = {
+      goalkeeper: 'Gardien',
+      defender: 'Défenseur',
+      midfielder: 'Milieu',
+      forward: 'Attaquant'
+    };
+    return positions[pos] || pos;
+  }
+
+  function goToPlayersPage(page) {
+    playersCurrentPage = page;
   }
 </script>
 
@@ -118,29 +164,123 @@
           <ChevronRight size={20} />
         {/if}
         <Trophy size={20} />
-        <span>ÉQUIPES & JOUEURS ({stats.teams})</span>
+        <span>ÉQUIPES & JOUEURS ({stats.users})</span>
       </button>
 
       {#if sections.teams}
         <div class="fm-section-content">
           <div class="fm-actions">
-            <a href="/admin/players" class="fm-btn fm-btn-primary">
+            <a href="/admin/players/create" class="fm-btn fm-btn-primary">
+              <Plus size={16} />
+              Nouveau joueur
+            </a>
+            <a href="/admin/players" class="fm-btn">
               <Users size={16} />
-              Gérer les joueurs
+              Tous les joueurs
             </a>
           </div>
-          <p class="fm-empty">Section équipes à venir...</p>
+
+          {#if players.length === 0}
+            <p class="fm-empty">Aucun joueur</p>
+          {:else}
+            <div class="fm-table-wrapper">
+              <table class="fm-table">
+                <thead>
+                  <tr>
+                    <th>Photo</th>
+                    <th>Nom</th>
+                    <th>Numéro</th>
+                    <th>Poste</th>
+                    <th>Équipe</th>
+                    <th>Statut</th>
+                    <th class="fm-actions-col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {#each paginatedPlayers as player, i}
+                    <tr class:fm-row-alt={i % 2 === 1}>
+                      <td>
+                        {#if player.photoUrl}
+                          <img 
+                            src={player.photoUrl} 
+                            alt={`${player.firstName} ${player.lastName}`}
+                            class="fm-player-photo"
+                          />
+                        {:else}
+                          <div class="fm-player-photo-placeholder">
+                            <Users size={16} />
+                          </div>
+                        {/if}
+                      </td>
+                      <td class="fm-text-bold">
+                        {player.firstName} {player.lastName}
+                      </td>
+                      <td>
+                        <span class="fm-player-number">#{player.jerseyNumber || '-'}</span>
+                      </td>
+                      <td>{getPositionLabel(player.position)}</td>
+                      <td>
+                        {#if player.Team}
+                          {player.Team.name}
+                        {:else}
+                          <span class="fm-text-muted">Non assigné</span>
+                        {/if}
+                      </td>
+                      <td>
+                        <span class="fm-badge {player.isActive ? 'fm-badge-active' : 'fm-badge-inactive'}">
+                          {player.isActive ? 'Actif' : 'Inactif'}
+                        </span>
+                      </td>
+                      <td class="fm-actions-col">
+                        <a href="/admin/players/{player.id}/edit" class="fm-icon-btn" title="Modifier">
+                          <Pencil size={14} />
+                        </a>
+                        <button 
+                          on:click={() => deletePlayer(player.id, player.firstName, player.lastName)}
+                          class="fm-icon-btn fm-icon-btn-danger"
+                          title="Supprimer"
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                      </td>
+                    </tr>
+                  {/each}
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Pagination -->
+            {#if totalPlayersPages > 1}
+              <div class="fm-pagination">
+                <button 
+                  class="fm-pagination-btn"
+                  disabled={playersCurrentPage === 1}
+                  on:click={() => goToPlayersPage(playersCurrentPage - 1)}
+                  title="Page précédente"
+                >
+                  <ChevronLeft size={16} />
+                </button>
+
+                <div class="fm-pagination-info">
+                  Page {playersCurrentPage} / {totalPlayersPages}
+                  <span class="fm-pagination-total">
+                    ({totalPlayers} joueur{totalPlayers > 1 ? 's' : ''})
+                  </span>
+                </div>
+
+                <button 
+                  class="fm-pagination-btn"
+                  disabled={playersCurrentPage === totalPlayersPages}
+                  on:click={() => goToPlayersPage(playersCurrentPage + 1)}
+                  title="Page suivante"
+                >
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+            {/if}
+          {/if}
         </div>
       {/if}
-    </div>
-
-    <!-- Section Joueurs -->
-    <div class="fm-section">
-      <a href="/admin/players" class="fm-section-header-link">
-        <Users size={20} />
-        <span>JOUEURS</span>
-        <ChevronRight size={16} style="margin-left: auto;" />
-      </a>
     </div>
 
     <!-- Section Sponsors -->
@@ -218,10 +358,6 @@
         </div>
       {/if}
     </div>
-
-
-
-
   {/if}
 </div>
 
@@ -231,27 +367,6 @@
      ============================================ */
      
   /* Base - Mobile (0px+) */
-
-  .fm-section-header-link {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 0.875rem;
-    background: linear-gradient(180deg, #f8f8f8 0%, #e8e8e8 100%);
-    border: none;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 0.8125rem;
-    color: #1a4d7a;
-    text-decoration: none;
-    letter-spacing: 0.5px;
-    transition: background 0.2s;
-  }
-
-  .fm-section-header-link:hover {
-    background: linear-gradient(180deg, #f0f0f0 0%, #e0e0e0 100%);
-  }
 
   .fm-container {
     max-width: 1400px;
@@ -343,6 +458,9 @@
   /* Actions - Mobile */
   .fm-actions {
     margin-bottom: 0.875rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
   }
 
   .fm-btn {
@@ -385,7 +503,7 @@
 
   .fm-table {
     width: 100%;
-    min-width: 600px;
+    min-width: 700px;
     border-collapse: collapse;
     font-size: 0.75rem;
     border: 1px solid #d0d0d0;
@@ -432,6 +550,43 @@
     font-weight: 600;
     color: #1a4d7a;
     white-space: nowrap;
+  }
+
+  .fm-text-muted {
+    color: #999;
+    font-style: italic;
+    font-size: 0.75rem;
+  }
+
+  /* Photos joueurs */
+  .fm-player-photo {
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    object-fit: cover;
+    border: 1px solid #d0d0d0;
+  }
+
+  .fm-player-photo-placeholder {
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    background: #f5f5f5;
+    border: 1px solid #d0d0d0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+  }
+
+  .fm-player-number {
+    display: inline-block;
+    padding: 0.125rem 0.5rem;
+    background: #1a4d7a;
+    color: white;
+    font-weight: 700;
+    font-size: 0.75rem;
+    border-radius: 2px;
   }
 
   .fm-link {
@@ -504,16 +659,64 @@
     color: #d32f2f;
   }
 
+  /* Pagination */
+  .fm-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: #f8f8f8;
+    border: 1px solid #d0d0d0;
+    border-radius: 2px;
+  }
+
+  .fm-pagination-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid #d0d0d0;
+    background: linear-gradient(180deg, #ffffff 0%, #f0f0f0 100%);
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #1a4d7a;
+  }
+
+  .fm-pagination-btn:hover:not(:disabled) {
+    background: linear-gradient(180deg, #f8f8f8 0%, #e8e8e8 100%);
+    border-color: #1a4d7a;
+  }
+
+  .fm-pagination-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .fm-pagination-info {
+    font-size: 0.875rem;
+    color: #1a4d7a;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .fm-pagination-total {
+    font-size: 0.75rem;
+    color: #666;
+    font-weight: 400;
+  }
+
   .fm-empty {
     text-align: center;
     padding: 1.5rem;
     color: #999;
     font-style: italic;
     font-size: 0.875rem;
-  }
-
-  .fm-icon {
-    font-size: 1.125rem;
   }
 
   /* ============================================
@@ -578,6 +781,12 @@
       padding: 0.625rem 0.75rem;
     }
 
+    .fm-player-photo,
+    .fm-player-photo-placeholder {
+      width: 40px;
+      height: 40px;
+    }
+
     .fm-link {
       font-size: 0.8125rem;
       max-width: 180px;
@@ -597,12 +806,13 @@
       height: 28px;
     }
 
-    .fm-empty {
-      padding: 2rem;
+    .fm-pagination-info {
+      flex-direction: row;
+      gap: 0.5rem;
     }
 
-    .fm-icon {
-      font-size: 1.25rem;
+    .fm-empty {
+      padding: 2rem;
     }
   }
 
@@ -623,6 +833,12 @@
     .fm-table-wrapper {
       margin: 0;
       padding: 0;
+    }
+
+    .fm-player-photo,
+    .fm-player-photo-placeholder {
+      width: 44px;
+      height: 44px;
     }
 
     .fm-link {

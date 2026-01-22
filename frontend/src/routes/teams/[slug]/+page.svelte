@@ -337,24 +337,21 @@
 
   .team-image-wrapper {
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
     background: linear-gradient(135deg, #1a4d7a 0%, #0f2d4a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .team-photo {
+  /* Ajoute ce style pour cibler l'image à l'intérieur */
+  .team-image-wrapper :global(.team-photo) {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
-    transition: transform 0.3s ease;
-  }
-
-  .team-card:hover .team-photo {
-    transform: scale(1.1);
+    object-position: center center;
   }
 
   .team-info {

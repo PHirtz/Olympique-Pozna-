@@ -39,6 +39,11 @@ import { contactCreateSchema } from '../schemas/contact.schema.js';
 
 const router = express.Router();
 
+// ========================================
+// PARSERS JSON (pour toutes les routes SAUF celles avec multer)
+// ========================================
+const jsonParser = express.json();
+const urlencodedParser = express.urlencoded({ extended: true });
 
 // ========== STATIC FILES (UPLOADS) ==========
 import { fileURLToPath } from 'url';
@@ -50,109 +55,103 @@ const __dirname = dirname(__filename);
 // Servir les fichiers uploadés
 router.use('/uploads', express.static(join(__dirname, '../../public/uploads')));
 
-// ========== PLAYER ROUTES ==========
-
+// ========== PLAYER ROUTES (PUBLIC) ==========
+// Ces routes utilisent multer, donc PAS de JSON parser
 router.use('/players', playerRouter);
 
 // ========== USER ROUTES ==========
 const userRouter = express.Router();
 
 // Routes publiques
-userRouter.post('/login', validate(userLoginSchema), userController.login);
+userRouter.post('/login', jsonParser, validate(userLoginSchema), userController.login);
 userRouter.get('/search', userController.search);
 userRouter.get('/coaches', userController.getCoaches);
 
 // Routes CRUD de base
-userRouter.post('/', validate(userCreateSchema), userController.create);
+userRouter.post('/', jsonParser, validate(userCreateSchema), userController.create);
 userRouter.get('/', validate(userQuerySchema), userController.getAll);
 userRouter.get('/:id', userController.getById);
-userRouter.put('/:id', validate(userUpdateSchema), userController.update);
+userRouter.put('/:id', jsonParser, validate(userUpdateSchema), userController.update);
 userRouter.delete('/:id', userController.delete);
 
 // Routes spécifiques aux joueurs
 userRouter.get('/team/:teamId/players', userController.getPlayersByTeam);
 userRouter.get('/:id/statistics', userController.getUserWithStatistics);
 
-// Routes profil privé (nécessitent authentification JWT)
-// userRouter.get('/me/profile', authMiddleware, userController.getProfile);
-// userRouter.put('/me/profile', authMiddleware, userController.updateProfile);
-// userRouter.put('/me/password', authMiddleware, userController.updatePassword);
-// userRouter.put('/me/picture', authMiddleware, userController.updateProfilePicture);
-
 // ========== TEAM ROUTES ==========
 const teamRouter = express.Router();
 
 teamRouter.get('/slug/:slug', teamController.getBySlug);
 
-teamRouter.post('/', validate(teamCreateSchema), teamController.create);
+teamRouter.post('/', jsonParser, validate(teamCreateSchema), teamController.create);
 teamRouter.get('/', validate(teamQuerySchema), teamController.getAll);
 teamRouter.get('/:id', teamController.getById);
-teamRouter.put('/:id', validate(teamUpdateSchema), teamController.update);
+teamRouter.put('/:id', jsonParser, validate(teamUpdateSchema), teamController.update);
 teamRouter.delete('/:id', teamController.delete);
 
 // ========== MATCH ROUTES ==========
 const matchRouter = express.Router();
 matchRouter.get('/upcoming', matchController.getUpcoming);
 matchRouter.get('/past', matchController.getPast);
-matchRouter.post('/', validate(matchCreateSchema), matchController.create);
+matchRouter.post('/', jsonParser, validate(matchCreateSchema), matchController.create);
 matchRouter.get('/', validate(matchQuerySchema), matchController.getAll);
 matchRouter.get('/:id', matchController.getById);
-matchRouter.put('/:id', validate(matchUpdateSchema), matchController.update);
+matchRouter.put('/:id', jsonParser, validate(matchUpdateSchema), matchController.update);
 matchRouter.delete('/:id', matchController.delete);
 
 // ========== NEWS ROUTES ==========
 const newsRouter = express.Router();
 newsRouter.get('/published', newsController.getPublished);
 newsRouter.get('/latest', newsController.getLatest);
-newsRouter.post('/:id/publish', newsController.publish);
+newsRouter.post('/:id/publish', jsonParser, newsController.publish);
 newsRouter.get('/slug/:slug', newsController.getBySlug);
-newsRouter.post('/', validate(newsCreateSchema), newsController.create);
+newsRouter.post('/', jsonParser, validate(newsCreateSchema), newsController.create);
 newsRouter.get('/', validate(newsQuerySchema), newsController.getAll);
 newsRouter.get('/:id', newsController.getById);
-newsRouter.put('/:id', validate(newsUpdateSchema), newsController.update);
+newsRouter.put('/:id', jsonParser, validate(newsUpdateSchema), newsController.update);
 newsRouter.delete('/:id', newsController.delete);
 
 // ========== PRODUCT ROUTES ==========
 const productRouter = express.Router();
-productRouter.post('/', validate(productCreateSchema), productController.create);
+productRouter.post('/', jsonParser, validate(productCreateSchema), productController.create);
 productRouter.get('/', validate(productQuerySchema), productController.getAll);
 productRouter.get('/:id', productController.getById);
-productRouter.put('/:id', validate(productUpdateSchema), productController.update);
+productRouter.put('/:id', jsonParser, validate(productUpdateSchema), productController.update);
 productRouter.delete('/:id', productController.delete);
 
 // ========== EVENT ROUTES ==========
 const eventRouter = express.Router();
 eventRouter.get('/upcoming', eventController.getUpcoming);
-eventRouter.post('/', validate(eventCreateSchema), eventController.create);
+eventRouter.post('/', jsonParser, validate(eventCreateSchema), eventController.create);
 eventRouter.get('/', validate(eventQuerySchema), eventController.getAll);
 eventRouter.get('/:id', eventController.getById);
-eventRouter.put('/:id', validate(eventUpdateSchema), eventController.update);
+eventRouter.put('/:id', jsonParser, validate(eventUpdateSchema), eventController.update);
 eventRouter.delete('/:id', eventController.delete);
 
 // ========== GALLERY ROUTES ==========
 const galleryRouter = express.Router();
 galleryRouter.get('/albums', galleryController.getAlbums);
-galleryRouter.post('/', validate(galleryCreateSchema), galleryController.create);
+galleryRouter.post('/', jsonParser, validate(galleryCreateSchema), galleryController.create);
 galleryRouter.get('/', validate(galleryQuerySchema), galleryController.getAll);
 galleryRouter.get('/:id', galleryController.getById);
-galleryRouter.put('/:id', validate(galleryUpdateSchema), galleryController.update);
+galleryRouter.put('/:id', jsonParser, validate(galleryUpdateSchema), galleryController.update);
 galleryRouter.delete('/:id', galleryController.delete);
 
 // ========== PARTNER ROUTES ==========
 const partnerRouter = express.Router();
-partnerRouter.post('/', validate(partnerCreateSchema), partnerController.create);
+partnerRouter.post('/', jsonParser, validate(partnerCreateSchema), partnerController.create);
 partnerRouter.get('/', validate(partnerQuerySchema), partnerController.getAll);
 partnerRouter.get('/:id', partnerController.getById);
-partnerRouter.put('/:id', validate(partnerUpdateSchema), partnerController.update);
+partnerRouter.put('/:id', jsonParser, validate(partnerUpdateSchema), partnerController.update);
 partnerRouter.delete('/:id', partnerController.delete);
 
 // ========== STATISTICS ROUTES ==========
 const statisticsRouter = express.Router();
 statisticsRouter.get('/top-scorers', statisticsController.getTopScorers);
-statisticsRouter.post('/', validate(statisticsCreateSchema), statisticsController.create);
+statisticsRouter.post('/', jsonParser, validate(statisticsCreateSchema), statisticsController.create);
 statisticsRouter.get('/', validate(statisticsQuerySchema), statisticsController.getAll);
 statisticsRouter.get('/:id', statisticsController.getById);
-statisticsRouter.put('/:id', validate(statisticsUpdateSchema), statisticsController.update);
+statisticsRouter.put('/:id', jsonParser, validate(statisticsUpdateSchema), statisticsController.update);
 statisticsRouter.delete('/:id', statisticsController.delete);
 
 // ========== CAMP ROUTES (STAGES) ==========
@@ -160,36 +159,36 @@ const campRouter = express.Router();
 campRouter.get('/upcoming', campController.getUpcoming);
 campRouter.get('/available', campController.getAvailable);
 campRouter.get('/season/:type', campController.getBySeason);
-campRouter.post('/', validate(campCreateSchema), campController.create);
+campRouter.post('/', jsonParser, validate(campCreateSchema), campController.create);
 campRouter.get('/', validate(campQuerySchema), campController.getAll);
 campRouter.get('/:id', campController.getById);
-campRouter.put('/:id', validate(campUpdateSchema), campController.update);
+campRouter.put('/:id', jsonParser, validate(campUpdateSchema), campController.update);
 campRouter.delete('/:id', campController.delete);
 
 // ========== CAMP REGISTRATION ROUTES (INSCRIPTIONS) ==========
 const campRegistrationRouter = express.Router();
 // Routes publiques
-campRegistrationRouter.post('/', validate(campRegistrationCreateSchema), campRegistrationController.create);
+campRegistrationRouter.post('/', jsonParser, validate(campRegistrationCreateSchema), campRegistrationController.create);
 campRegistrationRouter.get('/token/:token', campRegistrationController.getByToken);
-campRegistrationRouter.post('/confirm/:token', campRegistrationController.confirm);
+campRegistrationRouter.post('/confirm/:token', jsonParser, campRegistrationController.confirm);
 campRegistrationRouter.get('/parent', campRegistrationController.getByParentEmail);
 // Routes admin/protégées
 campRegistrationRouter.get('/', validate(campRegistrationQuerySchema), campRegistrationController.getAll);
 campRegistrationRouter.get('/camp/:campId', campRegistrationController.getByCamp);
 campRegistrationRouter.get('/:id', campRegistrationController.getById);
-campRegistrationRouter.put('/:id', validate(campRegistrationUpdateSchema), campRegistrationController.update);
-campRegistrationRouter.post('/:id/cancel', campRegistrationController.cancel);
-campRegistrationRouter.post('/:id/pay', campRegistrationController.markAsPaid);
+campRegistrationRouter.put('/:id', jsonParser, validate(campRegistrationUpdateSchema), campRegistrationController.update);
+campRegistrationRouter.post('/:id/cancel', jsonParser, campRegistrationController.cancel);
+campRegistrationRouter.post('/:id/pay', jsonParser, campRegistrationController.markAsPaid);
 campRegistrationRouter.delete('/:id', campRegistrationController.delete);
 
 // ========== CONTACT ROUTES ==========
 const contactRouter = express.Router();
 // Route publique
-contactRouter.post('/', validate(contactCreateSchema), contactController.create);
+contactRouter.post('/', jsonParser, validate(contactCreateSchema), contactController.create);
 // Routes admin
 contactRouter.get('/', contactController.getAll);
 contactRouter.get('/:id', contactController.getById);
-contactRouter.patch('/:id/status', contactController.updateStatus);
+contactRouter.patch('/:id/status', jsonParser, contactController.updateStatus);
 contactRouter.delete('/:id', contactController.delete);
 
 // ========================================
@@ -212,30 +211,12 @@ adminRouter.get('/dashboard', (req, res) => {
   });
 });
 
-// PARTNERS (SPONSORS)
-adminRouter.post('/partners', validate(partnerCreateSchema), partnerController.create);
+// PARTNERS (SPONSORS) - avec JSON parser
+adminRouter.post('/partners', jsonParser, validate(partnerCreateSchema), partnerController.create);
 adminRouter.get('/partners', partnerController.getAll);
 adminRouter.get('/partners/:id', partnerController.getById);
-adminRouter.put('/partners/:id', validate(partnerUpdateSchema), partnerController.update);
+adminRouter.put('/partners/:id', jsonParser, validate(partnerUpdateSchema), partnerController.update);
 adminRouter.delete('/partners/:id', partnerController.delete);
-
-// PLAYERS (NOUVEAU)
-adminRouter.post('/players', playerController.create);
-adminRouter.get('/players', playerController.getAll);
-adminRouter.get('/players/:id', playerController.getById);
-adminRouter.put('/players/:id', playerController.update);
-adminRouter.delete('/players/:id', playerController.delete);
-
-// À ajouter plus tard :
-// USERS
-// adminRouter.get('/users', userController.getAll);
-// adminRouter.put('/users/:id', userController.update);
-// adminRouter.delete('/users/:id', userController.delete);
-
-// TEAMS
-// adminRouter.post('/teams', validate(teamCreateSchema), teamController.create);
-// adminRouter.put('/teams/:id', validate(teamUpdateSchema), teamController.update);
-// adminRouter.delete('/teams/:id', teamController.delete);
 
 // ========================================
 // Mount all routes

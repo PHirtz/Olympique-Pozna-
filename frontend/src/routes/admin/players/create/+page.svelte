@@ -1,6 +1,5 @@
 <script>
   import { goto } from '$app/navigation';
-  import * as adminPlayers from '$lib/api/admin/players.js';
   import { 
     Users,
     Save,
@@ -29,7 +28,7 @@
     birthYear: new Date().getFullYear() - 10,
     nationality: 'Poland',
     nationalityPl: 'Polska',
-    photoUrl: '', // ← NOUVEAU : URL externe
+    photoUrl: '',
     distinction1: '',
     distinction2: '',
     distinction3: '',
@@ -214,10 +213,9 @@
 
       const data = new FormData();
       
-      // Ajouter tous les champs sauf photoUrl (on le gère après)
       Object.entries(formData).forEach(([key, value]) => {
-        if (key !== 'photoUrl' && value !== '' && value !== null) {
-          data.append(key, value);
+        if (key !== 'photoUrl') {
+          data.append(key, value || '');
         }
       });
 
@@ -226,6 +224,12 @@
         data.append('photo', photoFile);
       } else if (uploadMode === 'url' && formData.photoUrl) {
         data.append('photoUrl', formData.photoUrl);
+      }
+
+      // Debug
+      console.log('📤 Envoi FormData:');
+      for (let [key, value] of data.entries()) {
+        console.log(`  ${key}:`, value);
       }
 
       await adminPlayers.create(data);
@@ -307,7 +311,7 @@
           </div>
         {:else}
           <div class="photo-placeholder">
-            <Users size={48} />
+            <Users size={60} />
             <p>Aucune photo</p>
           </div>
         {/if}
@@ -586,12 +590,107 @@
 </div>
 
 <style>
+  .admin-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  /* Header section */
+  .admin-header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    margin-left: 1rem;
+  }
+
+  .admin-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--op-blue-primary);
+  }
+
+  .admin-title h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+  }
+  .btn-primary {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--op-blue-primary);
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+  .btn-primary:disabled {
+    background: #999;
+    cursor: not-allowed;
+  }
+
+  .btn-secondary {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #e0e0e0;
+    color: #333;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s ease;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-secondary:hover {
+    background: #d5d5d5;
+  }
+  .btn-secondary:disabled {
+    background: #bbb;
+    cursor: not-allowed;
+  }
+
+  .form-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+    font-size: 20px;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    gap: 1rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #1976d2;
+    padding-bottom: 1rem;
+    padding-top: 2rem;
+    color: #1976d2;
+  }
   /* Mode selector */
   .upload-mode-selector {
     display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-  }
+    gap: 4rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+    align-items: center;
+    font-weight: 900;
+    font-size: 1.5rem;
+    }
 
   .mode-option {
     flex: 1;
@@ -634,16 +733,18 @@
 
   .photo-preview {
     position: relative;
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
   }
 
   .photo-preview img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     border: 2px solid #d0d0d0;
     border-radius: 8px;
+    background: #f5f5f5;
   }
 
   .photo-remove {
@@ -669,8 +770,8 @@
   }
 
   .photo-placeholder {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -680,6 +781,7 @@
     border: 2px dashed #d0d0d0;
     border-radius: 8px;
     color: #999;
+    margin: 0 auto;
   }
 
   /* URL input */
@@ -725,6 +827,7 @@
   }
 
   .checkbox-label {
+    padding-top: 2rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;

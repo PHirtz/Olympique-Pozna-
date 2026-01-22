@@ -3,11 +3,11 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
+import path from 'path';
 import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
+import { dirname } from 'path';
 import db from './database/db.js';
 import routers from './routers/indexRouter.js';
-
 // Import models and associations
 import './models/associations.js';
 import './models/contact.model.js';
@@ -20,6 +20,16 @@ const __dirname = dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const isProduction = process.env.NODE_ENV === 'production';
+
+// ========== SERVIR LES FICHIERS STATIQUES ==========
+if (isProduction) {
+  // Production : servir depuis /srv/customer/uploads
+  app.use('/uploads', express.static('/srv/customer/uploads'));
+} else {
+  // Development : servir depuis ./public/uploads
+  app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
+}
 
 // Middlewares
 app.use(helmet({
@@ -31,7 +41,6 @@ app.use(helmet({
 app.use(cors({
   origin: function(origin, callback) {
     if (!origin) return callback(null, true);
-    
     const allowedOrigins = [
       'https://olympiquepoznan.pl',
       'https://www.olympiquepoznan.pl',
@@ -40,7 +49,6 @@ app.use(cors({
       'http://localhost:3000',
       'http://localhost:4000'
     ];
-    
     if (allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
@@ -55,18 +63,18 @@ app.use(cors({
 }));
 
 app.options('*', cors());
-
-
 app.use(morgan('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
+// ========================================
+// ⚠️ NE PLUS UTILISER express.json() et express.urlencoded() GLOBALEMENT
+// Multer va gérer le parsing pour les routes avec fichiers
+// ========================================
 
 // ========== SERVIR LES FICHIERS STATIQUES ==========
-app.use('/uploads', express.static('/srv/customer/uploads'));
-// ================================================
+app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
 
-// Routes
+// ================================================
+// Routes - multer dans les routes va parser le FormData
 app.get('/', (req, res) => {
   res.json({
     message: 'Bienvenue sur l\'API Olympique Poznan',
@@ -93,7 +101,6 @@ app.use('/api', routers);
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  
   // Si c'est une erreur HTTP personnalisée
   if (err.statusCode) {
     return res.status(err.statusCode).json({
@@ -102,7 +109,6 @@ app.use((err, req, res, next) => {
       error: process.env.NODE_ENV === 'development' ? err.stack : undefined
     });
   }
-  
   // Erreur générique
   res.status(500).json({
     success: false,
@@ -124,12 +130,6 @@ const startServer = async () => {
   try {
     await db.authenticate();
     console.log('✅ Connexion à la base de données établie avec succès');
-    
-    // Sync database (in development only)
-    // if (process.env.NODE_ENV === 'development') {
-      // await db.sync();
-      // console.log('✅ Base de données synchronisée');
-    // }
     
     app.listen(PORT, () => {
       console.log(`🚀 Serveur lancé sur http://localhost:${PORT}`);

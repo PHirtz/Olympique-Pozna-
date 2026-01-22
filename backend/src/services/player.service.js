@@ -103,58 +103,69 @@ class PlayerService {
   // ==============================================
   // CRÉER UN JOUEUR
   // ==============================================
-  async createPlayer(playerData, uploadedFile = null) {
+    async createPlayer(playerData, uploadedFile = null) {
     const {
-      teamId, firstName, lastName, nickname, jerseyNumber,
-      position, positionPl, birthYear, nationality, nationalityPl,
-      photoUrl, // ← URL externe fournie par l'utilisateur
-      distinction1, distinction2, distinction3, distinction4, distinction5,
-      isActive = true
+        teamId, firstName, lastName, nickname, jerseyNumber,
+        position, positionPl, birthYear, nationality, nationalityPl,
+        photoUrl,
+        distinction1, distinction2, distinction3, distinction4, distinction5,
+        isActive = true
     } = playerData;
 
     // Déterminer le chemin de la photo
     let photoPath = null;
     
     if (uploadedFile) {
-      // Upload par fichier Multer
-      photoPath = `/uploads/players/${uploadedFile.filename}`;
+        photoPath = `/uploads/players/${uploadedFile.filename}`;
     } else if (photoUrl && this.isValidUrl(photoUrl)) {
-      // Upload par URL externe
-      photoPath = photoUrl;
+        photoPath = photoUrl;
     }
 
     const result = await db.query(`
-      INSERT INTO players (
+        INSERT INTO players (
         team_id, first_name, last_name, nickname, jersey_number,
         position, position_pl, birth_year, nationality, nationality_pl,
         photo_path, distinction1, distinction2, distinction3, distinction4, distinction5,
         is_active, created_at, updated_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())
     `, {
-      replacements: [
-        teamId, firstName, lastName, nickname || null, jerseyNumber || null,
-        position, positionPl, birthYear, nationality, nationalityPl,
-        photoPath, distinction1 || null, distinction2 || null, distinction3 || null,
-        distinction4 || null, distinction5 || null, isActive ? 1 : 0
-      ],
-      type: db.QueryTypes.INSERT
+        replacements: [
+        teamId || null,
+        firstName || null,
+        lastName || null,
+        nickname || null,
+        jerseyNumber || null,
+        position || null,
+        positionPl || null,
+        birthYear || null,
+        nationality || null,
+        nationalityPl || null,
+        photoPath,
+        distinction1 || null,
+        distinction2 || null,
+        distinction3 || null,
+        distinction4 || null,
+        distinction5 || null,
+        isActive ? 1 : 0
+        ],
+        type: db.QueryTypes.INSERT
     });
 
     return await this.getPlayerById(result[0]);
-  }
+    }
 
   // ==============================================
   // MODIFIER UN JOUEUR
   // ==============================================
-  async updatePlayer(id, updateData, uploadedFile = null) {
+    async updatePlayer(id, updateData, uploadedFile = null) {
     // Vérifier que le joueur existe
     const existingPlayers = await db.query('SELECT * FROM players WHERE id = ?', {
-      replacements: [id],
-      type: db.QueryTypes.SELECT
+        replacements: [id],
+        type: db.QueryTypes.SELECT
     });
     
     if (existingPlayers.length === 0) {
-      throw new HttpNotFoundError('Joueur non trouvé');
+        throw new HttpNotFoundError('Joueur non trouvé');
     }
 
     const existingPlayer = existingPlayers[0];
@@ -162,17 +173,17 @@ class PlayerService {
 
     // Gestion de la photo
     if (uploadedFile) {
-      // Nouveau fichier uploadé → supprimer l'ancien
-      if (existingPlayer.photo_path && !this.isExternalUrl(existingPlayer.photo_path)) {
+        // Nouveau fichier uploadé → supprimer l'ancien
+        if (existingPlayer.photo_path && !this.isExternalUrl(existingPlayer.photo_path)) {
         deleteFile(existingPlayer.photo_path);
-      }
-      updates.photoPath = `/uploads/players/${uploadedFile.filename}`;
+        }
+        updates.photoPath = `/uploads/players/${uploadedFile.filename}`;
     } else if (updateData.photoUrl && this.isValidUrl(updateData.photoUrl)) {
-      // Nouvelle URL fournie → supprimer l'ancien fichier local
-      if (existingPlayer.photo_path && !this.isExternalUrl(existingPlayer.photo_path)) {
+        // Nouvelle URL fournie → supprimer l'ancien fichier local
+        if (existingPlayer.photo_path && !this.isExternalUrl(existingPlayer.photo_path)) {
         deleteFile(existingPlayer.photo_path);
-      }
-      updates.photoPath = updateData.photoUrl;
+        }
+        updates.photoPath = updateData.photoUrl;
     }
 
     // Construction de la requête de mise à jour
@@ -180,48 +191,56 @@ class PlayerService {
     const values = [];
 
     const fieldMapping = {
-      teamId: 'team_id',
-      firstName: 'first_name',
-      lastName: 'last_name',
-      nickname: 'nickname',
-      jerseyNumber: 'jersey_number',
-      position: 'position',
-      positionPl: 'position_pl',
-      birthYear: 'birth_year',
-      nationality: 'nationality',
-      nationalityPl: 'nationality_pl',
-      photoPath: 'photo_path',
-      distinction1: 'distinction1',
-      distinction2: 'distinction2',
-      distinction3: 'distinction3',
-      distinction4: 'distinction4',
-      distinction5: 'distinction5',
-      isActive: 'is_active'
+        teamId: 'team_id',
+        firstName: 'first_name',
+        lastName: 'last_name',
+        nickname: 'nickname',
+        jerseyNumber: 'jersey_number',
+        position: 'position',
+        positionPl: 'position_pl',
+        birthYear: 'birth_year',
+        nationality: 'nationality',
+        nationalityPl: 'nationality_pl',
+        photoPath: 'photo_path',
+        distinction1: 'distinction1',
+        distinction2: 'distinction2',
+        distinction3: 'distinction3',
+        distinction4: 'distinction4',
+        distinction5: 'distinction5',
+        isActive: 'is_active'
     };
 
     Object.entries(updates).forEach(([key, value]) => {
-      if (fieldMapping[key] && value !== undefined) {
+        // accepter les chaînes vides mais pas undefined/null
+        if (fieldMapping[key] && value !== undefined && value !== null) {
         fields.push(`${fieldMapping[key]} = ?`);
-        values.push(key === 'isActive' ? (value ? 1 : 0) : value);
-      }
+        // Convertir les valeurs
+        if (key === 'isActive') {
+            values.push(value ? 1 : 0);
+        } else if (value === '') {
+            values.push(null); // ← Chaîne vide = NULL en base
+        } else {
+            values.push(value);
+        }
+        }
     });
 
     if (fields.length > 0) {
-      fields.push('updated_at = NOW()');
-      values.push(id);
+        fields.push('updated_at = NOW()');
+        values.push(id);
 
-      await db.query(`
+        await db.query(`
         UPDATE players 
         SET ${fields.join(', ')}
         WHERE id = ?
-      `, {
+        `, {
         replacements: values,
         type: db.QueryTypes.UPDATE
-      });
+        });
     }
 
     return await this.getPlayerById(id);
-  }
+    }
 
   // ==============================================
   // SUPPRIMER UN JOUEUR

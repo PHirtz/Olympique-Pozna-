@@ -44,14 +44,23 @@
       const response = await adminPlayers.getAll(params);
       players = response.data?.players || [];
       
-      // Filtrer côté client si recherche par nom
+      // Filtrer côté client si recherche
       if (filters.search) {
         const searchLower = filters.search.toLowerCase();
-        players = players.filter(p => 
-          p.firstName.toLowerCase().includes(searchLower) ||
-          p.lastName.toLowerCase().includes(searchLower) ||
-          (p.nickname && p.nickname.toLowerCase().includes(searchLower))
-        );
+        players = players.filter(p => {
+          // Recherche dans le prénom
+          const matchFirstName = p.firstName.toLowerCase().includes(searchLower);
+          // Recherche dans le nom
+          const matchLastName = p.lastName.toLowerCase().includes(searchLower);
+          // Recherche dans le surnom
+          const matchNickname = p.nickname && p.nickname.toLowerCase().includes(searchLower);
+          // Recherche dans le numéro de maillot
+          const matchJerseyNumber = p.jerseyNumber && p.jerseyNumber.toString().includes(filters.search);
+          // Recherche dans le nom d'équipe
+          const matchTeam = p.Team && p.Team.name.toLowerCase().includes(searchLower);
+          
+          return matchFirstName || matchLastName || matchNickname || matchJerseyNumber || matchTeam;
+        });
       }
 
       pagination = response.data?.pagination || pagination;
@@ -91,11 +100,11 @@
 <div class="admin-container">
   <div class="admin-header-section">
     <div class="admin-title">
-      <Users size={24} />
+      <Users size={60} />
       <h1>GESTION DES JOUEURS</h1>
     </div>
     <a href="/admin/players/create" class="btn-primary">
-      <Plus size={16} />
+      <Plus size={60} />
       Nouveau joueur
     </a>
   </div>
@@ -142,7 +151,7 @@
       <Users size={48} />
       <p>Aucun joueur trouvé</p>
       <a href="/admin/players/create" class="btn-primary">
-        <Plus size={16} />
+        <Plus size={60} />
         Ajouter un joueur
       </a>
     </div>
@@ -201,14 +210,14 @@
                   class="icon-btn"
                   title="Modifier"
                 >
-                  <Pencil size={14} />
+                  <Pencil size={25} />
                 </a>
                 <button 
                   on:click={() => deletePlayer(player.id, `${player.firstName} ${player.lastName}`)}
                   class="icon-btn icon-btn-danger"
                   title="Supprimer"
                 >
-                  <Trash2 size={14} />
+                  <Trash2 size={25} />
                 </button>
               </td>
             </tr>
@@ -246,27 +255,6 @@
 </div>
 
 <style>
-  /* Réutilise les styles de ton admin.css */
-  .player-photo {
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
-    border-radius: 4px;
-    border: 1px solid #d0d0d0;
-  }
-
-  .player-photo-placeholder {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f0f0f0;
-    border: 1px solid #d0d0d0;
-    border-radius: 4px;
-    color: #999;
-  }
-
   .nickname {
     display: block;
     font-size: 0.75rem;
@@ -282,6 +270,199 @@
     padding: 0.125rem 0.5rem;
     border-radius: 3px;
     font-weight: 700;
-    font-size: 0.875rem;
+    font-size: 1.5rem;
   }
+
+  /* Header section */
+.admin-header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  margin-left: 1rem;
+}
+
+.admin-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--op-blue-primary);
+}
+
+.admin-title h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+.btn-primary {
+  display: flex;
+  align-items: center;
+  margin: 1rem 1.5rem;
+  gap: 0.5rem;
+  background: var(--op-blue-primary);
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+/* Filters */
+.filters-section {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-end;
+  margin-bottom: 2rem;
+  margin-left: 1rem;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.filter-group label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--op-blue-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.filter-input,
+.filter-select {
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* Table */
+.table-wrapper {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.5rem;
+}
+
+.admin-table th {
+  background: var(--op-blue-primary);
+  color: white;
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.admin-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+.photo-cell {
+  font-weight: 400;
+  font-size: 0.875rem;
+  padding-left: 2rem;
+}
+
+.row-alt {
+  background: #f9fafb;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-bold {
+  font-weight: 600;
+}
+
+/* Status badge */
+.badge {
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.badge-active {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.badge-inactive {
+  background: #ffebee;
+  color: #d32f2f;
+}
+
+/* Actions */
+.actions-col {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.35rem;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+  color: var(--op-blue-primary);
+  margin-left: 0.5rem;
+}
+
+.icon-btn:hover {
+  background: rgba(26,77,122,0.1);
+}
+
+.icon-btn-danger {
+  color: #d32f2f;
+}
+
+.icon-btn-danger:hover {
+  background: rgba(211,47,47,0.1);
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.page-info {
+  font-weight: 600;
+  color: var(--op-blue-primary);
+}
+
+.total {
+  color: #777;
+  font-size: 0.85rem;
+}
+
+/* Empty & loading */
+.loading-container,
+.empty-state {
+  background: white;
+  border-radius: 12px;
+  padding: 3rem;
+  text-align: center;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+}
+
+.empty-state p {
+  margin: 1rem 0;
+  font-weight: 600;
+  color: #555;
+}
+
 </style>

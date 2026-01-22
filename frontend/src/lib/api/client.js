@@ -23,7 +23,9 @@ export async function apiRequest(endpoint, options = {}) {
 
   const config = {
     ...options,
-    headers
+    headers,
+    // Stringifier le body seulement si ce n'est pas du FormData
+    body: isFormData ? options.body : (options.body ? JSON.stringify(options.body) : undefined)
   };
 
   try {

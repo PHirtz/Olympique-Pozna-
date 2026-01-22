@@ -9,14 +9,13 @@ import fs from 'fs';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// ⚠️ IMPORTANT : Gestion des chemins selon l'environnement
+// IMPORTANT : Gestion des chemins selon l'environnement
 const isProduction = process.env.NODE_ENV === 'production';
 
-// En production : /srv/customer/uploads (Infomaniak)
-// En développement : backend/public/uploads (local)
+// Dossier racine des uploads
 const uploadsDir = isProduction 
-  ? '/srv/customer/uploads' 
-  : path.join(__dirname, '../../public/uploads');
+  ? '/srv/customer/uploads' // Production Infomaniak
+  : path.join(__dirname, '../../public/uploads'); // Dev local (corrigé : 2 niveaux)
 
 const sponsorsDir = path.join(uploadsDir, 'sponsors');
 const playersDir = path.join(uploadsDir, 'players');
@@ -99,7 +98,7 @@ export const deleteFile = (filePath) => {
       if (isProduction) {
         fullPath = filePath.replace('/uploads/', '/srv/customer/uploads/');
       } else {
-        fullPath = path.join(__dirname, '../../public', filePath);
+        fullPath = path.join(__dirname, '../public', filePath);
       }
     }
 

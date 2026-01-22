@@ -61,7 +61,82 @@ class PlayerController {
       console.log('🔍 req.body reçu:', req.body);
       console.log('🔍 req.file reçu:', req.file);
 
-      const player = await playerService.createPlayer(req.body, req.file);
+      // ====== VALIDATION MANUELLE ======
+      const errors = [];
+      
+      if (!req.body.teamId || isNaN(parseInt(req.body.teamId, 10))) {
+        errors.push('Team ID requis');
+      }
+      if (!req.body.firstName || !req.body.firstName.trim()) {
+        errors.push('Prénom requis');
+      }
+      if (!req.body.lastName || !req.body.lastName.trim()) {
+        errors.push('Nom requis');
+      }
+      if (!req.body.position || !req.body.position.trim()) {
+        errors.push('Poste requis');
+      }
+      if (!req.body.positionPl || !req.body.positionPl.trim()) {
+        errors.push('Poste en polonais requis');
+      }
+      if (!req.body.birthYear) {
+        errors.push('Année de naissance requise');
+      } else {
+        const year = parseInt(req.body.birthYear, 10);
+        const currentYear = new Date().getFullYear();
+        if (isNaN(year) || year < 1950 || year > currentYear) {
+          errors.push(`Année de naissance entre 1950 et ${currentYear}`);
+        }
+      }
+      if (!req.body.nationality || !req.body.nationality.trim()) {
+        errors.push('Nationalité requise');
+      }
+      if (!req.body.nationalityPl || !req.body.nationalityPl.trim()) {
+        errors.push('Nationalité en polonais requise');
+      }
+      if (req.body.jerseyNumber) {
+        const num = parseInt(req.body.jerseyNumber, 10);
+        if (isNaN(num) || num < 0 || num > 99) {
+          errors.push('Numéro de maillot entre 0 et 99');
+        }
+      }
+
+      if (errors.length > 0) {
+        // Nettoyer le fichier uploadé si erreur de validation
+        if (req.file) {
+          deleteFile(getPublicUrl(req.file.filename, 'players'));
+        }
+        return res.status(400).json({
+          success: false,
+          message: 'Erreurs de validation',
+          errors
+        });
+      }
+      // ====== FIN VALIDATION ======
+
+      const playerData = {
+        teamId: parseInt(req.body.teamId, 10),
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        nickname: req.body.nickname || null,
+        jerseyNumber: req.body.jerseyNumber ? parseInt(req.body.jerseyNumber, 10) : null,
+        position: req.body.position,
+        positionPl: req.body.positionPl,
+        birthYear: parseInt(req.body.birthYear, 10),
+        nationality: req.body.nationality,
+        nationalityPl: req.body.nationalityPl,
+        photoUrl: req.body.photoUrl,
+        distinction1: req.body.distinction1 || null,
+        distinction2: req.body.distinction2 || null,
+        distinction3: req.body.distinction3 || null,
+        distinction4: req.body.distinction4 || null,
+        distinction5: req.body.distinction5 || null,
+        isActive: req.body.isActive === 'true' || req.body.isActive === true || req.body.isActive === 1 || req.body.isActive === '1'
+      };
+
+      console.log('📝 playerData after parsing:', playerData);
+
+      const player = await playerService.createPlayer(playerData, req.file);
 
       res.status(201).json({
         success: true,
@@ -74,7 +149,7 @@ class PlayerController {
         deleteFile(getPublicUrl(req.file.filename, 'players'));
       }
       
-      console.error('Erreur création joueur:', error);
+      console.error('❌ Erreur création joueur:', error);
       res.status(400).json({ 
         success: false, 
         message: error.message || 'Erreur lors de la création du joueur'
@@ -95,9 +170,70 @@ class PlayerController {
       console.log('🔍 req.body:', req.body);
       console.log('🔍 req.file:', req.file);
 
+      // ====== VALIDATION MANUELLE ======
+      const errors = [];
+      
+      if (req.body.teamId && isNaN(parseInt(req.body.teamId, 10))) {
+        errors.push('Team ID invalide');
+      }
+      if (req.body.firstName !== undefined && !req.body.firstName.trim()) {
+        errors.push('Prénom requis');
+      }
+      if (req.body.lastName !== undefined && !req.body.lastName.trim()) {
+        errors.push('Nom requis');
+      }
+      if (req.body.jerseyNumber && (isNaN(parseInt(req.body.jerseyNumber, 10)) || 
+          parseInt(req.body.jerseyNumber, 10) < 0 || 
+          parseInt(req.body.jerseyNumber, 10) > 99)) {
+        errors.push('Numéro de maillot entre 0 et 99');
+      }
+      if (req.body.birthYear) {
+        const year = parseInt(req.body.birthYear, 10);
+        const currentYear = new Date().getFullYear();
+        if (isNaN(year) || year < 1950 || year > currentYear) {
+          errors.push(`Année de naissance entre 1950 et ${currentYear}`);
+        }
+      }
+
+      if (errors.length > 0) {
+        // Nettoyer le fichier uploadé si erreur de validation
+        if (req.file) {
+          deleteFile(getPublicUrl(req.file.filename, 'players'));
+        }
+        return res.status(400).json({
+          success: false,
+          message: 'Erreurs de validation',
+          errors
+        });
+      }
+      // ====== FIN VALIDATION ======
+
+      // Convertir les données
+      const updateData = {
+        teamId: req.body.teamId ? parseInt(req.body.teamId, 10) : undefined,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        nickname: req.body.nickname || null,
+        jerseyNumber: req.body.jerseyNumber ? parseInt(req.body.jerseyNumber, 10) : null,
+        position: req.body.position,
+        positionPl: req.body.positionPl,
+        birthYear: req.body.birthYear ? parseInt(req.body.birthYear, 10) : undefined,
+        nationality: req.body.nationality,
+        nationalityPl: req.body.nationalityPl,
+        photoUrl: req.body.photoUrl,
+        distinction1: req.body.distinction1 || null,
+        distinction2: req.body.distinction2 || null,
+        distinction3: req.body.distinction3 || null,
+        distinction4: req.body.distinction4 || null,
+        distinction5: req.body.distinction5 || null,
+        isActive: req.body.isActive === 'true' || req.body.isActive === true || req.body.isActive === 1 || req.body.isActive === '1'
+      };
+
+      console.log('📝 updateData after parsing:', updateData);
+
       const player = await playerService.updatePlayer(
         req.params.id, 
-        req.body, 
+        updateData, 
         req.file
       );
 
@@ -119,7 +255,7 @@ class PlayerController {
         });
       }
 
-      console.error('Erreur modification joueur:', error);
+      console.error('❌ Erreur modification joueur:', error);
       res.status(400).json({ 
         success: false, 
         message: error.message || 'Erreur lors de la modification du joueur'

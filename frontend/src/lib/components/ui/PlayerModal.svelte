@@ -8,6 +8,10 @@
   export let isOpen = false;
   export let player = null;
 
+    $: if (player) {
+    console.log('🔍 Player data:', player);
+  }
+
   const dispatch = createEventDispatcher();
 
   function closeModal() {
@@ -56,7 +60,7 @@
       <div class="player-header">
         <!-- Photo du joueur -->
         <div class="player-photo-wrapper">
-          <!-- ✅ REMPLACE <img> PAR <PlayerPhoto> -->
+          <!-- REMPLACE <img> PAR <PlayerPhoto> -->
           <PlayerPhoto 
             src={player.photo} 
             alt={player.name} 
@@ -139,7 +143,7 @@
     background: white;
     border-radius: 16px;
     width: 100%;
-    max-width: 700px;
+    max-width: 1000px;
     max-height: 90vh;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     position: relative;
@@ -190,19 +194,35 @@
   }
 
   /* Photo du joueur */
-  .player-photo-wrapper {
-    position: relative;
-    flex-shrink: 0;
+.player-photo-wrapper {
+  position: relative;
+  flex-shrink: 0;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 3px solid rgba(212, 175, 55, 0.3);
+}
+
+  .player-photo-wrapper :global(.player-photo) {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 
-  .player-photo {
-    width: 150px;
-    height: 150px;
-    border-radius: 12px;
-    object-fit: cover;
-    border: 4px solid rgba(212, 175, 55, 0.3);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  }
+.player-photo-wrapper :global(img) {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto !important; /* Important pour surcharger */
+  height: auto !important;
+  object-fit: contain;
+  margin: auto; /* Centre l'image */
+  display: block;
+}
 
   .player-number-badge {
     position: absolute;
@@ -231,7 +251,7 @@
   }
 
   .player-name {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 700;
     margin: 0;
     color: white;
@@ -239,7 +259,7 @@
   }
 
   .player-nickname {
-    font-size: 1.1rem;
+    font-size: 2rem;
     font-style: italic;
     color: #d4af37;
     margin: 0;
@@ -251,7 +271,7 @@
     align-items: center;
     gap: 0.5rem;
     color: rgba(255, 255, 255, 0.9);
-    font-size: 0.95rem;
+    font-size: 1.5rem;
   }
 
   /* Modal Body */
@@ -269,7 +289,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 600;
     color: #1a4d7a;
     margin-bottom: 1rem;
@@ -313,7 +333,7 @@
     background: rgba(26, 77, 122, 0.05);
     border-radius: 8px;
     border-left: 4px solid #d4af37;
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: #333;
     transition: all 0.3s ease;
   }
@@ -363,11 +383,6 @@
       gap: 1rem;
     }
 
-    .player-photo {
-      width: 120px;
-      height: 120px;
-    }
-
     .player-number-badge {
       width: 40px;
       height: 40px;
@@ -403,6 +418,17 @@
       padding: 0.75rem;
       font-size: 0.9rem;
     }
+
+    .player-photo-wrapper {
+      width: 150px;
+      height: 150px;
+    }
+
+    .player-number-badge {
+      width: 40px;
+      height: 40px;
+      font-size: 1rem;
+    }
   }
 
   @media (max-width: 480px) {
@@ -413,10 +439,6 @@
       right: 0.75rem;
     }
 
-    .player-photo {
-      width: 100px;
-      height: 100px;
-    }
 
     .player-name {
       font-size: 1.3rem;

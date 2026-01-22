@@ -100,6 +100,16 @@
     }
   };
 
+  function handleHomeClick(event) {
+    event.preventDefault();
+
+    if ($user && $user.role === 'admin') {
+      goto('/admin');
+    } else {
+      goto('/');
+    }
+  }
+
   onMount(() => {
     setTimeout(() => {
       visible = true;
@@ -107,14 +117,15 @@
   });
 </script>
 
-<nav class="nav" class:visible>
-  <div class="nav-container">
-    <a href="/" class="logo-container">
-      <img src="/logo.png" alt="Logo Olympique Poznań" class="logo-olympique-poznan" />
-    </a>
-    <a href="/" class="logo-container">
+  <nav class="nav" class:visible>
+    <div class="nav-container">
+      <a href="/" class="logo-container">
+        <img src="/logo.png" alt="Logo Olympique Poznań" class="logo-olympique-poznan" />
+      </a>
+    <a href="/" class="logo-container" on:click={handleHomeClick}>
       <img src="/home.png" alt="Logo Home" class="logo-home" />
     </a>
+
 
     <!-- DESKTOP NAVIGATION -->
     <div class="nav-links">
