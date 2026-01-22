@@ -309,13 +309,13 @@
     "coaches": "Nos entraîneurs",
     "support": "Soutien Olympique",
     "partners": {
+      "title": "Nos Partenaires",
       "cta": {
         "title": "Devenez partenaire",
         "text": "Vous souhaitez soutenir notre club et nos projets ?",
         "button": "Contactez-nous"
       },
-      "partners": "Nos Partenaires",
-      "title": "Nos Partenaires - Olympique Poznań",
+      "metaTitle": "Nos Partenaires - Olympique Poznań",
       "metaDescription": "Merci à eux de nous soutenir dans tous nos projets",
       "hero": {
         "title": "Olympique Poznań",

@@ -234,7 +234,7 @@
 
       await adminPlayers.create(data);
       alert('Joueur créé avec succès !');
-      goto('/admin/players');
+      goto('/admin/');
     } catch (error) {
       console.error('Erreur sauvegarde:', error);
       alert('Erreur: ' + error.message);
@@ -245,7 +245,7 @@
 
   function handleCancel() {
     if (confirm('Annuler la création ?')) {
-      goto('/admin/players');
+      goto('/admin/');
     }
   }
 </script>

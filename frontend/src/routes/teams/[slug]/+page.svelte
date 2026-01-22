@@ -1,77 +1,18 @@
 <script>
-  import { onMount } from 'svelte';
-  import { page } from '$app/stores';
+  import { fade } from 'svelte/transition';
   import { _ } from 'svelte-i18n';
   import Navigation2 from '$lib/components/ui/Navigation2.svelte';
   import Footer from '$lib/components/ui/Footer.svelte';
   import PlayerModal from '$lib/components/ui/PlayerModal.svelte';
   import PlayerPhoto from '$lib/components/ui/PlayerPhoto.svelte';
-  import * as teamsApi from '$lib/api/teams.js';
-  import * as playersApi from '$lib/api/players.js';
   
   export let data;
 
   let isModalOpen = false;
   let selectedPlayer = null;
-  let team = null;
-  let players = [];
-  let loading = true;
-  let error = null;
 
-  $: slug = $page.params.slug;
-
-  onMount(async () => {
-    await loadTeamData();
-  });
-
-  async function loadTeamData() {
-    try {
-      loading = true;
-      error = null;   
-      
-      // Récupère l'équipe par slug
-      const teamResponse = await teamsApi.getTeamBySlug(slug);
-      
-      if (!teamResponse.success) {
-        error = 'Équipe introuvable';
-        return;
-      }
-      
-      team = teamResponse.data;
-      
-      // Récupère les joueurs de cette équipe
-      const playersResponse = await playersApi.getPlayersByTeam(team.id);
-      
-      if (playersResponse.success && playersResponse.data?.players) {
-        players = playersResponse.data.players.map(player => ({
-          id: player.id,
-          number: player.jerseyNumber,
-          firstName: player.firstName,
-          lastName: player.lastName,
-          name: `${player.firstName} ${player.lastName}`,
-          photo: player.photoUrl || '/no-pics.jpg',
-          position: player.position,
-          positionPl: player.positionPl,
-          origin: player.nationality,
-          originPl: player.nationalityPl,
-          nickname: player.nickname,
-          birthYear: player.birthYear,
-          distinctions: [
-            player.distinction1,
-            player.distinction2,
-            player.distinction3,
-            player.distinction4,
-            player.distinction5
-          ].filter(Boolean)
-        }));
-      }
-    } catch (err) {
-      console.error('❌ Erreur chargement équipe:', err);
-      error = 'Impossible de charger l\'équipe';
-    } finally {
-      loading = false;
-    }
-  }
+  // Les données viennent directement du load (SSR)
+  $: ({ team, players, error } = data);
 
   function openPlayerModal(player) {
     selectedPlayer = player;
@@ -89,12 +30,7 @@
 <Navigation2 {data} />
 
 <div class="team-page">
-  {#if loading}
-    <div class="loading-state">
-      <div class="loading-spinner"></div>
-      <p>{$_('common.loadingTeams')}</p>
-    </div>
-  {:else if error}
+  {#if error}
     <div class="error-state">
       <p>{error}</p>
       <a href="/teams" class="btn-back">{$_('teams.backToTeams')}</a>
@@ -104,9 +40,11 @@
     <section class="hero-team">
       <div class="hero-background">
         <img 
-          src={team.imagePath || `/team/${slug}.jpg`} 
+          src={team.imagePath || `/team/${team.slug}.jpg`} 
           alt={team.name} 
           class="hero-image"
+          loading="eager"
+          decoding="async"
         />
         <div class="hero-overlay"></div>
       </div>
@@ -126,19 +64,19 @@
             <p>{$_('teams.noPlayers')}</p>
           </div>
         {:else}
-          <div class="teams-grid">
-            {#each players as player}
+          <div class="teams-grid" in:fade={{ duration: 200 }}>
+            {#each players as player (player.id)}
               <button 
                 class="team-card"
                 on:click={() => openPlayerModal(player)}
                 aria-label="Voir le profil de {player.name}"
               >
                 <div class="team-image-wrapper">
-                <PlayerPhoto 
-                  src={player.photo} 
-                  alt={player.name} 
-                  className="team-photo"
-                />
+                  <PlayerPhoto 
+                    src={player.photo} 
+                    alt={player.name} 
+                    className="team-photo"
+                  />
                 </div>
                 
                 <div class="team-info">
@@ -258,26 +196,11 @@
     padding: 0 2rem;
   }
 
-  /* Loading, Error, Empty States */
-  .loading-state, .error-state, .empty-state {
+  /* Error, Empty States */
+  .error-state, .empty-state {
     text-align: center;
     padding: 4rem 2rem;
     color: #666;
-  }
-
-  .loading-spinner {
-    width: 48px;
-    height: 48px;
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #1a4d7a;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: 0 auto 1rem;
-  }
-
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
   }
 
   .btn-back {

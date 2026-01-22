@@ -178,13 +178,13 @@ class PlayerService {
 
     // Gestion de la photo
     if (uploadedFile) {
-        // Nouveau fichier uploadé → supprimer l'ancien
+        // Nouveau fichier uploadé
         if (existingPlayer.photo_path && !this.isExternalUrl(existingPlayer.photo_path)) {
         deleteFile(existingPlayer.photo_path);
         }
         updates.photoPath = `/uploads/players/${uploadedFile.filename}`;
     } else if (updateData.photoUrl && this.isValidUrl(updateData.photoUrl)) {
-        // Nouvelle URL fournie → supprimer l'ancien fichier local
+        // Nouvelle URL fournie
         if (existingPlayer.photo_path && !this.isExternalUrl(existingPlayer.photo_path)) {
         deleteFile(existingPlayer.photo_path);
         }
@@ -300,18 +300,16 @@ class PlayerService {
   /**
    * Formate un joueur pour la réponse API
    */
-  formatPlayer(player) {
-    const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:5000';
-    
+    formatPlayer(player) {
     // Construire l'URL de la photo
     let photoUrl = null;
     if (player.photo_path) {
       if (this.isExternalUrl(player.photo_path)) {
-        // URL externe → utiliser directement
+        // URL externe → 
         photoUrl = player.photo_path;
       } else {
-        // Chemin local → construire l'URL complète
-        photoUrl = `${BACKEND_URL}${player.photo_path}`;
+        // Chemin local → 
+        photoUrl = player.photo_path;
       }
     }
 

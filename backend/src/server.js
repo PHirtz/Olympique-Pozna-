@@ -71,7 +71,6 @@ app.use(morgan('dev'));
 // ========================================
 
 // ========== SERVIR LES FICHIERS STATIQUES ==========
-app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
 
 // ================================================
 // Routes - multer dans les routes va parser le FormData

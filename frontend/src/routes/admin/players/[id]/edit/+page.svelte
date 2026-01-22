@@ -298,7 +298,7 @@ async function handleSubmit() {
 
     await adminPlayers.update(playerId, data);
     alert('Joueur modifié avec succès !');
-    goto('/admin/players');
+    goto('/admin/');
   } catch (error) {
     console.error('Erreur sauvegarde:', error);
     alert('Erreur: ' + error.message);
@@ -309,7 +309,7 @@ async function handleSubmit() {
 
   function handleCancel() {
     if (confirm('Annuler les modifications ?')) {
-      goto('/admin/players');
+      goto('/admin/');
     }
   }
 </script>
