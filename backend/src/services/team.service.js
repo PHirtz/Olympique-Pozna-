@@ -144,6 +144,16 @@ class TeamService {
 
     return team;
   }
+
+  async getTeamsCount() {
+    try {
+      const count = await Team.count();
+      return count;
+    } catch (error) {
+      console.error('❌ Erreur dans getTeamsCount:', error);
+      throw error;
+    }
+  }
 }
 
 export default new TeamService();

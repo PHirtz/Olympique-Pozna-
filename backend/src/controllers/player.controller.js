@@ -12,7 +12,11 @@ class PlayerController {
   // ==============================================
 async getAll(req, res) {
   try {
+    console.log('🔍 Route appelée:', req.path);
+    console.log('🔍 Query params:', req.query);
     const result = await playerService.getAllPlayers(req.query);
+    console.log('🔍 Total joueurs retourné:', result.pagination.total);
+    console.log('🔍 Nombre de joueurs dans la page:', result.players.length);
     
     res.status(200).json({
       success: true,

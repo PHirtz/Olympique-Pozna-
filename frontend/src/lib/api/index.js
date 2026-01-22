@@ -13,3 +13,4 @@ export * as contact from './contact.js';
 // Admin API
 export * as adminPartners from './admin/partners.js';
 export * as adminPlayers from './admin/players.js';
+export * as adminTeams from './admin/teams.js';

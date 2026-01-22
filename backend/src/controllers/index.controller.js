@@ -58,6 +58,21 @@ class TeamController {
       res.status(404).json({ success: false, message: error.message });
     }
   }
+
+  async getCount(req, res) {
+    try {
+      const count = await teamService.getTeamsCount();
+      res.status(200).json({ 
+        success: true, 
+        data: { count } 
+      });
+    } catch (error) {
+      res.status(500).json({ 
+        success: false, 
+        message: error.message 
+      });
+    }
+  }
 }
 
 // MATCH CONTROLLER

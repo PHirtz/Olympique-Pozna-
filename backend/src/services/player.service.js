@@ -17,6 +17,7 @@ class PlayerService {
   async getAllPlayers(filters = {}) {
     const { teamId, isActive, page = 1, limit = 20 } = filters;
     const offset = (page - 1) * limit;
+    console.log('🔍 Filters reçus dans le service:', filters);
 
     let whereConditions = [];
     let values = [];
@@ -34,6 +35,8 @@ class PlayerService {
     const whereClause = whereConditions.length > 0 
       ? 'WHERE ' + whereConditions.join(' AND ') 
       : '';
+    console.log('🔍 WHERE clause:', whereClause);
+    console.log('🔍 Values:', values);
 
     // Récupérer les joueurs
     const players = await db.query(`
@@ -63,6 +66,8 @@ class PlayerService {
     });
 
     const total = countResult[0]?.total || 0;
+    console.log('🔍 Total compté:', total);
+    console.log('🔍 Joueurs retournés:', players.length);
 
     return {
       players: players.map(player => this.formatPlayer(player)),

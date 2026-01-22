@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte';
-  import { adminPartners, adminPlayers } from '$lib/api';
+  import { adminPartners, adminPlayers, adminTeams } from '$lib/api';
   import { 
     Handshake, 
     Trophy, 
@@ -56,13 +56,18 @@
         page: playersCurrentPage,
         limit: playersPerPage
       });
+      console.log('🔍 playersResponse:', playersResponse);
       
-      players = playersResponse.data?.players || playersResponse.data || [];
-      totalPlayers = playersResponse.data?.total || playersResponse.total || 0;
+      players = playersResponse.data?.players || [];
+      totalPlayers = playersResponse.data?.total || 0;
       stats.users = totalPlayers;
+      console.log('🔍 totalPlayers:', totalPlayers); // 👈 AJOUTE CE LOG
+      console.log('🔍 stats.users:', stats.users); // 👈 AJOUTE CE LOG
       
-      stats.teams = '-';
-      stats.products = '-';
+      // Charger le nombre d'équipes
+      const teamsCountResponse = await adminTeams.getCount();
+      stats.teams = teamsCountResponse.data?.count || 0;
+      
     } catch (error) {
       console.error('Erreur chargement:', error);
     } finally {
@@ -147,11 +152,6 @@
         <Users size={20} />
         <span class="fm-stat-label">Joueurs</span>
         <span class="fm-stat-value">{stats.users}</span>
-      </div>
-      <div class="fm-stat-item">
-        <ShoppingBag size={20} />
-        <span class="fm-stat-label">Produits</span>
-        <span class="fm-stat-value">{stats.products}</span>
       </div>
     </div>
 

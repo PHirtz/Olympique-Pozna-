@@ -78,6 +78,34 @@ userRouter.delete('/:id', userController.delete);
 userRouter.get('/team/:teamId/players', userController.getPlayersByTeam);
 userRouter.get('/:id/statistics', userController.getUserWithStatistics);
 
+// ========================================
+// ========== ROUTES ADMIN PROTÉGÉES ==========
+// ========================================
+const adminRouter = express.Router();
+
+// Toutes les routes admin nécessitent authentification + rôle admin
+adminRouter.use(authMiddleware);
+adminRouter.use(requireRole('admin'));
+
+// Dashboard
+adminRouter.get('/dashboard', (req, res) => {
+  res.json({
+    success: true,
+    message: 'Bienvenue dans l\'administration',
+    data: {
+      user: req.user
+    }
+  });
+});
+adminRouter.get('/teams/count', teamController.getCount.bind(teamController));
+
+// PARTNERS (SPONSORS) - avec JSON parser
+adminRouter.post('/partners', jsonParser, validate(partnerCreateSchema), partnerController.create);
+adminRouter.get('/partners', partnerController.getAll);
+adminRouter.get('/partners/:id', partnerController.getById);
+adminRouter.put('/partners/:id', jsonParser, validate(partnerUpdateSchema), partnerController.update);
+adminRouter.delete('/partners/:id', partnerController.delete);
+
 // ========== TEAM ROUTES ==========
 const teamRouter = express.Router();
 
@@ -190,33 +218,6 @@ contactRouter.get('/', contactController.getAll);
 contactRouter.get('/:id', contactController.getById);
 contactRouter.patch('/:id/status', jsonParser, contactController.updateStatus);
 contactRouter.delete('/:id', contactController.delete);
-
-// ========================================
-// ========== ROUTES ADMIN PROTÉGÉES ==========
-// ========================================
-const adminRouter = express.Router();
-
-// Toutes les routes admin nécessitent authentification + rôle admin
-adminRouter.use(authMiddleware);
-adminRouter.use(requireRole('admin'));
-
-// Dashboard
-adminRouter.get('/dashboard', (req, res) => {
-  res.json({
-    success: true,
-    message: 'Bienvenue dans l\'administration',
-    data: {
-      user: req.user
-    }
-  });
-});
-
-// PARTNERS (SPONSORS) - avec JSON parser
-adminRouter.post('/partners', jsonParser, validate(partnerCreateSchema), partnerController.create);
-adminRouter.get('/partners', partnerController.getAll);
-adminRouter.get('/partners/:id', partnerController.getById);
-adminRouter.put('/partners/:id', jsonParser, validate(partnerUpdateSchema), partnerController.update);
-adminRouter.delete('/partners/:id', partnerController.delete);
 
 // ========================================
 // Mount all routes
