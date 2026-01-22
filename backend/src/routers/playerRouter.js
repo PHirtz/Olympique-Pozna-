@@ -22,7 +22,7 @@ const validate = (req, res, next) => {
 };
 
 // ==============================================
-// ⚠️ ROUTES ADMIN DOIVENT ÊTRE AVANT LES ROUTES PUBLIQUES /:id
+// ROUTES ADMIN DOIVENT ÊTRE AVANT LES ROUTES PUBLIQUES /:id
 // ==============================================
 
 // GET /api/players/admin - Liste admin avec pagination

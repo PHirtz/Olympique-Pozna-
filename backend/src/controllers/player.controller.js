@@ -10,22 +10,29 @@ class PlayerController {
   // ==============================================
   // GET /api/players - Liste tous les joueurs
   // ==============================================
-  async getAll(req, res) {
-    try {
-      const result = await playerService.getAllPlayers(req.query);
-      res.status(200).json({
-        success: true,
-        data: result
-      });
-    } catch (error) {
-      console.error('Erreur récupération joueurs:', error);
-      res.status(500).json({ 
-        success: false, 
-        message: 'Erreur serveur',
-        error: error.message 
-      });
-    }
+async getAll(req, res) {
+  try {
+    const result = await playerService.getAllPlayers(req.query);
+    
+    res.status(200).json({
+      success: true,
+      data: {
+        players: result.players,
+        total: result.pagination.total,
+        page: result.pagination.page,
+        totalPages: result.pagination.totalPages,
+        limit: result.pagination.limit
+      }
+    });
+  } catch (error) {
+    console.error('Erreur récupération joueurs:', error);
+    res.status(500).json({ 
+      success: false, 
+      message: 'Erreur serveur',
+      error: error.message 
+    });
   }
+}
 
   // ==============================================
   // GET /api/players/:id - Détails d'un joueur

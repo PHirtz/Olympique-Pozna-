@@ -35,12 +35,6 @@
     shop: false,
     news: false
   };
-
-  // Computed - Pagination des joueurs
-  $: paginatedPlayers = players.slice(
-    (playersCurrentPage - 1) * playersPerPage,
-    playersCurrentPage * playersPerPage
-  );
   
   $: totalPlayersPages = Math.ceil(totalPlayers / playersPerPage);
 
@@ -57,13 +51,16 @@
       sponsors = partnersResponse.data?.partners || partnersResponse.data || [];
       stats.sponsors = sponsors.length;
       
-      // Charger les joueurs
-      const playersResponse = await adminPlayers.getAll();
+      // Charger les joueurs AVEC pagination
+      const playersResponse = await adminPlayers.getAll({
+        page: playersCurrentPage,
+        limit: playersPerPage
+      });
+      
       players = playersResponse.data?.players || playersResponse.data || [];
-      totalPlayers = players.length;
+      totalPlayers = playersResponse.data?.total || playersResponse.total || 0;
       stats.users = totalPlayers;
       
-      // Stats à venir
       stats.teams = '-';
       stats.products = '-';
     } catch (error) {
@@ -91,11 +88,13 @@
     if (!confirm(`Supprimer "${firstName} ${lastName}" ?`)) return;
     try {
       await adminPlayers.deletePlayer(id);
-      await loadData();
-      // Ajuster la page si nécessaire
-      if (paginatedPlayers.length === 0 && playersCurrentPage > 1) {
+      
+      // Ajuster la page si on supprime le dernier joueur d'une page
+      if (players.length === 1 && playersCurrentPage > 1) {
         playersCurrentPage--;
       }
+      
+      await loadData();
     } catch (err) {
       alert('Erreur: ' + err.message);
     }
@@ -121,6 +120,7 @@
 
   function goToPlayersPage(page) {
     playersCurrentPage = page;
+    loadData();
   }
 </script>
 
@@ -197,7 +197,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {#each paginatedPlayers as player, i}
+                  {#each players as player, i}
                     <tr class:fm-row-alt={i % 2 === 1}>
                       <td>
                         {#if player.photoUrl}
@@ -220,8 +220,8 @@
                       </td>
                       <td>{getPositionLabel(player.position)}</td>
                       <td>
-                        {#if player.Team}
-                          {player.Team.name}
+                        {#if player.teamName}
+                          {player.teamName}
                         {:else}
                           <span class="fm-text-muted">Non assigné</span>
                         {/if}
