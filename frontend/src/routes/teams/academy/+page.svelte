@@ -63,18 +63,18 @@
         {#if loading}
           <div class="loading-state">
             <div class="loading-spinner"></div>
-            <p>Chargement des équipes...</p>
+            <p>{_('teams.loadingTeams')}</p>
           </div>
         {:else if error}
           <div class="error-state">
             <p>{error}</p>
             <button on:click={loadAcademyTeams} class="btn-retry">
-              Réessayer
+              {$_('common.tryAgain')}
             </button>
           </div>
         {:else if teams.length === 0}
           <div class="empty-state">
-            <p>Aucune équipe pour le moment.</p>
+            <p>{_('teams.noTeams')}</p>
           </div>
         {:else}
           <div class="teams-grid">

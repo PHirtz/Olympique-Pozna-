@@ -1,5 +1,8 @@
 {
   "teams": {
+    "noPlayers": "No players in this team at the moment.",
+    "noTeams": "No teams at the moment.",
+    "backToTeams": "← Back to teams",
     "title": "Our Teams - Olympique Poznań",
     "metaDescription": "Discover the teams of Olympique Poznań academy",
     "hero": {
@@ -153,10 +156,6 @@
   "camps": {
     "title": "Olympic Camp - Olympique Poznań",
     "metaDescription": "Join the Poznań Olympic Camp for an unforgettable football experience! Intensive training, technical workshops and guaranteed fun.",
-    "hero": {
-      "title": "Olympic Camp",
-      "subtitle": "Join us for an unforgettable football experience!"
-    },
     "intro": {
       "text": "The Olympic Camp is a unique opportunity for young football enthusiasts to live an immersive experience in the world of football. Whether you're a beginner or an experienced player, our camp is designed to offer a stimulating and fun learning environment."
     },
@@ -174,7 +173,27 @@
     },
     "lieu": "Location",
     "dates": "Dates",
-    "programme": "Program"
+    "programme": {
+      "title": "Olympic Camp Program",
+      "programDescription": [
+        "⚽ 3 daily trainings: sparingi, gry, integracja",
+        "🏨 Comfortable accommodation with meals",
+        "🏰 Visits: Wrocław 2010-2018 Drazogiszyn 2008-2018",
+        "🎾 Activities: Gym, playground, ping pong, mini zoo",
+        "⚽ FIFA tournaments + Aquapark",
+        "🎓 Professional coaching by our coaches"
+      ]
+    },
+    "formulaire": {
+      "title": "Register for the Olympic Camp",
+      "description": "Fill out the form below to register or get more information",
+      "contact": "Direct contact",
+      "type": {
+        "typeName": "Type of request",
+        "registration": "Camp registration",
+        "info": "Information request"
+      }
+    }
   },
 
   "userMenu": {
@@ -284,7 +303,20 @@
     "about": "Who we are",
     "coaches": "Our coaches",
     "support": "Olympic Support",
-    "partners": "Our Partners",
+    "partners": {
+      "cta": {
+        "title": "Become a partner",
+        "text": "Would you like to support our club and our projects?",
+        "button": "Contact us"
+      },
+      "partners": "Our Partners",
+      "title": "Our Partners - Olympique Poznań",
+      "metaDescription": "Thank you to them for supporting us in all our projects",
+      "hero": {
+        "title": "Olympique Poznań",
+        "subtitle": "Our Partners"
+      }
+    },
     "status": "Club statutes",
     "documents": {
       "title": "Important documents",
@@ -618,8 +650,10 @@
 
   "common": {
     "loading": "Loading...",
+    "loadingTeams": "Loading teams...",
     "error": "An error occurred",
     "noData": "No data available",
+    "tryAgain": "Try again",
     "back": "Back",
     "close": "Close",
     "save": "Save",

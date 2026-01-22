@@ -89,108 +89,28 @@
     "terms": "Regulamin"
   },
 
-    "teams": {
-      "seniors": {
-        "title": "Seniorzy",
-        "women": "Seniorki Kobiety",
-        "men": "Seniorzy Mężczyźni"
-      },
-      "intro": {
-        "title": "Nasze Drużyny",
-        "description": "Poznaj nasze drużyny i ich zawodników"
-      },
-      "viewProfile": "Zobacz profil",
-      "backToTeams": "Powrót do drużyn"
-    },
-
-  "auth": {
-    "login": {
-      "title": "Logowanie",
-      "username": "Nazwa użytkownika",
-      "usernamePlaceholder": "Twoja nazwa użytkownika",
-      "password": "Hasło",
-      "passwordPlaceholder": "Twoje hasło",
-      "submit": "Zaloguj się",
-      "loading": "Logowanie...",
-      "error": "Nieprawidłowa nazwa użytkownika lub hasło",
-      "noAccount": "Nie masz jeszcze konta?",
-      "createAccount": "Utwórz konto"
-    },
-    "register": {
-      "title": "Rejestracja",
-      "firstName": "Imię",
-      "firstNamePlaceholder": "Anna",
-      "lastName": "Nazwisko",
-      "lastNamePlaceholder": "Kowalska",
-      "username": "Nazwa użytkownika",
-      "usernamePlaceholder": "ania_k",
-      "email": "Email",
-      "emailPlaceholder": "anna@example.pl",
-      "password": "Hasło",
-      "passwordPlaceholder": "Moje hasło",
-      "submit": "Utwórz konto",
-      "loading": "Rejestracja...",
-      "success": "Rejestracja udana! Witamy w Olympique Poznań!",
-      "errorAllFields": "Proszę wypełnić wszystkie pola",
-      "errorGeneral": "Błąd podczas rejestracji",
-      "hasAccount": "Masz już konto?",
-      "loginLink": "Zaloguj się",
-      "required": "*"
-    }
-  },
-
-  "club": {
-    "shop": "Sklep",
-    "title": "Klub - Olympique Poznań",
-    "subtitle": "Nasz klub",
-    "about": "Kim jesteśmy",
-    "coaches": "Nasi trenerzy",
-    "support": "Wsparcie Olimpijskie",
-    "partners": "Nasi partnerzy",
-    "status": "Statut klubu",
-    "documents": {
-      "title": "Ważne dokumenty",
-      "cgv": "Regulamin",
-      "statutes": "Statut",
-      "regulations": "Przepisy"
-    }
-  },
-
-  "camps": {
-    "title": "Obóz Olimpijski - Olympique Poznań",
-    "metaDescription": "Dołącz do Obóz Olimpijski w Poznaniu na niezapomniane piłkarskie doświadczenie! Intensywne treningi, warsztaty techniczne i gwarantowana zabawa.",
+  "teams": {
+    "noPlayers": "Brak graczy w tej drużynie na razie.",
+    "noTeams": "Brak drużyn na razie.",
+    "title": "Nasze Drużyny - Olympique Poznań",
+    "metaDescription": "Poznaj drużyny akademii Olympique Poznań",
     "hero": {
-      "title": "Obóz Olimpijski",
-      "subtitle": "Intensywne piłkarskie doświadczenie w sercu Poznania"
+      "title": "Olympique Poznań",
+      "subtitle": "Poznaj drużyny akademii Olympique Poznań"
     },
     "intro": {
-      "text": "Obóz Olimpijski to wyjątkowa okazja dla młodych piłkarzy, aby zanurzyć się w intensywnym i ekscytującym środowisku treningowym. Odbywający się w sercu Poznania, nasz obóz oferuje starannie zaprojektowany program, który łączy techniczne szkolenie, taktyczne zrozumienie i elementy zabawy, aby stworzyć kompleksowe doświadczenie piłkarskie."
+      "title": "Nasze Drużyny",
+      "description": "Od szkolenia młodych talentów po rozgrywki seniorów"
     },
-    "benefits": {
-      "title": "Dlaczego wybrać Obóz Olimpijski?",
-      "training": "Intensywne treningi z wykwalifikowanymi trenerami",
-      "techniques": "Warsztaty techniczne poprawiające umiejętności",
-      "fun": "Zabawne aktywności i przyjacielskie zawody",
-      "teamSpirit": "Rozwój ducha zespołowego i fair play"
-    },
-    "register": {
-      "title": "Zapisz się już dziś!",
-      "text": "Nie przegap tej okazji, aby być częścią Obozu Olimpijskiego. Wypełnij poniższy formularz, aby się zapisać lub uzyskać więcej informacji.",
-      "formTitle": "Formularz zgłoszeniowy do Obozu Olimpijskiego"
-    },
-    "dates": "Daty obozu",
-    "lieu": "Miejsce",
-    "programme": "Program"
-  },
-
-  "teams": {
+    "viewProfile": "Zobacz profil",
+    "backToTeams": "← Powrót do drużyn",
     "seniors": {
       "title": "Seniorzy",
       "women": "Seniorki Kobiety",
       "men": "Seniorzy Mężczyźni"
     },
-    "position":"Pozycja",
-    "distinctions" : "Korona",
+    "position": "Pozycja",
+    "distinctions": "Korona",
     "ladies": "Panie",
     "ladies-subtitle": "Reprezentacja kobiet Olympique Poznań",
     "blues": "Niebiescy",
@@ -297,6 +217,119 @@
     "henry": "Amandine Henry (Orliczki)"
   },
 
+  "auth": {
+    "login": {
+      "title": "Logowanie",
+      "username": "Nazwa użytkownika",
+      "usernamePlaceholder": "Twoja nazwa użytkownika",
+      "password": "Hasło",
+      "passwordPlaceholder": "Twoje hasło",
+      "submit": "Zaloguj się",
+      "loading": "Logowanie...",
+      "error": "Nieprawidłowa nazwa użytkownika lub hasło",
+      "noAccount": "Nie masz jeszcze konta?",
+      "createAccount": "Utwórz konto"
+    },
+    "register": {
+      "title": "Rejestracja",
+      "firstName": "Imię",
+      "firstNamePlaceholder": "Anna",
+      "lastName": "Nazwisko",
+      "lastNamePlaceholder": "Kowalska",
+      "username": "Nazwa użytkownika",
+      "usernamePlaceholder": "ania_k",
+      "email": "Email",
+      "emailPlaceholder": "anna@example.pl",
+      "password": "Hasło",
+      "passwordPlaceholder": "Moje hasło",
+      "submit": "Utwórz konto",
+      "loading": "Rejestracja...",
+      "success": "Rejestracja udana! Witamy w Olympique Poznań!",
+      "errorAllFields": "Proszę wypełnić wszystkie pola",
+      "errorGeneral": "Błąd podczas rejestracji",
+      "hasAccount": "Masz już konto?",
+      "loginLink": "Zaloguj się",
+      "required": "*"
+    }
+  },
+
+  "club": {
+    "shop": "Sklep",
+    "title": "Klub - Olympique Poznań",
+    "subtitle": "Nasz klub",
+    "about": "Kim jesteśmy",
+    "coaches": "Nasi trenerzy",
+    "support": "Wsparcie Olimpijskie",
+    "partners": {
+      "cta": {
+        "title": "Zostań naszym partnerem",
+        "text": "Chcesz wesprzeć nasz klub i nasze projekty?",
+        "button": "Skontaktuj się z nami"
+      },
+      "partners": "Nasi partnerzy",
+      "title": "Nasi partnerzy - Olympique Poznań",
+      "metaDescription": "Dziękujemy im za wspieranie nas we wszystkich naszych projektach",
+      "hero": {
+        "title": "Olympique Poznań",
+        "subtitle": "Nasi partnerzy"
+      }
+    },
+    "status": "Statut klubu",
+    "documents": {
+      "title": "Ważne dokumenty",
+      "cgv": "Regulamin",
+      "statutes": "Statut",
+      "regulations": "Przepisy"
+    }
+  },
+
+  "camps": {
+    "title": "Obóz Olimpijski - Olympique Poznań",
+    "metaDescription": "Dołącz do Obóz Olimpijski w Poznaniu na niezapomniane piłkarskie doświadczenie! Intensywne treningi, warsztaty techniczne i gwarantowana zabawa.",
+    "hero": {
+      "title": "Obóz Olimpijski",
+      "subtitle": "Intensywne piłkarskie doświadczenie w sercu Poznania"
+    },
+    "intro": {
+      "text": "Obóz Olimpijski to wyjątkowa okazja dla młodych piłkarzy, aby zanurzyć się w intensywnym i ekscytującym środowisku treningowym. Odbywający się w sercu Poznania, nasz obóz oferuje starannie zaprojektowany program, który łączy techniczne szkolenie, taktyczne zrozumienie i elementy zabawy, aby stworzyć kompleksowe doświadczenie piłkarskie."
+    },
+    "benefits": {
+      "title": "Dlaczego wybrać Obóz Olimpijski?",
+      "training": "Intensywne treningi z wykwalifikowanymi trenerami",
+      "techniques": "Warsztaty techniczne poprawiające umiejętności",
+      "fun": "Zabawne aktywności i przyjacielskie zawody",
+      "teamSpirit": "Rozwój ducha zespołowego i fair play"
+    },
+    "register": {
+      "title": "Zapisz się już dziś!",
+      "text": "Nie przegap tej okazji, aby być częścią Obozu Olimpijskiego. Wypełnij poniższy formularz, aby się zapisać lub uzyskać więcej informacji.",
+      "formTitle": "Formularz zgłoszeniowy do Obozu Olimpijskiego"
+    },
+    "dates": "Daty obozu",
+    "programme": {
+      "title": "Program obozu",
+      "programDescription": [
+        "⚽ 3 codzienne treningi: sparingi, gry, integracja",
+        "🏨 Komfortowe zakwaterowanie z posiłkami",
+        "🏰 Wizyty: Wrocław 2010-2018 Drazogiszyn 2008-2018",
+        "🎾 Aktywności: Sala gimnastyczna, boisko, ping pong, mini zoo",
+        "⚽ Turnieje FIFA + Aquapark",
+        "🎓 Profesjonalne szkolenie od naszych trenerów"
+      ]
+    },
+    "formulaire": {
+      "title": "Zapisz się na Obóz Olimpijski",
+      "description": "Wypełnij poniższy formularz, aby się zapisać lub uzyskać więcej informacji",
+      "type": {
+        "typeName": "Rodzaj zapytania",
+        "registration": "Rejestracja na obóz",
+        "info": "Prośba o informacje"
+      },
+      "contact": "Kontakt bezpośredni"
+    },
+    "lieu": "Miejsce"
+  },
+
   "about": {
     "title": "O nas - Olympique Poznań",
     "metaDescription": "Poznaj historię i wartości Olympique Poznań, klubu piłkarskiego szkolącego w sercu Poznania",
@@ -389,7 +422,8 @@
       },
       "idol": {
         "title": "Idol z młodości i obecnie ulubiony zawodnik",
-"text": "Thierry Henry – „Na zewnętrznej ścianie Emirates Stadium można przeczytać: I fell in love with Arsenal because of Ian Wright. To cytat Thierry'ego Henry'ego, mojego idola od czasów jego debiutu w AS Monaco, kiedy był jeszcze nastolatkiem\". Dziś: Miles Lewis-Skelly – „Od zawsze fascynują mnie nastolatki wchodzące do świata profesjonalnej piłki nożnej.\""      },
+        "text": "Thierry Henry – „Na zewnętrznej ścianie Emirates Stadium można przeczytać: I fell in love with Arsenal because of Ian Wright. To cytat Thierry'ego Henry'ego, mojego idola od czasów jego debiutu w AS Monaco, kiedy był jeszcze nastolatkiem\". Dziś: Miles Lewis-Skelly – „Od zawsze fascynują mnie nastolatki wchodzące do świata profesjonalnej piłki nożnej.\""
+      },
       "passion": {
         "title": "Inna pasja poza piłką nożną: MUZYKA",
         "text": "„Jestem melomanem. Co dziwne, moją pierwszą pasją jest muzyka. «Pożeram» astronomiczne ilości albumów każdego tygodnia, od hip-hopu po muzykę klasyczną. Każdego tygodnia muszę odkryć co najmniej dwóch nowych artystów. Platformy streamingowe mają mnie dość, bo fałszuję ich statystyki» 😊"
@@ -619,9 +653,11 @@
   },
 
   "common": {
+    "loadingTeams": "Ładowanie drużyn...",
     "loading": "Ładowanie...",
     "error": "Wystąpił błąd",
     "noData": "Brak danych",
+    "tryAgain": "Spróbuj ponownie",
     "back": "Wstecz",
     "close": "Zamknij",
     "save": "Zapisz",

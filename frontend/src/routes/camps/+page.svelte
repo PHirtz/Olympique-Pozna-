@@ -110,14 +110,11 @@
       </div>
 
       <div class="activities">
-        <h2>Au programme</h2>
+        <h2>{$_('camps.programme.title')}</h2>
         <ul>
-          <li>⚽ 3 entraînements quotidiens : sparingi, gry, integracja</li>
-          <li>🏨 Hébergement confortable avec repas</li>
-          <li>🏰 Visites : Wrocław 2010-2018 Drazogiszyn 2008-2018</li>
-          <li>🎾 Activités : Silownia, plac zabaw, ping pong, mini zoo</li>
-          <li>⚽ Tournois FIFA + Aquapark</li>
-          <li>🎓 Encadrement professionnel par nos entraîneurs</li>
+          {#each $_('camps.programme.programDescription') as item}
+            <li>{item}</li>
+          {/each}
         </ul>
       </div>
     </div>
@@ -127,8 +124,8 @@
   <section class="contact-form-section">
     <div class="container">
       <div class="form-header">
-        <h2>Inscrivez-vous au Camp d'Olympique Poznań</h2>
-        <p>Remplissez le formulaire ci-dessous pour vous inscrire ou demander plus d'informations</p>
+        <h2>{$_('camps.formulaire.title')}</h2>
+        <p>{$_('camps.formulaire.description')}</p>
       </div>
 
       {#if success}
@@ -206,10 +203,10 @@
           </div>
 
           <div class="form-group">
-            <label for="category">Type de demande</label>
+            <label for="category">{$_('camps.formulaire.type.typeName')}</label>
             <select id="category" bind:value={formData.category} disabled={loading}>
-              <option value="inscription">Inscription au camp</option>
-              <option value="information">Demande d'information</option>
+              <option value="inscription">{$_('camps.formulaire.type.registration')}</option>
+              <option value="information">{$_('camps.formulaire.type.info')}</option>
             </select>
           </div>
         </div>
@@ -237,7 +234,7 @@
       </form>
 
       <div class="contact-info">
-        <h3>Contact direct</h3>
+        <h3>{$_('camps.formulaire.contact')}</h3>
         <div class="contact-details">
           <a href="tel:669091910" class="contact-link">
             <Phone size={20} />

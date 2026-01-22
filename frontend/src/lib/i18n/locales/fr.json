@@ -1,6 +1,9 @@
 {
 
   "teams": {
+    "noPlayers": "Aucun joueur dans cette équipe pour le moment.",
+    "noTeams": "Aucune équipe pour le moment.",
+    "backToTeams": "← Retour aux équipes",
     "title": "Nos Équipes - Olympique Poznań",
     "metaDescription": "Découvrez les équipes de l'académie d'Olympique Poznań",
     "hero": {
@@ -175,7 +178,27 @@
     },
     "lieu": "Lieu",
     "dates": "Dates",
-    "programme": "Programme"
+    "programme": {
+      "title": "Programme du Camp Olympique",
+      "programDescription": [
+        "⚽ 3 entraînements quotidiens : sparingi, gry, integracja",
+        "🏨 Hébergement confortable avec repas",
+        "🏰 Visites : Wrocław 2010-2018 Drazogiszyn 2008-2018",
+        "🎾 Activités : Silownia, plac zabaw, ping pong, mini zoo",
+        "⚽ Tournois FIFA + Aquapark",
+        "🎓 Encadrement professionnel par nos entraîneurs"
+      ]
+    },
+    "formulaire": {
+      "title": "Inscrivez-vous au Camp d'Olympique Poznań",
+      "description": "Remplissez le formulaire ci-dessous pour vous inscrire ou demander plus d'informations",
+      "contact": "Contact direct",
+      "type": {
+        "typeName": "Type de demande",
+        "info": "Demande d'information",
+        "registration": "Inscription au camp"
+      }
+    }
   },
 
   "userMenu": {
@@ -285,7 +308,20 @@
     "about": "Qui sommes-nous",
     "coaches": "Nos entraîneurs",
     "support": "Soutien Olympique",
-    "partners": "Nos Partenaires",
+    "partners": {
+      "cta": {
+        "title": "Devenez partenaire",
+        "text": "Vous souhaitez soutenir notre club et nos projets ?",
+        "button": "Contactez-nous"
+      },
+      "partners": "Nos Partenaires",
+      "title": "Nos Partenaires - Olympique Poznań",
+      "metaDescription": "Merci à eux de nous soutenir dans tous nos projets",
+      "hero": {
+        "title": "Olympique Poznań",
+        "subtitle": "Nos Partenaires"
+      }
+    },
     "status": "Statuts du club",
     "documents": {
       "title": "Documents importants",
@@ -619,8 +655,10 @@
 
   "common": {
     "loading": "Chargement...",
+    "loadingTeams": "Chargement des équipes...",
     "error": "Une erreur est survenue",
     "noData": "Aucune donnée disponible",
+    "tryAgain": "Réessayer",
     "back": "Retour",
     "close": "Fermer",
     "save": "Enregistrer",

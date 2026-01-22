@@ -6,6 +6,7 @@
   import { goto } from '$app/navigation';
   import { Menu, X, ChevronDown, LogIn, UserPlus, LogOut, User } from 'lucide-svelte';
   import { onMount } from 'svelte';
+	import { partners } from '$lib/api';
 
   let open = false;
   let visible = false;
@@ -161,7 +162,7 @@
           >
             <a href="/club/about" class="dropdown-item" role="menuitem">{$_('club.about')}</a>
             <a href="/club/coaches" class="dropdown-item" role="menuitem">{$_('club.coaches')}</a>
-            <a href="/club/partners" class="dropdown-item" role="menuitem">{$_('club.partners')}</a>
+            <a href="/club/partners" class="dropdown-item" role="menuitem">{$_('club.partners.partners')}</a>
                 <a 
                   href="https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit?tab=t.0" 
                   target="_blank"

@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import { partners as partnersAPI } from '$lib/api';
-  import { locale as currentLocale } from 'svelte-i18n';
+  import { locale as currentLocale,_ } from 'svelte-i18n';
   import { get } from 'svelte/store';
   import Navigation2 from '$lib/components/ui/Navigation2.svelte';
   import Footer from '$lib/components/ui/Footer.svelte';
@@ -53,8 +53,8 @@
 </script>
 
 <svelte:head>
-  <title>Nos Partenaires - Olympique Poznań</title>
-  <meta name="description" content="Découvrez nos partenaires, merci à eux de nous soutenir dans tous nos projets" />
+  <title>{$_('club.partners.hero.subtitle')}</title>
+  <meta name="description" content="{$_('club.partners.metaDescription')}" />
 </svelte:head>
 
 <Navigation2 {data} />
@@ -64,8 +64,8 @@
   <section class="hero-partners">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <h1>Nos Partenaires</h1>
-      <p>Merci à eux de nous soutenir et nous permettent de réaliser nos projets</p>
+      <h1>{$_('club.partners.hero.subtitle')}</h1>
+      <p>{$_('club.partners.metaDescription')}</p>
     </div>
   </section>
 
@@ -152,9 +152,9 @@
 
         <!-- CTA -->
         <div class="cta-section">
-          <h2>Devenez partenaire</h2>
-          <p>Vous souhaitez soutenir notre club et nos projets ?</p>
-          <a href="/contact" class="cta-button">Contactez-nous</a>
+          <h2>{$_('club.partners.cta.title')}</h2>
+          <p>{$_('club.partners.cta.text')}</p>
+          <a href="/contact" class="cta-button">{$_('club.partners.cta.button')}</a>
         </div>
       {/if}
     </div>
