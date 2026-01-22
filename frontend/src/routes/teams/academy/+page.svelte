@@ -1,8 +1,3 @@
-<svelte:head>
-  <title>{$_('teams.academy.title')} - Olympique Poznań</title>
-  <meta name="description" content={$_('teams.academy.subtitle')} />
-</svelte:head>
-
 <script>
   import { onMount } from 'svelte';
   import { _ } from 'svelte-i18n';
@@ -16,7 +11,6 @@
   let loading = true;
   let error = null;
 
-  // Catégories de l'académie (toutes les équipes jeunes)
   const academyCategories = ['u11', 'u13', 'u15', 'u17', 'u19'];
 
   onMount(async () => {
@@ -28,11 +22,9 @@
       loading = true;
       error = null;
       
-      // Récupère toutes les équipes
       const response = await teamsApi.getAllTeams({ isActive: true });
       
       if (response.success && response.data?.teams) {
-        // Filtre uniquement les équipes de l'académie
         teams = response.data.teams.filter(team => 
           academyCategories.includes(team.category.toLowerCase())
         );
@@ -45,6 +37,11 @@
     }
   }
 </script>
+
+<svelte:head>
+  <title>{$_('teams.academy.title')} - Olympique Poznań</title>
+  <meta name="description" content={$_('teams.academy.subtitle')} />
+</svelte:head>
 
 <Navigation2 {data} />
 
@@ -63,7 +60,7 @@
         {#if loading}
           <div class="loading-state">
             <div class="loading-spinner"></div>
-            <p>{_('teams.loadingTeams')}</p>
+            <p>{$_('teams.loadingTeams')}</p>
           </div>
         {:else if error}
           <div class="error-state">
@@ -74,7 +71,7 @@
           </div>
         {:else if teams.length === 0}
           <div class="empty-state">
-            <p>{_('teams.noTeams')}</p>
+            <p>{$_('teams.noTeams')}</p>
           </div>
         {:else}
           <div class="teams-grid">
