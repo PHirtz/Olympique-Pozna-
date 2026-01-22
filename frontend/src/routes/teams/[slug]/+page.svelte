@@ -27,7 +27,7 @@
   async function loadTeamData() {
     try {
       loading = true;
-      error = null;
+      error = null;   
       
       // Récupère l'équipe par slug
       const teamResponse = await teamsApi.getTeamBySlug(slug);
@@ -92,12 +92,12 @@
   {#if loading}
     <div class="loading-state">
       <div class="loading-spinner"></div>
-      <p>{_('common.loadingTeams')}</p>
+      <p>{$_('common.loadingTeams')}</p>
     </div>
   {:else if error}
     <div class="error-state">
       <p>{error}</p>
-      <a href="/teams" class="btn-back">{_('teams.backToTeams')}</a>
+      <a href="/teams" class="btn-back">{$_('teams.backToTeams')}</a>
     </div>
   {:else if team}
     <!-- Hero Section avec image dynamique -->
@@ -123,7 +123,7 @@
       <div class="container">
         {#if players.length === 0}
           <div class="empty-state">
-            <p>{_('teams.noPlayers')}</p>
+            <p>{$_('teams.noPlayers')}</p>
           </div>
         {:else}
           <div class="teams-grid">
