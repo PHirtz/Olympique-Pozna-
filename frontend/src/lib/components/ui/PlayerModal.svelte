@@ -3,7 +3,7 @@
   import PlayerPhoto from "$lib/components/ui/PlayerPhoto.svelte";
   import { fade, fly } from "svelte/transition";
   import { X, MapPin, Award } from "lucide-svelte";
-  import { _ } from 'svelte-i18n'; 
+  import { _, locale } from 'svelte-i18n';
 
   export let isOpen = false;
   export let player = null;
@@ -79,10 +79,10 @@
           {#if player.nickname}
             <p class="player-nickname">"{player.nickname}"</p>
           {/if}
-          {#if player.origin}
+          {#if player.origin || player.originPL}
             <div class="player-origin">
               <MapPin size={16} />
-              <span>{player.origin}</span>
+              <span>{$locale === 'pl' ? player.originPL : player.origin}</span>
             </div>
           {/if}
         </div>
@@ -91,10 +91,12 @@
       <!-- Corps de la modal : Position et Distinctions -->
       <div class="modal-body">
         <!-- Position -->
-        {#if player.position}
+        {#if player.position || player.positionPL}
           <div class="player-section">
             <h3 class="section-title">{$_('teams.doue.labels.position')}</h3>
-            <div class="position-badge">{player.position}</div>
+            <div class="position-badge">
+              {$locale === 'pl' ? player.positionPL : player.position}
+            </div>
           </div>
         {/if}
 
