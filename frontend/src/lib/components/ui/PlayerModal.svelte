@@ -66,14 +66,16 @@
             alt={player.name} 
             className="player-photo"
           />
-          <div class="player-number-badge">#{player.number}</div>
         </div>
 
         <!-- Infos du joueur -->
         <div class="player-info">
-          <h2 id="modal-title" class="player-name">
-            {player.firstName} {player.lastName}
-          </h2>
+          <div class="name-with-badge">
+            <h2 id="modal-title" class="player-name">
+              {player.firstName} {player.lastName}
+            </h2>
+            <div class="player-number-badge">#{player.number}</div>
+          </div>
           {#if player.nickname}
             <p class="player-nickname">"{player.nickname}"</p>
           {/if}
@@ -194,43 +196,44 @@
   }
 
   /* Photo du joueur */
-.player-photo-wrapper {
-  position: relative;
-  flex-shrink: 0;
-  width: 180px;
-  height: 180px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  overflow: hidden;
-  border: 3px solid rgba(212, 175, 55, 0.3);
-}
+  .player-photo-wrapper {
+    position: relative;
+    flex-shrink: 0;
+    width: 180px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 3px solid rgba(212, 175, 55, 0.3);
+  }
 
   .player-photo-wrapper :global(.player-photo) {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
   }
 
-.player-photo-wrapper :global(img) {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto !important; /* Important pour surcharger */
-  height: auto !important;
-  object-fit: contain;
-  margin: auto; /* Centre l'image */
-  display: block;
-}
+  .player-photo-wrapper :global(img) {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    display: block;
+  }
+
+  .name-with-badge {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
 
   .player-number-badge {
-    position: absolute;
-    bottom: -10px;
-    right: -10px;
     background: #d4af37;
     color: white;
-    width: 50px;
+    min-width: 50px;
     height: 50px;
     border-radius: 50%;
     display: flex;
@@ -239,6 +242,7 @@
     font-weight: 700;
     font-size: 1.2rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
   }
 
   /* Info du joueur */

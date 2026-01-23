@@ -14,7 +14,7 @@ export async function load({ params }) {
         error: 'Équipe introuvable'
       };
     }
-    
+
     const team = teamResponse.data;
     const playersResponse = await playersApi.getPlayersByTeam(team.id);
     
@@ -26,10 +26,20 @@ export async function load({ params }) {
           lastName: player.lastName,
           name: `${player.firstName} ${player.lastName}`,
           photo: player.photoUrl || '/no-pics.jpg',
-          position: player.position,
-          positionPl: player.positionPl,
-          origin: player.nationality,
-          originPl: player.nationalityPl,
+          // Retourner TOUTES les versions de langue
+          position: {
+            pl: player.positionPL,
+            en: player.position,
+          },
+          nationality: {
+            pl: player.nationalityPL,
+            en: player.nationality,
+          },
+          description: {
+            pl: player.descriptionPL,
+            fr: player.descriptionFR,
+            en: player.descriptionEN
+          },
           nickname: player.nickname,
           birthYear: player.birthYear,
           distinctions: [
@@ -41,7 +51,7 @@ export async function load({ params }) {
           ].filter(Boolean)
         }))
       : [];
-    
+
     return {
       team,
       players,

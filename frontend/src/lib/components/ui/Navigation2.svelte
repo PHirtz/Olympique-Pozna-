@@ -82,7 +82,7 @@
 
   /**
    * Change la langue
-   * @param {'fr' | 'pl' | 'en'} lang
+   * @param {'pl' | 'fr' | 'en'} lang
    */
   function changeLanguage(lang) {
     locale.set(lang);
@@ -297,7 +297,7 @@
       </a>
       
       <a 
-          href="https://drive.google.com/drive/folders/1Qm9yOZJ9_sKRuJ70V8KSa1FrcSgxwXRW"
+          href="https://drive.google.com/drive/folders/1qVJpoGIeR6LJJobn4CB4UN4CRfp2iJ4j"
           class="nav-link"
           target="_blank"
           rel="noopener noreferrer"
@@ -311,21 +311,21 @@
       <!-- Language Selector -->
       <div class="language-selector">
         <button 
-          on:click={() => changeLanguage('fr')} 
-          class="lang-btn" 
-          class:active={$locale === 'fr'}
-          aria-label="Français"
-        >
-          FR
-        </button>
-        <span class="separator">|</span>
-        <button 
           on:click={() => changeLanguage('pl')} 
           class="lang-btn" 
           class:active={$locale === 'pl'}
           aria-label="Polski"
         >
           PL
+        </button>
+        <span class="separator">|</span>
+        <button 
+          on:click={() => changeLanguage('fr')} 
+          class="lang-btn" 
+          class:active={$locale === 'fr'}
+          aria-label="Français"
+        >
+          FR
         </button>
         <span class="separator">|</span>
         <button 
@@ -421,7 +421,7 @@
             <ul class="mobile-submenu">
               <li><a href="/club/about" on:click={close}>{$_('club.about')}</a></li>
               <li><a href="/club/coaches" on:click={close}>{$_('club.coaches')}</a></li>
-              <li><a href="/club/partners" on:click={close}>{$_('club.partners')}</a></li>
+              <li><a href="/club/partners" on:click={close}>{$_('club.partners.title')}</a></li>
             </ul>
           {/if}
         </li>
@@ -505,7 +505,7 @@
 
         <li><a href="/camps" on:click={close}>{$_('nav.camps')}</a></li>
         <li><a 
-          href="https://drive.google.com/drive/folders/1Qm9yOZJ9_sKRuJ70V8KSa1FrcSgxwXRW"
+          href="https://drive.google.com/drive/folders/1qVJpoGIeR6LJJobn4CB4UN4CRfp2iJ4j"
           class="nav-link"
           target="_blank"
           rel="noopener noreferrer"
@@ -521,21 +521,21 @@
       <!-- Language Selector Mobile -->
       <div class="language-selector mobile">
         <button 
-          on:click={() => changeLanguage('fr')} 
-          class="lang-btn" 
-          class:active={$locale === 'fr'}
-          aria-label="Français"
-        >
-          FR
-        </button>
-        <span class="separator">|</span>
-        <button 
           on:click={() => changeLanguage('pl')} 
           class="lang-btn" 
           class:active={$locale === 'pl'}
           aria-label="Polski"
         >
           PL
+        </button>
+        <span class="separator">|</span>
+        <button 
+          on:click={() => changeLanguage('fr')} 
+          class="lang-btn" 
+          class:active={$locale === 'fr'}
+          aria-label="Français"
+        >
+          FR
         </button>
         <span class="separator">|</span>
         <button

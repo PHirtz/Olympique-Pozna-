@@ -21,9 +21,9 @@
     },
     "position":"Position",
     "disctinctions" : "Distinctions",
-    "ladies": "The Ladies",
+    "ladies": "Les Dames",
     "ladies-subtitle": "Olympique Poznań women's team",
-    "blues": "The Blues",
+    "blues": "Les Bleus",
     "blues-subtitle": "Olympique Poznań men's team",
     "giroud": "Olivier Giroud (2010/2011)",
     "mbappe": "Kylian Mbappé (2011)",
@@ -134,7 +134,7 @@
     "shop": "Shop",
     "club": "The Club",
     "teams": "Our Teams",
-    "camps": "Olympic Camp",
+    "camps": "Le Camp Olympique",
     "contact": "Contact",
     "about": "About",
     "coaches": "Our Coaches",
@@ -718,7 +718,7 @@
     "teams": {
       "title": "Olympique Poznań teams",
       "senior": {
-        "name": "The Blues",
+        "name": "Les Bleus",
         "description": "..."
       },
       "junior": {
@@ -726,7 +726,7 @@
         "description": "10 Teams, springboards for tomorrow's champions."
       },
       "feminine": {
-        "name": "The Ladies",
+        "name": "Les Dames",
         "description": "..."
       }
     },

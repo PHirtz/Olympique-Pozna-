@@ -6,7 +6,7 @@
     "shop": "Sklep",
     "club": "Klub",
     "teams": "Nasze drużyny",
-    "camps": "Obóz Olimpijski",
+    "camps": "Obozy Le Camp Olympique",
     "contact": "Kontakt",
     "about": "O nas",
     "coaches": "Nasi trenerzy",
@@ -111,9 +111,9 @@
     },
     "position": "Pozycja",
     "distinctions": "Korona",
-    "ladies": "Panie",
+    "ladies": "Les Dames",
     "ladies-subtitle": "Reprezentacja kobiet Olympique Poznań",
-    "blues": "Niebiescy",
+    "blues": "Les Bleus",
     "blues-subtitle": "Męska drużyna Olympique Poznań",
     "giroud": "Olivier Giroud (2010/2011)",
     "mbappe": "Kylian Mbappé (2011)",
@@ -725,7 +725,7 @@
     "teams": {
       "title": "Drużyny Olympique Poznań",
       "senior": {
-        "name": "Niebiescy",
+        "name": "Les Bleus",
         "description": "..."
       },
       "junior": {
@@ -733,7 +733,7 @@
         "description": "10 drużyn, trampoliny dla mistrzów jutra."
       },
       "feminine": {
-        "name": "Panie",
+        "name": "Les Dames",
         "description": "..."
       }
     },
