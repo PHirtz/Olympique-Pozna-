@@ -1,5 +1,6 @@
 <script>
   import { goto } from '$app/navigation';
+  import { adminPlayers } from '$lib/api/admin/players';
   import { 
     Users,
     Save,
