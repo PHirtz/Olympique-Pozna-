@@ -6,7 +6,6 @@ export async function load({ params }) {
   
   try {
     const teamResponse = await teamsApi.getTeamBySlug(slug);
-    
     if (!teamResponse.success) {
       return {
         team: null,
@@ -14,21 +13,26 @@ export async function load({ params }) {
         error: 'Équipe introuvable'
       };
     }
-    
+
     const team = teamResponse.data;
     const playersResponse = await playersApi.getPlayersByTeam(team.id);
     
-    const players = playersResponse.success && playersResponse.data?.players
-      ? playersResponse.data.players.map(player => ({
+    // 🔍 DEBUG : Voir ce que retourne l'API
+    console.log('🔍 Premier joueur brut:', playersResponse.data?.players?.[0]);
+    
+  const players = playersResponse.success && playersResponse.data?.players
+    ? playersResponse.data.players.map(player => {
+        return {
           id: player.id,
           number: player.jerseyNumber,
           firstName: player.firstName,
           lastName: player.lastName,
           name: `${player.firstName} ${player.lastName}`,
           photo: player.photoUrl || '/no-pics.jpg',
-          positionPL: player.positionPL,
+          // Utilise camelCase comme le backend retourne
+          positionPL: player.positionPl,
           position: player.position,
-          originPL: player.nationalityPL,
+          originPL: player.nationalityPl,
           origin: player.nationality,
           nickname: player.nickname,
           birthYear: player.birthYear,
@@ -39,9 +43,10 @@ export async function load({ params }) {
             player.distinction4,
             player.distinction5
           ].filter(Boolean)
-        }))
-      : [];
-    
+        };
+      })
+    : [];
+
     return {
       team,
       players,

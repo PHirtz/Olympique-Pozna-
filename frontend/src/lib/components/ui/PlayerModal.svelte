@@ -79,12 +79,12 @@
           {#if player.nickname}
             <p class="player-nickname">"{player.nickname}"</p>
           {/if}
-          {#if player.origin || player.originPL}
-            <div class="player-origin">
-              <MapPin size={16} />
-              <span>{$locale === 'pl' ? player.originPL : player.origin}</span>
-            </div>
-          {/if}
+{#if player.origin || player.originPL}
+  <div class="player-origin">
+    <MapPin size={16} />
+    <span>{$locale === 'pl' ? player.originPL : player.origin}</span>
+  </div>
+{/if}
         </div>
       </div>
 
