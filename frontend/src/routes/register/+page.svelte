@@ -11,52 +11,83 @@
   let email = '';
   let password = '';
   let loading = false;
-  let error = '';
+  let errors = {};
   let showPassword = false;
 
-  /**
-   * Change la langue
-   * @param {'fr' | 'pl' | 'en'} lang
-   */
   function changeLanguage(lang) {
     locale.set(lang);
     localStorage.setItem('preferredLanguage', lang);
   }
 
-  /**
-   * @param {Event & { currentTarget: HTMLFormElement }} e
-   */
   async function handleRegister(e) {
     e.preventDefault();
     
-    if (!firstName || !lastName || !username || !email || !password) {
-      error = $_('auth.register.errorAllFields');
+    // Réinitialiser les erreurs
+    errors = {};
+    
+    // Validation côté client
+    if (!firstName || firstName.trim().length === 0) {
+      errors.firstName = $_('auth.register.errors.firstNameRequired');
+    }
+    if (!lastName || lastName.trim().length === 0) {
+      errors.lastName = $_('auth.register.errors.lastNameRequired');
+    }
+    if (!username || username.trim().length < 3) {
+      errors.username = $_('auth.register.errors.usernameMin3');
+    } else if (username.trim().length > 20) {
+      errors.username = $_('auth.register.errors.usernameMax20');
+    } else if (!/^[a-zA-Z0-9]+$/.test(username)) {
+      errors.username = $_('auth.register.errors.usernameAlphanum');
+    }
+    if (!email || !email.includes('@')) {
+      errors.email = $_('auth.register.errors.emailInvalid');
+    }
+    if (!password || password.length < 8) {
+      errors.password = $_('auth.register.errors.passwordMin8');
+    }
+
+    // Si erreurs de validation, arrêter
+    if (Object.keys(errors).length > 0) {
       return;
     }
 
     loading = true;
-    error = '';
 
     try {
       const userData = {
-        firstName,
-        lastName,
-        username,
-        email,
+        firstName: firstName.trim(),
+        lastName: lastName.trim(),
+        username: username.trim(),
+        email: email.trim(),
         password,
         role: 'member',
-        preferredLanguage: 'fr'
+        preferredLanguage: $locale || 'fr'
       };
 
       const response = await register(userData);
       
       if (response.success) {
         alert($_('auth.register.success'));
-        goto("/");
+        goto("/login");
       }
     } catch (err) {
-      error = $_('auth.register.errorGeneral');
+      // Gérer les erreurs de l'API
       console.error("Erreur inscription:", err);
+      
+      // Si l'erreur contient un message spécifique
+      if (err.message) {
+        if (err.message.includes('nom d\'utilisateur')) {
+          errors.username = err.message;
+        } else if (err.message.includes('email')) {
+          errors.email = err.message;
+        } else if (err.message.includes('validation')) {
+          errors.general = err.message;
+        } else {
+          errors.general = err.message;
+        }
+      } else {
+        errors.general = $_('auth.register.errorGeneral');
+      }
     } finally {
       loading = false;
     }
@@ -112,32 +143,74 @@
 
     <form on:submit={handleRegister}>
       <label>
-        {$_('auth.register.firstName')} {$_('auth.register.required')}
-        <input type="text" bind:value={firstName} placeholder={$_('auth.register.firstNamePlaceholder')} required />
+        {$_('auth.register.firstName')} <span class="required">*</span>
+        <input 
+          type="text" 
+          bind:value={firstName} 
+          placeholder={$_('auth.register.firstNamePlaceholder')} 
+          class:error={errors.firstName}
+          required 
+        />
+        {#if errors.firstName}
+          <span class="field-error">{errors.firstName}</span>
+        {/if}
       </label>
 
       <label>
-        {$_('auth.register.lastName')} {$_('auth.register.required')}
-        <input type="text" bind:value={lastName} placeholder={$_('auth.register.lastNamePlaceholder')} required />
+        {$_('auth.register.lastName')} <span class="required">*</span>
+        <input 
+          type="text" 
+          bind:value={lastName} 
+          placeholder={$_('auth.register.lastNamePlaceholder')} 
+          class:error={errors.lastName}
+          required 
+        />
+        {#if errors.lastName}
+          <span class="field-error">{errors.lastName}</span>
+        {/if}
       </label>
 
       <label>
-        {$_('auth.register.username')} {$_('auth.register.required')}
-        <input type="text" bind:value={username} placeholder={$_('auth.register.usernamePlaceholder')} required />
+        {$_('auth.register.username')} <span class="required">*</span>
+        <small class="hint">3-20 caractères, lettres et chiffres uniquement</small>
+        <input 
+          type="text" 
+          bind:value={username} 
+          placeholder={$_('auth.register.usernamePlaceholder')} 
+          class:error={errors.username}
+          minlength="3"
+          maxlength="20"
+          required 
+        />
+        {#if errors.username}
+          <span class="field-error">{errors.username}</span>
+        {/if}
       </label>
 
       <label>
-        {$_('auth.register.email')} {$_('auth.register.required')}
-        <input type="email" bind:value={email} placeholder={$_('auth.register.emailPlaceholder')} required />
+        {$_('auth.register.email')} <span class="required">*</span>
+        <input 
+          type="email" 
+          bind:value={email} 
+          placeholder={$_('auth.register.emailPlaceholder')} 
+          class:error={errors.email}
+          required 
+        />
+        {#if errors.email}
+          <span class="field-error">{errors.email}</span>
+        {/if}
       </label>
 
       <label>
-        {$_('auth.register.password')} {$_('auth.register.required')}
+        {$_('auth.register.password')} <span class="required">*</span>
+        <small class="hint">Minimum 8 caractères</small>
         <div class="password-input-wrapper">
           <input 
             type={showPassword ? 'text' : 'password'} 
             bind:value={password} 
             placeholder={$_('auth.register.passwordPlaceholder')} 
+            class:error={errors.password}
+            minlength="8"
             required 
           />
           <button 
@@ -153,10 +226,13 @@
             {/if}
           </button>
         </div>
+        {#if errors.password}
+          <span class="field-error">{errors.password}</span>
+        {/if}
       </label>
 
-      {#if error}
-        <p class="error">{$_('auth.register.errorGeneral')}</p>
+      {#if errors.general}
+        <p class="error-box">{errors.general}</p>
       {/if}
 
       <button type="submit" disabled={loading}>
@@ -171,6 +247,46 @@
 </div>
 
 <style>
+
+  /* ========================================
+    REQUIS ET ERREURS
+   ======================================== */
+
+  .required {
+    color: #e63946;
+  }
+
+  .hint {
+    display: block;
+    font-size: 0.85rem;
+    color: #999;
+    font-weight: 400;
+    margin-top: 0.25rem;
+  }
+
+  input.error {
+    border-color: #e63946;
+    background: #fff5f5;
+  }
+
+  .field-error {
+    display: block;
+    color: #e63946;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+    font-weight: 500;
+  }
+
+  .error-box {
+    color: #e63946;
+    background: #ffe0e0;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+    text-align: center;
+    border: 1px solid #ffcccc;
+  }
+
   /* ========================================
      LANGUAGE SELECTOR
      ======================================== */
