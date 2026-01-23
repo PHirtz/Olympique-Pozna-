@@ -64,27 +64,26 @@
         preferredLanguage: $locale || 'fr'
       };
 
-      const response = await register(userData);
-      
-      if (response.success) {
-        alert($_('auth.register.success'));
-        goto("/login");
-      }
-    } catch (err) {
-      // Gérer les erreurs de l'API
+    const response = await register(userData);
+
+    if (response.success) {
+      goto('/');
+    }
+    } 
+    catch (err) {
       console.error("Erreur inscription:", err);
       
-      // Si l'erreur contient un message spécifique
-      if (err.message) {
-        if (err.message.includes('nom d\'utilisateur')) {
-          errors.username = err.message;
-        } else if (err.message.includes('email')) {
-          errors.email = err.message;
-        } else if (err.message.includes('validation')) {
-          errors.general = err.message;
-        } else {
-          errors.general = err.message;
-        }
+      // Mapper les messages backend vers des clés i18n
+      const message = err.message?.toLowerCase() || '';
+      
+      if (message.includes('nom d\'utilisateur') && message.includes('utilisé')) {
+        errors.username = $_('auth.register.errors.usernameTaken');
+      } else if (message.includes('email') && message.includes('utilisé')) {
+        errors.email = $_('auth.register.errors.emailTaken');
+      } else if (message.includes('username') && message.includes('3 characters')) {
+        errors.username = $_('auth.register.errors.usernameMin3');
+      } else if (message.includes('validation')) {
+        errors.general = $_('auth.register.errors.validationError');
       } else {
         errors.general = $_('auth.register.errorGeneral');
       }
@@ -107,21 +106,21 @@
 <!-- Language Selector -->
 <div class="language-selector">
   <button 
-    on:click={() => changeLanguage('fr')} 
-    class="lang-btn" 
-    class:active={$locale === 'fr'}
-    aria-label="Français"
-  >
-    FR
-  </button>
-  <span class="separator">|</span>
-  <button 
     on:click={() => changeLanguage('pl')} 
     class="lang-btn" 
     class:active={$locale === 'pl'}
     aria-label="Polski"
   >
     PL
+  </button>
+  <span class="separator">|</span>
+  <button 
+    on:click={() => changeLanguage('fr')} 
+    class="lang-btn" 
+    class:active={$locale === 'fr'}
+    aria-label="Français"
+  >
+    FR
   </button>
   <span class="separator">|</span>
   <button 
@@ -172,7 +171,7 @@
 
       <label>
         {$_('auth.register.username')} <span class="required">*</span>
-        <small class="hint">3-20 caractères, lettres et chiffres uniquement</small>
+        <small class="hint">{$_('auth.register.hints.username')}</small>
         <input 
           type="text" 
           bind:value={username} 
@@ -203,7 +202,7 @@
 
       <label>
         {$_('auth.register.password')} <span class="required">*</span>
-        <small class="hint">Minimum 8 caractères</small>
+        <small class="hint">{$_('auth.register.hints.password')}</small>
         <div class="password-input-wrapper">
           <input 
             type={showPassword ? 'text' : 'password'} 

@@ -233,23 +233,39 @@
     "register": {
       "title": "Rejestracja",
       "firstName": "Imię",
-      "firstNamePlaceholder": "Anna",
+      "firstNamePlaceholder": "Twoje imię",
       "lastName": "Nazwisko",
-      "lastNamePlaceholder": "Kowalska",
+      "lastNamePlaceholder": "Twoje nazwisko",
       "username": "Nazwa użytkownika",
-      "usernamePlaceholder": "ania_k",
+      "usernamePlaceholder": "Twoja nazwa użytkownika",
       "email": "Email",
-      "emailPlaceholder": "anna@example.pl",
+      "emailPlaceholder": "twoj.email@przyklad.pl",
       "password": "Hasło",
-      "passwordPlaceholder": "Moje hasło",
+      "passwordPlaceholder": "Twoje hasło",
       "submit": "Utwórz konto",
       "loading": "Rejestracja...",
-      "success": "Rejestracja udana! Witamy w Olympique Poznań!",
+      "success": "Rejestracja zakończona! Witamy w Olympique Poznań!",
       "errorAllFields": "Proszę wypełnić wszystkie pola",
       "errorGeneral": "Błąd podczas rejestracji",
       "hasAccount": "Masz już konto?",
       "loginLink": "Zaloguj się",
-      "required": "*"
+      "required": "*",
+      "hints": {
+      "username": "3-20 znaków, tylko litery i cyfry",
+      "password": "Minimum 8 znaków"
+      },
+      "errors": {
+        "firstNameRequired": "Imię jest wymagane",
+        "lastNameRequired": "Nazwisko jest wymagane",
+        "usernameMin3": "Nazwa użytkownika musi zawierać co najmniej 3 znaki",
+        "usernameMax20": "Nazwa użytkownika nie może przekraczać 20 znaków",
+        "usernameAlphanum": "Nazwa użytkownika może zawierać tylko litery i cyfry",
+        "usernameTaken": "Ta nazwa użytkownika jest już zajęta",
+        "emailInvalid": "Adres email jest nieprawidłowy",
+        "emailTaken": "Ten email jest już używany",
+        "passwordMin8": "Hasło musi zawierać co najmniej 8 znaków",
+        "validationError": "Błąd walidacji danych"
+      }
     }
   },
 

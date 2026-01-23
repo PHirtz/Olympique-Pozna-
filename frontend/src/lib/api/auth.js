@@ -12,10 +12,18 @@ import { get } from 'svelte/store';
  * @param {Object} userData - Données utilisateur
  */
 export async function register(userData) {
-  return apiRequest('/users', {
+  const response = await apiRequest('/users', {
     method: 'POST',
     body: userData,
   });
+  
+  console.log('REGISTER RESPONSE', response);
+  
+  if (response?.success && response?.data) {
+    setLoginUser(response.data.user, response.data.token);
+  }
+  
+  return response;
 }
 
 /**

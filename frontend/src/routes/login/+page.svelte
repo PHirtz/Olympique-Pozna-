@@ -74,21 +74,21 @@
 <!-- Language Selector -->
 <div class="language-selector">
   <button 
-    on:click={() => changeLanguage('fr')} 
-    class="lang-btn" 
-    class:active={$locale === 'fr'}
-    aria-label="Français"
-  >
-    FR
-  </button>
-  <span class="separator">|</span>
-  <button 
     on:click={() => changeLanguage('pl')} 
     class="lang-btn" 
     class:active={$locale === 'pl'}
     aria-label="Polski"
   >
     PL
+  </button>
+  <span class="separator">|</span>
+  <button 
+    on:click={() => changeLanguage('fr')} 
+    class="lang-btn" 
+    class:active={$locale === 'fr'}
+    aria-label="Français"
+  >
+    FR
   </button>
   <span class="separator">|</span>
   <button 

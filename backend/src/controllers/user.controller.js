@@ -6,10 +6,26 @@ class UserController {
   async create(req, res, next) {
     try {
       const user = await userService.createUser(req.body);
+      
+      // Gérer à la fois les modèles Sequelize et les objets simples
+      const userData = typeof user.toJSON === 'function' ? user.toJSON() : user;
+      
+      // Retirer le mot de passe
+      const userWithoutPassword = { ...userData };
+      delete userWithoutPassword.password;
+      
+      // Générer les tokens
+      const token = generateToken(userData);
+      const refreshToken = generateRefreshToken(userData);
+      
       res.status(201).json({
         success: true,
         message: 'Utilisateur créé avec succès',
-        data: user
+        data: {
+          user: userWithoutPassword,
+          token,
+          refreshToken
+        }
       });
     } catch (error) {
       next(error);

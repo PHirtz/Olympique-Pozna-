@@ -268,18 +268,18 @@
       "usernamePlaceholder": "Your username",
       "password": "Password",
       "passwordPlaceholder": "Your password",
-      "submit": "Login",
+      "submit": "Sign in",
       "loading": "Logging in...",
       "error": "Incorrect username or password",
-      "noAccount": "Not registered yet?",
+      "noAccount": "Don't have an account?",
       "createAccount": "Create an account"
     },
     "register": {
-      "title": "Registration",
+      "title": "Sign up",
       "firstName": "First name",
       "firstNamePlaceholder": "Your first name",
       "lastName": "Last name",
-      "lastNamePlaceholder": "Your name",
+      "lastNamePlaceholder": "Your last name",
       "username": "Username",
       "usernamePlaceholder": "Your username",
       "email": "Email",
@@ -287,13 +287,29 @@
       "password": "Password",
       "passwordPlaceholder": "Your password",
       "submit": "Create my account",
-      "loading": "Registration in progress...",
+      "loading": "Signing up...",
       "success": "Registration successful! Welcome to Olympique Poznań!",
       "errorAllFields": "Please fill in all fields",
-      "errorGeneral": "Registration error",
-      "hasAccount": "Already registered?",
-      "loginLink": "Login",
-      "required": "*"
+      "errorGeneral": "Error during registration",
+      "hasAccount": "Already have an account?",
+      "loginLink": "Sign in",
+      "required": "*",
+      "hints": {
+      "username": "3-20 characters, letters and numbers only",
+      "password": "Minimum 8 characters" 
+      },
+      "errors": {
+        "firstNameRequired": "First name is required",
+        "lastNameRequired": "Last name is required",
+        "usernameMin3": "Username must be at least 3 characters long",
+        "usernameMax20": "Username cannot exceed 20 characters",
+        "usernameAlphanum": "Username can only contain letters and numbers",
+        "usernameTaken": "This username is already taken",
+        "emailInvalid": "Email address is invalid",
+        "emailTaken": "This email is already in use",
+        "passwordMin8": "Password must be at least 8 characters long",
+        "validationError": "Data validation error"
+      }
     }
   },
 

@@ -64,11 +64,8 @@ class UserService {
       password: hashedPassword
     });
 
-    // Retourner sans le mot de passe
-    const userWithoutPassword = user.toJSON();
-    delete userWithoutPassword.password;
-    
-    return userWithoutPassword;
+    // RETOURNE LE MODÈLE SEQUELIZE DIRECTEMENT
+    return user;
   }
 
   async getAllUsers(filters = {}) {

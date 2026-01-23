@@ -290,7 +290,7 @@
       "email": "Email",
       "emailPlaceholder": "votre.email@exemple.com",
       "password": "Mot de passe",
-      "passwordPlaceholder": "Votre mon mot de passe",
+      "passwordPlaceholder": "Votre mot de passe",
       "submit": "Créer mon compte",
       "loading": "Inscription en cours...",
       "success": "Inscription réussie ! Bienvenue sur Olympique Poznań !",
@@ -298,7 +298,23 @@
       "errorGeneral": "Erreur lors de l'inscription",
       "hasAccount": "Déjà inscrit ?",
       "loginLink": "Se connecter",
-      "required": "*"
+      "required": "*",
+      "hints": {
+      "username": "3-20 caractères, lettres et chiffres uniquement",
+      "password": "Minimum 8 caractères"
+      },
+      "errors": {
+        "firstNameRequired": "Le prénom est requis",
+        "lastNameRequired": "Le nom est requis",
+        "usernameMin3": "Le pseudo doit contenir au moins 3 caractères",
+        "usernameMax20": "Le pseudo ne peut pas dépasser 20 caractères",
+        "usernameAlphanum": "Le pseudo ne peut contenir que des lettres et des chiffres",
+        "usernameTaken": "Ce pseudo est déjà utilisé",
+        "emailInvalid": "L'adresse email n'est pas valide",
+        "emailTaken": "Cet email est déjà utilisé",
+        "passwordMin8": "Le mot de passe doit contenir au moins 8 caractères",
+        "validationError": "Erreur de validation des données"
+      }
     }
   },
 
