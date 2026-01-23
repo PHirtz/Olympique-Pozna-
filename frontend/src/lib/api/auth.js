@@ -12,22 +12,21 @@ import { get } from 'svelte/store';
  * @param {Object} userData - Données utilisateur
  */
 export async function register(userData) {
-  // ✅ route correcte côté backend
   return apiRequest('/users', {
     method: 'POST',
-    body: JSON.stringify(userData),
+    body: userData,
   });
 }
 
 /**
  * Connexion utilisateur
- * @param {string} username - Nom d'utilisateur
- * @param {string} password - Mot de passe
+ * @param {string} username
+ * @param {string} password
  */
 export async function login(username, password) {
   const response = await apiRequest('/users/login', {
     method: 'POST',
-    body: JSON.stringify({ username, password }),
+    body: { username, password },
   });
 
   if (response?.success && response?.data) {

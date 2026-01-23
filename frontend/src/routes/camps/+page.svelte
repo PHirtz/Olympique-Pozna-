@@ -103,7 +103,7 @@
 
         <div class="info-card">
           <Users size={32} />
-          <h3>{$_('camps.programme')}</h3>
+          <h3>{$_('camps.programme.subtitle')}</h3>
           <p><strong>3 entraînements/jour</strong></p>
           <p class="detail">Sparingi, gry i integracja</p>
         </div>

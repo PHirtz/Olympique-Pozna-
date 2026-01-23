@@ -25,7 +25,7 @@ export const authMiddleware = (req, res, next) => {
       username: decoded.username
     };
 
-    console.log("✅ Auth user:", req.user);
+    console.log("Auth user:", req.user);
     next();
   } catch (error) {
     if (error.name === 'JsonWebTokenError') {
@@ -50,11 +50,11 @@ export const requireRole = (...allowedRoles) => {
       return next(new HttpUnauthorizedError('Authentification requise'));
     }
 
-    // ✅ Normaliser les rôles autorisés en minuscules
+    // Normaliser les rôles autorisés en minuscules
     const normalizedAllowedRoles = allowedRoles.map(role => role.toLowerCase());
     
     if (!normalizedAllowedRoles.includes(req.user.role)) {
-      // ✅ Ajouter des logs pour déboguer
+      // Ajouter des logs pour déboguer
       console.log('❌ Rôle refusé:', {
         userRole: req.user.role,
         allowedRoles: normalizedAllowedRoles,
