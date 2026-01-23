@@ -5,11 +5,13 @@ import { authMiddleware, requireRole } from '../middlewares/auth.middleware.js';
 // Import controllers
 import userController from '../controllers/user.controller.js';
 import { partnerController } from '../controllers/index.controller.js';
+import { teamController } from '../controllers/index.controller.js'; 
 
 // Import schemas
 import { partnerCreateSchema, partnerUpdateSchema } from '../schemas/others.schema.js';
 
 const router = express.Router();
+
 
 // ========== TOUTES LES ROUTES ADMIN NÉCESSITENT L'AUTHENTIFICATION ==========
 router.use(authMiddleware);
@@ -37,13 +39,17 @@ router.get('/partners/:id', partnerController.getById);
 router.put('/partners/:id', validate(partnerUpdateSchema), partnerController.update);
 router.delete('/partners/:id', partnerController.delete);
 
+// ========== TEAMS ========== 
+router.get('/teams/count', teamController.getCount.bind(teamController));
+router.get('/teams/:id', teamController.getById.bind(teamController));
+router.get('/teams', teamController.getAll.bind(teamController));
+router.post('/teams', teamController.create.bind(teamController));
+router.put('/teams/:id', teamController.update.bind(teamController));
+router.delete('/teams/:id', teamController.delete.bind(teamController));
+
 // ========== USERS (à venir) ==========
 // router.get('/users', userController.getAll);
 // router.put('/users/:id', userController.update);
 // router.delete('/users/:id', userController.delete);
-
-// ========== TEAMS (à venir) ==========
-// router.post('/teams', teamController.create);
-// etc.
 
 export default router;

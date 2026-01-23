@@ -7,6 +7,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import db from './database/db.js';
+import adminRouter from './routers/adminRouter.js';
 import routers from './routers/indexRouter.js';
 // Import models and associations
 import './models/associations.js';
@@ -96,6 +97,11 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api', routers);
+app.use('/api/admin', adminRouter);
+
+// ================================================
+// ========== GESTION DES ERREURS ==========
+// ================================================
 
 // Error handling middleware
 app.use((err, req, res, next) => {

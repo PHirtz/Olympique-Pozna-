@@ -81,14 +81,30 @@
   onMount(async () => {
     try {
       const response = await adminTeams.getAll();
-      teams = response.data || [];
+      
+      // 🔍 DEBUG - Affiche la réponse complète
+      console.log('📋 Réponse complète:', response);
+      console.log('📋 response.data:', response.data);
+      
+      // Essaye différentes possibilités
+      if (Array.isArray(response.data)) {
+        teams = response.data;
+      } else if (Array.isArray(response.data?.teams)) {
+        teams = response.data.teams;
+      } else if (Array.isArray(response)) {
+        teams = response;
+      } else {
+        console.error('❌ Format inattendu:', response);
+      }
+      
+      console.log('📋 Équipes chargées:', teams);
       
       // Si une seule équipe, la présélectionner
       if (teams.length === 1) {
         formData.teamId = teams[0].id.toString();
       }
     } catch (error) {
-      console.error('Erreur chargement équipes:', error);
+      console.error('❌ Erreur chargement équipes:', error);
     } finally {
       loadingTeams = false;
     }
@@ -501,7 +517,7 @@
       
       <div class="form-grid">
         <div class="form-field">
-          <label for="position">Poste (FR) <span class="required">*</span></label>
+          <label for="position">Poste (EN) <span class="required">*</span></label>
           <select
             id="position"
             bind:value={formData.position}
