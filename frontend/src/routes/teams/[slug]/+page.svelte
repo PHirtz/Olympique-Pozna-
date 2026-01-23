@@ -1,6 +1,6 @@
 <script>
   import { fade } from 'svelte/transition';
-  import { _ } from 'svelte-i18n';
+  import { _, locale } from 'svelte-i18n';
   import Navigation2 from '$lib/components/ui/Navigation2.svelte';
   import Footer from '$lib/components/ui/Footer.svelte';
   import PlayerModal from '$lib/components/ui/PlayerModal.svelte';
@@ -36,12 +36,11 @@
       <a href="/teams" class="btn-back">{$_('teams.backToTeams')}</a>
     </div>
   {:else if team}
-    <!-- Hero Section avec image dynamique -->
     <section class="hero-team">
       <div class="hero-background">
         <img 
           src={team.imagePath || `/team/${team.slug}.jpg`} 
-          alt={team.name} 
+          alt={$locale === 'pl' && team.namePl ? team.namePl : team.name}
           class="hero-image"
           loading="eager"
           decoding="async"
@@ -49,10 +48,12 @@
         <div class="hero-overlay"></div>
       </div>
       <div class="hero-content">
-        <h1>{team.name}</h1>
+        <h1>{$locale === 'pl' && team.namePl ? team.namePl : team.name}</h1>
         <p class="team-category">{team.category.toUpperCase()} • {team.season}</p>
-        {#if team.description}
-          <p class="team-description">{team.description}</p>
+        {#if team.description || team.descriptionPl}
+          <p class="team-description">
+            {$locale === 'pl' && team.descriptionPl ? team.descriptionPl : team.description}
+          </p>
         {/if}
       </div>
     </section>
