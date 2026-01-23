@@ -316,14 +316,17 @@
         {$_('nav.camps')}
       </a>
       
-      <a 
-        href="https://drive.google.com/drive/folders/1qVJpoGIeR6LJJobn4CB4UN4CRfp2iJ4j"
-        class="nav-link"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {$_('nav.photo')}
-      </a>
+      {#if $user}
+        <a 
+          href="https://drive.google.com/drive/folders/1qVJpoGIeR6LJJobn4CB4UN4CRfp2iJ4j"
+          class="nav-link"
+          target="_blank"
+          rel="noopener noreferrer"
+          style="animation-delay: 0.6s"
+        >
+          {$_('nav.photo')}
+        </a>
+      {/if}
     </div>
 
     <!-- Actions à droite (desktop) -->
@@ -525,14 +528,17 @@
 
         <li><a href="/camps" on:click={close}>{$_('nav.camps')}</a></li>
         <li>
-          <a 
-            href="https://drive.google.com/drive/folders/1qVJpoGIeR6LJJobn4CB4UN4CRfp2iJ4j"
-            target="_blank"
-            rel="noopener noreferrer"
-            on:click={close}
-          >
-            {$_('nav.photo')}
-          </a>
+          {#if $user}
+            <a 
+              href="https://drive.google.com/drive/folders/1qVJpoGIeR6LJJobn4CB4UN4CRfp2iJ4j"
+              class="nav-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="animation-delay: 0.6s"
+            >
+              {$_('nav.photo')}
+            </a>
+          {/if}
         </li>  
       </ul>
     </nav>
