@@ -79,23 +79,23 @@
           {#if player.nickname}
             <p class="player-nickname">"{player.nickname}"</p>
           {/if}
-{#if player.origin || player.originPL}
-  <div class="player-origin">
-    <MapPin size={16} />
-    <span>{$locale === 'pl' ? player.originPL : player.origin}</span>
-  </div>
-{/if}
+          {#if player.nationalityEN || player.nationalityPL}
+            <div class="player-origin">
+              <MapPin size={16} />
+              <span>{$locale === 'pl' ? player.nationalityPL : player.nationalityEN}</span>
+            </div>
+          {/if}
         </div>
       </div>
 
       <!-- Corps de la modal : Position et Distinctions -->
       <div class="modal-body">
         <!-- Position -->
-        {#if player.position || player.positionPL}
+        {#if player.positionEN || player.positionPL}
           <div class="player-section">
             <h3 class="section-title">{$_('teams.doue.labels.position')}</h3>
             <div class="position-badge">
-              {$locale === 'pl' ? player.positionPL : player.position}
+              {$locale === 'pl' ? player.positionPL : player.positionEN}
             </div>
           </div>
         {/if}

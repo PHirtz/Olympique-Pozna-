@@ -7,33 +7,25 @@ export async function load({ params }) {
   try {
     const teamResponse = await teamsApi.getTeamBySlug(slug);
     if (!teamResponse.success) {
-      return {
-        team: null,
-        players: [],
-        error: 'Équipe introuvable'
-      };
+      return { team: null, players: [], error: 'Équipe introuvable' };
     }
 
     const team = teamResponse.data;
     const playersResponse = await playersApi.getPlayersByTeam(team.id);
     
-    // 🔍 DEBUG : Voir ce que retourne l'API
-    console.log('🔍 Premier joueur brut:', playersResponse.data?.players?.[0]);
-    
-  const players = playersResponse.success && playersResponse.data?.players
-    ? playersResponse.data.players.map(player => {
-        return {
+    const players = playersResponse.success && playersResponse.data?.players
+      ? playersResponse.data.players.map(player => ({
           id: player.id,
           number: player.jerseyNumber,
           firstName: player.firstName,
           lastName: player.lastName,
           name: `${player.firstName} ${player.lastName}`,
           photo: player.photoUrl || '/no-pics.jpg',
-          // Utilise camelCase comme le backend retourne
+          // Renommer les clés pour éviter les conflits avec i18n
+          positionEN: player.position,
           positionPL: player.positionPl,
-          position: player.position,
-          originPL: player.nationalityPl,
-          origin: player.nationality,
+          nationalityEN: player.nationality,
+          nationalityPL: player.nationalityPl,
           nickname: player.nickname,
           birthYear: player.birthYear,
           distinctions: [
@@ -43,21 +35,12 @@ export async function load({ params }) {
             player.distinction4,
             player.distinction5
           ].filter(Boolean)
-        };
-      })
-    : [];
+        }))
+      : [];
 
-    return {
-      team,
-      players,
-      error: null
-    };
+    return { team, players, error: null };
   } catch (err) {
     console.error('❌ Erreur chargement équipe:', err);
-    return {
-      team: null,
-      players: [],
-      error: 'Impossible de charger l\'équipe'
-    };
+    return { team: null, players: [], error: 'Impossible de charger l\'équipe' };
   }
 }
