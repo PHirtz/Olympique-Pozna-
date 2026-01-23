@@ -16,7 +16,7 @@
   let pagination = {
     total: 0,
     page: 1,
-    limit: 20,
+    limit: 2000,
     totalPages: 0
   };
 

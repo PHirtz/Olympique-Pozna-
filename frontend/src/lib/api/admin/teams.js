@@ -12,7 +12,7 @@ export async function getCount() {
  */
 export async function getAll(params = {}) {
   const query = new URLSearchParams(params).toString();
-  return apiRequest(`/admin/teams?${query}`);
+  return apiRequest(`/admin/teams${query ? `?${query}` : ''}`);
 }
 
 /**
@@ -28,7 +28,7 @@ export async function getById(id) {
 export async function createTeam(data) {
   return apiRequest('/admin/teams', {
     method: 'POST',
-    body: JSON.stringify(data),
+    body: data,
   });
 }
 
@@ -39,7 +39,7 @@ export async function createTeam(data) {
 export async function updateTeam(id, data) {
   return apiRequest(`/admin/teams/${id}`, {
     method: 'PUT',
-    body: JSON.stringify(data),
+    body: data,
   });
 }
 
@@ -47,5 +47,5 @@ export async function updateTeam(id, data) {
  * @param {number} id
  */
 export async function deleteTeam(id) {
-  return apiRequest(`/admin/teams/${id}`, { method: 'DELETE' });
+  return apiRequest(`/admin/teams/${id}`, { method: 'DELETE' }); 
 }

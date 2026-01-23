@@ -1,6 +1,8 @@
 <script>
+  import { onMount } from 'svelte';
   import { goto } from '$app/navigation';
   import * as adminPlayers from '$lib/api/admin/players';
+  import * as adminTeams from '$lib/api/admin/teams';
   import { 
     Users,
     Save,
@@ -13,13 +15,15 @@
   // Données
   let saving = false;
   let errors = {};
+  let teams = [];
+  let loadingTeams = true;
 
   // MODE UPLOAD : 'file' ou 'url'
   let uploadMode = 'file';
 
   // Formulaire
   let formData = {
-    teamId: '1',
+    teamId: '',
     firstName: '',
     lastName: '',
     nickname: '',
@@ -69,6 +73,26 @@
     'Zimbabwe': 'Zimbabwe',
     'Belarus': 'Białoruś'
   };
+
+  // ======================================
+  // CHARGEMENT DES ÉQUIPES
+  // ======================================
+  
+  onMount(async () => {
+    try {
+      const response = await adminTeams.getAll();
+      teams = response.data || [];
+      
+      // Si une seule équipe, la présélectionner
+      if (teams.length === 1) {
+        formData.teamId = teams[0].id.toString();
+      }
+    } catch (error) {
+      console.error('Erreur chargement équipes:', error);
+    } finally {
+      loadingTeams = false;
+    }
+  });
 
   // ======================================
   // GESTION UPLOAD MODE
@@ -372,15 +396,29 @@
         <!-- Équipe -->
         <div class="form-field">
           <label for="teamId">Équipe <span class="required">*</span></label>
-          <input
-            id="teamId"
-            type="number"
-            bind:value={formData.teamId}
-            class:error={errors.teamId}
-            placeholder="ID de l'équipe"
-          />
-          {#if errors.teamId}
-            <span class="error-text">{errors.teamId}</span>
+          {#if loadingTeams}
+            <select disabled class="loading-select">
+              <option>Chargement des équipes...</option>
+            </select>
+          {:else if teams.length === 0}
+            <select disabled class="error-select">
+              <option>Aucune équipe disponible</option>
+            </select>
+            <span class="error-text">Veuillez d'abord créer une équipe</span>
+          {:else}
+            <select
+              id="teamId"
+              bind:value={formData.teamId}
+              class:error={errors.teamId}
+            >
+              <option value="">Sélectionner une équipe</option>
+              {#each teams as team}
+                <option value={team.id}>{team.name}</option>
+              {/each}
+            </select>
+            {#if errors.teamId}
+              <span class="error-text">{errors.teamId}</span>
+            {/if}
           {/if}
         </div>
 
@@ -595,6 +633,36 @@
     max-width: 900px;
     margin: 0 auto;
     padding: 2rem;
+  }
+
+  .loading-select,
+  .error-select {
+    padding: 0.75rem;
+    border: 2px solid #d0d0d0;
+    border-radius: 4px;
+    background: #f5f5f5;
+    color: #999;
+    cursor: not-allowed;
+  }
+
+  .error-select {
+    border-color: #d32f2f;
+    color: #d32f2f;
+  }
+
+  select {
+    padding: 0.75rem;
+    border: 2px solid #d0d0d0;
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 100%;
+    background: white;
+    cursor: pointer;
+  }
+
+  select:focus {
+    outline: none;
+    border-color: #1976d2;
   }
 
   /* Header section */
