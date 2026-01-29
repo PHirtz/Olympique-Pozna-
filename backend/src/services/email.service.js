@@ -33,44 +33,75 @@ class EmailService {
       const mailOptions = {
         from: process.env.SMTP_FROM || '"Olympique Poznan" <noreply@olympiquepoznan.com>',
         to: process.env.ADMIN_EMAIL || 's.wutezi@wutezi.com',
-        subject: `📧 Nouveau message: ${contact.subject}`,
+
+        // Sujet sans emoji, plus pro
+        subject: `Olympique Poznan — ${contact.subject}`,
+
         html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #667eea;">Nouveau message de contact</h2>
-            <table style="width: 100%; border-collapse: collapse;">
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background:#ffffff; padding:20px;">
+
+            <!-- LOGO -->
+            <div style="text-align: center; margin-bottom: 25px;">
+              <img 
+                src="https://olympiquepoznan.pl/logo.png"
+                alt="Olympique Poznan"
+                width="80"
+                style="display:block;margin:auto;"
+              />
+            </div>
+
+            <h2 style="color: #667eea; text-align:center;">Nouveau message</h2>
+
+            <table style="width: 100%; border-collapse: collapse; margin-top:20px;">
               <tr>
-                <td style="padding: 10px; background: #f5f5f5;"><strong>De:</strong></td>
+                <td style="padding: 10px; background: #f5f5f5;"><strong>De :</strong></td>
                 <td style="padding: 10px;">${contact.firstName} ${contact.lastName}</td>
               </tr>
+
               <tr>
-                <td style="padding: 10px; background: #f5f5f5;"><strong>Email:</strong></td>
-                <td style="padding: 10px;"><a href="mailto:${contact.email}">${contact.email}</a></td>
+                <td style="padding: 10px; background: #f5f5f5;"><strong>Email :</strong></td>
+                <td style="padding: 10px;">
+                  <a href="mailto:${contact.email}">
+                    ${contact.email}
+                  </a>
+                </td>
               </tr>
+
               ${contact.phone ? `
               <tr>
-                <td style="padding: 10px; background: #f5f5f5;"><strong>Téléphone:</strong></td>
+                <td style="padding: 10px; background: #f5f5f5;"><strong>Téléphone :</strong></td>
                 <td style="padding: 10px;">${contact.phone}</td>
               </tr>
               ` : ''}
+
               <tr>
-                <td style="padding: 10px; background: #f5f5f5;"><strong>Sujet:</strong></td>
+                <td style="padding: 10px; background: #f5f5f5;"><strong>Sujet :</strong></td>
                 <td style="padding: 10px;">${contact.subject}</td>
               </tr>
             </table>
-            <div style="margin-top: 20px; padding: 15px; background: #f9f9f9; border-left: 4px solid #667eea;">
-              <p style="margin: 0;"><strong>Message:</strong></p>
-              <p style="margin-top: 10px;">${contact.message.replace(/\n/g, '<br>')}</p>
+
+            <div style="margin-top: 25px; padding: 15px; background: #f9f9f9; border-left: 4px solid #667eea;">
+              <p style="margin: 0;"><strong>Message :</strong></p>
+
+              <p style="margin-top: 10px; line-height:1.5;">
+                ${contact.message.replace(/\n/g, '<br>')}
+              </p>
             </div>
-            <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
-            <p style="color: #666; font-size: 0.9em;">
+
+            <hr style="margin: 25px 0; border: none; border-top: 1px solid #ddd;">
+
+            <p style="color: #666; font-size: 0.9em; text-align:center;">
               Reçu le ${new Date(contact.createdAt).toLocaleString('fr-FR')}
             </p>
+
           </div>
         `
       };
 
       await this.transporter.sendMail(mailOptions);
+
       console.log(`✅ Email admin envoyé pour le contact #${contact.id}`);
+
     } catch (error) {
       console.error('❌ Erreur envoi email admin:', error.message);
       throw error;

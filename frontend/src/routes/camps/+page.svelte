@@ -162,7 +162,7 @@
       <div class="activities">
         <h2>{$_('camps.programme.title')}</h2>
         <ul>
-          {#each $_('camps.programme.programDescription') as item}
+          {#each $json('camps.programme.programDescription') as item}
             <li>{item}</li>
           {/each}
         </ul>

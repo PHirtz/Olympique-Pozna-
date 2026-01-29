@@ -53,7 +53,8 @@ export const contactCreateSchema = Joi.object({
     }),
   
   category: Joi.string()
-    .valid('coach', 'footj', 'foots', 'sponsor', 'volunteer', 'other')
+    .valid('coach', 'footj', 'foots', 'veteran', 'sponsor', 'volunteer', 'other', 'inscription', 'information') // ← Ajoute inscription et information
+    .optional()
     .messages({
       'any.only': 'La catégorie sélectionnée n\'est pas valide'
     }),
