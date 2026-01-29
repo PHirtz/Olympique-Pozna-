@@ -706,6 +706,9 @@
     },
     "form": {
       "name": "Nom",
+      "firstName": "Nom",
+      "phone": "Téléphone",
+      "subject": "Sujet",
       "lastName": "Prénom",
       "nameRequired": "Le nom est obligatoire",
       "emailRequired": "L'email est obligatoire",
