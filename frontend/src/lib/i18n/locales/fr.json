@@ -178,20 +178,28 @@
     },
     "lieu": "Lieu",
     "dates": "Dates",
+    "info": {
+      "dates": "15-21 Février 2026",
+      "duration": "7 jours de sport !",
+      "location": "Skarbimierz",
+      "hotel": "Hotel Antonio Conference",
+      "training": "3 entraînements/jour",
+      "activities": "Matchs, jeux et intégration"
+    },
     "programme": {
       "title": "Programme du Camp Olympique",
-      "subtitle": "Entrainements",
+      "subtitle": "Entraînements",
       "programDescription": [
-        "⚽ 3 entraînements quotidiens : sparingi, gry, integracja",
-        "🏨 Hébergement confortable avec repas",
-        "🏰 Visites : Wrocław 2010-2018 Drazogiszyn 2008-2018",
-        "🎾 Activités : Silownia, plac zabaw, ping pong, mini zoo",
-        "⚽ Tournois FIFA + Aquapark",
-        "🎓 Encadrement professionnel par nos entraîneurs"
+        "⚽ 3 entraînements quotidiens : sparring, jeux, intégration",
+        "🏨 Hébergement confortable avec repas inclus",
+        "🏰 Visites culturelles : Wrocław et Drazogiszyn",
+        "🎾 Activités : Salle de sport, aire de jeux, ping-pong, mini zoo",
+        "⚽ Tournois FIFA + Sortie Aquapark",
+        "🎓 Encadrement professionnel par nos entraîneurs diplômés"
       ]
     },
     "formulaire": {
-      "title": "Inscrivez-vous au Camp d'Olympique Poznań",
+      "title": "Inscrivez-vous au Camp Olympique Poznań",
       "description": "Remplissez le formulaire ci-dessous pour vous inscrire ou demander plus d'informations",
       "contact": "Contact direct",
       "type": {
@@ -724,7 +732,9 @@
       "sending": "Envoi en cours...",
       "success": "Votre message a bien été envoyé ! Nous vous répondrons rapidement.",
       "error": "Une erreur est survenue, veuillez réessayer plus tard.",
-      "errorRequired": "Veuillez remplir tous les champs obligatoires."
+      "errorRequired": "Veuillez remplir tous les champs obligatoires.",
+      "messageMinLength": "Le message doit contenir au moins 10 caractères",
+      "charCountMin": "caractères minimum"
     },
     "info": {
       "email": {

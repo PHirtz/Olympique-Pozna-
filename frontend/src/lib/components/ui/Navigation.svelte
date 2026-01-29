@@ -368,8 +368,7 @@
           <span>{$_('userMenu.hello')}, {$user.firstName} !</span>
         </div>
         <button class="btn-logout" on:click={handleLogout}>
-          <LogOut size={18} />
-          <span>{$_('userMenu.logout')}</span>
+          <LogOut size={20} />
         </button>
       {:else}
         <a href="/login" class="btn-auth btn-login">

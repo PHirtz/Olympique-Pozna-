@@ -1,7 +1,7 @@
 <script>
-  import { _ } from 'svelte-i18n';
+  import { _,json } from 'svelte-i18n';
   import { Send, Calendar, MapPin, Users, Phone, Mail } from 'lucide-svelte';
-  import { contact } from '$lib/api';
+  import { sendContactForm } from '$lib/api/contact';
   import Navigation2 from '$lib/components/ui/Navigation2.svelte';
   import Footer from '$lib/components/ui/Footer.svelte';
   
@@ -21,12 +21,30 @@
   let loading = false;
   let success = false;
   let error = '';
+  let fieldErrors = {};
 
   async function handleSubmit() {
     error = '';
+    fieldErrors = {};
     
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.message) {
-      error = 'Veuillez remplir tous les champs obligatoires';
+    // Validation côté client
+    if (!formData.firstName || formData.firstName.length < 2) {
+      error = 'Le prénom doit contenir au moins 2 caractères';
+      return;
+    }
+    
+    if (!formData.lastName || formData.lastName.length < 2) {
+      error = 'Le nom doit contenir au moins 2 caractères';
+      return;
+    }
+    
+    if (!formData.email) {
+      error = 'L\'email est obligatoire';
+      return;
+    }
+    
+    if (!formData.message || formData.message.length < 10) {
+      error = 'Le message doit contenir au moins 10 caractères';
       return;
     }
 
@@ -34,19 +52,34 @@
     success = false;
 
     try {
+      // Construction du sujet selon la catégorie
+      const subjectMap = {
+        'inscription': 'Inscription Camp Olympique - Février 2026',
+        'information': 'Demande d\'information - Camp Olympique'
+      };
+
+      // Construction du message avec l'âge si fourni
+      let fullMessage = formData.message;
+      if (formData.age) {
+        fullMessage = `Âge du participant: ${formData.age} ans\n\n${formData.message}`;
+      }
+
       const contactData = {
         firstName: formData.firstName,
         lastName: formData.lastName,
         email: formData.email,
-        phone: formData.phone || '',
-        subject: formData.category === 'inscription' ? 'Inscription Camp Olympique' : 'Demande d\'information Camp',
-        message: formData.age ? `Âge du participant: ${formData.age} ans\n\n${formData.message}` : formData.message
+        phone: formData.phone || undefined,
+        subject: subjectMap[formData.category] || 'Demande Camp Olympique',
+        category: formData.category, // Ajout de la catégorie
+        message: fullMessage
       };
 
-      const response = await contact.sendContactForm(contactData);
+      const response = await sendContactForm(contactData);
 
       if (response.success) {
         success = true;
+        
+        // Reset du formulaire
         formData = {
           firstName: '',
           lastName: '',
@@ -56,12 +89,29 @@
           message: '',
           category: 'inscription'
         };
+
+        // Scroll vers le haut pour voir le message de succès
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Masquer le message après 8 secondes
+        setTimeout(() => {
+          success = false;
+        }, 8000);
       } else {
-        error = 'Erreur lors de l\'envoi. Veuillez réessayer.';
+        // Gérer les erreurs de validation du backend
+        if (response.errors && Array.isArray(response.errors)) {
+          fieldErrors = response.errors.reduce((acc, err) => {
+            acc[err.field] = err.message;
+            return acc;
+          }, {});
+          error = 'Veuillez corriger les erreurs ci-dessous';
+        } else {
+          error = response.message || 'Erreur lors de l\'envoi. Veuillez réessayer.';
+        }
       }
     } catch (err) {
-      error = 'Erreur lors de l\'envoi. Veuillez réessayer.';
-      console.error(err);
+      console.error('Erreur envoi formulaire camps:', err);
+      error = err.message || 'Erreur lors de l\'envoi. Veuillez réessayer.';
     } finally {
       loading = false;
     }
@@ -90,22 +140,22 @@
         <div class="info-card">
           <Calendar size={32} />
           <h3>{$_('camps.dates')}</h3>
-          <p><strong>15-21 Février 2026</strong></p>
-          <p class="detail">7 dni sportů!</p>
+          <p><strong>{$_('camps.info.dates')}</strong></p>
+          <p class="detail">{$_('camps.info.duration')}</p>
         </div>
 
         <div class="info-card">
           <MapPin size={32} />
           <h3>{$_('camps.lieu')}</h3>
-          <p><strong>Skarbimierz</strong></p>
-          <p class="detail">Hotel Antonio Conference</p>
+          <p><strong>{$_('camps.info.location')}</strong></p>
+          <p class="detail">{$_('camps.info.hotel')}</p>
         </div>
 
         <div class="info-card">
           <Users size={32} />
           <h3>{$_('camps.programme.subtitle')}</h3>
-          <p><strong>3 entraînements/jour</strong></p>
-          <p class="detail">Sparingi, gry i integracja</p>
+          <p><strong>{$_('camps.info.training')}</strong></p>
+          <p class="detail">{$_('camps.info.activities')}</p>
         </div>
       </div>
 
@@ -129,81 +179,117 @@
       </div>
 
       {#if success}
-        <div class="success-message">
-          <p>✅ Votre demande a bien été envoyée ! Nous vous répondrons rapidement.</p>
+        <div class="alert alert-success">
+          <div class="alert-icon">✓</div>
+          <div class="alert-content">
+            <strong>Demande envoyée avec succès !</strong>
+            <p>Nous avons bien reçu votre demande et vous répondrons dans les plus brefs délais.</p>
+          </div>
         </div>
       {/if}
 
       {#if error}
-        <div class="error-message">
-          <p>❌ {error}</p>
+        <div class="alert alert-error">
+          <div class="alert-icon">⚠</div>
+          <div class="alert-content">
+            <strong>Erreur</strong>
+            <p>{error}</p>
+          </div>
         </div>
       {/if}
 
       <form on:submit|preventDefault={handleSubmit} class="camp-form">
         <div class="form-row">
-          <div class="form-group">
-            <label for="firstName">{$_('contact.form.name')} *</label>
+          <div class="form-group" class:has-error={fieldErrors.firstName}>
+            <label for="firstName">
+              {$_('contact.form.firstName')} *
+            </label>
             <input 
               type="text" 
               id="firstName" 
               bind:value={formData.firstName}
+              placeholder={$_('contact.form.firstNamePlaceholder')}
               required
               disabled={loading}
             />
+            {#if fieldErrors.firstName}
+              <span class="error-text">{fieldErrors.firstName}</span>
+            {/if}
           </div>
 
-          <div class="form-group">
-            <label for="lastName">{$_('contact.form.lastName')} *</label>
+          <div class="form-group" class:has-error={fieldErrors.lastName}>
+            <label for="lastName">
+              {$_('contact.form.lastName')} *
+            </label>
             <input 
               type="text" 
               id="lastName" 
               bind:value={formData.lastName}
+              placeholder={$_('contact.form.lastNamePlaceholder')}
               required
               disabled={loading}
             />
+            {#if fieldErrors.lastName}
+              <span class="error-text">{fieldErrors.lastName}</span>
+            {/if}
           </div>
         </div>
 
         <div class="form-row">
-          <div class="form-group">
-            <label for="email">{$_('contact.form.email')} *</label>
+          <div class="form-group" class:has-error={fieldErrors.email}>
+            <label for="email">
+              {$_('contact.form.email')} *
+            </label>
             <input 
               type="email" 
               id="email" 
               bind:value={formData.email}
+              placeholder={$_('contact.form.emailPlaceholder')}
               required
               disabled={loading}
             />
+            {#if fieldErrors.email}
+              <span class="error-text">{fieldErrors.email}</span>
+            {/if}
           </div>
 
-          <div class="form-group">
-            <label for="phone">{$_('contact.form.tel')} *</label>
+          <div class="form-group" class:has-error={fieldErrors.phone}>
+            <label for="phone">
+              {$_('contact.form.phone')}
+            </label>
             <input 
               type="tel" 
               id="phone" 
               bind:value={formData.phone}
-              placeholder="06 XX XX XX XX"
+              placeholder={$_('contact.form.phonePlaceholder')}
               disabled={loading}
             />
+            {#if fieldErrors.phone}
+              <span class="error-text">{fieldErrors.phone}</span>
+            {/if}
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
-            <label for="age">{$_('contact.form.age')} *</label>
+            <label for="age">
+              {$_('contact.form.age')}
+            </label>
             <input 
               type="number" 
               id="age" 
               bind:value={formData.age}
               min="5"
               max="80"
+              placeholder="Ex: 12"
               disabled={loading}
             />
           </div>
 
           <div class="form-group">
-            <label for="category">{$_('camps.formulaire.type.typeName')}</label>
+            <label for="category">
+              {$_('camps.formulaire.type.typeName')}
+            </label>
             <select id="category" bind:value={formData.category} disabled={loading}>
               <option value="inscription">{$_('camps.formulaire.type.registration')}</option>
               <option value="information">{$_('camps.formulaire.type.info')}</option>
@@ -211,24 +297,33 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="message">{$_('contact.form.message')} *</label>
+        <div class="form-group" class:has-error={fieldErrors.message}>
+          <label for="message">
+            {$_('contact.form.message')} *
+          </label>
           <textarea 
             id="message" 
             bind:value={formData.message}
             rows="5"
-            placeholder="Parlez-nous de vous et de votre motivation..."
+            placeholder={$_('contact.form.messagePlaceholder')}
             disabled={loading}
             required
           ></textarea>
+          <small class="char-count">
+            {formData.message.length} / 10 {$_('contact.form.charCountMin')}
+          </small>
+          {#if fieldErrors.message}
+            <span class="error-text">{fieldErrors.message}</span>
+          {/if}
         </div>
 
         <button type="submit" class="submit-btn" disabled={loading}>
           {#if loading}
+            <span class="spinner"></span>
             <span>Envoi en cours...</span>
           {:else}
             <Send size={20} />
-            <span>{$_('contact.form.demande')} *</span>
+            <span>{$_('contact.form.submit')}</span>
           {/if}
         </button>
       </form>
@@ -236,7 +331,7 @@
       <div class="contact-info">
         <h3>{$_('camps.formulaire.contact')}</h3>
         <div class="contact-details">
-          <a href="tel:669091910" class="contact-link">
+          <a href="tel:+48669091910" class="contact-link">
             <Phone size={20} />
             <span>+48 669 091 910</span>
           </a>
@@ -251,6 +346,7 @@
 </div>
 
 <Footer {data} />
+
 <style>
   .container {
     max-width: 1200px;
@@ -364,6 +460,50 @@
     color: #c9a961;
   }
 
+  /* Alerts */
+  .alert {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem;
+    margin: 0 auto 2rem;
+    max-width: 800px;
+    border-radius: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .alert-success {
+    background: #d4edda;
+    color: #155724;
+    border: 2px solid #c3e6cb;
+  }
+
+  .alert-error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 2px solid #f5c6cb;
+  }
+
+  .alert-icon {
+    font-size: 1.5rem;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .alert-content {
+    flex: 1;
+  }
+
+  .alert-content strong {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 1.05rem;
+  }
+
+  .alert-content p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
   .camp-form {
     background: white;
     padding: 2rem;
@@ -398,6 +538,7 @@
     border-radius: 0.25rem;
     font-size: 1rem;
     transition: border-color 0.2s;
+    font-family: inherit;
   }
 
   .form-group input:focus,
@@ -412,6 +553,32 @@
   .form-group textarea:disabled {
     background: #f5f5f5;
     cursor: not-allowed;
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  /* Gestion des erreurs */
+  .has-error input,
+  .has-error textarea{
+    border-color: #ef4444;
+  }
+  
+  .error-text {
+    display: block;
+    color: #ef4444;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+  
+  .char-count {
+    display: block;
+    font-size: 0.875rem;
+    color: #64748b;
+    margin-top: 0.25rem;
+    padding-bottom: 1rem;
   }
 
   .submit-btn {
@@ -440,23 +607,17 @@
     cursor: not-allowed;
   }
 
-  .success-message,
-  .error-message {
-    max-width: 800px;
-    margin: 0 auto 1.5rem;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    text-align: center;
+  .spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
   }
 
-  .success-message {
-    background: #4caf50;
-    color: white;
-  }
-
-  .error-message {
-    background: #f44336;
-    color: white;
+  @keyframes spin {
+    to { transform: rotate(360deg); }
   }
 
   .contact-info {

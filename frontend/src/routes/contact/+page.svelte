@@ -7,20 +7,25 @@
   import { _ } from 'svelte-i18n';
   import Navigation2 from '$lib/components/ui/Navigation2.svelte';
   import Footer from '$lib/components/ui/Footer.svelte';
-  import { Mail, User, MessageSquare, Send } from 'lucide-svelte';
+  import { Mail, User, Phone, MessageSquare, Send } from 'lucide-svelte';
   import { onMount } from 'svelte';
-  import { goto } from '$app/navigation';
+  import { sendContactForm } from '$lib/api/contact';
   
   export let data;
 
   let mounted = false;
   
-  // Champs du formulaire
-  let name = '';
+  // Champs du formulaire (adaptés au backend)
+  let firstName = '';
+  let lastName = '';
   let email = '';
-  let category = 'footj';
+  let phone = '';
+  let subject = '';
   let message = '';
   let isSubmitting = false;
+  let successMessage = false;
+  let errorMessage = '';
+  let fieldErrors = {}; // ← AJOUTE CETTE LIGNE ICI
 
   onMount(() => {
     mounted = true;
@@ -29,33 +34,61 @@
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!name || !email || !message) {
-      alert($_('contact.form.errorRequired'));
+    if (!firstName || !lastName || !email || !subject || !message) {
+      errorMessage = $_('contact.form.errorRequired');
       return;
     }
     
     isSubmitting = true;
+    errorMessage = '';
+    fieldErrors = {}; // Reset des erreurs
+    successMessage = false;
     
     try {
-      // Ici tu pourras ajouter l'envoi à ton backend
-      console.log("Message envoyé :", { name, email, category, message });
+      const contactData = {
+        firstName,
+        lastName,
+        email,
+        phone: phone || undefined, 
+        subject,
+        message
+      };
       
-      // Simulation d'envoi
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const response = await sendContactForm(contactData);
       
-      alert($_('contact.form.success'));
-      
-      // Reset du formulaire
-      name = '';
-      email = '';
-      category = 'footj';
-      message = '';
-      
-      // Redirection optionnelle
-      // goto('/');
+      if (response.success) {
+        successMessage = true;
+        
+        // Reset du formulaire
+        firstName = '';
+        lastName = '';
+        email = '';
+        phone = '';
+        subject = '';
+        message = '';
+        
+        // Scroll vers le haut pour voir le message
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        // Masquer le message après 5 secondes
+        setTimeout(() => {
+          successMessage = false;
+        }, 5000);
+      } else {
+        // Gérer les erreurs de validation du backend
+        if (response.errors && Array.isArray(response.errors)) {
+          fieldErrors = response.errors.reduce((acc, err) => {
+            acc[err.field] = err.message;
+            return acc;
+          }, {});
+          errorMessage = 'Veuillez corriger les erreurs ci-dessous';
+        } else {
+          errorMessage = response.message || $_('contact.form.error');
+        }
+      }
     } catch (error) {
       console.error("Erreur lors de l'envoi :", error);
-      alert($_('contact.form.error'));
+      errorMessage = $_('contact.form.error');
     } finally {
       isSubmitting = false;
     }
@@ -81,55 +114,111 @@
           <p>{$_('contact.intro.text')}</p>
         </div>
 
+        <!-- Messages de succès et d'erreur -->
+        {#if successMessage}
+          <div class="alert alert-success">
+            <div class="alert-icon">✓</div>
+            <div class="alert-content">
+              <strong>{$_('contact.form.success').split('!')[0]}!</strong>
+              <p>{$_('contact.form.success').split('!')[1]}</p>
+            </div>
+          </div>
+        {/if}
+
+        {#if errorMessage}
+          <div class="alert alert-error">
+            <div class="alert-icon">⚠</div>
+            <div class="alert-content">
+              <strong>Erreur</strong>
+              <p>{errorMessage}</p>
+            </div>
+          </div>
+        {/if}
+
         <div class="form-container">
           <form class="contact-form" on:submit={handleSubmit}>
+            <div class="form-row">
             <div class="form-group">
-              <label for="name">
-                <User size={20} />
-                {$_('contact.form.name')}*
+                <label for="firstName">
+                  <User size={20} />
+                  {$_('contact.form.firstName')} *
+                </label>
+                <input 
+                  type="text" 
+                  id="firstName" 
+                  bind:value={firstName}
+                  placeholder={$_('contact.form.firstNamePlaceholder')}
+                  required
+                  disabled={isSubmitting}
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">
+                  <User size={20} />
+                  {$_('contact.form.lastName')} *
+                </label>
+                <input 
+                  type="text" 
+                  id="lastName" 
+                  bind:value={lastName}
+                  placeholder={$_('contact.form.lastNamePlaceholder')}
+                  required
+                  disabled={isSubmitting}
+                />
+            </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">
+                  <Mail size={20} />
+                  {$_('contact.form.email')} *
+                </label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  bind:value={email}
+                  placeholder={$_('contact.form.emailPlaceholder')}
+                  required
+                  disabled={isSubmitting}
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="phone">
+                  <Phone size={20} />
+                  {$_('contact.form.phone')}
+                </label>
+                <input 
+                  type="tel" 
+                  id="phone" 
+                  bind:value={phone}
+                  placeholder={$_('contact.form.phonePlaceholder')}
+                  disabled={isSubmitting}
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="subject">
+                <MessageSquare size={20} />
+                {$_('contact.form.subject')} *
               </label>
               <input 
                 type="text" 
-                id="name" 
-                bind:value={name}
-                placeholder={$_('contact.form.namePlaceholder')}
+                id="subject" 
+                bind:value={subject}
+                placeholder={$_('contact.form.subjectPlaceholder')}
                 required
+                disabled={isSubmitting}
               />
             </div>
 
-            <div class="form-group">
-              <label for="email">
-                <Mail size={20} />
-                {$_('contact.form.email')}*
-              </label>
-              <input 
-                type="email" 
-                id="email" 
-                bind:value={email}
-                placeholder={$_('contact.form.emailPlaceholder')}
-                required
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="category">
-                <MessageSquare size={20} />
-                {$_('contact.form.category')}
-              </label>
-              <select id="category" bind:value={category}>
-                <option value="coach">{$_('contact.form.categories.coach')}</option>
-                <option value="footj">{$_('contact.form.categories.junior')}</option>
-                <option value="foots">{$_('contact.form.categories.senior')}</option>
-                <option value="sponsor">{$_('contact.form.categories.sponsor')}</option>
-                <option value="volunteer">{$_('contact.form.categories.volunteer')}</option>
-                <option value="other">{$_('contact.form.categories.other')}</option>
-              </select>
-            </div>
-
-            <div class="form-group">
+            <div class="form-group" class:has-error={fieldErrors.message}>
               <label for="message">
                 <MessageSquare size={20} />
-                {$_('contact.form.message')}*
+                {$_('contact.form.message')} *
               </label>
               <textarea 
                 id="message" 
@@ -137,7 +226,14 @@
                 rows="6"
                 placeholder={$_('contact.form.messagePlaceholder')}
                 required
+                disabled={isSubmitting}
               ></textarea>
+              <small class="char-count">
+                {message.length} / 10 {$_('contact.form.charCountMin')}
+              </small>
+              {#if fieldErrors.message}
+                <span class="error-text">{fieldErrors.message}</span>
+              {/if}
             </div>
 
             <button 
@@ -146,6 +242,7 @@
               disabled={isSubmitting}
             >
               {#if isSubmitting}
+                <span class="spinner"></span>
                 {$_('contact.form.sending')}
               {:else}
                 <Send size={20} />
@@ -165,9 +262,9 @@
               <MessageSquare size={32} />
               <h3>{$_('contact.info.social.title')}</h3>
               <div class="social-links">
-                <a href="https://www.facebook.com/OlympiquePoz" target="_blank" rel="noopener noreferrer" aria-label="Facebook">Facebook</a>
-                <a href="https://www.instagram.com/olympiquepoznan/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
-                <a href="https://www.tiktok.com/tag/olympiquepozna%C5%84" target="_blank" rel="noopener noreferrer" aria-label="Tiktok">TikTok</a>
+                <a href="https://www.facebook.com/OlympiquePoz" target="_blank" rel="noopener noreferrer">Facebook</a>
+                <a href="https://www.instagram.com/olympiquepoznan/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="https://www.tiktok.com/tag/olympiquepozna%C5%84" target="_blank" rel="noopener noreferrer">TikTok</a>
               </div>
             </div>
           </div>
@@ -233,6 +330,57 @@
     line-height: 1.8;
   }
 
+  /* Alerts */
+  .alert {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem;
+    margin: 0 auto 2rem;
+    max-width: 1000px;
+    border-radius: 12px;
+    align-items: flex-start;
+  }
+
+  .alert-success {
+    background: #d4edda;
+    color: #155724;
+    border: 2px solid #c3e6cb;
+  }
+
+  .alert-error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 2px solid #f5c6cb;
+  }
+
+  .alert-icon {
+    font-size: 1.5rem;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .alert-content {
+    flex: 1;
+  }
+
+  .alert-content strong {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 1.05rem;
+  }
+
+  .alert-content p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .char-count {
+    display: block;
+    font-size: 0.875rem;
+    color: #64748b;
+    margin-top: 0.25rem;
+  }
+
   /* Form Container */
   .form-container {
     display: grid;
@@ -256,6 +404,18 @@
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
   }
 
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  @media (max-width: 640px) {
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+  }
+
   .form-group {
     margin-bottom: 1.5rem;
   }
@@ -271,7 +431,6 @@
   }
 
   .form-group input,
-  .form-group select,
   .form-group textarea {
     width: 100%;
     padding: 0.875rem;
@@ -283,21 +442,21 @@
   }
 
   .form-group input:focus,
-  .form-group select:focus,
   .form-group textarea:focus {
     outline: none;
     border-color: #1a4d7a;
     box-shadow: 0 0 0 3px rgba(26, 77, 122, 0.1);
   }
 
+  .form-group input:disabled,
+  .form-group textarea:disabled {
+    background: #f5f5f5;
+    cursor: not-allowed;
+  }
+
   .form-group textarea {
     resize: vertical;
     min-height: 120px;
-  }
-
-  .form-group select {
-    cursor: pointer;
-    background-color: white;
   }
 
   /* Submit Button */
@@ -327,6 +486,19 @@
   .submit-btn:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+  }
+
+  .spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
   }
 
   /* Contact Info */

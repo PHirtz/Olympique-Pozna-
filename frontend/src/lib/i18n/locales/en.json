@@ -155,9 +155,13 @@
 
   "camps": {
     "title": "Olympic Camp - Olympique Poznań",
-    "metaDescription": "Join the Poznań Olympic Camp for an unforgettable football experience! Intensive training, technical workshops and guaranteed fun.",
+    "metaDescription": "Join the Olympique Poznań Camp for an unforgettable football experience! Intensive training, technical workshops and guaranteed fun.",
+    "hero": {
+      "title": "Olympic Camp",
+      "subtitle": "Join us for an unforgettable football experience!"
+    },
     "intro": {
-      "text": "The Olympic Camp is a unique opportunity for young football enthusiasts to live an immersive experience in the world of football. Whether you're a beginner or an experienced player, our camp is designed to offer a stimulating and fun learning environment."
+      "text": "The Olympic Camp is a unique opportunity for young football enthusiasts to experience an immersive experience in the world of football. Whether you are a beginner or an experienced player, our camp is designed to provide a stimulating and fun learning environment."
     },
     "benefits": {
       "title": "Why choose the Olympic Camp?",
@@ -173,26 +177,34 @@
     },
     "lieu": "Location",
     "dates": "Dates",
+    "info": {
+      "dates": "February 15-21, 2026",
+      "duration": "7 days of sports!",
+      "location": "Skarbimierz",
+      "hotel": "Hotel Antonio Conference",
+      "training": "3 training sessions/day",
+      "activities": "Matches, games and team building"
+    },
     "programme": {
       "title": "Olympic Camp Program",
-      "subtitle": "Trainings",
+      "subtitle": "Training",
       "programDescription": [
-        "⚽ 3 daily trainings: sparingi, gry, integracja",
-        "🏨 Comfortable accommodation with meals",
-        "🏰 Visits: Wrocław 2010-2018 Drazogiszyn 2008-2018",
+        "⚽ 3 daily training sessions: sparring, games, integration",
+        "🏨 Comfortable accommodation with meals included",
+        "🏰 Cultural visits: Wrocław and Drazogiszyn",
         "🎾 Activities: Gym, playground, ping pong, mini zoo",
-        "⚽ FIFA tournaments + Aquapark",
-        "🎓 Professional coaching by our coaches"
+        "⚽ FIFA tournaments + Aquapark outing",
+        "🎓 Professional supervision by our certified coaches"
       ]
     },
     "formulaire": {
-      "title": "Register for the Olympic Camp",
-      "description": "Fill out the form below to register or get more information",
+      "title": "Register for Olympique Poznań Camp",
+      "description": "Fill out the form below to register or request more information",
       "contact": "Direct contact",
       "type": {
-        "typeName": "Type of request",
-        "registration": "Camp registration",
-        "info": "Information request"
+        "typeName": "Request type",
+        "info": "Information request",
+        "registration": "Camp registration"
       }
     }
   },
@@ -683,49 +695,43 @@
     "title": "Contact - Olympique Poznań",
     "metaDescription": "Contact Olympique Poznań to join the club or for any questions",
     "hero": {
-      "title": "Contact us",
+      "title": "Contact Us",
       "subtitle": "Join the Olympique Poznań adventure"
     },
     "intro": {
-      "title": "A question? Want to join us?",
-      "text": "Fill out the form below and we will respond to you as soon as possible. Whether you want to become a player, coach or volunteer, we will be happy to exchange with you!"
+      "title": "Have a question? Want to join us?",
+      "text": "Fill out the form below and we will get back to you as soon as possible. Whether you want to become a player, coach or volunteer, we would be happy to talk with you!"
     },
     "form": {
-      "name": "Name",
-      "lastName": "First name",
-      "nameRequired": "Name is required",
-      "emailRequired": "Email is required",
-      "categoryRequired": "Category is required",
-      "namePlaceholder": "Your full name",
+      "firstName": "First Name",
+      "lastName": "Last Name",
       "email": "Email",
-      "tel": "Phone",
-      "emailPlaceholder": "your.email@example.com",
-      "category": "Category",
-      "age": "Participant's age",
-      "demande": "Send my request",
-      "categories": {
-        "coach": "Coach",
-        "junior": "Junior Footballer",
-        "senior": "Senior Footballer",
-        "veteran": "Veteran Footballer",
-        "sponsor": "Sponsor",
-        "volunteer": "Volunteer",
-        "other": "Other"
-      },
+      "phone": "Phone",
+      "subject": "Subject",
       "message": "Message",
+      "firstNamePlaceholder": "John",
+      "lastNamePlaceholder": "Smith",
+      "emailPlaceholder": "john.smith@example.com",
+      "category": "Request type",
+      "age": "Participant's age",
+      "agePlaceholder": "e.g., 8 years",
+      "phonePlaceholder": "+48 123 456 789",
+      "subjectPlaceholder": "Information request",
       "messagePlaceholder": "Tell us about yourself and your motivation...",
       "submit": "Send message",
       "sending": "Sending...",
-      "success": "Your message has been sent! We will respond to you quickly.",
+      "success": "Your message has been sent! We will respond quickly.",
       "error": "An error occurred, please try again later.",
-      "errorRequired": "Please fill in all required fields."
+      "errorRequired": "Please fill in all required fields.",
+      "messageMinLength": "Message must contain at least 10 characters",
+      "charCountMin": "characters minimum"
     },
     "info": {
       "email": {
         "title": "Email"
       },
       "social": {
-        "title": "Social networks"
+        "title": "Social Media"
       }
     }
   },

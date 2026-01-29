@@ -23,7 +23,6 @@
   ];
 </script>
 
-<!-- Navigation EN PREMIER pour éviter les problèmes de z-index -->
 <Navigation />
 
 <!-- Hero avec slider d'images -->

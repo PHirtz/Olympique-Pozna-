@@ -13,6 +13,6 @@ import { apiRequest } from './client.js';
 export async function sendContactForm(data) {
   return apiRequest('/contact', {
     method: 'POST',
-    body: JSON.stringify(data),
+    body: data,
   });
 }
