@@ -53,7 +53,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Servir les fichiers uploadés
-router.use('/uploads', express.static(join(__dirname, '../../public/uploads')));
+//router.use('/uploads', express.static(join(__dirname, '../../public/uploads')));
 
 // ========== PLAYER ROUTES (PUBLIC) ==========
 // Ces routes utilisent multer, donc PAS de JSON parser
