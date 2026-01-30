@@ -121,4 +121,10 @@ export const getPublicUrl = (filename, type = 'players') => {
   return `/uploads/${type}/${filename}`;
 };
 
+// ==============================================
+// EXPORTS SPÉCIFIQUES PAR TYPE
+// ==============================================
+export const uploadSponsor = upload;
+export const uploadPlayer = upload;
+
 export default upload;

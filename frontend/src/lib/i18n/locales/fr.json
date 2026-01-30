@@ -1,5 +1,4 @@
 {
-
   "teams": {
     "noPlayers": "Aucun joueur dans cette équipe pour le moment.",
     "noTeams": "Aucune équipe pour le moment.",
@@ -714,6 +713,7 @@
       "emailRequired": "L'email est obligatoire",
       "categoryRequired": "La catégorie est obligatoire",
       "namePlaceholder": "Votre nom complet",
+      "subjectPlaceholder": "Sujet de votre message",
       "email": "Email",
       "tel": "Téléphone",
       "emailPlaceholder": "votre.email@exemple.com",

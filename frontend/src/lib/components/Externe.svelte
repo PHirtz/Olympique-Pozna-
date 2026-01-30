@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import { _ } from 'svelte-i18n';
   import { locale } from 'svelte-i18n';
+  import FacebookFeed from './FacebookFeed.svelte';
 
   // Configuration boutique
   const shopImages = [
@@ -178,57 +179,11 @@
 
     <!-- Facebook Section -->
     <div class="facebook-column">
-      <h2>{$_('facebook.latestPosts')}</h2>
-      <p class="facebook-subtitle">{$_('facebook.followDescription')}</p>
-      
-      <div class="facebook-card">
-        <div class="facebook-header">
-          <div class="facebook-logo">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-            </svg>
-          </div>
-          <div class="page-info">
-            <h3>Olympique Poznań</h3>
-            <p>@OlympiquePoznan</p>
-          </div>
-        </div>
-
-        <div class="facebook-content">
-          <div class="cover-image">
-            <img src="/logo.png" alt="Olympique Poznań" />
-          </div>
-          
-          <div class="facebook-description">
-            <p>{$_('footer.description')}</p>
-          </div>
-
-          <div class="facebook-stats">
-            <div class="stat">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-              </svg>
-              <span>1.7K+</span>
-            </div>
-            <div class="stat">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-              </svg>
-              <span>Followers</span>
-            </div>
-          </div>
-        </div>
-
-        <button class="facebook-cta" on:click={handleFacebookClick}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-          </svg>
-          {$_('facebook.viewOnFacebook')}
-        </button>
-      </div>
+      <FacebookFeed 
+        pageUrl="https://www.facebook.com/OlympiquePoz" 
+        width={500} 
+        height={650} 
+      />
     </div>
   </div>
 </section>
@@ -429,170 +384,6 @@
     background: rgba(255, 255, 255, 0.8);
   }
 
-  /* Facebook Column */
-  .facebook-column {
-    width: 100%;
-    text-align: center;
-  }
-
-  .facebook-column h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: #333;
-    font-weight: 700;
-  }
-
-  .facebook-subtitle {
-    font-size: 1.1rem;
-    color: #666;
-    margin-bottom: 2rem;
-  }
-
-  .facebook-card {
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    max-width: 500px;
-    margin: 0 auto;
-    height: 600px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .facebook-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.5rem;
-    border-bottom: 1px solid #e5e7eb;
-  }
-
-  .facebook-logo {
-    width: 60px;
-    height: 60px;
-    background: #1877f2;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    flex-shrink: 0;
-  }
-
-  .facebook-logo svg {
-    width: 32px;
-    height: 32px;
-  }
-
-  .page-info {
-    text-align: left;
-    flex: 1;
-  }
-
-  .page-info h3 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #1a1a1a;
-    margin: 0 0 0.25rem 0;
-  }
-
-  .page-info p {
-    font-size: 0.95rem;
-    color: #666;
-    margin: 0;
-  }
-
-  .facebook-content {
-    padding: 1.5rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .cover-image {
-    width: 100%;
-    height: 180px;
-    background: linear-gradient(135deg, #1a4d7a 0%, #0f2d4a 100%);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-    overflow: hidden;
-    flex-shrink: 0;
-  }
-
-  .cover-image img {
-    width: 120px;
-    height: auto;
-    object-fit: contain;
-  }
-
-  .facebook-description {
-    margin-bottom: 1.5rem;
-    text-align: center;
-  }
-
-  .facebook-description p {
-    color: #666;
-    line-height: 1.6;
-    font-size: 0.95rem;
-  }
-
-  .facebook-stats {
-    display: flex;
-    justify-content: space-around;
-    padding: 1rem 0;
-    border-top: 1px solid #e5e7eb;
-    border-bottom: 1px solid #e5e7eb;
-  }
-
-  .stat {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #1877f2;
-  }
-
-  .stat svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  .stat span {
-    font-weight: 600;
-    font-size: 0.95rem;
-  }
-
-  .facebook-cta {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    background: #1877f2;
-    color: white;
-    border: none;
-    padding: 1rem;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 1.5rem;
-  }
-
-  .facebook-cta:hover {
-    background: #166fe5;
-    transform: scale(1.02);
-  }
-
-  .facebook-cta svg {
-    width: 20px;
-    height: 20px;
-  }
-
   /* Tablette (768px+) */
   @media (min-width: 768px) {
     .combined-section {
@@ -604,10 +395,6 @@
     }
 
     .slider {
-      height: 600px;
-    }
-
-    .facebook-card {
       height: 600px;
     }
 
@@ -628,9 +415,6 @@
       right: 1rem;
     }
 
-    .facebook-column h2 {
-      font-size: 2.5rem;
-    }
   }
 
   /* Desktop (1024px+) */
@@ -665,10 +449,6 @@
       height: 600px;
     }
 
-    .facebook-card {
-      height: 600px;
-    }
-
     .facebook-column {
       flex: 0 0 500px;
       min-width: 0;
@@ -687,14 +467,6 @@
 
     .slider {
       height: 650px;
-    }
-
-    .facebook-card {
-      height: 650px;
-    }
-
-    .facebook-column h2 {
-      font-size: 2.75rem;
     }
   }
 </style>

@@ -391,9 +391,40 @@ class GalleryController {
 class PartnerController {
   async create(req, res) {
     try {
-      const partner = await partnerService.createPartner(req.body);
-      res.status(201).json({ success: true, message: 'Partenaire créé avec succès', data: partner });
+      const partnerData = {
+        name: req.body.name,
+        category: req.body.category,
+        website_url: req.body.websiteUrl || null,
+        description: req.body.description_fr || null,
+        description_en: req.body.description_en || null, // ← Ajoute
+        description_pl: req.body.description_pl || null,
+        display_order: parseInt(req.body.displayOrder) || 0,
+        is_active: req.body.isActive === 'true' || req.body.isActive === true,
+      };
+
+      // Gestion du logo selon le mode
+      if (req.file) {
+        // Fichier uploadé via multer
+        partnerData.logo_path = `/uploads/sponsors/${req.file.filename}`;
+        partnerData.logo_url = null;
+      } else if (req.body.logoUrl) {
+        // URL externe
+        partnerData.logo_url = req.body.logoUrl;
+        partnerData.logo_path = null;
+      } else if (req.body.logoPath) {
+        // Chemin local
+        partnerData.logo_path = req.body.logoPath;
+        partnerData.logo_url = null;
+      }
+
+      const partner = await partnerService.createPartner(partnerData);
+      res.status(201).json({ 
+        success: true, 
+        message: 'Partenaire créé avec succès', 
+        data: partner 
+      });
     } catch (error) {
+      console.error('❌ Erreur création partner:', error);
       res.status(400).json({ success: false, message: error.message });
     }
   }
@@ -410,17 +441,67 @@ class PartnerController {
   async getById(req, res) {
     try {
       const partner = await partnerService.getPartnerById(req.params.id);
-      res.status(200).json({ success: true, data: partner });
+      
+      const mappedPartner = {
+        id: partner.id,
+        name: partner.name,
+        category: partner.category,
+        websiteUrl: partner.website_url,
+        description_fr: partner.description,
+        description_en: partner.description_en, // ← Ajoute
+        description_pl: partner.description_pl,
+        logoUrl: partner.logo_url,
+        logoPath: partner.logo_path,
+        displayOrder: partner.display_order,
+        isActive: partner.is_active,
+        createdAt: partner.created_at,
+        updatedAt: partner.updated_at
+      };
+
+      res.status(200).json({ success: true, data: mappedPartner });
     } catch (error) {
       res.status(404).json({ success: false, message: error.message });
     }
   }
 
+
   async update(req, res) {
     try {
-      const partner = await partnerService.updatePartner(req.params.id, req.body);
-      res.status(200).json({ success: true, message: 'Partenaire mis à jour avec succès', data: partner });
+      const partnerData = {
+        name: req.body.name,
+        category: req.body.category,
+        website_url: req.body.websiteUrl || null,
+        description: req.body.description_fr || null,
+        description_en: req.body.description_en || null, // ← Ajoute
+        description_pl: req.body.description_pl || null,
+        display_order: parseInt(req.body.displayOrder) || 0,
+        is_active: req.body.isActive === 'true' || req.body.isActive === true,
+      };
+
+      // Gestion du logo selon le mode
+      if (req.file) {
+        // Nouveau fichier uploadé
+        partnerData.logo_path = `/uploads/sponsors/${req.file.filename}`;
+        partnerData.logo_url = null;
+      } else if (req.body.logoUrl) {
+        // URL externe
+        partnerData.logo_url = req.body.logoUrl;
+        partnerData.logo_path = null;
+      } else if (req.body.logoPath) {
+        // Chemin local
+        partnerData.logo_path = req.body.logoPath;
+        partnerData.logo_url = null;
+      }
+      // Si rien n'est fourni, on garde l'existant (le service gère ça)
+
+      const partner = await partnerService.updatePartner(req.params.id, partnerData);
+      res.status(200).json({ 
+        success: true, 
+        message: 'Partenaire mis à jour avec succès', 
+        data: partner 
+      });
     } catch (error) {
+      console.error('❌ Erreur update partner:', error);
       res.status(400).json({ success: false, message: error.message });
     }
   }

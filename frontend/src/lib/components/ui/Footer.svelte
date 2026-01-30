@@ -4,15 +4,12 @@
   import { _ } from 'svelte-i18n';
   import { locale } from 'svelte-i18n';
   import { Facebook, Instagram, Music2, Mail, MapPin, Phone } from 'lucide-svelte';
-  import { goto } from '$app/navigation';
 
-  // Récupérer la locale actuelle
   let currentLocale = 'fr';
   locale.subscribe(value => {
     currentLocale = value || 'fr';
   });
 
-  // État pour les sponsors
   let sponsors = [];
   let loadingSponsors = true;
 
@@ -20,8 +17,9 @@
     try {
       const response = await partnersAPI.getAll({ isActive: true });
       const allPartners = response.data?.partners || response.data || [];
-      // Limiter à 6 sponsors pour le footer
-      sponsors = allPartners.slice(0, 6);
+      
+      // Filtrer UNIQUEMENT les sponsors principaux pour le footer
+      sponsors = allPartners.filter(p => p.category === 'main_sponsor');
     } catch (err) {
       console.error('Erreur chargement sponsors:', err);
     } finally {
