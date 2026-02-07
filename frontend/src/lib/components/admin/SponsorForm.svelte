@@ -7,6 +7,8 @@
   export let mode = 'create';
   export let sponsorId = null;
 
+  const API_URL = 'http://localhost:5000';
+
   let formData = {
     name: '',
     category: 'official_partner',
@@ -37,6 +39,17 @@
     { value: 'media_partner', label: 'Partenaire Média' },
   ];
 
+  // Fonction pour construire l'URL complète des images
+  function getImageUrl(path) {
+    if (!path) return null;
+    // Si c'est déjà une URL complète, on la retourne telle quelle
+    if (path.startsWith('http://') || path.startsWith('https://')) {
+      return path;
+    }
+    // Sinon, on ajoute l'URL du backend
+    return `${API_URL}${path}`;
+  }
+
   onMount(async () => {
     if (mode === 'edit' && sponsorId) {
       await loadSponsor();
@@ -55,7 +68,7 @@
         logoPreview = formData.logoUrl;
       } else if (formData.logoPath) {
         logoMode = 'path';
-        logoPreview = formData.logoPath;
+        logoPreview = getImageUrl(formData.logoPath);
       }
     } catch (err) {
       alert('Erreur lors du chargement du sponsor');
@@ -92,8 +105,8 @@
       return;
     }
 
-    if (file.size > 10 * 1024 * 1024) {
-      errors.logo = 'L\'image ne doit pas dépasser 10MB';
+    if (file.size > 15 * 1024 * 1024) {
+      errors.logo = 'L\'image ne doit pas dépasser 15MB';
       return;
     }
 
@@ -159,7 +172,7 @@
       return;
     }
 
-    logoPreview = formData.logoPath;
+    logoPreview = getImageUrl(formData.logoPath);
   }
 
   // ======================================
@@ -218,20 +231,20 @@
       // Ajouter les champs de base
       data.append('name', formData.name);
       data.append('category', formData.category);
-      data.append('websiteUrl', formData.websiteUrl || '');
+      data.append('website_url', formData.websiteUrl || '');
       data.append('description_fr', formData.description_fr || '');
       data.append('description_en', formData.description_en || '');
       data.append('description_pl', formData.description_pl || '');
-      data.append('displayOrder', formData.displayOrder || 0);
-      data.append('isActive', formData.isActive);
+      data.append('display_order', formData.displayOrder || 0);
+      data.append('is_active', formData.isActive);
 
       // Gestion du logo selon le mode
       if (logoMode === 'file' && logoFile) {
         data.append('logo', logoFile);
       } else if (logoMode === 'url' && formData.logoUrl) {
-        data.append('logoUrl', formData.logoUrl);
+        data.append('logo_url', formData.logoUrl);
       } else if (logoMode === 'path' && formData.logoPath) {
-        data.append('logoPath', formData.logoPath);
+        data.append('logo_path', formData.logoPath);
       }
 
       // Debug
@@ -365,7 +378,7 @@
               on:change={handleLogoChange}
               style="display: none;"
             />
-            <p class="help-text">JPEG, PNG, GIF, SVG, WebP - Max 10MB</p>
+            <p class="help-text">JPEG, PNG, GIF, SVG, WebP - Max 15MB</p>
             {#if errors.logo}
               <span class="error-text">{errors.logo}</span>
             {/if}

@@ -1,11 +1,17 @@
-// ==============================================
-// CONTROLLER - PLAYERS (JOUEURS)
-// ==============================================
+  // ==============================================
+  // CONTROLLER - PLAYERS (JOUEURS)
+  // ==============================================
+  import playerService from '../services/player.service.js';
+  import { deleteFile, getPublicUrl } from '../config/upload.js';
+  import fs from 'fs';
+  import path from 'path';
+  import { fileURLToPath } from 'url';
+  import { dirname } from 'path';
 
-import playerService from '../services/player.service.js';
-import { deleteFile, getPublicUrl } from '../config/upload.js';
+  const __filename = fileURLToPath(import.meta.url); 
+  const __dirname = dirname(__filename); 
 
-class PlayerController {
+  class PlayerController {
   
   // ==============================================
   // GET /api/players - Liste tous les joueurs
@@ -60,6 +66,62 @@ async getAll(req, res) {
         success: false, 
         message: 'Erreur serveur',
         error: error.message 
+      });
+    }
+  }
+
+  // ==============================================
+  // MIDDLEWARE - Décoder base64 si présent
+  // ==============================================
+
+  async handleBase64Photo(req, res, next) {
+    try {
+      // Si pas de photoBase64, continuer normalement
+      if (!req.body.photoBase64) {
+        return next();
+      }
+
+      const { photoBase64 } = req.body;
+      
+      // Extraire type et données
+      const matches = photoBase64.match(/^data:image\/(\w+);base64,(.+)$/);
+      if (!matches) {
+        return res.status(400).json({ 
+          success: false, 
+          message: 'Format base64 invalide' 
+        });
+      }
+
+      const ext = matches[1];
+      const data = matches[2];
+      const buffer = Buffer.from(data, 'base64');
+
+      // Créer un objet file simulé (comme multer)
+      const filename = `player-${Date.now()}-${Math.round(Math.random() * 1E9)}.${ext}`;
+      const uploadsDir = process.env.NODE_ENV === 'production' 
+        ? '/srv/customer/uploads/players'
+        : path.join(__dirname, '../../public/uploads/players');
+      
+      const filepath = path.join(uploadsDir, filename);
+
+      // Écrire le fichier (PROPREMENT, pas corrompu)
+      fs.writeFileSync(filepath, buffer);
+
+      // Simuler req.file comme si c'était multer
+      req.file = {
+        filename: filename,
+        path: filepath,
+        size: buffer.length
+      };
+
+      console.log('✅ Photo base64 décodée:', filename);
+      next();
+
+    } catch (error) {
+      console.error('❌ Erreur décodage base64:', error);
+      res.status(500).json({ 
+        success: false, 
+        message: 'Erreur traitement image' 
       });
     }
   }

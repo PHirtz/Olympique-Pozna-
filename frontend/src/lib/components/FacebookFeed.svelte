@@ -184,7 +184,7 @@
     font-size: 2.5rem;
     margin-bottom: 1rem;
     color: #333;
-    font-weight: 700;
+    font-weight: 600;
   }
 
   .facebook-subtitle {
@@ -205,7 +205,7 @@
 
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 
-    min-height: 650px;
+    min-height: 525px;
 
     overflow: hidden;
   }

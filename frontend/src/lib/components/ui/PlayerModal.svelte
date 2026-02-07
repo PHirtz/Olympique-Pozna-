@@ -4,11 +4,12 @@
   import { fade, fly } from "svelte/transition";
   import { X, MapPin, Award } from "lucide-svelte";
   import { _, locale } from 'svelte-i18n';
+  import { translatePosition } from '$lib/utils/positions.js';
 
   export let isOpen = false;
   export let player = null;
 
-    $: if (player) {
+  $: if (player) {
     console.log('🔍 Player data:', player);
   }
 
@@ -31,6 +32,9 @@
       handleOverlayClick(event);
     }
   }
+
+  // Traduit la position automatiquement
+  $: translatedPosition = player?.positionEN ? translatePosition(player.positionEN) : '';
 </script>
 
 <svelte:window on:keydown={handleKeydown} />
@@ -60,7 +64,6 @@
       <div class="player-header">
         <!-- Photo du joueur -->
         <div class="player-photo-wrapper">
-          <!-- REMPLACE <img> PAR <PlayerPhoto> -->
           <PlayerPhoto 
             src={player.photo} 
             alt={player.name} 
@@ -74,7 +77,9 @@
             <h2 id="modal-title" class="player-name">
               {player.firstName} {player.lastName}
             </h2>
-            <div class="player-number-badge">#{player.number}</div>
+            {#if player.number}
+              <div class="player-number-badge">#{player.number}</div>
+            {/if}
           </div>
           {#if player.nickname}
             <p class="player-nickname">"{player.nickname}"</p>
@@ -91,11 +96,11 @@
       <!-- Corps de la modal : Position et Distinctions -->
       <div class="modal-body">
         <!-- Position -->
-        {#if player.positionEN || player.positionPL}
+        {#if translatedPosition}
           <div class="player-section">
-            <h3 class="section-title">{$_('teams.doue.labels.position')}</h3>
+            <h3 class="section-title">{$_('teams.position')}</h3>
             <div class="position-badge">
-              {$locale === 'pl' ? player.positionPL : player.positionEN}
+              {translatedPosition}
             </div>
           </div>
         {/if}
@@ -105,7 +110,7 @@
           <div class="player-section">
             <h3 class="section-title">
               <Award size={20} />
-              {$_('teams.doue.labels.distinctions')}
+              {$_('teams.distinctions')}
             </h3>
             <ul class="distinctions-list">
               {#each player.distinctions as distinction}
@@ -124,6 +129,7 @@
     </div>
   </div>
 {/if}
+
 <style>
   /* Overlay */
   .modal-overlay {
@@ -444,7 +450,6 @@
       top: 0.75rem;
       right: 0.75rem;
     }
-
 
     .player-name {
       font-size: 1.3rem;

@@ -86,6 +86,7 @@
   images={heroSlides}
   title={$_('coaches.hero.title')}
   subtitle={$_('coaches.hero.subtitle')}
+  class="coaches-hero" 
 />
 
 <div class="coaches-page">
@@ -138,14 +139,13 @@
 <Footer {data} />
 
 <style>
-
   .coaches-page {
     min-height: 100vh;
     background: linear-gradient(to bottom, #f8fafc, #ffffff);
   }
 
-  /* Override du Hero - Style identique à la page d'accueil */
-  :global(.hero-content) {
+  /* Styles Hero scopés à .coaches-hero avec spécificité augmentée */
+  .coaches-page :global(.coaches-hero .hero-content) {
     position: relative;
     text-align: center;
     color: white;
@@ -154,8 +154,8 @@
     animation: fadeInUp 1s ease-out;
   }
 
-  :global(.hero-content h1) {
-    font-size: 4.5rem !important;
+  .coaches-page :global(.coaches-hero .hero-content h1) {
+    font-size: 1.5rem !important;
     font-weight: 800 !important;
     margin-bottom: 1rem !important;
     color: white !important;
@@ -163,12 +163,13 @@
     line-height: 1.2 !important;
   }
 
-  :global(.hero-content p) {
+  .coaches-page :global(.coaches-hero .hero-content p) {
     font-size: 2.5rem !important;
     margin-bottom: 0.5rem !important;
     padding-top: 2rem !important;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7) !important;
     opacity: 0.9;
+    color: white !important;
   }
 
   .main-content {
@@ -309,11 +310,11 @@
 
   /* Responsive */
   @media (max-width: 768px) {
-    :global(.hero-content h1) {
+    .coaches-page :global(.coaches-hero .hero-content h1) {
       font-size: 2.5rem !important;
     }
 
-    :global(.hero-content p) {
+    .coaches-page :global(.coaches-hero .hero-content p) {
       font-size: 1.5rem !important;
       padding-top: 1rem !important;
     }
@@ -333,26 +334,14 @@
     .coaches-grid {
       grid-template-columns: 1fr;
     }
-
-    .coach-image-wrapper {
-      height: 350px;
-    }
-
-    .intro-section h2 {
-      font-size: 2rem;
-    }
-
-    .intro-section p {
-      font-size: 1.1rem;
-    }
   }
 
   @media (min-width: 769px) and (max-width: 1024px) {
-    :global(.hero-content h1) {
+    .coaches-page :global(.coaches-hero .hero-content h1) {
       font-size: 3.5rem !important;
     }
 
-    :global(.hero-content p) {
+    .coaches-page :global(.coaches-hero .hero-content p) {
       font-size: 2rem !important;
     }
 

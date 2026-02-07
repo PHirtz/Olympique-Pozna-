@@ -35,6 +35,7 @@ if (isProduction) {
 // Middlewares
 app.use(helmet({
   crossOriginResourcePolicy: { policy: "cross-origin" },
+  crossOriginEmbedderPolicy: false,
   contentSecurityPolicy: false
 }));
 
@@ -67,9 +68,10 @@ app.options('*', cors());
 app.use(morgan('dev'));
 
 // ========================================
-// ⚠️ NE PLUS UTILISER express.json() et express.urlencoded() GLOBALEMENT
-// Multer va gérer le parsing pour les routes avec fichiers
+// BODY PARSERS - Maintenant nécessaire pour base64
 // ========================================
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 // ========== SERVIR LES FICHIERS STATIQUES ==========
 

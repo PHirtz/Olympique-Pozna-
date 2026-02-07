@@ -61,8 +61,8 @@
       players = playersResponse.data?.players || [];
       totalPlayers = playersResponse.data?.total || 0;
       stats.users = totalPlayers;
-      console.log('🔍 totalPlayers:', totalPlayers); // 👈 AJOUTE CE LOG
-      console.log('🔍 stats.users:', stats.users); // 👈 AJOUTE CE LOG
+      console.log('🔍 totalPlayers:', totalPlayers);
+      console.log('🔍 stats.users:', stats.users);
       
       // Charger le nombre d'équipes
       const teamsCountResponse = await adminTeams.getCount();

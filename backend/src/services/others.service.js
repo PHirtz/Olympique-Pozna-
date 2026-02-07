@@ -263,20 +263,23 @@ class PartnerService {
   }
 
   async getAllPartners(filters = {}) {
+    console.log('🔍 getAllPartners appelé avec:', filters);
     const { category, isActive, page = 1, limit = 20 } = filters;
     const offset = (page - 1) * limit;
-
+    
     const where = {};
     if (category) where.category = category;
     if (isActive !== undefined) where.isActive = isActive;
-
+    
+    console.log('🔍 WHERE:', where);
+    
     const { count, rows } = await Partner.findAndCountAll({
       where,
       limit,
       offset,
-      order: [['displayOrder', 'ASC'], ['createdAt', 'DESC']]
+      order: [['display_order', 'ASC'], ['created_at', 'DESC']]
     });
-
+    
     return {
       partners: rows,
       pagination: {

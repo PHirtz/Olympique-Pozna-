@@ -11,8 +11,6 @@
   let loading = true;
   let error = null;
 
-  const academyCategories = ['u11', 'u13', 'u15', 'u17', 'u19'];
-
   onMount(async () => {
     await loadAcademyTeams();
   });
@@ -25,9 +23,11 @@
       const response = await teamsApi.getAllTeams({ isActive: true });
       
       if (response.success && response.data?.teams) {
-        teams = response.data.teams.filter(team => 
-          academyCategories.includes(team.category.toLowerCase())
-        );
+        // Exclure uniquement les équipes seniors (bleus et dames)
+      teams = response.data.teams.filter(team => {
+        const cat = team.category.toLowerCase();
+        return !cat.includes('seniors') && !cat.includes('dames') && !cat.includes('bleus');
+      });
       }
     } catch (err) {
       console.error('❌ Erreur chargement académie:', err);
@@ -93,7 +93,6 @@
                 
                 <div class="team-info">
                   <h3>{team.name}</h3>
-                  <p class="team-category">{team.category.toUpperCase()}</p>
                   {#if team.description}
                     <p class="team-description">{team.description}</p>
                   {/if}
@@ -250,20 +249,13 @@
     font-weight: 700;
   }
 
-  .team-category {
+  .team-description {
     font-size: 0.9rem;
     font-weight: 600;
     color: #c9a961;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin: 0;
-  }
-
-  .team-description {
-    font-size: 0.95rem;
-    color: #666;
-    line-height: 1.5;
-    margin: 0.5rem 0;
   }
 
   .view-profile {

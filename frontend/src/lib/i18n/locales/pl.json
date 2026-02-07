@@ -58,9 +58,9 @@
   },
 
   "hero": {
-    "title": "Witamy na stronie Olympique Poznań",
-    "subtitle": "Klub piłkarski Poznania",
-    "description": "Pasja i dzielenie się to nasz motor"
+    "title": "Bienvenue na stronie Olympique Poznań",
+    "subtitle": "Klub piłkarski z Poznania",
+    "description": "Pasja, rozwój i wspólnota"
   },
 
   "facebook": {
@@ -110,25 +110,29 @@
       "men": "Seniorzy Mężczyźni"
     },
     "position": "Pozycja",
-    "distinctions": "Korona",
+          "positions": {
+          "goalkeeper": "Bramkarz",
+          "defender": "Obrońca",
+          "midfielder": "Pomocnik",
+          "forward": "Napastnik",
+          "wingback": "Wahadłowy"
+      },
+    "distinctions": "Wyróżnienia",
     "ladies": "Les Dames",
     "ladies-subtitle": "Reprezentacja kobiet Olympique Poznań",
     "blues": "Les Bleus",
     "blues-subtitle": "Męska drużyna Olympique Poznań",
     "giroud": "Olivier Giroud (2010/2011)",
-    "mbappe": "Kylian Mbappé (2011)",
+    "camavinga": "Eduardo Camavinga (2011)",
+    "saliba": "William Saliba (2015/2016)",
+    "dembele": "Ousmane Dembélé (2017/2018)",
+    "mbappe": "Kylian Mbappé (2012)",
     "doue": {
       "labels": {
         "position": "Pozycja",
         "distinctions": "Wyróżnienia"
       },
       "title": "Désiré Doué (2012)",
-      "positions": {
-        "pomocnik": "Pomocnik",
-        "wahadlowy": "Wahadłowy",
-        "napastnik": "Napastnik",
-        "bramkarz": "Bramkarz"
-      },
       "players": {
         "10": {
           "firstName": "Oscar",
@@ -211,10 +215,10 @@
     },
     "griezmann": "Antoine Griezmann (2013)",
     "coman": "Kingsley Coman (2014)",
-    "diani": "Kadidiatou Diani (Junior)",
-    "renard": "Wendie Renard (Trampkarki)",
-    "lesommer": "Eugénie Le Sommer (Mlodziczki)",
-    "henry": "Amandine Henry (Orliczki)"
+    "diani": "Kadidiatou Diani (2009-2012)",
+    "renard": "Wendie Renard (2013/2014)",
+    "lesommer": "Eugénie Le Sommer (2014/2015)",
+    "henry": "Amandine Henry (2016/2018)"
   },
 
   "auth": {
@@ -300,11 +304,11 @@
   },
 
   "camps": {
-    "title": "Obóz Olimpijski - Olympique Poznań",
+    "title": "Le Camp Olympique – nasze obozy piłkarskie",
     "metaDescription": "Dołącz do Obozu Olimpijskiego Poznań i przeżyj niezapomniane doświadczenie piłkarskie! Intensywne treningi, warsztaty techniczne i gwarantowana zabawa.",
     "hero": {
       "title": "Obóz Olimpijski",
-      "subtitle": "Dołącz do nas i przeżyj niezapomniane doświadczenie piłkarskie!"
+      "subtitle": "Wykwalifikowana kadra, świetne lokalizacje, niezapomniane wakacje"
     },
     "intro": {
       "text": "Obóz Olimpijski to wyjątkowa okazja dla młodych pasjonatów piłki nożnej do zanurzenia się w świecie futbolu. Niezależnie od tego, czy jesteś początkującym, czy doświadczonym zawodnikiem, nasz obóz został zaprojektowany tak, aby zapewnić stymulujące i zabawne środowisko edukacyjne."
@@ -337,7 +341,7 @@
       "programDescription": [
         "⚽ 3 codzienne treningi: sparingi, gry, integracja",
         "🏨 Wygodne zakwaterowanie z wyżywieniem",
-        "🏰 Wycieczki kulturalne: Wrocław i Drazogiszyn",
+        "🏰 Wycieczki kulturalne",
         "🎾 Zajęcia: Siłownia, plac zabaw, ping pong, mini zoo",
         "⚽ Turnieje FIFA + Wyjazd do Aquaparku",
         "🎓 Profesjonalna opieka certyfikowanych trenerów"
@@ -360,7 +364,7 @@
     "metaDescription": "Poznaj historię i wartości Olympique Poznań, klubu piłkarskiego szkolącego w sercu Poznania",
     "hero": {
       "title": "Olympique Poznań",
-      "subtitle": "Więcej niż klub, szkoła życia"
+      "subtitle": "Pasja, rozwój i wspólnota"
     },
     "intro": {
       "text": "Położony w sercu dynamicznego miasta Poznań, Olympique Poznań to znacznie więcej niż zwykły klub piłkarski: to prawdziwa szkoła życia, miejsce, w którym spotykają się pasja, szkolenie i duch zespołowy, aby kształtować talenty przyszłości."
@@ -392,13 +396,13 @@
       },
       "coaches": {
         "title": "Zespół oddanych trenerów",
-        "text1": "Opiekę zapewnia zespół wykwalifikowanych trenerów, z których niektórzy posiadają uznane certyfikaty, takie jak UEFA C. Ich podejście pedagogiczne, połączone z praktycznym doświadczeniem, gwarantuje stymulujące i życzliwe środowisko nauki.",
-        "text2": "Każdy trener wnosi swój osobisty styl, przyczyniając się do stworzenia rodzinnej i motywującej atmosfery."
+        "text1": "Nad uczestnikami czuwa wykwalifikowana kadra trenerska Olympique Poznań. Wszyscy nasi trenerzy posiadają licencje UEFA A, UEFA B lub UEFA C, a także dyplomy animatorów piłki nożnej oraz doświadczenie zdobywane podczas staży i współpracy z renomowanymi klubami. W skład sztabu wchodzą również trenerzy wyspecjalizowani w przygotowaniu motorycznym, a także dwóch trenerów bramkarzy, którzy zapewniają indywidualną pracę na najwyższym poziomie.",
+        "text2": "Nasze motto to: „rozwój indywidualny każdej jednostki w drużynie” – dlatego każdy zawodnik otrzymuje wsparcie dopasowane do swojego poziomu, potrzeb i potencjału."
       },
       "atmosphere": {
         "title": "Przyjazna i integracyjna atmosfera",
-        "text1": "Olympique Poznań wyróżnia się ciepłą i integracyjną atmosferą. Klub przyjmuje zawodników z różnych środowisk, promując różnorodność i wzajemną pomoc. Wartości szacunku, solidarności i fair play są sednem każdego treningu i zawodów.",
-        "text2": "Ta filozofia tworzy silne poczucie przynależności, w którym każdy członek czuje się doceniony i wspierany."
+        "text1": "Olympique Poznań to klub otwarty na wszystkich. Tworzymy środowisko oparte na szacunku, współpracy i fair play, w którym każdy może czuć się pewnie i rozwijać swoją pasję do piłki.",
+        "text2": "Naszą siłą jest różnorodność: w klubie jest około 15 narodowości, a blisko połowę społeczności stanowią dziewczęta i kobiety. Wiele naszych zajęć ma charakter międzyrocznikowy oraz mieszany (dziewczęta i chłopcy) – po to, aby wzmacniać integrację, budować relacje i prawdziwego ducha wspólnoty."
       }
     },
     "community": {

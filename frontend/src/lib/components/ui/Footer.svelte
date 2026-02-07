@@ -434,8 +434,8 @@
   }
 
   /* ========================================
-     DESKTOP (768px+)
-     ======================================== */
+    DESKTOP (768px+)
+    ======================================== */
 
   @media (min-width: 768px) {
     .footer-container {
@@ -445,7 +445,8 @@
 
     .footer-bottom-container {
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: center;
+      align-items: center;
       padding: 0 2rem;
     }
   }

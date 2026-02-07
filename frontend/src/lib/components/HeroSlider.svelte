@@ -161,6 +161,7 @@
     margin-bottom: 1.5rem;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
     animation: fadeInUp 0.8s ease-out;
+    color: white;
   }
 
   .hero-subtitle {

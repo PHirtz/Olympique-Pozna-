@@ -34,6 +34,7 @@
     nationality: 'Poland',
     nationalityPl: 'Polska',
     photoUrl: '',
+    photoBase64: null,
     distinction1: '',
     distinction2: '',
     distinction3: '',
@@ -127,9 +128,8 @@
   }
 
   // ======================================
-  // GESTION FICHIER
+  // GESTION FICHIER - MODIFIÉ
   // ======================================
-
   function handlePhotoChange(event) {
     const file = event.target.files[0];
     if (!file) return;
@@ -139,8 +139,8 @@
       return;
     }
 
-    if (file.size > 10 * 1024 * 1024) {
-      errors.photo = 'L\'image ne doit pas dépasser 10MB';
+    if (file.size > 15 * 1024 * 1024) {
+      errors.photo = 'L\'image ne doit pas dépasser 15MB';
       return;
     }
 
@@ -150,6 +150,7 @@
     const reader = new FileReader();
     reader.onload = (e) => {
       photoPreview = e.target.result;
+      formData.photoBase64 = e.target.result;
     };
     reader.readAsDataURL(file);
   }
@@ -157,6 +158,7 @@
   function removePhoto() {
     photoFile = null;
     photoPreview = null;
+    formData.photoBase64 = null;
     errors.photo = null;
     
     const fileInput = document.getElementById('photo');
@@ -252,28 +254,36 @@
     try {
       saving = true;
 
-      const data = new FormData();
-      
-      Object.entries(formData).forEach(([key, value]) => {
-        if (key !== 'photoUrl') {
-          data.append(key, value || '');
-        }
-      });
+      let requestData;
 
-      // Gestion de la photo selon le mode
-      if (uploadMode === 'file' && photoFile) {
-        data.append('photo', photoFile);
-      } else if (uploadMode === 'url' && formData.photoUrl) {
-        data.append('photoUrl', formData.photoUrl);
+      // Si mode FILE avec base64 → envoyer en JSON
+      if (uploadMode === 'file' && formData.photoBase64) {
+        const payload = { ...formData };
+        delete payload.photoUrl; // Retirer photoUrl
+        
+        requestData = payload; // ← PAS DE JSON.stringify !
+        
+      } else {
+        // Sinon → envoyer en FormData (pour photoUrl)
+        const data = new FormData();
+        Object.entries(formData).forEach(([key, value]) => {
+          if (key !== 'photoUrl' && key !== 'photoBase64') {
+            data.append(key, value || '');
+          }
+        });
+        
+        if (uploadMode === 'url' && formData.photoUrl) {
+          data.append('photoUrl', formData.photoUrl);
+        }
+        
+        requestData = data;
       }
 
       // Debug
-      console.log('📤 Envoi FormData:');
-      for (let [key, value] of data.entries()) {
-        console.log(`  ${key}:`, value);
-      }
+      console.log('📤 Mode:', uploadMode);
+      console.log('📤 Type:', uploadMode === 'file' && formData.photoBase64 ? 'JSON' : 'FormData');
 
-      await adminPlayers.create(data);
+      await adminPlayers.create(requestData);
       alert('Joueur créé avec succès !');
       goto('/admin/');
     } catch (error) {
@@ -370,7 +380,7 @@
             on:change={handlePhotoChange}
             style="display: none;"
           />
-          <p class="help-text">JPEG, PNG, GIF, WebP - Max 10MB</p>
+          <p class="help-text">JPEG, PNG, GIF, WebP - Max 15MB</p>
           {#if errors.photo}
             <span class="error-text">{errors.photo}</span>
           {/if}

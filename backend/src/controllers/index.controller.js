@@ -391,32 +391,37 @@ class GalleryController {
 class PartnerController {
   async create(req, res) {
     try {
+      console.log('🔍 req.body:', req.body);
+      console.log('🔍 req.file:', req.file);
+
+      // Construction de partnerData SANS logoPath initial
       const partnerData = {
         name: req.body.name,
         category: req.body.category,
-        website_url: req.body.websiteUrl || null,
         description: req.body.description_fr || null,
-        description_en: req.body.description_en || null, // ← Ajoute
-        description_pl: req.body.description_pl || null,
-        display_order: parseInt(req.body.displayOrder) || 0,
-        is_active: req.body.isActive === 'true' || req.body.isActive === true,
+        descriptionEn: req.body.description_en || null,
+        descriptionPl: req.body.description_pl || null,
+        websiteUrl: req.body.website_url || null,
+        displayOrder: Number(req.body.display_order) || 0,
+        isActive: req.body.is_active === 'true'
       };
 
       // Gestion du logo selon le mode
       if (req.file) {
         // Fichier uploadé via multer
-        partnerData.logo_path = `/uploads/sponsors/${req.file.filename}`;
-        partnerData.logo_url = null;
+        partnerData.logoPath = `/uploads/sponsors/${req.file.filename}`;
+        partnerData.logoUrl = null;
       } else if (req.body.logoUrl) {
         // URL externe
-        partnerData.logo_url = req.body.logoUrl;
-        partnerData.logo_path = null;
+        partnerData.logoUrl = req.body.logoUrl;
+        partnerData.logoPath = null;
       } else if (req.body.logoPath) {
-        // Chemin local
-        partnerData.logo_path = req.body.logoPath;
-        partnerData.logo_url = null;
+        // Chemin local existant
+        partnerData.logoPath = req.body.logoPath;
+        partnerData.logoUrl = null;
       }
 
+      console.log('📝 partnerData:', partnerData);
       const partner = await partnerService.createPartner(partnerData);
       res.status(201).json({ 
         success: true, 
@@ -448,7 +453,7 @@ class PartnerController {
         category: partner.category,
         websiteUrl: partner.website_url,
         description_fr: partner.description,
-        description_en: partner.description_en, // ← Ajoute
+        description_en: partner.description_en,
         description_pl: partner.description_pl,
         logoUrl: partner.logo_url,
         logoPath: partner.logo_path,
@@ -464,36 +469,40 @@ class PartnerController {
     }
   }
 
-
   async update(req, res) {
     try {
+      console.log('🔍 UPDATE - req.body:', req.body);
+      console.log('🔍 UPDATE - req.file:', req.file);
+
+      // ✅ Construction de partnerData SANS logoPath initial
       const partnerData = {
         name: req.body.name,
         category: req.body.category,
-        website_url: req.body.websiteUrl || null,
         description: req.body.description_fr || null,
-        description_en: req.body.description_en || null, // ← Ajoute
-        description_pl: req.body.description_pl || null,
-        display_order: parseInt(req.body.displayOrder) || 0,
-        is_active: req.body.isActive === 'true' || req.body.isActive === true,
+        descriptionEn: req.body.description_en || null,
+        descriptionPl: req.body.description_pl || null,
+        websiteUrl: req.body.website_url || null,
+        displayOrder: Number(req.body.display_order) || 0,
+        isActive: req.body.is_active === 'true'
       };
 
-      // Gestion du logo selon le mode
+      // ✅ Gestion du logo selon le mode
       if (req.file) {
         // Nouveau fichier uploadé
-        partnerData.logo_path = `/uploads/sponsors/${req.file.filename}`;
-        partnerData.logo_url = null;
+        partnerData.logoPath = `/uploads/sponsors/${req.file.filename}`;
+        partnerData.logoUrl = null;
       } else if (req.body.logoUrl) {
         // URL externe
-        partnerData.logo_url = req.body.logoUrl;
-        partnerData.logo_path = null;
+        partnerData.logoUrl = req.body.logoUrl;
+        partnerData.logoPath = null;
       } else if (req.body.logoPath) {
-        // Chemin local
-        partnerData.logo_path = req.body.logoPath;
-        partnerData.logo_url = null;
+        // Chemin local existant
+        partnerData.logoPath = req.body.logoPath;
+        partnerData.logoUrl = null;
       }
       // Si rien n'est fourni, on garde l'existant (le service gère ça)
 
+      console.log('📝 UPDATE - partnerData:', partnerData);
       const partner = await partnerService.updatePartner(req.params.id, partnerData);
       res.status(200).json({ 
         success: true, 

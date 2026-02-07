@@ -12,18 +12,18 @@ export function getById(id) {
 }
 
 // Créer un joueur
-export function create(formData) {
+export function create(data) {
   return apiRequest('/players/admin', {
     method: 'POST',
-    body: formData
+    body: data
   });
 }
 
-// Modifier un joueur
-export function update(id, formData) {
+// Modifier un joueur  
+export function update(id, data) {
   return apiRequest(`/players/admin/${id}`, {
     method: 'PUT',
-    body: formData
+    body: data
   });
 }
 

@@ -32,13 +32,6 @@ router.get('/dashboard', (req, res) => {
   });
 });
 
-// ========== PARTNERS (SPONSORS) ==========
-router.post('/partners', validate(partnerCreateSchema), partnerController.create);
-router.get('/partners', partnerController.getAll);
-router.get('/partners/:id', partnerController.getById);
-router.put('/partners/:id', validate(partnerUpdateSchema), partnerController.update);
-router.delete('/partners/:id', partnerController.delete);
-
 // ========== TEAMS ========== 
 router.get('/teams/count', teamController.getCount.bind(teamController));
 router.get('/teams/:id', teamController.getById.bind(teamController));

@@ -40,28 +40,25 @@
 </footer>
 
 <style>
-  /* ========================================
+/* ========================================
      MOBILE FIRST - BASE (320px+)
      ======================================== */
+.footer {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #e8e9ef;
+  padding-top: 3rem;
+}
 
-  .footer {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    color: #e8e9ef;
-    padding-top: 3rem;
-  }
-
-  /* ========================================
+/* ========================================
      SPONSORS GRID - MOBILE FIRST
      ======================================== */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
 
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
-
-  /* ========================================
+/* ========================================
      FOOTER BOTTOM (Copyright)
      ======================================== */
-
   .footer-bottom {
     background: rgba(0, 0, 0, 0.3);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -86,25 +83,19 @@
     margin: 0;
   }
 
-  /* ========================================
+/* ========================================
      TABLET (640px+)
      ======================================== */
+@media (min-width: 640px) {
+}
 
-  @media (min-width: 640px) {
-
-  }
-
-  /* ========================================
+/* ========================================
      DESKTOP (768px+)
      ======================================== */
-
-  @media (min-width: 768px) {
-
-    .footer-bottom-container {
-      flex-direction: row;
-      justify-content: space-between;
-      padding: 0 2rem;
-    }
+@media (min-width: 768px) {
+  .footer-bottom-container {
+    /* Garde juste flex-direction: column pour être sûr du centrage */
+    padding: 0 2rem;
   }
-
+}
 </style>

@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import { partners as partnersAPI } from '$lib/api';
-  import { locale as currentLocale,_ } from 'svelte-i18n';
+  import { locale as currentLocale, _ } from 'svelte-i18n';
   import { get } from 'svelte/store';
   import Navigation2 from '$lib/components/ui/Navigation2.svelte';
   import Footer from '$lib/components/ui/Footer.svelte';
@@ -13,10 +13,14 @@
   let loading = true;
   let error = false;
 
+  // Configuration de l'URL du backend
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
   onMount(async () => {
     try {
       const response = await partnersAPI.getAll({ isActive: true });
       partnersList = response.data?.partners || response.data || [];
+      console.log('📋 Tous les sponsors chargés:', partnersList);
     } catch (err) {
       console.error('Erreur chargement sponsors:', err);
       error = true;
@@ -25,30 +29,63 @@
     }
   });
 
-  // Grouper les sponsors par catégorie
+  // Grouper les sponsors par catégorie (selon la BDD)
   $: sponsorsByCategory = {
     main_sponsor: partnersList.filter(p => p.category === 'main_sponsor'),
-    gold: partnersList.filter(p => p.category === 'gold'),
-    silver: partnersList.filter(p => p.category === 'silver'),
-    bronze: partnersList.filter(p => p.category === 'bronze'),
-    partner: partnersList.filter(p => p.category === 'partner'),
+    official_partner: partnersList.filter(p => p.category === 'official_partner'),
     supplier: partnersList.filter(p => p.category === 'supplier'),
-    institutional: partnersList.filter(p => p.category === 'institutional')
+    media_partner: partnersList.filter(p => p.category === 'media_partner')
   };
 
   const categoryLabels = {
-    main_sponsor: { fr: 'Sponsor Principal', pl: 'Główny Sponsor' },
-    gold: { fr: 'Sponsors Or', pl: 'Złoci Sponsorzy' },
-    silver: { fr: 'Sponsors Argent', pl: 'Srebrni Sponsorzy' },
-    bronze: { fr: 'Sponsors Bronze', pl: 'Brązowi Sponsorzy' },
-    partner: { fr: 'Partenaires', pl: 'Partnerzy' },
-    supplier: { fr: 'Fournisseurs', pl: 'Dostawcy' },
-    institutional: { fr: 'Partenaires Institutionnels', pl: 'Partnerzy Instytucjonalni' }
+    main_sponsor: { 
+      fr: 'Sponsor Principal', 
+      en: 'Main Sponsor',
+      pl: 'Główny Sponsor' 
+    },
+    official_partner: { 
+      fr: 'Partenaires Officiels', 
+      en: 'Official Partners',
+      pl: 'Oficjalni Partnerzy' 
+    },
+    supplier: { 
+      fr: 'Fournisseurs', 
+      en: 'Suppliers',
+      pl: 'Dostawcy' 
+    },
+    media_partner: { 
+      fr: 'Partenaires Médias', 
+      en: 'Media Partners',
+      pl: 'Partnerzy Medialni' 
+    }
   };
 
-  function getCategoryLabel(category) {
-    const locale = get(currentLocale);
+  $: getCategoryLabel = (category) => {
+    const locale = $currentLocale; // ← $currentLocale au lieu de get()
     return categoryLabels[category]?.[locale] || categoryLabels[category]?.fr || category;
+  };
+
+  // Obtenir la bonne description selon la langue
+  $: getDescription = (partner) => {
+    const locale = $currentLocale; // ← Utilise $currentLocale au lieu de get()
+    if (locale === 'pl') return partner.descriptionPl || partner.description || partner.descriptionEn;
+    if (locale === 'en') return partner.descriptionEn || partner.description || partner.descriptionPl;
+    return partner.description || partner.descriptionEn || partner.descriptionPl;
+  };
+
+  // Configuration de l'URL de base (sans /api/)
+  const BASE_URL = import.meta.env.VITE_PUBLIC_URL || 'https://olympiquepoznan.pl';
+
+  // Fonction pour obtenir l'URL complète de l'image
+  function getImageUrl(partner) {
+    const path = partner.logoUrl || partner.logoPath;
+    if (!path) return '/logo.png';
+    
+    if (path.startsWith('http://') || path.startsWith('https://')) {
+      return path;
+    }
+    
+    return `${BASE_URL}${path}`;
   }
 </script>
 
@@ -95,9 +132,9 @@
               <div class="sponsors-grid" class:main-grid={category === 'main_sponsor'}>
                 {#each sponsors as partner (partner.id)}
                   <div class="partner-card" class:main-card={category === 'main_sponsor'}>
-                    {#if partner.websiteUrl}
+                    {#if partner.website_url}
                       <a 
-                        href={partner.websiteUrl} 
+                        href={partner.website_url} 
                         class="partner-link"
                         target="_blank" 
                         rel="noopener noreferrer"
@@ -105,18 +142,16 @@
                       >
                         <div class="partner-logo">
                           <img 
-                            src={partner.logoUrl || partner.logoPath} 
+                            src={getImageUrl(partner)}
                             alt={partner.name}
                             loading="lazy"
                           />
                         </div>
                         <div class="partner-info">
                           <h3>{partner.name}</h3>
-                          {#if partner.description || partner.descriptionPl}
+                          {#if getDescription(partner)}
                             <p class="partner-description">
-                              {get(currentLocale) === 'pl' 
-                                ? (partner.descriptionPl || partner.description) 
-                                : partner.description}
+                              {getDescription(partner)}
                             </p>
                           {/if}
                         </div>
@@ -125,18 +160,16 @@
                       <div class="partner-link no-link">
                         <div class="partner-logo">
                           <img 
-                            src={partner.logoUrl || partner.logoPath} 
+                            src={getImageUrl(partner)}
                             alt={partner.name}
                             loading="lazy"
                           />
                         </div>
                         <div class="partner-info">
                           <h3>{partner.name}</h3>
-                          {#if partner.description || partner.descriptionPl}
+                          {#if getDescription(partner)}
                             <p class="partner-description">
-                              {get(currentLocale) === 'pl' 
-                                ? (partner.descriptionPl || partner.description) 
-                                : partner.description}
+                              {getDescription(partner)}
                             </p>
                           {/if}
                         </div>
@@ -145,7 +178,6 @@
                   </div>
                 {/each}
               </div>
-              
             </div>
           {/if}
         {/each}
@@ -162,6 +194,7 @@
 </div>
 
 <Footer />
+
 <style>
   /* ========================================
      MOBILE FIRST - Base (320px+)
@@ -170,29 +203,13 @@
   .partners-page {
     min-height: 100vh;
   }
-  /* Hero */
+
   /* Hero Section */
   .hero-partners {
     background: linear-gradient(135deg, #1a4d7a 0%, #0f2d4a 100%);
     color: white;
     padding: 8rem 2rem 4rem;
     text-align: center;
-  }
-
-  .hero-content h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  }
-
-  .hero-content h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   }
 
   .hero-content h1 {
@@ -251,7 +268,7 @@
 
   .category-title {
     font-size: 1.5rem;
-    color: #f8f9fa;
+    color: #1a4d7a;
     margin-bottom: 2rem;
     text-align: center;
     position: relative;

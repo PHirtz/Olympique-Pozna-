@@ -49,7 +49,6 @@
       </div>
       <div class="hero-content">
         <h1>{$locale === 'pl' && team.namePl ? team.namePl : team.name}</h1>
-        <p class="team-category">{team.category.toUpperCase()} • {team.season}</p>
         {#if team.description || team.descriptionPl}
           <p class="team-description">
             {$locale === 'pl' && team.descriptionPl ? team.descriptionPl : team.description}
@@ -171,20 +170,12 @@
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
   }
 
-  .team-category {
+  .team-description {
     font-size: 1.1rem;
     font-weight: 600;
     color: rgba(255, 255, 255, 0.9);
     margin-bottom: 1rem;
     letter-spacing: 1px;
-  }
-
-  .team-description {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.85);
-    max-width: 600px;
-    margin: 0 auto;
-    line-height: 1.6;
   }
 
   .main-content {

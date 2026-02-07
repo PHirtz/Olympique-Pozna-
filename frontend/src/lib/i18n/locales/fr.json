@@ -20,25 +20,29 @@
       "men": "Seniors Hommes"
     },
     "position":"Position",
-    "disctinctions" : "Distinctions",
+    "positions": {
+      "goalkeeper": "Gardien",
+      "defender": "Défenseur",
+      "midfielder": "Milieu",
+      "forward": "Attaquant",
+      "wingback": "Piston"
+    },
+    "distinctions": "Distinctions",
     "ladies": "Les Dames",
     "ladies-subtitle": "L'équipe féminine d'Olympique Poznań",
     "blues": "Les Bleus",
     "blues-subtitle": "L'équipe masculine d'Olympique Poznań",
     "giroud": "Olivier Giroud (2010/2011)",
-    "mbappe": "Kylian Mbappé (2011)",
+    "camavinga": "Eduardo Camavinga (2011)",
+    "saliba": "William Saliba (2015/2016)",
+    "dembele": "Ousmane Dembélé (2017/2018)",
+    "mbappe": "Kylian Mbappé (2012)",
     "doue": {
       "labels": {
         "position": "Position",
         "distinctions": "Distinctions"
       },
       "title": "Désiré Doué (2012)",
-      "positions": {
-        "pomocnik": "Milieu de terrain",
-        "wahadlowy": "Ailier",
-        "napastnik": "Attaquant",
-        "bramkarz": "Gardien"
-      },
       "players": {
         "10": {
           "firstName": "Oscar",
@@ -121,10 +125,10 @@
     },
     "griezmann": "Antoine Griezmann (2013)",
     "coman": "Kingsley Coman (2014)",
-    "diani": "Kadidiatou Diani (Junior)",
-    "renard": "Wendie Renard (Trampkarki)",
-    "lesommer": "Eugénie Le Sommer (Mlodziczki)",
-    "henry": "Amandine Henry (Orliczki)"
+    "diani": "Kadidiatou Diani (2009-2012)",
+    "renard": "Wendie Renard (2013/2014)",
+    "lesommer": "Eugénie Le Sommer (2014/2015)",
+    "henry": "Amandine Henry (2016/2018)"
   },
 
   "nav": {
@@ -154,11 +158,11 @@
   },
 
   "camps": {
-    "title": "Camp Olympique - Olympique Poznań",
+    "title": "Le Camp Olympique – nos stages de football",
     "metaDescription": "Rejoignez le Camp Olympique de Poznań pour une expérience footballistique inoubliable ! Entraînements intensifs, ateliers techniques et fun garantis.",
     "hero": {
       "title": "Camp Olympique",
-      "subtitle": "Rejoignez-nous pour une expérience footballistique inoubliable !"
+      "subtitle": "Un staff qualifié, des lieux au top, des vacances inoubliables"
     },
     "intro": {
       "text": "Le Camp Olympique est une opportunité unique pour les jeunes passionnés de football de vivre une expérience immersive dans le monde du football. Que vous soyez débutant ou joueur confirmé, notre camp est conçu pour offrir un environnement d'apprentissage stimulant et amusant."
@@ -191,7 +195,7 @@
       "programDescription": [
         "⚽ 3 entraînements quotidiens : sparring, jeux, intégration",
         "🏨 Hébergement confortable avec repas inclus",
-        "🏰 Visites culturelles : Wrocław et Drazogiszyn",
+        "🏰 Visites culturelles",
         "🎾 Activités : Salle de sport, aire de jeux, ping-pong, mini zoo",
         "⚽ Tournois FIFA + Sortie Aquapark",
         "🎓 Encadrement professionnel par nos entraîneurs diplômés"
@@ -242,9 +246,9 @@
   },
 
   "hero": {
-    "title": "Bienvenue sur le site d'Olympique Poznań",
-    "subtitle": "Club de football de Poznań",
-    "description": "Passion et partage sont nos moteurs"
+    "title": "Bienvenue sur le site de l’Olympique Poznań",
+    "subtitle": "Club de football au cœur de Poznań",
+    "description": "Passion, développement et communauté"
   },
 
   "facebook": {
@@ -360,7 +364,7 @@
     "metaDescription": "Découvrez l'histoire et les valeurs d'Olympique Poznań, club de football formateur au cœur de Poznań",
     "hero": {
       "title": "Olympique Poznań",
-      "subtitle": "Plus qu'un club, une école de vie"
+      "subtitle": "Passion, développement et communauté"
     },
     "intro": {
       "text": "Situé au cœur de la dynamique ville de Poznań, Olympique Poznań est bien plus qu'un simple club de football : c'est une véritable école de vie, un lieu où la passion, la formation et l'esprit d'équipe se rencontrent pour façonner les talents de demain."
@@ -391,14 +395,14 @@
         "text2": "Les programmes de formation sont conçus pour répondre aux besoins spécifiques de chaque groupe d'âge, favorisant ainsi une progression harmonieuse et adaptée."
       },
       "coaches": {
-        "title": "Une équipe d'entraîneurs dévoués",
-        "text1": "L'encadrement est assuré par une équipe d'entraîneurs qualifiés, dont certains possèdent des certifications reconnues telles que l'UEFA C. Leur approche pédagogique, combinée à une expérience pratique, garantit un environnement d'apprentissage stimulant et bienveillant.",
-        "text2": "Chaque entraîneur apporte sa touche personnelle, contribuant à créer une atmosphère familiale et motivante."
+        "title": "Une équipe d’entraîneurs engagés",
+        "text1": "Les participants sont encadrés par une équipe d’entraîneurs qualifiés d’Olympique Poznań. Tous nos coachs sont titulaires de licences UEFA A, UEFA B ou UEFA C, et possèdent également des diplômes d’animateurs de football, ainsi qu’une expérience acquise lors de stages et de collaborations avec des clubs renommés. Notre staff comprend également des entraîneurs spécialisés en préparation physique, ainsi que deux entraîneurs de gardiens, garantissant un suivi individuel de haut niveau.",
+        "text2": "Notre devise est : « le développement individuel de chaque joueur au sein du collectif » — car chaque participant bénéficie d’un accompagnement adapté à son niveau, ses besoins et son potentiel."
       },
       "atmosphere": {
-        "title": "Une ambiance conviviale et inclusive",
-        "text1": "Olympique Poznań se distingue par son ambiance chaleureuse et inclusive. Le club accueille des joueurs de tous horizons, favorisant la diversité et l'entraide. Les valeurs de respect, de solidarité et de fair-play sont au cœur de chaque entraînement et compétition.",
-        "text2": "Cette philosophie crée un sentiment d'appartenance fort, où chaque membre se sent valorisé et soutenu."
+        "title": "Une atmosphère conviviale et inclusive",
+        "text1": "Olympique Poznań est un club ouvert et accueillant. Nous cultivons un cadre basé sur le respect, l’entraide et le fair-play, afin que chacun puisse évoluer en confiance et prendre du plaisir.",
+        "text2": "Notre force, c’est la diversité : le club rassemble une quinzaine de nationalités, et près de la moitié de nos membres sont des filles et des femmes. Une grande partie de nos séances sont inter-catégories (en âges) et mixtes (filles et garçons), pour renforcer l’intégration et l’esprit de communauté."
       }
     },
     "community": {

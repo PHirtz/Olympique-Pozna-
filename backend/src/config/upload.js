@@ -36,10 +36,26 @@ console.log(`📁 Dossier uploads: ${uploadsDir}`);
 // ==============================================
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const uploadType = req.baseUrl.includes('sponsors') ? 'sponsors' : 'players';
+    // Détecter le type selon l'URL complète
+    const fullPath = req.originalUrl || req.url || req.baseUrl;
+    
+    let uploadType = 'players'; // Par défaut
+    
+    if (fullPath.includes('partner')) { 
+      uploadType = 'sponsors';
+    }
+    
     const destination = path.join(uploadsDir, uploadType);
+    
+    console.log('🔍 Upload destination:', {
+      fullPath,
+      uploadType,
+      destination
+    });
+    
     cb(null, destination);
   },
+  
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
     const ext = path.extname(file.originalname);
@@ -79,7 +95,7 @@ export const upload = multer({
   storage: storage,
   fileFilter: fileFilter,
   limits: {
-    fileSize: 10 * 1024 * 1024, // 10MB max
+    fileSize: 1024 * 1024 * 15, // 15MB max
   }
 });
 

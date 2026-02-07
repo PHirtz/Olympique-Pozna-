@@ -1,5 +1,5 @@
 <script>
-  import { _,json } from 'svelte-i18n';
+  import { _, json } from 'svelte-i18n';
   import { Send, Calendar, MapPin, Users, Phone, Mail } from 'lucide-svelte';
   import { sendContactForm } from '$lib/api/contact';
   import Navigation2 from '$lib/components/ui/Navigation2.svelte';
@@ -52,13 +52,11 @@
     success = false;
 
     try {
-      // Construction du sujet selon la catégorie
       const subjectMap = {
         'inscription': 'Inscription Camp Olympique - Février 2026',
         'information': 'Demande d\'information - Camp Olympique'
       };
 
-      // Construction du message avec l'âge si fourni
       let fullMessage = formData.message;
       if (formData.age) {
         fullMessage = `Âge du participant: ${formData.age} ans\n\n${formData.message}`;
@@ -70,7 +68,7 @@
         email: formData.email,
         phone: formData.phone || undefined,
         subject: subjectMap[formData.category] || 'Demande Camp Olympique',
-        category: formData.category, // Ajout de la catégorie
+        category: formData.category,
         message: fullMessage
       };
 
@@ -79,7 +77,6 @@
       if (response.success) {
         success = true;
         
-        // Reset du formulaire
         formData = {
           firstName: '',
           lastName: '',
@@ -90,15 +87,12 @@
           category: 'inscription'
         };
 
-        // Scroll vers le haut pour voir le message de succès
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
-        // Masquer le message après 8 secondes
         setTimeout(() => {
           success = false;
         }, 8000);
       } else {
-        // Gérer les erreurs de validation du backend
         if (response.errors && Array.isArray(response.errors)) {
           fieldErrors = response.errors.reduce((acc, err) => {
             acc[err.field] = err.message;
@@ -156,6 +150,37 @@
           <h3>{$_('camps.programme.subtitle')}</h3>
           <p><strong>{$_('camps.info.training')}</strong></p>
           <p class="detail">{$_('camps.info.activities')}</p>
+        </div>
+      </div>
+
+      <!-- ✅ NOUVELLE SECTION : Galerie photos du camp -->
+      <div class="photos-grid">
+        <div class="photo-card">
+          <img 
+            src="/2.jpg" 
+            alt="Entraînement au Camp Olympique"
+            on:error={(e) => {
+              e.target.src = '/logo.png';
+            }}
+          />
+        </div>
+        <div class="photo-card">
+          <img 
+            src="/3.jpg" 
+            alt="Activités sportives au camp"
+            on:error={(e) => {
+              e.target.src = '/logo.png';
+            }}
+          />
+        </div>
+        <div class="photo-card">
+          <img 
+            src="/4.jpg" 
+            alt="Hébergement et installations"
+            on:error={(e) => {
+              e.target.src = '/logo.png';
+            }}
+          />
         </div>
       </div>
 
@@ -410,6 +435,35 @@
     color: #666;
   }
 
+  /* ✅ NOUVELLE SECTION : Galerie photos */
+  .photos-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .photo-card {
+    position: relative;
+    overflow: hidden;
+    background: #f8f9fa;
+    border: 2px solid #1a4d7a;
+    border-radius: 0.5rem;
+    aspect-ratio: 4/3;
+  }
+
+  .photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+  }
+
+  .photo-card:hover img {
+    transform: scale(1.05);
+  }
+
   .activities {
     background: #f8f9fa;
     padding: 2rem;
@@ -460,7 +514,6 @@
     color: #c9a961;
   }
 
-  /* Alerts */
   .alert {
     display: flex;
     gap: 1rem;
@@ -560,9 +613,8 @@
     min-height: 120px;
   }
 
-  /* Gestion des erreurs */
   .has-error input,
-  .has-error textarea{
+  .has-error textarea {
     border-color: #ef4444;
   }
   
@@ -654,6 +706,10 @@
 
   @media (min-width: 640px) {
     .info-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .photos-grid {
       grid-template-columns: repeat(3, 1fr);
     }
 

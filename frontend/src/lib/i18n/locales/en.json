@@ -20,25 +20,29 @@
       "men": "Men Seniors"
     },
     "position":"Position",
-    "disctinctions" : "Distinctions",
+          "positions": {
+        "goalkeeper": "Goalkeeper",
+        "defender": "Defender",
+        "midfielder": "Midfielder",
+        "forward": "Forward",
+        "wingback": "Wing-back"
+      },
+    "distinctions": "Distinctions",
     "ladies": "Les Dames",
     "ladies-subtitle": "Olympique Poznań women's team",
     "blues": "Les Bleus",
     "blues-subtitle": "Olympique Poznań men's team",
     "giroud": "Olivier Giroud (2010/2011)",
-    "mbappe": "Kylian Mbappé (2011)",
+    "camavinga": "Eduardo Camavinga (2011)",
+    "saliba": "William Saliba (2015/2016)",
+    "dembele": "Ousmane Dembélé (2017/2018)",
+    "mbappe": "Kylian Mbappé (2012)",
     "doue": {
       "labels": {
         "position": "Position",
         "distinctions": "Distinctions"
       },
       "title": "Désiré Doué (2012)",
-      "positions": {
-        "pomocnik": "Midfielder",
-        "wahadlowy": "Winger",
-        "napastnik": "Forward",
-        "bramkarz": "Goalkeeper"
-      },
       "players": {
         "10": {
           "firstName": "Oscar",
@@ -121,10 +125,10 @@
     },
     "griezmann": "Antoine Griezmann (2013)",
     "coman": "Kingsley Coman (2014)",
-    "diani": "Kadidiatou Diani (Junior)",
-    "renard": "Wendie Renard (Trampkarki)",
-    "lesommer": "Eugénie Le Sommer (Mlodziczki)",
-    "henry": "Amandine Henry (Orliczki)"
+    "diani": "Kadidiatou Diani (2009-2012)",
+    "renard": "Wendie Renard (2013/2014)",
+    "lesommer": "Eugénie Le Sommer (2014/2015)",
+    "henry": "Amandine Henry (2016/2018)"
   },
 
   "nav": {
@@ -154,11 +158,11 @@
   },
 
   "camps": {
-    "title": "Olympic Camp - Olympique Poznań",
+    "title": "Le Camp Olympique – football camps",
     "metaDescription": "Join the Olympique Poznań Camp for an unforgettable football experience! Intensive training, technical workshops and guaranteed fun.",
     "hero": {
       "title": "Olympic Camp",
-      "subtitle": "Join us for an unforgettable football experience!"
+      "subtitle": "Expert coaching staff, great locations, unforgettable holidays"
     },
     "intro": {
       "text": "The Olympic Camp is a unique opportunity for young football enthusiasts to experience an immersive experience in the world of football. Whether you are a beginner or an experienced player, our camp is designed to provide a stimulating and fun learning environment."
@@ -191,7 +195,7 @@
       "programDescription": [
         "⚽ 3 daily training sessions: sparring, games, integration",
         "🏨 Comfortable accommodation with meals included",
-        "🏰 Cultural visits: Wrocław and Drazogiszyn",
+        "🏰 Cultural visits",
         "🎾 Activities: Gym, playground, ping pong, mini zoo",
         "⚽ FIFA tournaments + Aquapark outing",
         "🎓 Professional supervision by our certified coaches"
@@ -243,8 +247,8 @@
 
   "hero": {
     "title": "Welcome to Olympique Poznań",
-    "subtitle": "Poznań Football Club",
-    "description": "Passion and sharing are our driving forces"
+    "subtitle": "The rising football club of Poznań",
+    "description": "Passion, development and community"
   },
 
   "facebook": {
@@ -359,7 +363,7 @@
     "metaDescription": "Discover the history and values of Olympique Poznań, a training football club in the heart of Poznań",
     "hero": {
       "title": "Olympique Poznań",
-      "subtitle": "More than a club, a school of life"
+      "subtitle": "Passion, development and community"
     },
     "intro": {
       "text": "Located in the heart of the dynamic city of Poznań, Olympique Poznań is much more than just a football club: it's a true school of life, a place where passion, training and team spirit come together to shape tomorrow's talents."
@@ -390,14 +394,14 @@
         "text2": "Training programs are designed to meet the specific needs of each age group, thus promoting harmonious and adapted progression."
       },
       "coaches": {
-        "title": "A team of dedicated coaches",
-        "text1": "Supervision is provided by a team of qualified coaches, some of whom hold recognized certifications such as UEFA C. Their pedagogical approach, combined with practical experience, guarantees a stimulating and caring learning environment.",
-        "text2": "Each coach brings their personal touch, contributing to creating a family and motivating atmosphere."
+        "title": "A dedicated coaching team",
+        "text1": "Participants are supervised by the qualified coaching staff of Olympique Poznań. All of our coaches hold UEFA A, UEFA B or UEFA C licences, and also have football coaching/educator qualifications, with experience gained through internships and collaborations with renowned clubs. Our staff also includes specialists in strength & conditioning, as well as two goalkeeping coaches, ensuring high-level individual development.",
+        "text2": "Our motto is: “the individual development of every player within the team” — meaning each participant receives guidance tailored to their level, needs and potential."
       },
       "atmosphere": {
-        "title": "A friendly and inclusive atmosphere",
-        "text1": "Olympique Poznań stands out for its warm and inclusive atmosphere. The club welcomes players from all backgrounds, promoting diversity and mutual support. The values of respect, solidarity and fair play are at the heart of every training session and competition.",
-        "text2": "This philosophy creates a strong sense of belonging, where each member feels valued and supported."
+        "title": "A friendly and inclusive environment",
+        "text1": "Olympique Poznań is an open and welcoming club. We build a culture based on respect, teamwork and fair play, where every player can feel confident and enjoy football.",
+        "text2": "Diversity is one of our strengths: our club represents around 15 nationalities, and nearly half of our members are girls and women. Many of our sessions are mixed-age and mixed-gender (girls and boys), designed to strengthen integration and the true spirit of community."
       }
     },
     "community": {

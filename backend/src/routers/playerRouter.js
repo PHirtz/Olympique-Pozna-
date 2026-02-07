@@ -6,6 +6,8 @@ import { playerController } from '../controllers/player.controller.js';
 
 const router = express.Router();
 
+const jsonParser = express.json({ limit: '50mb' });
+
 // ==============================================
 // VALIDATION MIDDLEWARE
 // ==============================================
@@ -32,10 +34,12 @@ router.get('/admin',
   playerController.getAll.bind(playerController)
 );
 
-// POST /api/players/admin - Créer un joueur (admin)
+// POST /api/players/admin - Créer un joueur
 router.post('/admin',
   authenticateToken,
   requireRole('admin'),
+  jsonParser,
+  playerController.handleBase64Photo.bind(playerController),
   upload.single('photo'),
   playerController.create.bind(playerController)
 );
@@ -49,10 +53,12 @@ router.get('/admin/:id',
   playerController.getById.bind(playerController)
 );
 
-// PUT /api/players/admin/:id - Modifier un joueur (admin)
+// PUT /api/players/admin/:id - Modifier
 router.put('/admin/:id',
   authenticateToken,
   requireRole('admin'),
+  jsonParser, // ← AJOUT : Parser AVANT handleBase64Photo
+  playerController.handleBase64Photo.bind(playerController),
   upload.single('photo'),
   [param('id').isInt()],
   validate,

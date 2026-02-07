@@ -1,10 +1,8 @@
 <script>
   import { onMount } from 'svelte';
   import { _ } from 'svelte-i18n';
-  import { locale } from 'svelte-i18n';
   import FacebookFeed from './FacebookFeed.svelte';
 
-  // Configuration boutique
   const shopImages = [
     {
       src: '../vitrine/Veste1.jpg',
@@ -52,13 +50,13 @@
       src: '../vitrine/ShortBlanc3.png',
       alt: 'Short blanc Olympique Poznań',
       titleKey: 'shop.items.whiteShorts',
-      link: 'https://olympique.pl/products/meskie-spodenki-meczowe-olympique?ownerid=126459513&noProxyRedirect=true&ownerid=126459513'
+      link: 'https://olympique.pl/products/meskie-spodenki-meczowe-olympique'
     },
     {
       src: '../vitrine/ShortBleu4.jpg',
       alt: 'Short bleu Olympique Poznań',
       titleKey: 'shop.items.blueShorts',
-      link: 'https://olympique.pl/products/damskie-spodenki-meczowe-olympique?ownerid=126459513&noProxyRedirect=true&ownerid=126459513'
+      link: 'https://olympique.pl/products/damskie-spodenki-meczowe-olympique'
     },
     {
       src: '../vitrine/sweatfilles.jpg',
@@ -68,23 +66,21 @@
     }
   ];
 
-  // Configuration Facebook
   export let pageUrl = 'https://www.facebook.com/OlympiquePoz';
-  
+
   let currentSlide = 0;
   let interval;
 
   onMount(() => {
     startAutoSlide();
+
     return () => {
-      if (interval) clearInterval(interval);
+      clearInterval(interval);
     };
   });
 
   function startAutoSlide() {
-    interval = setInterval(() => {
-      nextSlide();
-    }, 4000);
+    interval = setInterval(nextSlide, 4000);
   }
 
   function nextSlide() {
@@ -92,7 +88,10 @@
   }
 
   function prevSlide() {
-    currentSlide = currentSlide === 0 ? shopImages.length - 1 : currentSlide - 1;
+    currentSlide =
+      currentSlide === 0
+        ? shopImages.length - 1
+        : currentSlide - 1;
   }
 
   function goToSlide(index) {
@@ -102,371 +101,442 @@
   }
 
   function handleShopClick() {
-    window.open('https://olympique.pl', '_blank', 'noopener,noreferrer');
+    window.open('https://olympique.pl', '_blank');
   }
 
   function handleProductClick(link) {
     if (link) {
-      window.open(link, '_blank', 'noopener,noreferrer');
+      window.open(link, '_blank');
     }
-  }
-
-  function handleFacebookClick() {
-    window.open(pageUrl, '_blank', 'noopener,noreferrer');
   }
 </script>
 
 <section class="combined-section">
+
   <div class="container">
-    <!-- Boutique Section -->
+
+    <!-- SHOP -->
     <div class="shop-column">
+
       <div class="text-content">
         <h2>{$_('shop.banner.title')}</h2>
-        <button class="shop-btn" on:click={handleShopClick}>
+
+        <button
+          class="shop-btn"
+          on:click={handleShopClick}
+        >
           {$_('shop.banner.cta')}
         </button>
       </div>
 
+
       <div class="slider">
-        <div class="slides" style="transform: translateX(-{currentSlide * 100}%)">
+
+        <div
+          class="slides"
+          style="transform: translateX(-{currentSlide * 100}%)"
+        >
+
           {#each shopImages as product}
+
             {#if product.link}
-              <button 
+
+              <button
                 class="slide clickable"
                 on:click={() => handleProductClick(product.link)}
-                aria-label="Voir {$_(product.titleKey)}"
               >
-                <img src={product.src} alt={product.alt} loading="lazy" />
+
+                <img
+                  src={product.src}
+                  alt={product.alt}
+                  loading="lazy"
+                />
+
                 <div class="product-info">
                   <h3>{$_(product.titleKey)}</h3>
-                  <span class="view-product">{$_('shop.viewProduct')}</span>
+                  <span class="view-product">
+                    {$_('shop.viewProduct')}
+                  </span>
                 </div>
+
               </button>
+
             {:else}
+
               <div class="slide">
-                <img src={product.src} alt={product.alt} loading="lazy" />
+
+                <img
+                  src={product.src}
+                  alt={product.alt}
+                  loading="lazy"
+                />
+
                 <div class="product-info">
                   <h3>{$_(product.titleKey)}</h3>
                 </div>
+
               </div>
+
             {/if}
+
           {/each}
+
         </div>
 
-        <button class="nav-btn prev" on:click={prevSlide} aria-label="Produit précédent">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="15 18 9 12 15 6"></polyline>
-          </svg>
+
+        <!-- NAV -->
+
+        <button
+          class="nav-btn prev"
+          on:click={prevSlide}
+        >
+          ‹
         </button>
-        <button class="nav-btn next" on:click={nextSlide} aria-label="Produit suivant">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="9 18 15 12 9 6"></polyline>
-          </svg>
+
+        <button
+          class="nav-btn next"
+          on:click={nextSlide}
+        >
+          ›
         </button>
+
+
+        <!-- INDICATORS -->
 
         <div class="indicators">
-          {#each shopImages as _, index}
+
+          {#each shopImages as _, i}
+
             <button
               class="indicator"
-              class:active={currentSlide === index}
-              on:click={() => goToSlide(index)}
-              aria-label="Voir produit {index + 1}"
+              class:active={currentSlide === i}
+              on:click={() => goToSlide(i)}
+              aria-label="Go to slide {i + 1}"
             ></button>
+
           {/each}
+
         </div>
+
       </div>
+
     </div>
 
-    <!-- Facebook Section -->
+
+    <!-- FACEBOOK -->
+
     <div class="facebook-column">
-      <FacebookFeed 
-        pageUrl="https://www.facebook.com/OlympiquePoz" 
-        width={500} 
-        height={650} 
-      />
+
+      <FacebookFeed pageUrl={pageUrl} />
+
     </div>
+
   </div>
+
 </section>
 
+
 <style>
-  /* Mobile First */
-  .combined-section {
-    padding: 3rem 1rem;
-    background: linear-gradient(to bottom, #f8fafc 0%, #ffffff 100%);
-  }
+
+/* BASE */
+
+.combined-section {
+  padding: 3rem 1rem;
+  background: #f8fafc;
+}
+
+.container {
+  max-width: 1400px;
+  margin: auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+
+/* SHOP */
+
+.shop-column {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+
+.text-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+
+.shop-btn {
+  background: #e8ecef;
+  border: 2px solid #1a4d7a;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #0f2d4a;
+  
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.shop-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: #0f2d4a;
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.shop-btn:hover::before {
+  left: 0;
+}
+
+.shop-btn:hover {
+  color: white;
+  border-color: #1a4d7a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.shop-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.slider {
+  height: 750px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: white;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.slides {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s ease;
+}
+
+
+.slide {
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+  background: none;
+  border: none;
+  padding: 0;
+  display: block;
+}
+
+.slide.clickable {
+  cursor: pointer;
+}
+
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+.product-info {
+  position: absolute;
+  bottom: 0;
+  inset-inline: 0;
+
+  padding: 1.5rem;
+  color: white;
+
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0.3) 60%,
+    transparent
+  );
+  
+  transition: background 0.3s ease;
+}
+
+.product-info h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  color: #d32f2f;
+}
+
+
+/* Bouton "Voir le produit" dans les slides cliquables */
+
+.view-product {
+  display: inline-block;
+  margin-top: 1.75rem;
+  margin-bottom: 2rem;
+  padding: 0.625rem 1.25rem;
+  background: white;
+  color: #1a1a1a;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.slide.clickable:hover .view-product {
+  background: #1a4d7a;
+  color: white;
+  transform: translateX(6px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.slide.clickable:hover .product-info {
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.4) 60%,
+    transparent
+  );
+}
+
+
+/* NAV */
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 48px;
+  height: 48px;
+
+  border-radius: 50%;
+  border: none;
+
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: bold;
+  color: #1a1a1a;
+
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+  
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.nav-btn:hover {
+  background: white;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.nav-btn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+
+.prev { left: 1rem; }
+.next { right: 1rem; }
+
+
+/* INDICATORS */
+
+.indicators {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  gap: 0.5rem;
+}
+
+
+.indicator {
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+
+  background: rgba(255, 255, 255, 0.6);
+  
+  transition: all 0.3s ease;
+}
+
+.indicator:hover {
+  background: rgba(255, 255, 255, 0.8);
+  transform: scale(1.2);
+}
+
+
+.indicator.active {
+  width: 26px;
+  border-radius: 6px;
+  background: white;
+}
+
+
+/* FACEBOOK */
+
+.facebook-column {
+  width: 100%;
+}
+
+
+/* DESKTOP */
+
+@media (min-width: 1024px) {
 
   .container {
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
+    flex-direction: row;
+    align-items: flex-start;
   }
 
-  /* Shop Column */
+
   .shop-column {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    width: 100%;
+    flex: 2;
+    min-width: 0;
   }
+
+
+  .facebook-column {
+    flex: 1;
+    min-width: 0;
+  }
+
 
   .text-content {
-    display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    gap: 1.5rem;
-    text-align: center;
-    padding: 1rem;
-  }
-
-  .text-content h2 {
-    font-size: 2rem;
-    color: var(--primary-color);
-    font-weight: bold;
-    margin: 0;
-  }
-
-  .shop-btn {
-    background: var(--primary-color);
-    color: #1a4d7a;
-    border: none;
-    padding: 1rem 2rem;
-    font-size: 1.0625rem;
-    font-weight: 800;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(30, 64, 175, 0.2);
-  }
-
-  .shop-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(30, 64, 175, 0.3);
-    background: var(--primary-color-dark, #1a4d7a);
-    color: white;
-  }
-
-  .slider {
-    position: relative;
-    width: 100%;
-    height: 600px;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 10px 40px rgba(47, 5, 235, 0.264);
-    background: white;
-  }
-
-  .slides {
-    display: flex;
-    height: 100%;
-    transition: transform 0.5s ease-in-out;
-  }
-
-  .slide {
-    min-width: 100%;
-    height: 100%;
-    position: relative;
-    transition: transform 0.3s ease;
-    border: none;
-    padding: 0;
-    background: none;
     text-align: left;
   }
 
-  .slide.clickable {
-    cursor: pointer;
-  }
+}
 
-  .slide.clickable:hover {
-    transform: scale(1.02);
-  }
-
-  .slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .product-info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(45, 42, 42, 0.8), transparent);
-    padding: 2rem 1.5rem 1.5rem;
-    color: white;
-  }
-
-  .product-info h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-    color: rgba(255, 255, 255, 0.66);
-  }
-
-  .view-product {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background: rgba(255, 255, 255, 0.2);
-    border: 2px solid white;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-top: 0.5rem;
-    transition: all 0.3s ease;
-  }
-
-  .slide.clickable:hover .view-product {
-    background: rgb(85, 86, 96);
-    color: var(--primary-color);
-  }
-
-  .nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.95);
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    z-index: 10;
-    color: var(--primary-color);
-  }
-
-  .nav-btn:hover {
-    background: white;
-    transform: translateY(-50%) scale(1.15);
-  }
-
-  .nav-btn.prev {
-    left: 0.5rem;
-  }
-
-  .nav-btn.next {
-    right: 0.5rem;
-  }
-
-  .indicators {
-    position: absolute;
-    bottom: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 0.5rem;
-    z-index: 10;
-  }
-
-  .indicator {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.5);
-    border: 2px solid white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 0;
-  }
-
-  .indicator.active {
-    background: white;
-    width: 28px;
-    border-radius: 5px;
-  }
-
-  .indicator:hover {
-    background: rgba(255, 255, 255, 0.8);
-  }
-
-  /* Tablette (768px+) */
-  @media (min-width: 768px) {
-    .combined-section {
-      padding: 4rem 2rem;
-    }
-
-    .text-content h2 {
-      font-size: 2.5rem;
-    }
-
-    .slider {
-      height: 600px;
-    }
-
-    .product-info h3 {
-      font-size: 1.5rem;
-    }
-
-    .nav-btn {
-      width: 40px;
-      height: 40px;
-    }
-
-    .nav-btn.prev {
-      left: 1rem;
-    }
-
-    .nav-btn.next {
-      right: 1rem;
-    }
-
-  }
-
-  /* Desktop (1024px+) */
-  @media (min-width: 1024px) {
-    .combined-section {
-      padding: 5rem 2rem;
-    }
-
-    .container {
-      flex-direction: row;
-      align-items: flex-start;
-      gap: 2rem;
-    }
-
-    .shop-column {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .text-content {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      text-align: left;
-    }
-
-    .text-content h2 {
-      font-size: 2.5rem;
-    }
-
-    .slider {
-      height: 600px;
-    }
-
-    .facebook-column {
-      flex: 0 0 500px;
-      min-width: 0;
-    }
-  }
-
-  /* Grand Desktop (1200px+) */
-  @media (min-width: 1200px) {
-    .combined-section {
-      padding: 5rem 3rem;
-    }
-
-    .text-content h2 {
-      font-size: 3rem;
-    }
-
-    .slider {
-      height: 650px;
-    }
-  }
 </style>

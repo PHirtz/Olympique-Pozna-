@@ -39,6 +39,10 @@ Team.init(
       type: DataTypes.TEXT,
       allowNull: true
     },
+    descriptionEn: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
     imageUrl: {
       type: DataTypes.STRING(255),
       allowNull: true,
