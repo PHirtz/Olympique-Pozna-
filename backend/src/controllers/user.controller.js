@@ -151,19 +151,19 @@ class UserController {
 
   async login(req, res, next) {
     try {
-      const { username, password } = req.body;
+      const { identifier, password } = req.body; // Change username en identifier
       
-      console.log('🔐 Tentative de connexion:', username);
+      console.log('🔐 Tentative de connexion:', identifier);
       
-      if (!username || !password) {
-        throw new HttpBadRequestError('Nom d\'utilisateur et mot de passe requis');
+      if (!identifier || !password) {
+        throw new HttpBadRequestError('Identifiant et mot de passe requis');
       }
       
-      const user = await userService.getUserByUsername(username);
+      // Cherche par username OU email
+      const user = await userService.getUserByUsernameOrEmail(identifier);
       
-      // VÉRIFIER D'ABORD si user existe
       if (!user) {
-        console.log('❌ Utilisateur non trouvé:', username);
+        console.log('❌ Utilisateur non trouvé:', identifier);
         throw new HttpBadRequestError('Identifiants incorrects');
       }
 

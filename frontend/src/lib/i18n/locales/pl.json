@@ -232,7 +232,9 @@
       "loading": "Logowanie...",
       "error": "Nieprawidłowa nazwa użytkownika lub hasło",
       "noAccount": "Nie masz jeszcze konta?",
-      "createAccount": "Utwórz konto"
+      "createAccount": "Utwórz konto",
+      "identifier": "Login lub Email",
+      "identifierPlaceholder": "Wprowadź swój login lub email"
     },
     "register": {
       "title": "Rejestracja",

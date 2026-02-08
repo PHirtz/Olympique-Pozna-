@@ -375,7 +375,7 @@
   }
 
   .register-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.85);
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
@@ -569,8 +569,8 @@
     }
 
     .logo-home {
-      height: 70px;
-      padding: 0.25rem;
+      height: 50px;
+      padding: 0.5rem;
     }
 
     .logo-op {

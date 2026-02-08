@@ -61,13 +61,13 @@
   };
 
   $: getCategoryLabel = (category) => {
-    const locale = $currentLocale; // ← $currentLocale au lieu de get()
+    const locale = $currentLocale;
     return categoryLabels[category]?.[locale] || categoryLabels[category]?.fr || category;
   };
 
   // Obtenir la bonne description selon la langue
   $: getDescription = (partner) => {
-    const locale = $currentLocale; // ← Utilise $currentLocale au lieu de get()
+    const locale = $currentLocale;
     if (locale === 'pl') return partner.descriptionPl || partner.description || partner.descriptionEn;
     if (locale === 'en') return partner.descriptionEn || partner.description || partner.descriptionPl;
     return partner.description || partner.descriptionEn || partner.descriptionPl;
@@ -132,9 +132,9 @@
               <div class="sponsors-grid" class:main-grid={category === 'main_sponsor'}>
                 {#each sponsors as partner (partner.id)}
                   <div class="partner-card" class:main-card={category === 'main_sponsor'}>
-                    {#if partner.website_url}
+                    {#if partner.websiteUrl}
                       <a 
-                        href={partner.website_url} 
+                        href={partner.websiteUrl} 
                         class="partner-link"
                         target="_blank" 
                         rel="noopener noreferrer"
@@ -193,7 +193,7 @@
   </section>
 </div>
 
-<Footer />
+<Footer {data} />
 
 <style>
   /* ========================================
@@ -328,6 +328,14 @@
     cursor: default;
   }
 
+  .partner-link.no-link:hover {
+    transform: none;
+  }
+
+  .partner-card:has(.partner-link.no-link):hover {
+    transform: none;
+  }
+
   .partner-logo {
     padding: 2rem;
     background: #f8f9fa;
@@ -346,7 +354,7 @@
     transition: transform 0.3s;
   }
 
-  .partner-card:hover .partner-logo img {
+  .partner-card:hover:not(:has(.no-link)) .partner-logo img {
     transform: scale(1.05);
   }
 

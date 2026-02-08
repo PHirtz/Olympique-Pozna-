@@ -16,31 +16,26 @@ export async function register(userData) {
     method: 'POST',
     body: userData,
   });
-  
   console.log('REGISTER RESPONSE', response);
-  
   if (response?.success && response?.data) {
     setLoginUser(response.data.user, response.data.token);
   }
-  
   return response;
 }
 
 /**
  * Connexion utilisateur
- * @param {string} username
+ * @param {string} identifier - Username ou Email
  * @param {string} password
  */
-export async function login(username, password) {
+export async function login(identifier, password) {
   const response = await apiRequest('/users/login', {
     method: 'POST',
-    body: { username, password },
+    body: { identifier, password }, // Envoie identifier au lieu de username
   });
-
   if (response?.success && response?.data) {
     setLoginUser(response.data.user, response.data.token);
   }
-
   return response;
 }
 

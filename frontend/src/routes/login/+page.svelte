@@ -6,7 +6,7 @@
   import { onMount } from 'svelte';
   import { Eye, EyeOff } from 'lucide-svelte';
 
-  let username = '';
+  let identifier = ''; // ✅ Renommé de username en identifier
   let password = '';
   let loading = false;
   let error = '';
@@ -42,7 +42,8 @@
     error = '';
 
     try {
-      const response = await auth.login(username, password);
+      // ✅ Envoie identifier au lieu de username
+      const response = await auth.login(identifier, password);
       if (response.success) {
         const user = auth.getCurrentUser();
         // Rediriger selon le rôle
@@ -110,12 +111,14 @@
 
     <form on:submit={handleLogin}>
       <label>
-        {$_('auth.login.username')}
+        <!-- ✅ Nouveau label pour pseudo ou email -->
+        {$_('auth.login.identifier', { default: 'Pseudo ou Email' })}
         <input 
           type="text" 
-          bind:value={username} 
-          placeholder={$_('auth.login.usernamePlaceholder')}
+          bind:value={identifier} 
+          placeholder={$_('auth.login.identifierPlaceholder', { default: 'Entrez votre pseudo ou email' })}
           required 
+          autocomplete="username email"
         />
       </label>
 
@@ -127,6 +130,7 @@
             bind:value={password} 
             placeholder={$_('auth.login.passwordPlaceholder')}
             required 
+            autocomplete="current-password"
           />
           <button 
             type="button" 
@@ -158,6 +162,7 @@
   </div>
 </section>
 
+<!-- Le CSS reste identique -->
 <style>
   .menu-logo {
     position: fixed;
@@ -209,7 +214,7 @@
   }
 
   .login-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.85);
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
@@ -246,7 +251,6 @@
     box-shadow: 0 0 0 3px rgba(230, 195, 52, 0.1);
   }
 
-  /* Password input wrapper */
   .password-input-wrapper {
     position: relative;
     display: flex;
@@ -329,10 +333,6 @@
     text-decoration: underline;
   }
 
-  /* ========================================
-     LANGUAGE SELECTOR
-     ======================================== */
-
   .language-selector {
     position: fixed;
     top: 1rem;
@@ -377,7 +377,6 @@
     font-weight: 300;
   }
 
-  /* Responsive */
   @media (max-width: 768px) {
     .login-card {
       padding: 1.5rem;

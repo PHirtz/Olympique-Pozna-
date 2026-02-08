@@ -288,7 +288,9 @@
       "loading": "Logging in...",
       "error": "Incorrect username or password",
       "noAccount": "Don't have an account?",
-      "createAccount": "Create an account"
+      "createAccount": "Create an account",
+      "identifier": "Username or Email",
+      "identifierPlaceholder": "Enter your username or email"
     },
     "register": {
       "title": "Sign up",

@@ -135,6 +135,18 @@ class UserService {
     return await User.findOne({ where: { username } });
   }
 
+  // Cherche par username OU email
+  async getUserByUsernameOrEmail(identifier) {
+    return await User.findOne({
+      where: {
+        [Op.or]: [
+          { username: identifier },
+          { email: identifier }
+        ]
+      }
+    });
+  }
+
   // ============= PROFIL PRIVÉ (utilisateur connecté) =============
 
   async getUserPrivateProfile(userId) {

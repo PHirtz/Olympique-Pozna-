@@ -44,8 +44,9 @@ export const userUpdateSchema = Joi.object({
   imagePath: Joi.string().max(255).allow('', null)
 }).min(1);
 
+// Accepte identifier au lieu de username
 export const userLoginSchema = Joi.object({
-  username: Joi.string().required(),
+  identifier: Joi.string().required(), // Peut être username OU email
   password: Joi.string().required()
 });
 

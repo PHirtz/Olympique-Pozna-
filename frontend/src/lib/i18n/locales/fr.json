@@ -283,6 +283,8 @@
       "username": "Pseudo",
       "usernamePlaceholder": "Votre pseudo",
       "password": "Mot de passe",
+      "identifier": "Pseudo ou Email",
+      "identifierPlaceholder": "Entrez votre pseudo ou email",
       "passwordPlaceholder": "Votre mot de passe",
       "submit": "Se connecter",
       "loading": "Connexion...",
