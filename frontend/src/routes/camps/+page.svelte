@@ -130,32 +130,18 @@
   <!-- Informations du camp -->
   <section class="camp-info">
     <div class="container">
-      <div class="info-grid">
-        <div class="info-card">
+      <!-- Structure unifiée pour mobile (alternance) et desktop (séparées) -->
+      <div class="content-grid">
+        <!-- Info 1 -->
+        <div class="info-card info-1">
           <Calendar size={32} />
           <h3>{$_('camps.dates')}</h3>
           <p><strong>{$_('camps.info.dates')}</strong></p>
           <p class="detail">{$_('camps.info.duration')}</p>
         </div>
 
-        <div class="info-card">
-          <MapPin size={32} />
-          <h3>{$_('camps.lieu')}</h3>
-          <p><strong>{$_('camps.info.location')}</strong></p>
-          <p class="detail">{$_('camps.info.hotel')}</p>
-        </div>
-
-        <div class="info-card">
-          <Users size={32} />
-          <h3>{$_('camps.programme.subtitle')}</h3>
-          <p><strong>{$_('camps.info.training')}</strong></p>
-          <p class="detail">{$_('camps.info.activities')}</p>
-        </div>
-      </div>
-
-      <!-- ✅ NOUVELLE SECTION : Galerie photos du camp -->
-      <div class="photos-grid">
-        <div class="photo-card">
+        <!-- Photo 1 -->
+        <div class="photo-card photo-1">
           <img 
             src="/2.jpg" 
             alt="Entraînement au Camp Olympique"
@@ -164,7 +150,17 @@
             }}
           />
         </div>
-        <div class="photo-card">
+
+        <!-- Info 2 -->
+        <div class="info-card info-2">
+          <MapPin size={32} />
+          <h3>{$_('camps.lieu')}</h3>
+          <p><strong>{$_('camps.info.location')}</strong></p>
+          <p class="detail">{$_('camps.info.hotel')}</p>
+        </div>
+
+        <!-- Photo 2 -->
+        <div class="photo-card photo-2">
           <img 
             src="/3.jpg" 
             alt="Activités sportives au camp"
@@ -173,7 +169,17 @@
             }}
           />
         </div>
-        <div class="photo-card">
+
+        <!-- Info 3 -->
+        <div class="info-card info-3">
+          <Users size={32} />
+          <h3>{$_('camps.programme.subtitle')}</h3>
+          <p><strong>{$_('camps.info.training')}</strong></p>
+          <p class="detail">{$_('camps.info.activities')}</p>
+        </div>
+
+        <!-- Photo 3 -->
+        <div class="photo-card photo-3">
           <img 
             src="/4.jpg" 
             alt="Hébergement et installations"
@@ -399,7 +405,8 @@
     background: white;
   }
 
-  .info-grid {
+  /* Mobile : alternance info/photo */
+  .content-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -433,14 +440,6 @@
   .info-card .detail {
     font-size: 0.875rem;
     color: #666;
-  }
-
-  /* ✅ NOUVELLE SECTION : Galerie photos */
-  .photos-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    margin-bottom: 3rem;
   }
 
   .photo-card {
@@ -704,14 +703,24 @@
     color: #c9a961;
   }
 
+  /* ✅ Desktop : 3 infos en haut, 3 photos en bas */
   @media (min-width: 640px) {
-    .info-grid {
+    .content-grid {
+      display: grid;
       grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 1.5rem;
     }
 
-    .photos-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
+    /* Les 3 infos sur la première ligne */
+    .info-1 { grid-column: 1; grid-row: 1; }
+    .info-2 { grid-column: 2; grid-row: 1; }
+    .info-3 { grid-column: 3; grid-row: 1; }
+
+    /* Les 3 photos sur la deuxième ligne */
+    .photo-1 { grid-column: 1; grid-row: 2; }
+    .photo-2 { grid-column: 2; grid-row: 2; }
+    .photo-3 { grid-column: 3; grid-row: 2; }
 
     .form-row {
       grid-template-columns: repeat(2, 1fr);

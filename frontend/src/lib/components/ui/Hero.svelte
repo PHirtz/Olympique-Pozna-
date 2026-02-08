@@ -76,7 +76,7 @@
     width: 100%;
     height: 100vh;
     margin-top: -140px;
-    padding-top: 120px;
+    padding-top: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -178,7 +178,7 @@
   /* Indicateurs */
   .hero-indicators {
     position: absolute;
-    bottom: 2rem;
+    bottom: 0.1rem;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -221,12 +221,12 @@
   /* Responsive */
   @media (max-width: 768px) {
     .hero {
-      margin-top: -100px; /* Ajusté pour mobile */
+      margin-top: -100px;
       padding-top: 80px;
     }
 
     .hero-content h1 {
-      font-size: 2rem;
+      font-size: 2.5rem;
     }
 
     .hero-subtitle {
@@ -253,7 +253,7 @@
 
   @media (max-width: 480px) {
     .hero {
-      margin-top: -80px; /* Ajusté pour petit mobile */
+      margin-top: -80px;
       padding-top: 70px;
     }
 

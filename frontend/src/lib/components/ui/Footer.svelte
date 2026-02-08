@@ -163,6 +163,9 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    /* CENTRAGE MOBILE */
+    align-items: center;
+    text-align: center;
   }
 
   .footer-sponsors-section {
@@ -172,14 +175,12 @@
   .footer-logo {
     height: 120px;
     width: 100px;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
     margin-bottom: 0.5rem;
   }
 
   .footer-description {
     color: #b4b4c5;
+    padding-left: 1.2rem;
     line-height: 1.6;
     font-size: 0.95rem;
   }
@@ -197,7 +198,8 @@
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 40px;
     height: 3px;
     background: linear-gradient(135deg, #c9a961 0%, #1a4d7a 50%, #0f2d4a 100%);
@@ -212,6 +214,7 @@
     display: flex;
     gap: 1rem;
     margin-top: 1rem;
+    justify-content: center;
   }
 
   .social-links a {
@@ -245,6 +248,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+    align-items: center;
   }
 
   .footer-links a {
@@ -270,6 +274,7 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    align-items: center;
   }
 
   .footer-contact li {
@@ -314,6 +319,7 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
     margin-top: 1rem;
+    width: 100%;
   }
 
   .sponsor-logo-link {
@@ -441,6 +447,29 @@
     .footer-container {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* RETIRER LE CENTRAGE SUR DESKTOP */
+    .footer-section {
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .footer-title::after {
+      left: 0;
+      transform: none;
+    }
+
+    .social-links {
+      justify-content: flex-start;
+    }
+
+    .footer-links {
+      align-items: flex-start;
+    }
+
+    .footer-contact {
+      align-items: flex-start;
     }
 
     .footer-bottom-container {

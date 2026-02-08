@@ -1072,7 +1072,6 @@
   line-height: 1;
 }
 
-/* Affiche les initiales en fallback si le drapeau ne charge pas */
 .language-trigger .lang-code {
   font-weight: 700;
   font-size: 0.85rem;
@@ -1080,12 +1079,10 @@
   opacity: 0.7;
 }
 
-/* Cache le nom complet dans le bouton */
 .language-trigger .lang-name {
   display: none;
 }
 
-/* Sur les navigateurs qui supportent bien les emojis, cache les initiales */
 @supports (font-family: "Apple Color Emoji") {
   .language-trigger .lang-code {
     display: none;
@@ -1142,16 +1139,31 @@
   font-size: 1.3rem;
 }
 
-/* Mobile language dropdown */
+/* Mobile language dropdown - CENTRÉ ET AMÉLIORÉ */
 .language-selector-dropdown.mobile {
   width: 100%;
 }
 
 .language-selector-dropdown.mobile .language-trigger {
   width: 100%;
-  justify-content: space-between;
-  padding: 0.875rem 1rem;
-  min-height: 48px;
+  justify-content: center;
+  padding: 1rem;
+  min-height: 52px;
+  background: rgba(102, 126, 234, 0.12);
+  border: 2px solid rgba(102, 126, 234, 0.3);
+}
+
+.language-selector-dropdown.mobile .language-trigger:hover {
+  background: rgba(102, 126, 234, 0.18);
+  border-color: rgba(102, 126, 234, 0.4);
+}
+
+.language-selector-dropdown.mobile .current-language {
+  gap: 0.6rem;
+}
+
+.language-selector-dropdown.mobile .flag {
+  font-size: 1.6rem;
 }
 
 .language-selector-dropdown.mobile .language-menu {
@@ -1394,10 +1406,11 @@
 }
 
 /* ========================================
-   TABLETTE (768px - 1023px)
+   TABLETTE ET DESKTOP - PROTECTION PAYSAGE MOBILE
+   Nécessite min-height pour éviter mode desktop sur mobile paysage
    ======================================== */
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (min-height: 500px) {
   .nav-container {
     padding: 0.75rem 1.25rem;
     gap: 0.625rem;
@@ -1411,7 +1424,6 @@
     height: 36px;
   }
 
-  /* Cacher le burger, afficher la nav desktop */
   .menu-toggle {
     display: none;
   }
@@ -1463,7 +1475,6 @@
     color: #d4af37 !important;
   }
 
-  /* DESKTOP USER ACTIONS */
   .desktop-user-actions {
     display: flex;
     align-items: center;
@@ -1512,7 +1523,6 @@
     padding: 0.5rem 0.625rem;
   }
 
-  /* NEW BADGE DESKTOP */
   .shop-link {
     position: relative;
   }
@@ -1536,12 +1546,10 @@
     }
   }
 
-  /* Cacher le drawer mobile */
   .mobile-drawer {
     display: none;
   }
 
-  /* DROPDOWN DESKTOP - GLASSMORPHISM */
   .dropdown {
     position: relative;
   }
@@ -1610,7 +1618,6 @@
     color: #1a4d7a;
   }
 
-  /* SUBMENU (Niveau 2) */
   .submenu {
     position: relative;
   }
@@ -1681,10 +1688,10 @@
 }
 
 /* ========================================
-   IPAD (1024px - 1199px)
+   IPAD - PROTECTION PAYSAGE
    ======================================== */
 
-@media (min-width: 1024px) {
+@media (min-width: 1024px) and (min-height: 600px) {
   .logo-olympique-poznan {
     height: 58px;
   }
@@ -1750,10 +1757,10 @@
 }
 
 /* ========================================
-   GRAND DESKTOP (1200px - 1399px)
+   GRAND DESKTOP - PROTECTION PAYSAGE
    ======================================== */
 
-@media (min-width: 1200px) {
+@media (min-width: 1200px) and (min-height: 700px) {
   .logo-olympique-poznan {
     height: 65px;
   }
@@ -1819,10 +1826,10 @@
 }
 
 /* ========================================
-   TRÈS GRAND DESKTOP (1400px+)
+   TRÈS GRAND DESKTOP - PROTECTION PAYSAGE
    ======================================== */
 
-@media (min-width: 1400px) {
+@media (min-width: 1400px) and (min-height: 800px) {
   .logo-olympique-poznan {
     height: 72px;
   }

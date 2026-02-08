@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte';
-  import { _ } from 'svelte-i18n';
+  import { _, locale } from 'svelte-i18n';
   import Navigation2 from '$lib/components/ui/Navigation2.svelte';
   import Footer from '$lib/components/ui/Footer.svelte';
   import * as teamsApi from '$lib/api/teams.js';
@@ -10,6 +10,24 @@
   let teams = [];
   let loading = true;
   let error = null;
+
+  // Variable réactive qui se recalcule automatiquement quand $locale ou teams change
+  $: teamsWithLocalizedDescriptions = teams.map(team => ({
+    ...team,
+    localizedDescription: getLocalizedDescription(team)
+  }));
+
+  function getLocalizedDescription(team) {
+    const currentLocale = $locale;
+    
+    if (currentLocale === 'pl' && team.descriptionPl) {
+      return team.descriptionPl;
+    }
+    if (currentLocale === 'en' && team.descriptionEn) {
+      return team.descriptionEn;
+    }
+    return team.description || '';
+  }
 
   onMount(async () => {
     await loadAcademyTeams();
@@ -23,11 +41,10 @@
       const response = await teamsApi.getAllTeams({ isActive: true });
       
       if (response.success && response.data?.teams) {
-        // Exclure uniquement les équipes seniors (bleus et dames)
-      teams = response.data.teams.filter(team => {
-        const cat = team.category.toLowerCase();
-        return !cat.includes('seniors') && !cat.includes('dames') && !cat.includes('bleus');
-      });
+        teams = response.data.teams.filter(team => {
+          const cat = team.category.toLowerCase();
+          return !cat.includes('seniors') && !cat.includes('dames') && !cat.includes('bleus');
+        });
       }
     } catch (err) {
       console.error('❌ Erreur chargement académie:', err);
@@ -39,7 +56,7 @@
 </script>
 
 <svelte:head>
-  <title>{$_('teams.academy.title')} - Olympique Poznań</title>
+  <title>{$_('home.junior.name')} - Olympique Poznań</title>
   <meta name="description" content={$_('teams.academy.subtitle')} />
 </svelte:head>
 
@@ -60,7 +77,7 @@
         {#if loading}
           <div class="loading-state">
             <div class="loading-spinner"></div>
-            <p>{$_('teams.loadingTeams')}</p>
+            <p>{$_('common.loadingTeams')}</p>
           </div>
         {:else if error}
           <div class="error-state">
@@ -75,7 +92,7 @@
           </div>
         {:else}
           <div class="teams-grid">
-            {#each teams as team}
+            {#each teamsWithLocalizedDescriptions as team}
               <a 
                 href={`/teams/${team.slug}`} 
                 class="team-card"
@@ -93,9 +110,8 @@
                 
                 <div class="team-info">
                   <h3>{team.name}</h3>
-                  {#if team.description}
-                    <p class="team-description">{team.description}</p>
-                  {/if}
+                  <!-- Utilise directement la propriété calculée -->
+                  <p class="team-description">{team.localizedDescription}</p>
                   <span class="view-profile">{$_('teams.viewProfile')}</span>
                 </div>
               </a>

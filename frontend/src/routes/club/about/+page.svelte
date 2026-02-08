@@ -1,16 +1,24 @@
-<svelte:head>
-  <title>{$_('about.title')}</title>
-  <meta name="description" content={$_('about.metaDescription')} />
-</svelte:head>
-
 <script>
   import { _ } from 'svelte-i18n';
   import Navigation2 from '$lib/components/ui/Navigation2.svelte';
   import Footer from '$lib/components/ui/Footer.svelte';
   import { Trophy, Users, Heart, Target, Instagram, Facebook } from 'lucide-svelte';
+  import { user } from '$lib/stores/auth';
   
   export let data;
+
+  // Utilise le store d'authentification
+  $: isLoggedIn = !!$user;
+  $: ctaLink = isLoggedIn ? '/contact' : '/register';
+  $: ctaButtonText = isLoggedIn 
+    ? $_('club.partners.cta.button')
+    : $_('about.community.cta.button');
 </script>
+
+<svelte:head>
+  <title>{$_('about.title')}</title>
+  <meta name="description" content={$_('about.metaDescription')} />
+</svelte:head>
 
 <Navigation2 {data} />
 
@@ -147,7 +155,8 @@
             {$_('about.community.cta.text')}
             <strong>{$_('about.community.cta.textBold')}</strong>
           </p>
-          <a href="/register" class="cta-button">{$_('about.community.cta.button')}</a>
+          <!-- Lien dynamique selon l'état de connexion -->
+          <a href={ctaLink} class="cta-button">{ctaButtonText}</a>
         </div>
       </div>
     </section>

@@ -474,7 +474,7 @@ class PartnerController {
       console.log('🔍 UPDATE - req.body:', req.body);
       console.log('🔍 UPDATE - req.file:', req.file);
 
-      // ✅ Construction de partnerData SANS logoPath initial
+      // Construction de partnerData SANS logoPath initial
       const partnerData = {
         name: req.body.name,
         category: req.body.category,
@@ -486,7 +486,7 @@ class PartnerController {
         isActive: req.body.is_active === 'true'
       };
 
-      // ✅ Gestion du logo selon le mode
+      // Gestion du logo selon le mode
       if (req.file) {
         // Nouveau fichier uploadé
         partnerData.logoPath = `/uploads/sponsors/${req.file.filename}`;
