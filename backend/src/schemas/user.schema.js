@@ -17,7 +17,7 @@ export const userCreateSchema = Joi.object({
   membershipStatus: Joi.string().valid('active', 'inactive', 'pending').default('pending'),
   membershipStartDate: Joi.date().iso().allow(null),
   membershipEndDate: Joi.date().iso().allow(null),
-  preferredLanguage: Joi.string().valid('fr', 'pl').default('fr'),
+  preferredLanguage: Joi.string().valid('fr', 'pl', 'en').default('fr'),
   isActive: Joi.boolean().default(true)
 });
 
@@ -38,15 +38,14 @@ export const userUpdateSchema = Joi.object({
   membershipStatus: Joi.string().valid('active', 'inactive', 'pending'),
   membershipStartDate: Joi.date().iso().allow(null),
   membershipEndDate: Joi.date().iso().allow(null),
-  preferredLanguage: Joi.string().valid('fr', 'pl'),
+  preferredLanguage: Joi.string().valid('fr', 'pl', 'en'),
   isActive: Joi.boolean(),
   imageUrl: Joi.string().uri().max(255).allow('', null),
   imagePath: Joi.string().max(255).allow('', null)
 }).min(1);
 
-// Accepte identifier au lieu de username
 export const userLoginSchema = Joi.object({
-  identifier: Joi.string().required(), // Peut être username OU email
+  identifier: Joi.string().required(),
   password: Joi.string().required()
 });
 
