@@ -65,8 +65,7 @@
       <h2>{$_('home.accompagnement.title')}</h2>
       <p>{$_('home.accompagnement.paragraph1')}</p>
       <p>{$_('home.accompagnement.paragraph2')}</p>
-      <p>{$_('home.accompagnement.paragraph3')}</p>
-      <p>{$_('home.accompagnement.paragraph4')}</p>
+
       <p class="performance-highlight">
         {$_('home.accompagnement.highlight')}
       </p>
