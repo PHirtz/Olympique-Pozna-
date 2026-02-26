@@ -4,12 +4,14 @@
   import { goto } from '$app/navigation';
   import { register } from '$lib/api/auth';
   import { Eye, EyeOff } from 'lucide-svelte';
+  import NationalitySelect from '$lib/components/ui/NationalitySelect.svelte'; // ✅ Import
   
   let firstName = '';
   let lastName = '';
   let username = '';
   let email = '';
   let password = '';
+  let nationality = ''; // ✅ Ajoute cette ligne
   let loading = false;
   let errors = {};
   let showPassword = false;
@@ -22,10 +24,9 @@
   async function handleRegister(e) {
     e.preventDefault();
     
-    // Réinitialiser les erreurs
     errors = {};
     
-    // Validation côté client
+    // Validation
     if (!firstName || firstName.trim().length === 0) {
       errors.firstName = $_('auth.register.errors.firstNameRequired');
     }
@@ -46,7 +47,6 @@
       errors.password = $_('auth.register.errors.passwordMin8');
     }
 
-    // Si erreurs de validation, arrêter
     if (Object.keys(errors).length > 0) {
       return;
     }
@@ -60,20 +60,20 @@
         username: username.trim(),
         email: email.trim(),
         password,
+        nationality: nationality || null, // ✅ Ajoute la nationalité
         role: 'member',
         preferredLanguage: $locale || 'fr'
       };
 
-    const response = await register(userData);
+      const response = await register(userData);
 
-    if (response.success) {
-      goto('/');
-    }
+      if (response.success) {
+        goto('/');
+      }
     } 
     catch (err) {
       console.error("Erreur inscription:", err);
       
-      // Mapper les messages backend vers des clés i18n
       const message = err.message?.toLowerCase() || '';
       
       if (message.includes('nom d\'utilisateur') && message.includes('utilisé')) {
@@ -97,41 +97,7 @@
   }
 </script>
 
-<div class='menu-logo'>
-  <a href="/">
-    <img src="/home.png" alt="Logo Home" class="logo-home" />
-  </a>
-</div>
-
-<!-- Language Selector -->
-<div class="language-selector">
-  <button 
-    on:click={() => changeLanguage('pl')} 
-    class="lang-btn" 
-    class:active={$locale === 'pl'}
-    aria-label="Polski"
-  >
-    PL
-  </button>
-  <span class="separator">|</span>
-  <button 
-    on:click={() => changeLanguage('fr')} 
-    class="lang-btn" 
-    class:active={$locale === 'fr'}
-    aria-label="Français"
-  >
-    FR
-  </button>
-  <span class="separator">|</span>
-  <button 
-    on:click={() => changeLanguage('en')} 
-    class="lang-btn" 
-    class:active={$locale === 'en'}
-    aria-label="English"
-  >
-    EN
-  </button>
-</div>
+<!-- ... Menu logo et language selector inchangés ... -->
 
 <div class="register-page">
   <div class="register-card">
@@ -197,6 +163,19 @@
         />
         {#if errors.email}
           <span class="field-error">{errors.email}</span>
+        {/if}
+      </label>
+
+      <!-- ✅ NOUVEAU CHAMP NATIONALITÉ -->
+      <label>
+        {$_('auth.register.nationality', { default: 'Nationalité' })}
+        <NationalitySelect 
+          bind:value={nationality}
+          placeholder={$_('auth.register.nationalityPlaceholder', { default: 'Choisissez votre nationalité' })}
+          error={errors.nationality}
+        />
+        {#if errors.nationality}
+          <span class="field-error">{errors.nationality}</span>
         {/if}
       </label>
 

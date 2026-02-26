@@ -3,6 +3,7 @@
   import { goto } from '$app/navigation';
   import * as adminPlayers from '$lib/api/admin/players';
   import * as adminTeams from '$lib/api/admin/teams';
+  import NationalitySelectAdmin from '$lib/components/ui/NationalitySelectAdmin.svelte';
   import { 
     Users,
     Save,
@@ -12,16 +13,12 @@
     Link
   } from 'lucide-svelte';
 
-  // Données
   let saving = false;
   let errors = {};
   let teams = [];
   let loadingTeams = true;
-
-  // MODE UPLOAD : 'file' ou 'url'
   let uploadMode = 'file';
 
-  // Formulaire
   let formData = {
     teamId: '',
     firstName: '',
@@ -31,8 +28,8 @@
     position: '',
     positionPl: '',
     birthYear: new Date().getFullYear() - 10,
-    nationality: 'Poland',
-    nationalityPl: 'Polska',
+    nationality: '',
+    nationalityPl: '',
     photoUrl: '',
     photoBase64: null,
     distinction1: '',
@@ -43,11 +40,9 @@
     isActive: true
   };
 
-  // Photo (fichier)
   let photoFile = null;
   let photoPreview = null;
 
-  // Options
   const positions = {
     'Goalkeeper': 'Bramkarz',
     'Defender': 'Obrońca',
@@ -56,51 +51,18 @@
     'Forward': 'Napastnik'
   };
 
-  const nationalities = {
-    'Poland': 'Polska',
-    'France': 'Francja',
-    'England': 'Anglia',
-    'Germany': 'Niemcy',
-    'Spain': 'Hiszpania',
-    'Italy': 'Włochy',
-    'Brazil': 'Brazylia',
-    'Ukraine': 'Ukraina',
-    'Algeria': 'Algeria',
-    'Ethiopia': 'Etiopia',
-    'Nigeria': 'Nigeria',
-    'Rwanda': 'Rwanda',
-    'Senegal': 'Senegal',
-    'Turkey': 'Turcja',
-    'Zimbabwe': 'Zimbabwe',
-    'Belarus': 'Białoruś'
-  };
-
-  // ======================================
-  // CHARGEMENT DES ÉQUIPES
-  // ======================================
-  
   onMount(async () => {
     try {
       const response = await adminTeams.getAll();
       
-      // 🔍 DEBUG - Affiche la réponse complète
-      console.log('📋 Réponse complète:', response);
-      console.log('📋 response.data:', response.data);
-      
-      // Essaye différentes possibilités
       if (Array.isArray(response.data)) {
         teams = response.data;
       } else if (Array.isArray(response.data?.teams)) {
         teams = response.data.teams;
       } else if (Array.isArray(response)) {
         teams = response;
-      } else {
-        console.error('❌ Format inattendu:', response);
       }
       
-      console.log('📋 Équipes chargées:', teams);
-      
-      // Si une seule équipe, la présélectionner
       if (teams.length === 1) {
         formData.teamId = teams[0].id.toString();
       }
@@ -111,12 +73,7 @@
     }
   });
 
-  // ======================================
-  // GESTION UPLOAD MODE
-  // ======================================
-
   function handleUploadModeChange() {
-    // Réinitialiser les données quand on change de mode
     photoFile = null;
     photoPreview = null;
     formData.photoUrl = '';
@@ -127,9 +84,6 @@
     if (fileInput) fileInput.value = '';
   }
 
-  // ======================================
-  // GESTION FICHIER - MODIFIÉ
-  // ======================================
   function handlePhotoChange(event) {
     const file = event.target.files[0];
     if (!file) return;
@@ -165,10 +119,6 @@
     if (fileInput) fileInput.value = '';
   }
 
-  // ======================================
-  // GESTION URL
-  // ======================================
-
   function handlePhotoUrlChange() {
     errors.photoUrl = null;
     
@@ -177,7 +127,6 @@
       return;
     }
 
-    // Validation basique de l'URL
     try {
       new URL(formData.photoUrl);
       photoPreview = formData.photoUrl;
@@ -188,25 +137,11 @@
     }
   }
 
-  // ======================================
-  // AUTRES HANDLERS
-  // ======================================
-
   function handlePositionChange() {
     if (formData.position && positions[formData.position]) {
       formData.positionPl = positions[formData.position];
     }
   }
-
-  function handleNationalityChange() {
-    if (formData.nationality && nationalities[formData.nationality]) {
-      formData.nationalityPl = nationalities[formData.nationality];
-    }
-  }
-
-  // ======================================
-  // VALIDATION
-  // ======================================
 
   function validateForm() {
     errors = {};
@@ -229,7 +164,6 @@
       errors.birthYear = `Année entre 1950 et ${currentYear}`;
     }
 
-    // Validation photo selon le mode
     if (uploadMode === 'url' && formData.photoUrl) {
       try {
         new URL(formData.photoUrl);
@@ -240,10 +174,6 @@
 
     return Object.keys(errors).length === 0;
   }
-
-  // ======================================
-  // SUBMIT
-  // ======================================
 
   async function handleSubmit() {
     if (!validateForm()) {
@@ -256,15 +186,11 @@
 
       let requestData;
 
-      // Si mode FILE avec base64 → envoyer en JSON
       if (uploadMode === 'file' && formData.photoBase64) {
         const payload = { ...formData };
-        delete payload.photoUrl; // Retirer photoUrl
-        
-        requestData = payload; // ← PAS DE JSON.stringify !
-        
+        delete payload.photoUrl;
+        requestData = payload;
       } else {
-        // Sinon → envoyer en FormData (pour photoUrl)
         const data = new FormData();
         Object.entries(formData).forEach(([key, value]) => {
           if (key !== 'photoUrl' && key !== 'photoBase64') {
@@ -278,10 +204,6 @@
         
         requestData = data;
       }
-
-      // Debug
-      console.log('📤 Mode:', uploadMode);
-      console.log('📤 Type:', uploadMode === 'file' && formData.photoBase64 ? 'JSON' : 'FormData');
 
       await adminPlayers.create(requestData);
       alert('Joueur créé avec succès !');
@@ -315,7 +237,6 @@
     <div class="form-section">
       <h3 class="section-title">Photo du joueur</h3>
       
-      <!-- Mode selection -->
       <div class="upload-mode-selector">
         <label class="mode-option">
           <input
@@ -346,7 +267,6 @@
         </label>
       </div>
 
-      <!-- Preview -->
       <div class="photo-upload">
         {#if photoPreview}
           <div class="photo-preview">
@@ -367,7 +287,6 @@
           </div>
         {/if}
 
-        <!-- Mode FICHIER -->
         {#if uploadMode === 'file'}
           <label for="photo" class="btn-secondary">
             <Upload size={16} />
@@ -386,7 +305,6 @@
           {/if}
         {/if}
 
-        <!-- Mode URL -->
         {#if uploadMode === 'url'}
           <div class="url-input-group">
             <input
@@ -419,7 +337,6 @@
       <h3 class="section-title">INFORMATIONS PRINCIPALES</h3>
       
       <div class="form-grid">
-        <!-- Équipe -->
         <div class="form-field">
           <label for="teamId">Équipe <span class="required">*</span></label>
           {#if loadingTeams}
@@ -448,7 +365,6 @@
           {/if}
         </div>
 
-        <!-- Prénom -->
         <div class="form-field">
           <label for="firstName">Prénom <span class="required">*</span></label>
           <input
@@ -462,7 +378,6 @@
           {/if}
         </div>
 
-        <!-- Nom -->
         <div class="form-field">
           <label for="lastName">Nom <span class="required">*</span></label>
           <input
@@ -476,7 +391,6 @@
           {/if}
         </div>
 
-        <!-- Surnom -->
         <div class="form-field">
           <label for="nickname">Surnom</label>
           <input
@@ -487,7 +401,6 @@
           />
         </div>
 
-        <!-- Numéro de maillot -->
         <div class="form-field">
           <label for="jerseyNumber">Numéro de maillot</label>
           <input
@@ -503,7 +416,6 @@
           {/if}
         </div>
 
-        <!-- Année de naissance -->
         <div class="form-field">
           <label for="birthYear">Année de naissance <span class="required">*</span></label>
           <input
@@ -563,38 +475,20 @@
     <div class="form-section">
       <h3 class="section-title">NATIONALITÉ</h3>
       
-      <div class="form-grid">
-        <div class="form-field">
-          <label for="nationality">Nationalité (EN) <span class="required">*</span></label>
-          <select
-            id="nationality"
-            bind:value={formData.nationality}
-            on:change={handleNationalityChange}
-            class:error={errors.nationality}
-          >
-            <option value="">Sélectionner</option>
-            {#each Object.keys(nationalities) as nat}
-              <option value={nat}>{nat}</option>
-            {/each}
-          </select>
-          {#if errors.nationality}
-            <span class="error-text">{errors.nationality}</span>
-          {/if}
-        </div>
-
-        <div class="form-field">
-          <label for="nationalityPl">Nationalité (PL) <span class="required">*</span></label>
-          <input
-            id="nationalityPl"
-            type="text"
-            bind:value={formData.nationalityPl}
-            class:error={errors.nationalityPl}
-          />
-          {#if errors.nationalityPl}
-            <span class="error-text">{errors.nationalityPl}</span>
-          {/if}
-        </div>
-      </div>
+      <NationalitySelectAdmin
+        bind:valueEN={formData.nationality}
+        bind:valuePL={formData.nationalityPl}
+        required
+        errorEN={errors.nationality}
+        errorPL={errors.nationalityPl}
+      />
+      
+      {#if errors.nationality}
+        <span class="error-text">{errors.nationality}</span>
+      {/if}
+      {#if errors.nationalityPl}
+        <span class="error-text">{errors.nationalityPl}</span>
+      {/if}
     </div>
 
     <!-- Distinctions -->
@@ -691,7 +585,6 @@
     border-color: #1976d2;
   }
 
-  /* Header section */
   .admin-header-section {
     display: flex;
     justify-content: space-between;
@@ -712,6 +605,7 @@
     font-weight: 700;
     margin: 0;
   }
+  
   .btn-primary {
     display: flex;
     align-items: center;
@@ -723,7 +617,10 @@
     font-weight: 600;
     text-decoration: none;
     transition: background 0.2s ease;
+    border: none;
+    cursor: pointer;
   }
+  
   .btn-primary:disabled {
     background: #999;
     cursor: not-allowed;
@@ -743,9 +640,11 @@
     border: none;
     cursor: pointer;
   }
+  
   .btn-secondary:hover {
     background: #d5d5d5;
   }
+  
   .btn-secondary:disabled {
     background: #bbb;
     cursor: not-allowed;
@@ -756,6 +655,29 @@
     gap: 1.5rem;
   }
 
+  .form-field {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-field label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+
+  .form-field input {
+    padding: 0.75rem;
+    border: 2px solid #d0d0d0;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+
+  .form-field input:focus {
+    outline: none;
+    border-color: #1976d2;
+  }
+
   .form-actions {
     display: flex;
     justify-content: flex-end;
@@ -764,7 +686,6 @@
     font-size: 20px;
     margin-right: 1rem;
     margin-bottom: 1rem;
-    gap: 1rem;
   }
 
   .section-title {
@@ -776,7 +697,7 @@
     padding-top: 2rem;
     color: #1976d2;
   }
-  /* Mode selector */
+  
   .upload-mode-selector {
     display: flex;
     gap: 4rem;
@@ -785,7 +706,7 @@
     align-items: center;
     font-weight: 900;
     font-size: 1.5rem;
-    }
+  }
 
   .mode-option {
     flex: 1;
@@ -818,7 +739,6 @@
     border-color: #1976d2;
   }
 
-  /* Photo upload */
   .photo-upload {
     display: flex;
     flex-direction: column;
@@ -879,7 +799,6 @@
     margin: 0 auto;
   }
 
-  /* URL input */
   .url-input-group {
     display: flex;
     gap: 0.5rem;

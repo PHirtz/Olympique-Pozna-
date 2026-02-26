@@ -9,6 +9,7 @@ export * as events from './events.js';
 export * as camps from './camps.js';
 export * as registrations from './registrations.js';
 export * as contact from './contact.js';
+export * as nationalities from './nationalities.js';
 
 // Admin API
 export * as adminPartners from './admin/partners.js';

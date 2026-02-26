@@ -3,6 +3,7 @@
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
   import * as adminPlayers from '$lib/api/admin/players.js';
+  import NationalitySelectAdmin from '$lib/components/ui/NationalitySelectAdmin.svelte';
   import { 
     Users,
     Save,
@@ -17,11 +18,8 @@
   let saving = false;
   let errors = {};
   let existingPhotoPath = null;
-
-  // MODE UPLOAD : 'file' ou 'url'
   let uploadMode = 'file';
 
-  // Formulaire
   let formData = {
     teamId: '',
     firstName: '',
@@ -31,8 +29,8 @@
     position: '',
     positionPl: '',
     birthYear: new Date().getFullYear() - 10,
-    nationality: 'Poland',
-    nationalityPl: 'Polska',
+    nationality: '',
+    nationalityPl: '',
     photoUrl: '',
     photoBase64: null,
     distinction1: '',
@@ -43,36 +41,15 @@
     isActive: true
   };
 
-  // Photo
   let photoFile = null;
   let photoPreview = null;
 
-  // Options
   const positions = {
     'Goalkeeper': 'Bramkarz',
     'Defender': 'Obrońca',
     'Wing-back': 'Wahadłowy',
     'Midfielder': 'Pomocnik',
     'Forward': 'Napastnik'
-  };
-
-  const nationalities = {
-    'Poland': 'Polska',
-    'France': 'Francja',
-    'England': 'Anglia',
-    'Germany': 'Niemcy',
-    'Spain': 'Hiszpania',
-    'Italy': 'Włochy',
-    'Brazil': 'Brazylia',
-    'Ukraine': 'Ukraina',
-    'Algeria': 'Algeria',
-    'Ethiopia': 'Etiopia',
-    'Nigeria': 'Nigeria',
-    'Rwanda': 'Rwanda',
-    'Senegal': 'Senegal',
-    'Turkey': 'Turcja',
-    'Zimbabwe': 'Zimbabwe',
-    'Belarus': 'Białoruś'
   };
 
   onMount(async () => {
@@ -112,9 +89,7 @@
         existingPhotoPath = player.photoUrl;
         photoPreview = player.photoUrl;
         
-        // Détecter si c'est une URL externe ou un fichier local
         if (player.photoUrl.startsWith('http://') || player.photoUrl.startsWith('https://')) {
-          // Si c'est une URL complète et qu'elle ne contient pas notre backend
           if (!player.photoUrl.includes('localhost') && !player.photoUrl.includes('olympiquepoznan.pl')) {
             uploadMode = 'url';
             formData.photoUrl = player.photoUrl;
@@ -128,12 +103,7 @@
     }
   }
 
-  // ======================================
-  // GESTION UPLOAD MODE
-  // ======================================
-
   function handleUploadModeChange() {
-    // Réinitialiser les données selon le mode
     photoFile = null;
     errors.photo = null;
     errors.photoUrl = null;
@@ -149,9 +119,6 @@
     if (fileInput) fileInput.value = '';
   }
 
-  // ======================================
-  // GESTION FICHIER - MODIFIÉ
-  // ======================================
   function handlePhotoChange(event) {
     const file = event.target.files[0];
     if (!file) return;
@@ -187,10 +154,6 @@
     if (fileInput) fileInput.value = '';
   }
 
-  // ======================================
-  // GESTION URL
-  // ======================================
-
   function handlePhotoUrlChange() {
     errors.photoUrl = null;
     
@@ -199,7 +162,6 @@
       return;
     }
 
-    // Validation basique de l'URL
     try {
       new URL(formData.photoUrl);
       photoPreview = formData.photoUrl;
@@ -210,25 +172,11 @@
     }
   }
 
-  // ======================================
-  // AUTRES HANDLERS
-  // ======================================
-
   function handlePositionChange() {
     if (formData.position && positions[formData.position]) {
       formData.positionPl = positions[formData.position];
     }
   }
-
-  function handleNationalityChange() {
-    if (formData.nationality && nationalities[formData.nationality]) {
-      formData.nationalityPl = nationalities[formData.nationality];
-    }
-  }
-
-  // ======================================
-  // VALIDATION
-  // ======================================
 
   function validateForm() {
     errors = {};
@@ -251,7 +199,6 @@
       errors.birthYear = `Année entre 1950 et ${currentYear}`;
     }
 
-    // Validation photo selon le mode
     if (uploadMode === 'url' && formData.photoUrl) {
       try {
         new URL(formData.photoUrl);
@@ -263,9 +210,6 @@
     return Object.keys(errors).length === 0;
   }
 
-  // ======================================
-  // SUBMIT - MODIFIÉ
-  // ======================================
   async function handleSubmit() {
     if (!validateForm()) {
       alert('Veuillez corriger les erreurs du formulaire');
@@ -277,15 +221,11 @@
 
       let requestData;
 
-      // Si mode FILE avec base64 → envoyer en JSON
       if (uploadMode === 'file' && formData.photoBase64) {
         const payload = { ...formData };
-        delete payload.photoUrl; // Retirer photoUrl
-        
-        requestData = payload; // ← PAS DE JSON.stringify !
-        
+        delete payload.photoUrl;
+        requestData = payload;
       } else {
-        // Sinon → envoyer en FormData (pour photoUrl)
         const data = new FormData();
         Object.entries(formData).forEach(([key, value]) => {
           if (key !== 'photoUrl' && key !== 'photoBase64') {
@@ -299,10 +239,6 @@
         
         requestData = data;
       }
-
-      // Debug
-      console.log('📤 Mode:', uploadMode);
-      console.log('📤 Type:', uploadMode === 'file' && formData.photoBase64 ? 'JSON' : 'FormData');
 
       await adminPlayers.update(playerId, requestData);
       alert('Joueur modifié avec succès !');
@@ -339,7 +275,6 @@
       <div class="form-section">
         <h3 class="section-title">Photo du joueur</h3>
         
-        <!-- Mode selection -->
         <div class="upload-mode-selector">
           <label class="mode-option">
             <input
@@ -370,7 +305,6 @@
           </label>
         </div>
 
-        <!-- Preview -->
         <div class="photo-upload">
           {#if photoPreview}
             <div class="photo-preview">
@@ -391,7 +325,6 @@
             </div>
           {/if}
 
-          <!-- Mode FICHIER -->
           {#if uploadMode === 'file'}
             <label for="photo" class="btn-secondary">
               <Upload size={16} />
@@ -410,7 +343,6 @@
             {/if}
           {/if}
 
-          <!-- Mode URL -->
           {#if uploadMode === 'url'}
             <div class="url-input-group">
               <input
@@ -567,38 +499,20 @@
       <div class="form-section">
         <h3 class="section-title">NATIONALITÉ</h3>
         
-        <div class="form-grid">
-          <div class="form-field">
-            <label for="nationality">Nationalité (EN) <span class="required">*</span></label>
-            <select
-              id="nationality"
-              bind:value={formData.nationality}
-              on:change={handleNationalityChange}
-              class:error={errors.nationality}
-            >
-              <option value="">Sélectionner</option>
-              {#each Object.keys(nationalities) as nat}
-                <option value={nat}>{nat}</option>
-              {/each}
-            </select>
-            {#if errors.nationality}
-              <span class="error-text">{errors.nationality}</span>
-            {/if}
-          </div>
-
-          <div class="form-field">
-            <label for="nationalityPl">Nationalité (PL) <span class="required">*</span></label>
-            <input
-              id="nationalityPl"
-              type="text"
-              bind:value={formData.nationalityPl}
-              class:error={errors.nationalityPl}
-            />
-            {#if errors.nationalityPl}
-              <span class="error-text">{errors.nationalityPl}</span>
-            {/if}
-          </div>
-        </div>
+        <NationalitySelectAdmin
+          bind:valueEN={formData.nationality}
+          bind:valuePL={formData.nationalityPl}
+          required
+          errorEN={errors.nationality}
+          errorPL={errors.nationalityPl}
+        />
+        
+        {#if errors.nationality}
+          <span class="error-text">{errors.nationality}</span>
+        {/if}
+        {#if errors.nationalityPl}
+          <span class="error-text">{errors.nationalityPl}</span>
+        {/if}
       </div>
 
       <!-- Distinctions -->
@@ -672,7 +586,6 @@
     padding: 2rem;
   }
 
-  /* Header section */
   .admin-header-section {
     display: flex;
     justify-content: space-between;
@@ -693,6 +606,7 @@
     font-weight: 700;
     margin: 0;
   }
+  
   .btn-primary {
     display: flex;
     align-items: center;
@@ -704,7 +618,10 @@
     font-weight: 600;
     text-decoration: none;
     transition: background 0.2s ease;
+    border: none;
+    cursor: pointer;
   }
+  
   .btn-primary:disabled {
     background: #999;
     cursor: not-allowed;
@@ -724,40 +641,66 @@
     border: none;
     cursor: pointer;
   }
+  
   .btn-secondary:hover {
     background: #d5d5d5;
   }
+  
   .btn-secondary:disabled {
     background: #bbb;
     cursor: not-allowed;
   }
 
-.form-grid {
-  display: grid;
-  gap: 1.5rem;
-}
+  .form-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
 
-.form-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-  margin-top: 2rem;
-  font-size: 20px;
-  margin-right: 1rem;
-  margin-bottom: 1rem;
-}
+  .form-field {
+    display: flex;
+    flex-direction: column;
+  }
 
-.section-title {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  border-bottom: 2px solid #1976d2;
-  padding-bottom: 1rem;
-  padding-top: 2rem;
-  color: #1976d2;
-}
+  .form-field label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
 
-  /* Mode selector */
+  .form-field input, 
+  .form-field select {
+    padding: 0.75rem;
+    border: 2px solid #d0d0d0;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+
+  .form-field input:focus,
+  .form-field select:focus {
+    outline: none;
+    border-color: #1976d2;
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+    font-size: 20px;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #1976d2;
+    padding-bottom: 1rem;
+    padding-top: 2rem;
+    color: #1976d2;
+  }
+
   .upload-mode-selector {
     display: flex;
     gap: 4rem;
@@ -799,7 +742,6 @@
     border-color: #1976d2;
   }
 
-  /* Photo upload */
   .photo-upload {
     display: flex;
     flex-direction: column;
@@ -860,7 +802,6 @@
     margin: 0 auto;
   }
 
-  /* URL input */
   .url-input-group {
     display: flex;
     gap: 0.5rem;
