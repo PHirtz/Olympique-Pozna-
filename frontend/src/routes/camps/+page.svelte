@@ -117,7 +117,7 @@
   <!-- Tabs navigation -->
   <section class="tabs-section">
     <div class="container">
-      <h1 class="page-title">Camps Olympique 2026</h1>
+      <h1 class="page-title">{$_('camps.title') || 'Camps Olympique 2026'}</h1>
       <div class="tabs">
         <button
           class="tab-btn"
