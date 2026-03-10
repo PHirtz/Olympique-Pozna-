@@ -330,23 +330,46 @@
     "lieu": "Lokalizacja",
     "dates": "Daty",
     "info": {
-      "dates": "15-21 Lutego 2026",
+      "dates": "2-7 Sierpnia 2026",
       "duration": "7 dni sportu!",
-      "location": "Skarbimierz",
-      "hotel": "Hotel Antonio Conference",
+      "location": "Opalenica",
       "training": "3 treningi dziennie",
       "activities": "Mecze, gry i integracja"
+    },
+    "info2": {
+      "dates2": "23-28 Sierpnia 2026",
+      "duration2": "7 dni sportu!",
+      "location2": "Januszkowo",
+      "training2": "2 treningi dziennie",
+      "activities2": "Mecze, gry i integracja"
     },
     "programme": {
       "title": "Program Obozu Olimpijskiego",
       "subtitle": "Treningi",
       "programDescription": [
-        "⚽ 3 codzienne treningi: sparingi, gry, integracja",
+        "⚽ 3 treningi codziennie: sparingi, gry, integracja",
         "🏨 Wygodne zakwaterowanie z wyżywieniem",
-        "🏰 Wycieczki kulturalne",
-        "🎾 Zajęcia: Siłownia, plac zabaw, ping pong, mini zoo",
-        "⚽ Turnieje FIFA + Wyjazd do Aquaparku",
-        "🎓 Profesjonalna opieka certyfikowanych trenerów"
+        "🎓 Rozwój na boisku ale też poza - warsztaty mentalne, dietetyczne...",
+        "🎾 Zajęcia: Siłownia, aquapark, gry integracyjne...",
+        "⚽ Soccer Bot 360",
+        "🎓 Profesjonalna opieka certyfikowanych trenerów",
+        "📆 od niedzieli 2. sierpnia do piątku 7. sierpnia",
+        "🙋‍♂️ Chłopcy 2009-2014"
+      ]
+    },
+    "programme2": {
+      "title2": "Program Le Camp Olympique Januszkowo 2026",
+      "subtitle2": "Treningi",
+      "programDescription2": [
+        "⚽ 2 treningi codziennie: plaża, gry, integracja ",
+        "🏨 Wygodne zakwaterowanie z wyżywieniem ",
+        "🎓 Rozwój na boisku ale też poza - warsztaty mentalne, dietetyczne... ",
+        "🎾 Zajęcia: Beach soccer, rowery wodne, gry integracyjne... ",
+        "⚽ Dużo sparingów z drużynami z całej Polski ",
+        "🎓 Profesjonalna opieka certyfikowanych trenerów ",
+        "📆 od niedzieli 23. sierpnia do piątku 28. sierpnia ",
+        "👱‍♀️ Dziewczyny 2008-2018 ",
+        "🙋‍♂️ Chłopcy 2014-2018"
       ]
     },
     "formulaire": {

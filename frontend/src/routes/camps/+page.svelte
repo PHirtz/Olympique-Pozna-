@@ -8,6 +8,8 @@
   /** @type {import('./$types').PageData} */
   export let data;
 
+  let activeTab = 'opalenica';
+
   let formData = {
     firstName: '',
     lastName: '',
@@ -27,22 +29,18 @@
     error = '';
     fieldErrors = {};
     
-    // Validation côté client
     if (!formData.firstName || formData.firstName.length < 2) {
       error = 'Le prénom doit contenir au moins 2 caractères';
       return;
     }
-    
     if (!formData.lastName || formData.lastName.length < 2) {
       error = 'Le nom doit contenir au moins 2 caractères';
       return;
     }
-    
     if (!formData.email) {
-      error = 'L\'email est obligatoire';
+      error = "L'email est obligatoire";
       return;
     }
-    
     if (!formData.message || formData.message.length < 10) {
       error = 'Le message doit contenir au moins 10 caractères';
       return;
@@ -53,8 +51,8 @@
 
     try {
       const subjectMap = {
-        'inscription': 'Inscription Camp Olympique - Février 2026',
-        'information': 'Demande d\'information - Camp Olympique'
+        'inscription': 'Inscription Camp Olympique - Août 2026',
+        'information': "Demande d'information - Camp Olympique"
       };
 
       let fullMessage = formData.message;
@@ -76,7 +74,6 @@
 
       if (response.success) {
         success = true;
-        
         formData = {
           firstName: '',
           lastName: '',
@@ -86,12 +83,8 @@
           message: '',
           category: 'inscription'
         };
-
         window.scrollTo({ top: 0, behavior: 'smooth' });
-
-        setTimeout(() => {
-          success = false;
-        }, 8000);
+        setTimeout(() => { success = false; }, 8000);
       } else {
         if (response.errors && Array.isArray(response.errors)) {
           fieldErrors = response.errors.reduce((acc, err) => {
@@ -114,90 +107,138 @@
 
 <svelte:head>
   <title>Le Camp Olympique - Olympique Poznań</title>
-  <meta name="description" content="Rejoignez le Camp Olympique à Skarbimierz ! Stage de football intensif avec hébergement et activités." />
+  <meta name="description" content="Rejoignez le Camp Olympique ! Stage de football intensif avec hébergement et activités." />
 </svelte:head>
 
 <Navigation2 {data} />
 
 <div class="camps-page">
-  <!-- Hero avec pub -->
-  <section class="hero-camps">
+
+  <!-- Tabs navigation -->
+  <section class="tabs-section">
     <div class="container">
-      <img src="/pubcamp.png" alt="Le Camp Olympique - Luty 2026" class="camp-poster" />
+      <h1 class="page-title">Camps Olympique 2026</h1>
+      <div class="tabs">
+        <button
+          class="tab-btn"
+          class:active={activeTab === 'opalenica'}
+          on:click={() => activeTab = 'opalenica'}
+        >
+          <span class="tab-label">{$_('camps.programme.title') || 'Camp Opalenica'}</span>
+          <span class="tab-date">{$_('camps.info.dates') || '2-7 Août 2026'}</span>
+        </button>
+        <button
+          class="tab-btn"
+          class:active={activeTab === 'januszkowo'}
+          on:click={() => activeTab = 'januszkowo'}
+        >
+          <span class="tab-label">{$_('camps.programme2.title2') || 'Camp Januszkowo'}</span>
+          <span class="tab-date">{$_('camps.info2.dates2') || '23-28 Août 2026'}</span>
+        </button>
+      </div>
     </div>
   </section>
 
-  <!-- Informations du camp -->
+  <!-- Contenu tabs -->
   <section class="camp-info">
     <div class="container">
-      <!-- Structure unifiée pour mobile (alternance) et desktop (séparées) -->
-      <div class="content-grid">
-        <!-- Info 1 -->
-        <div class="info-card info-1">
-          <Calendar size={32} />
-          <h3>{$_('camps.dates')}</h3>
-          <p><strong>{$_('camps.info.dates')}</strong></p>
-          <p class="detail">{$_('camps.info.duration')}</p>
-        </div>
 
-        <!-- Photo 1 -->
-        <div class="photo-card photo-1">
-          <img 
-            src="/2.jpg" 
-            alt="Entraînement au Camp Olympique"
-            on:error={(e) => {
-              e.target.src = '/logo.png';
-            }}
-          />
-        </div>
+      <!-- CAMP 1 : Opalenica -->
+      {#if activeTab === 'opalenica'}
+        <div class="tab-content">
+          <div class="hero-camps">
+            <img src="/Opalenica2026.jpg" alt="Le Camp Olympique Opalenica 2026" class="camp-poster" />
+          </div>
 
-        <!-- Info 2 -->
-        <div class="info-card info-2">
-          <MapPin size={32} />
-          <h3>{$_('camps.lieu')}</h3>
-          <p><strong>{$_('camps.info.location')}</strong></p>
-          <p class="detail">{$_('camps.info.hotel')}</p>
-        </div>
+          <div class="content-grid">
+            <div class="info-card info-1">
+              <Calendar size={32} />
+              <h3>{$_('camps.dates')}</h3>
+              <p><strong>{$_('camps.info.dates')}</strong></p>
+              <p class="detail">{$_('camps.info.duration')}</p>
+            </div>
+            <div class="photo-card photo-1">
+              <img src="/2.jpg" alt="Entraînement Opalenica" on:error={(e) => { e.target.src = '/logo.png'; }} />
+            </div>
+            <div class="info-card info-2">
+              <MapPin size={32} />
+              <h3>{$_('camps.lieu')}</h3>
+              <p><strong>{$_('camps.info.location')}</strong></p>
+              <p class="detail">{$_('camps.info.hotel')}</p>
+            </div>
+            <div class="photo-card photo-2">
+              <img src="/3.jpg" alt="Activités Opalenica" on:error={(e) => { e.target.src = '/logo.png'; }} />
+            </div>
+            <div class="info-card info-3">
+              <Users size={32} />
+              <h3>{$_('camps.programme.subtitle')}</h3>
+              <p><strong>{$_('camps.info.training')}</strong></p>
+              <p class="detail">{$_('camps.info.activities')}</p>
+            </div>
+            <div class="photo-card photo-3">
+              <img src="/4.jpg" alt="Hébergement Opalenica" on:error={(e) => { e.target.src = '/logo.png'; }} />
+            </div>
+          </div>
 
-        <!-- Photo 2 -->
-        <div class="photo-card photo-2">
-          <img 
-            src="/3.jpg" 
-            alt="Activités sportives au camp"
-            on:error={(e) => {
-              e.target.src = '/logo.png';
-            }}
-          />
+          <div class="activities">
+            <h2>{$_('camps.programme.title')}</h2>
+            <ul>
+              {#each $json('camps.programme.programDescription') as item (item)}
+                <li>{item}</li>
+              {/each}
+            </ul>
+          </div>
         </div>
+      {/if}
 
-        <!-- Info 3 -->
-        <div class="info-card info-3">
-          <Users size={32} />
-          <h3>{$_('camps.programme.subtitle')}</h3>
-          <p><strong>{$_('camps.info.training')}</strong></p>
-          <p class="detail">{$_('camps.info.activities')}</p>
+      <!-- CAMP 2 : Januszkowo -->
+      {#if activeTab === 'januszkowo'}
+        <div class="tab-content">
+          <div class="hero-camps">
+            <img src="/Januszkowo2026.jpg" alt="Le Camp Olympique Januszkowo 2026" class="camp-poster" />
+          </div>
+
+          <div class="content-grid">
+            <div class="info-card info-1">
+              <Calendar size={32} />
+              <h3>{$_('camps.dates')}</h3>
+              <p><strong>{$_('camps.info2.dates2')}</strong></p>
+              <p class="detail">{$_('camps.info2.duration2')}</p>
+            </div>
+            <div class="photo-card photo-1">
+              <img src="/4.jpg" alt="Entraînement Januszkowo" on:error={(e) => { e.target.src = '/logo.png'; }} />
+            </div>
+            <div class="info-card info-2">
+              <MapPin size={32} />
+              <h3>{$_('camps.lieu')}</h3>
+              <p><strong>{$_('camps.info2.location2')}</strong></p>
+              <p class="detail">{$_('camps.info2.hotel2')}</p>
+            </div>
+            <div class="photo-card photo-2">
+              <img src="/5.jpg" alt="Activités Januszkowo" on:error={(e) => { e.target.src = '/logo.png'; }} />
+            </div>
+            <div class="info-card info-3">
+              <Users size={32} />
+              <h3>{$_('camps.programme2.subtitle2')}</h3>
+              <p><strong>{$_('camps.info2.training2')}</strong></p>
+              <p class="detail">{$_('camps.info2.activities2')}</p>
+            </div>
+            <div class="photo-card photo-3">
+              <img src="/6.jpg" alt="Hébergement Januszkowo" on:error={(e) => { e.target.src = '/logo.png'; }} />
+            </div>
+          </div>
+
+          <div class="activities">
+            <h2>{$_('camps.programme2.title2')}</h2>
+            <ul>
+              {#each $json('camps.programme2.programDescription2') as item (item)}
+                <li>{item}</li>
+              {/each}
+            </ul>
+          </div>
         </div>
+      {/if}
 
-        <!-- Photo 3 -->
-        <div class="photo-card photo-3">
-          <img 
-            src="/4.jpg" 
-            alt="Hébergement et installations"
-            on:error={(e) => {
-              e.target.src = '/logo.png';
-            }}
-          />
-        </div>
-      </div>
-
-      <div class="activities">
-        <h2>{$_('camps.programme.title')}</h2>
-        <ul>
-          {#each $json('camps.programme.programDescription') as item}
-            <li>{item}</li>
-          {/each}
-        </ul>
-      </div>
     </div>
   </section>
 
@@ -232,95 +273,42 @@
       <form on:submit|preventDefault={handleSubmit} class="camp-form">
         <div class="form-row">
           <div class="form-group" class:has-error={fieldErrors.firstName}>
-            <label for="firstName">
-              {$_('contact.form.firstName')} *
-            </label>
-            <input 
-              type="text" 
-              id="firstName" 
-              bind:value={formData.firstName}
-              placeholder={$_('contact.form.firstNamePlaceholder')}
-              required
-              disabled={loading}
-            />
-            {#if fieldErrors.firstName}
-              <span class="error-text">{fieldErrors.firstName}</span>
-            {/if}
+            <label for="firstName">{$_('contact.form.firstName')} *</label>
+            <input type="text" id="firstName" bind:value={formData.firstName}
+              placeholder={$_('contact.form.firstNamePlaceholder')} required disabled={loading} />
+            {#if fieldErrors.firstName}<span class="error-text">{fieldErrors.firstName}</span>{/if}
           </div>
-
           <div class="form-group" class:has-error={fieldErrors.lastName}>
-            <label for="lastName">
-              {$_('contact.form.lastName')} *
-            </label>
-            <input 
-              type="text" 
-              id="lastName" 
-              bind:value={formData.lastName}
-              placeholder={$_('contact.form.lastNamePlaceholder')}
-              required
-              disabled={loading}
-            />
-            {#if fieldErrors.lastName}
-              <span class="error-text">{fieldErrors.lastName}</span>
-            {/if}
+            <label for="lastName">{$_('contact.form.lastName')} *</label>
+            <input type="text" id="lastName" bind:value={formData.lastName}
+              placeholder={$_('contact.form.lastNamePlaceholder')} required disabled={loading} />
+            {#if fieldErrors.lastName}<span class="error-text">{fieldErrors.lastName}</span>{/if}
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group" class:has-error={fieldErrors.email}>
-            <label for="email">
-              {$_('contact.form.email')} *
-            </label>
-            <input 
-              type="email" 
-              id="email" 
-              bind:value={formData.email}
-              placeholder={$_('contact.form.emailPlaceholder')}
-              required
-              disabled={loading}
-            />
-            {#if fieldErrors.email}
-              <span class="error-text">{fieldErrors.email}</span>
-            {/if}
+            <label for="email">{$_('contact.form.email')} *</label>
+            <input type="email" id="email" bind:value={formData.email}
+              placeholder={$_('contact.form.emailPlaceholder')} required disabled={loading} />
+            {#if fieldErrors.email}<span class="error-text">{fieldErrors.email}</span>{/if}
           </div>
-
           <div class="form-group" class:has-error={fieldErrors.phone}>
-            <label for="phone">
-              {$_('contact.form.phone')}
-            </label>
-            <input 
-              type="tel" 
-              id="phone" 
-              bind:value={formData.phone}
-              placeholder={$_('contact.form.phonePlaceholder')}
-              disabled={loading}
-            />
-            {#if fieldErrors.phone}
-              <span class="error-text">{fieldErrors.phone}</span>
-            {/if}
+            <label for="phone">{$_('contact.form.phone')}</label>
+            <input type="tel" id="phone" bind:value={formData.phone}
+              placeholder={$_('contact.form.phonePlaceholder')} disabled={loading} />
+            {#if fieldErrors.phone}<span class="error-text">{fieldErrors.phone}</span>{/if}
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
-            <label for="age">
-              {$_('contact.form.age')}
-            </label>
-            <input 
-              type="number" 
-              id="age" 
-              bind:value={formData.age}
-              min="5"
-              max="80"
-              placeholder="Ex: 12"
-              disabled={loading}
-            />
+            <label for="age">{$_('contact.form.age')}</label>
+            <input type="number" id="age" bind:value={formData.age}
+              min="5" max="80" placeholder="Ex: 12" disabled={loading} />
           </div>
-
           <div class="form-group">
-            <label for="category">
-              {$_('camps.formulaire.type.typeName')}
-            </label>
+            <label for="category">{$_('camps.formulaire.type.typeName')}</label>
             <select id="category" bind:value={formData.category} disabled={loading}>
               <option value="inscription">{$_('camps.formulaire.type.registration')}</option>
               <option value="information">{$_('camps.formulaire.type.info')}</option>
@@ -329,23 +317,11 @@
         </div>
 
         <div class="form-group" class:has-error={fieldErrors.message}>
-          <label for="message">
-            {$_('contact.form.message')} *
-          </label>
-          <textarea 
-            id="message" 
-            bind:value={formData.message}
-            rows="5"
-            placeholder={$_('contact.form.messagePlaceholder')}
-            disabled={loading}
-            required
-          ></textarea>
-          <small class="char-count">
-            {formData.message.length} / 10 {$_('contact.form.charCountMin')}
-          </small>
-          {#if fieldErrors.message}
-            <span class="error-text">{fieldErrors.message}</span>
-          {/if}
+          <label for="message">{$_('contact.form.message')} *</label>
+          <textarea id="message" bind:value={formData.message} rows="5"
+            placeholder={$_('contact.form.messagePlaceholder')} disabled={loading} required></textarea>
+          <small class="char-count">{formData.message.length} / 10 {$_('contact.form.charCountMin')}</small>
+          {#if fieldErrors.message}<span class="error-text">{fieldErrors.message}</span>{/if}
         </div>
 
         <button type="submit" class="submit-btn" disabled={loading}>
@@ -385,9 +361,86 @@
     padding: 0 1rem;
   }
 
-  .hero-camps {
-    padding: 2rem 0;
+  /* ── Tabs ── */
+  .tabs-section {
+    padding: 2.5rem 0 0;
     background: #f8f9fa;
+  }
+
+  .page-title {
+    text-align: center;
+    color: #1a4d7a;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 1rem 2rem;
+    border: 2px solid #1a4d7a;
+    border-bottom: none;
+    border-radius: 0.5rem 0.5rem 0 0;
+    background: white;
+    color: #1a4d7a;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s, color 0.2s;
+    min-width: 200px;
+  }
+
+  .tab-btn:hover {
+    background: #e8f0f8;
+  }
+
+  .tab-btn.active {
+    background: #1a4d7a;
+    color: white;
+  }
+
+  .tab-icon {
+    font-size: 1.5rem;
+  }
+
+  .tab-label {
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  .tab-date {
+    font-size: 0.8rem;
+    opacity: 0.8;
+  }
+
+  /* ── Camp info ── */
+  .camp-info {
+    padding: 0 0 3rem;
+    background: white;
+    border-top: 3px solid #1a4d7a;
+  }
+
+  .tab-content {
+    padding-top: 2rem;
+    animation: fadeIn 0.25s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-camps {
+    margin-bottom: 2rem;
   }
 
   .camp-poster {
@@ -400,17 +453,12 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
 
-  .camp-info {
-    padding: 3rem 0;
-    background: white;
-  }
-
-  /* Mobile : alternance info/photo */
+  /* ── Grid infos/photos ── */
   .content-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.5rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 
   .info-card {
@@ -463,6 +511,7 @@
     transform: scale(1.05);
   }
 
+  /* ── Activities ── */
   .activities {
     background: #f8f9fa;
     padding: 2rem;
@@ -492,6 +541,7 @@
     border-bottom: none;
   }
 
+  /* ── Formulaire ── */
   .contact-form-section {
     padding: 3rem 0;
     background: linear-gradient(180deg, #1a4d7a 0%, #0f2d4a 100%);
@@ -541,20 +591,9 @@
     flex-shrink: 0;
   }
 
-  .alert-content {
-    flex: 1;
-  }
-
-  .alert-content strong {
-    display: block;
-    margin-bottom: 0.25rem;
-    font-size: 1.05rem;
-  }
-
-  .alert-content p {
-    margin: 0;
-    font-size: 0.95rem;
-  }
+  .alert-content { flex: 1; }
+  .alert-content strong { display: block; margin-bottom: 0.25rem; font-size: 1.05rem; }
+  .alert-content p { margin: 0; font-size: 0.95rem; }
 
   .camp-form {
     background: white;
@@ -613,17 +652,15 @@
   }
 
   .has-error input,
-  .has-error textarea {
-    border-color: #ef4444;
-  }
-  
+  .has-error textarea { border-color: #ef4444; }
+
   .error-text {
     display: block;
     color: #ef4444;
     font-size: 0.875rem;
     margin-top: 0.25rem;
   }
-  
+
   .char-count {
     display: block;
     font-size: 0.875rem;
@@ -649,14 +686,8 @@
     transition: transform 0.2s;
   }
 
-  .submit-btn:hover:not(:disabled) {
-    transform: translateY(-2px);
-  }
-
-  .submit-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
+  .submit-btn:hover:not(:disabled) { transform: translateY(-2px); }
+  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
   .spinner {
     width: 18px;
@@ -667,9 +698,7 @@
     animation: spin 0.6s linear infinite;
   }
 
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
+  @keyframes spin { to { transform: rotate(360deg); } }
 
   .contact-info {
     max-width: 800px;
@@ -699,32 +728,23 @@
     transition: color 0.2s;
   }
 
-  .contact-link:hover {
-    color: #c9a961;
-  }
+  .contact-link:hover { color: #c9a961; }
 
-  /* ✅ Desktop : 3 infos en haut, 3 photos en bas */
+  /* ── Desktop ── */
   @media (min-width: 640px) {
     .content-grid {
-      display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-template-rows: auto auto;
-      gap: 1.5rem;
     }
 
-    /* Les 3 infos sur la première ligne */
     .info-1 { grid-column: 1; grid-row: 1; }
     .info-2 { grid-column: 2; grid-row: 1; }
     .info-3 { grid-column: 3; grid-row: 1; }
-
-    /* Les 3 photos sur la deuxième ligne */
     .photo-1 { grid-column: 1; grid-row: 2; }
     .photo-2 { grid-column: 2; grid-row: 2; }
     .photo-3 { grid-column: 3; grid-row: 2; }
 
-    .form-row {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    .form-row { grid-template-columns: repeat(2, 1fr); }
 
     .contact-details {
       flex-direction: row;
@@ -734,24 +754,9 @@
   }
 
   @media (min-width: 768px) {
-    .container {
-      padding: 0 2rem;
-    }
-
-    .hero-camps {
-      padding: 3rem 0;
-    }
-
-    .camp-info {
-      padding: 4rem 0;
-    }
-
-    .contact-form-section {
-      padding: 4rem 0;
-    }
-
-    .camp-form {
-      padding: 3rem;
-    }
+    .container { padding: 0 2rem; }
+    .camp-info { padding-bottom: 4rem; }
+    .contact-form-section { padding: 4rem 0; }
+    .camp-form { padding: 3rem; }
   }
 </style>

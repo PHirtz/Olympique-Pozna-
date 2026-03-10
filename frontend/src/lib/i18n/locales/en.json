@@ -182,23 +182,46 @@
     "lieu": "Location",
     "dates": "Dates",
     "info": {
-      "dates": "February 15-21, 2026",
+      "dates": "August 2-7, 2026",
       "duration": "7 days of sports!",
-      "location": "Skarbimierz",
-      "hotel": "Hotel Antonio Conference",
+      "location": "Opalenica",
       "training": "3 training sessions/day",
       "activities": "Matches, games and team building"
     },
+    "info2": {
+      "dates2": "August 23-28, 2026",
+      "duration2": "7 days of sports!",
+      "location2": "Januszkowo",
+      "training2": "2 training sessions/day",
+      "activities2": "Matches, games and team building"
+    },
     "programme": {
-      "title": "Olympic Camp Program",
+      "title": "Le Camp Olympique Opalenica 2026 program",
       "subtitle": "Training",
       "programDescription": [
-        "⚽ 3 daily training sessions: sparring, games, integration",
-        "🏨 Comfortable accommodation with meals included",
-        "🏰 Cultural visits",
-        "🎾 Activities: Gym, playground, ping pong, mini zoo",
-        "⚽ FIFA tournaments + Aquapark outing",
-        "🎓 Professional supervision by our certified coaches"
+        "⚽ 3 training sessions per day: friendly matches, games, team-building",
+        "🏨 Comfortable accommodation with full board",
+        "🎓 Development on and off the field – mental coaching, nutrition workshops…",
+        "🎾 Additional activities: gym, aquapark, team games…",
+        "⚽ Soccer Bot 360",
+        "🎓 Professional supervision by certified coaches",
+        "📆 from August 2nd until August 7th",
+        "🙋‍♂️ Boys born between 2009-2014"
+      ]
+    },
+    "programme2": {
+      "title2": "Le Camp Olympique Januszkowo 2026 Program",
+      "subtitle2": "Training",
+      "programDescription2": [
+        "⚽ 2 training sessions per day: beach activities, games, team-building",
+        "🏨 Comfortable accommodation with full board",
+        "🎓 Development on and off the field – mental coaching, nutrition workshops…",
+        "🎾 Additional activities: beach soccer, pedal boats, team games…",
+        "⚽ Many friendly matches against teams from all over Poland",
+        "🎓 Professional supervision by certified coaches",
+        "📆 From Sunday 23 August to Friday 28 August",
+        "👱‍♀️ Girls born between 2008 and 2018",
+        "🙋‍♂️ Boys born between 2014 and 2018"
       ]
     },
     "formulaire": {

@@ -1,7 +1,6 @@
 <script>
   import { _ } from 'svelte-i18n';
-  import { goto } from '$app/navigation';
-  import Button from './ui/Button.svelte';
+  import { resolve } from '$app/paths';
 
   const teams = [
     {
@@ -9,27 +8,17 @@
       image: '../seniorsf/548748092_685055974624192_8235511687039625110_n.jpg',
       link: '/teams/dames'
     },
-
     {
       slug: 'junior',
       image: '../juniors/535057118_663522866777503_4651670088385010660_n.jpg',
       link: '/teams/academy'
     },
-
     {   
       slug: 'senior',
       image: '../seniorsh/565694409_714234655039657_3240198854373276417_n.jpg',
       link: '/teams/bleus'
     }
   ];
-
-  /**
-   * Navigue vers la page de l'équipe
-   * @param {string} link
-   */
-  function navigateToTeam(link) {
-    goto(link);
-  }
 </script>
 
 <section class="teams-section">
@@ -38,23 +27,23 @@
   </div>
   
   <div class="teams-cards">
-    {#each teams as team}
+    {#each teams as team (team.slug)}
       <a 
-        href={team.link} 
+        href={resolve(team.link)} 
         class="team-card"
         aria-label={$_(`home.teams.${team.slug}.name`)}
       >
-        <div class="team-image">
-          <img 
-            src={team.image} 
-            alt={$_(`home.teams.${team.slug}.name`)}
-            loading="lazy"
-          />
-        </div>
-        <div class="team-content">
-          <h3>{$_(`home.teams.${team.slug}.name`)}</h3>
-        </div>
-      </a>
+      <div class="team-image">
+        <img 
+          src={team.image} 
+          alt={$_(`home.teams.${team.slug}.name`)}
+          loading="lazy"
+        />
+      </div>
+      <div class="team-content">
+        <h3>{$_(`home.teams.${team.slug}.name`)}</h3>
+      </div>
+    </a>
     {/each}
   </div>
 </section>

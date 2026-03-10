@@ -182,25 +182,49 @@
     "lieu": "Lieu",
     "dates": "Dates",
     "info": {
-      "dates": "15-21 Février 2026",
+      "dates": "2-7 Août 2026",
       "duration": "7 jours de sport !",
-      "location": "Skarbimierz",
-      "hotel": "Hotel Antonio Conference",
+      "location": "Opalenica",
       "training": "3 entraînements/jour",
       "activities": "Matchs, jeux et intégration"
     },
+    "info2": {
+      "dates2": "23-28 Août 2026",
+      "duration2": "7 jours de sport !",
+      "location2": "Januszkowo",
+      "training2": "2 entraînements/jour",
+      "activities2": "Matchs, jeux et intégration"
+    },
     "programme": {
-      "title": "Programme du Camp Olympique",
+      "title": "Programme Le Camp Olympique Opalenica 2026",
       "subtitle": "Entraînements",
       "programDescription": [
-        "⚽ 3 entraînements quotidiens : sparring, jeux, intégration",
-        "🏨 Hébergement confortable avec repas inclus",
-        "🏰 Visites culturelles",
-        "🎾 Activités : Salle de sport, aire de jeux, ping-pong, mini zoo",
-        "⚽ Tournois FIFA + Sortie Aquapark",
-        "🎓 Encadrement professionnel par nos entraîneurs diplômés"
+        "⚽ 3 entraînements par jour : matchs amicaux, jeux, intégration d’équipe",
+        "🏨 Hébergement confortable avec pension complète",
+        "🎓 Développement sur le terrain mais aussi en dehors – ateliers mentaux, nutrition…",
+        "🎾 Activités complémentaires : salle de sport, aquapark, jeux d’équipe…",
+        "⚽ Soccer Bot 360",
+        "🎓 Encadrement professionnel par des entraîneurs certifiés",
+        "📆 du dimanche 2 août au vendredi 7 août",
+        "🙋‍♂️ Garçons nés entre 2009-2014"
       ]
     },
+    "programme2": {
+      "title2": "Programme Le Camp Olympique Januszkowo 2026",
+      "subtitle2": "Entraînements",
+      "programDescription2": [
+        "⚽ 2 entraînements par jour : plage, jeux, activités d’intégration",
+        "🏨 Hébergement confortable avec pension complète",
+        "🎓 Développement sur le terrain mais aussi en dehors – ateliers mentaux, nutrition…",
+        "🎾 Activités complémentaires : beach soccer, pédalos, jeux d’équipe…",
+        "⚽ De nombreux matchs amicaux contre des équipes de toute la Pologne",
+        "🎓 Encadrement professionnel par des entraîneurs certifiés",
+        "📆 Du dimanche 23 août au vendredi 28 août",
+        "👱‍♀️ Filles nées entre 2008 et 2018",
+        "🙋‍♂️ Garçons nés entre 2014 et 2018"
+      ]
+    },
+    
     "formulaire": {
       "title": "Inscrivez-vous au Camp Olympique Poznań",
       "description": "Remplissez le formulaire ci-dessous pour vous inscrire ou demander plus d'informations",
