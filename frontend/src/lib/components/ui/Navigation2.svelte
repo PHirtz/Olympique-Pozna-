@@ -162,7 +162,7 @@
         {$_('nav.shop')}
       </a>
             
-      <!-- DROPDOWN : Le Club (inclut Nos Équipes) -->
+      <!-- DROPDOWN : Le Club -->
       <div 
         class="dropdown" 
         style="animation-delay: 0.3s"
@@ -194,61 +194,6 @@
             </a>
             <a href="/club/partners" class="dropdown-item" role="menuitem">{$_('club.partners.title')}</a>
 
-            <!-- Nos Équipes : sous-menu au survol -->
-            <div class="submenu" role="group" on:mouseenter={cancelClose}>
-              <a
-                href="/teams"
-                class="dropdown-item submenu-trigger"
-                role="menuitem"
-                aria-haspopup="true"
-                tabindex="0"
-                on:click={(e) => { e.stopPropagation(); openDropdown = null; openSubmenu = null; }}
-              >
-                {$_('nav.teams')}
-                <span class="icon-rotate-90"><ChevronDown size={14} /></span>
-              </a>
-              <div class="submenu-content" role="menu" tabindex="-1" on:mouseenter={cancelClose}>
-
-                <a href="/teams/dames" class="submenu-item" role="menuitem" tabindex="0">
-                  {$_('home.teams.feminine.name')}
-                </a>
-
-                <a href="/teams/bleus" class="submenu-item" role="menuitem" tabindex="0">
-                  {$_('home.teams.senior.name')}
-                </a>
-
-                <!-- Académie : sous-sous-menu au survol -->
-                <div class="submenu" role="group">
-                  <a
-                    href="/teams/academy"
-                    class="submenu-item submenu-trigger"
-                    role="menuitem"
-                    aria-haspopup="true"
-                    tabindex="0"
-                    on:click={(e) => { e.stopPropagation(); openDropdown = null; openSubmenu = null; }}
-                  >
-                    {$_('home.teams.junior.name')}
-                    <span class="icon-rotate-90"><ChevronDown size={12} /></span>
-                  </a>
-                  <div class="submenu-content academy-submenu" role="menu" tabindex="-1">
-                    <a href="/teams/diani" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.diani')}</a>
-                    <a href="/teams/giroud" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.giroud')}</a>
-                    <a href="/teams/camavinga" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.camavinga')}</a>
-                    <a href="/teams/doue" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.title')}</a>
-                    <a href="/teams/mbappe" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.mbappe')}</a>
-                    <a href="/teams/griezmann" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.griezmann')}</a>
-                    <a href="/teams/renard" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.renard')}</a>
-                    <a href="/teams/coman" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.coman')}</a>
-                    <a href="/teams/lesommer" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.lesommer')}</a>
-                    <a href="/teams/saliba" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.saliba')}</a>
-                    <a href="/teams/henry" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.henry')}</a>
-                    <a href="/teams/dembélé" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.dembele')}</a>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
             <a 
               href="https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit?tab=t.0" 
               target="_blank" rel="noopener noreferrer" class="dropdown-item"
@@ -261,9 +206,62 @@
         {/if}
       </div>
 
-      <a href="/fondation-stevens" class="nav-link" style="animation-delay: 0.4s">
-        Fondation Stevens
-      </a>
+      <!-- DROPDOWN : Nos Équipes (DESKTOP) -->
+      <div 
+        class="dropdown teams-dropdown" 
+        style="animation-delay: 0.4s"
+        on:mouseenter={() => openDropdownMenu('teams')}
+        on:mouseleave={closeDropdownWithDelay}
+        role="group"
+      >
+        <a href="/teams" class="nav-link dropdown-trigger">
+          {$_('nav.teams')}
+          <ChevronDown size={16} />
+        </a>
+        
+        {#if openDropdown === 'teams'}
+          <div 
+            class="dropdown-menu teams-menu" 
+            role="menu"
+            tabindex="-1"
+            on:mouseenter={cancelClose}
+          >          
+            <a href="/teams/dames" class="dropdown-item" role="menuitem" tabindex="0">
+              {$_('home.teams.feminine.name')}
+            </a>
+            <a href="/teams/bleus" class="dropdown-item" role="menuitem" tabindex="0">
+              {$_('home.teams.senior.name')}
+            </a>
+            <div class="submenu" role="group" on:mouseenter={cancelClose}>
+              <a 
+                href="/teams/academy" 
+                class="dropdown-item submenu-trigger" 
+                role="menuitem" 
+                aria-haspopup="true" 
+                tabindex="0"
+                on:click={(e) => { e.stopPropagation(); openDropdown = null; openSubmenu = null; }}
+              >
+                {$_('home.teams.junior.name')}
+                <span class="icon-rotate-90"><ChevronDown size={14} /></span>
+              </a>
+              <div class="submenu-content academy-submenu" role="menu" tabindex="-1" on:mouseenter={cancelClose}>
+                <a href="/teams/diani" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.diani')}</a>
+                <a href="/teams/giroud" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.giroud')}</a>
+                <a href="/teams/camavinga" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.camavinga')}</a>
+                <a href="/teams/doue" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.doue.title')}</a>
+                <a href="/teams/mbappe" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.mbappe')}</a>
+                <a href="/teams/griezmann" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.griezmann')}</a>
+                <a href="/teams/renard" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.renard')}</a>
+                <a href="/teams/coman" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.coman')}</a>
+                <a href="/teams/lesommer" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.lesommer')}</a>
+                <a href="/teams/saliba" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.saliba')}</a>
+                <a href="/teams/henry" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.henry')}</a>
+                <a href="/teams/dembélé" class="submenu-item" role="menuitem" tabindex="0">{$_('teams.dembele')}</a>
+              </div>
+            </div>
+          </div>
+        {/if}
+      </div>
       
       <a href="/camps" class="nav-link" style="animation-delay: 0.5s">
         {$_('nav.camps')}
@@ -358,9 +356,8 @@
       <ul class="mobile-menu">
         <li><a href="/" on:click={close}>{$_('nav.home')}</a></li>
         <li>
-          <a href="https://olympique.pl/" target="_blank" rel="noopener noreferrer" on:click={close} class="shop-mobile-link">
+          <a href="https://olympique.pl/" target="_blank" rel="noopener noreferrer" on:click={close} class="shop-mobile-link shop-glow-mobile">
             {$_('nav.shop')}
-            <span class="new-badge"><span class="badge-text">NEW</span><span class="shine"></span></span>
           </a>
         </li>        
         
@@ -387,45 +384,49 @@
                 </a>
               </li>
               <li><a href="/club/partners" on:click={close}>{$_('club.partners.title')}</a></li>
+              </ul>
+          {/if}
+        </li>
 
-              <!-- Nos Équipes (mobile) -->
+        <!-- Nos Équipes (mobile) standalone -->
+        <li class="mobile-dropdown">
+          <div class="mobile-dropdown-row">
+            <a href="/teams" class="mobile-dropdown-link" on:click={close}>{$_('nav.teams')}</a>
+            <button class="mobile-dropdown-trigger" aria-label="Ouvrir le menu Équipes"
+              on:click={() => toggleDropdown('teams-standalone-mobile')}>
+              <span class="icon-wrapper" class:rotate={openDropdown === 'teams-standalone-mobile'}>
+                <ChevronDown size={16} />
+              </span>
+            </button>
+          </div>
+          {#if openDropdown === 'teams-standalone-mobile'}
+            <ul class="mobile-submenu">
+              <li><a href="/teams/dames" on:click={close}>{$_('home.teams.feminine.name')}</a></li>
+              <li><a href="/teams/bleus" on:click={close}>{$_('home.teams.senior.name')}</a></li>
               <li class="mobile-subsubmenu">
                 <div class="mobile-subsubmenu-row">
-                  <a href="/teams" class="mobile-subsubmenu-link" on:click={close}>{$_('nav.teams')}</a>
-                  <button class="mobile-subsubmenu-trigger" aria-label="Ouvrir le menu Équipes" on:click={() => toggleSubmenu('teams-mobile')}>
-                    <span class="icon-wrapper" class:rotate={openSubmenu === 'teams-mobile'}><ChevronDown size={14} /></span>
+                  <a href="/teams/academy" class="mobile-subsubmenu-link" on:click={close}>{$_('home.teams.junior.name')}</a>
+                  <button class="mobile-subsubmenu-trigger" aria-label="Ouvrir l'académie"
+                    on:click={() => toggleSubmenu('academy-standalone-mobile')}>
+                    <span class="icon-wrapper" class:rotate={openSubmenu === 'academy-standalone-mobile'}>
+                      <ChevronDown size={14} />
+                    </span>
                   </button>
                 </div>
-                {#if openSubmenu === 'teams-mobile'}
+                {#if openSubmenu === 'academy-standalone-mobile'}
                   <ul class="mobile-subsubmenu-list">
-                    <li><a href="/teams/dames" on:click={close}>{$_('home.teams.feminine.name')}</a></li>
-                    <li><a href="/teams/bleus" on:click={close}>{$_('home.teams.senior.name')}</a></li>
-
-                    <!-- Académie (3ème niveau) -->
-                    <li class="mobile-third-level">
-                      <div class="mobile-third-level-row">
-                        <a href="/teams/academy" class="mobile-third-level-link" on:click={close}>{$_('home.teams.junior.name')}</a>
-                        <button class="mobile-third-level-trigger" aria-label="Ouvrir l'académie" on:click={() => toggleThirdLevel('academy-mobile')}>
-                          <span class="icon-wrapper" class:rotate={openThirdLevel === 'academy-mobile'}><ChevronDown size={13} /></span>
-                        </button>
-                      </div>
-                      {#if openThirdLevel === 'academy-mobile'}
-                        <ul class="mobile-fourth-list">
-                          <li><a href="/teams/diani" on:click={close}>{$_('teams.diani')}</a></li>
-                          <li><a href="/teams/giroud" on:click={close}>{$_('teams.giroud')}</a></li>
-                          <li><a href="/teams/camavinga" on:click={close}>{$_('teams.camavinga')}</a></li>
-                          <li><a href="/teams/doue" on:click={close}>{$_('teams.doue.title')}</a></li>
-                          <li><a href="/teams/mbappe" on:click={close}>{$_('teams.mbappe')}</a></li>
-                          <li><a href="/teams/griezmann" on:click={close}>{$_('teams.griezmann')}</a></li>
-                          <li><a href="/teams/renard" on:click={close}>{$_('teams.renard')}</a></li>
-                          <li><a href="/teams/coman" on:click={close}>{$_('teams.coman')}</a></li>
-                          <li><a href="/teams/lesommer" on:click={close}>{$_('teams.lesommer')}</a></li>
-                          <li><a href="/teams/saliba" on:click={close}>{$_('teams.saliba')}</a></li>
-                          <li><a href="/teams/henry" on:click={close}>{$_('teams.henry')}</a></li>
-                          <li><a href="/teams/dembele" on:click={close}>{$_('teams.dembele')}</a></li>
-                        </ul>
-                      {/if}
-                    </li>
+                    <li><a href="/teams/diani" on:click={close}>{$_('teams.diani')}</a></li>
+                    <li><a href="/teams/giroud" on:click={close}>{$_('teams.giroud')}</a></li>
+                    <li><a href="/teams/camavinga" on:click={close}>{$_('teams.camavinga')}</a></li>
+                    <li><a href="/teams/doue" on:click={close}>{$_('teams.doue.title')}</a></li>
+                    <li><a href="/teams/mbappe" on:click={close}>{$_('teams.mbappe')}</a></li>
+                    <li><a href="/teams/griezmann" on:click={close}>{$_('teams.griezmann')}</a></li>
+                    <li><a href="/teams/renard" on:click={close}>{$_('teams.renard')}</a></li>
+                    <li><a href="/teams/coman" on:click={close}>{$_('teams.coman')}</a></li>
+                    <li><a href="/teams/lesommer" on:click={close}>{$_('teams.lesommer')}</a></li>
+                    <li><a href="/teams/saliba" on:click={close}>{$_('teams.saliba')}</a></li>
+                    <li><a href="/teams/henry" on:click={close}>{$_('teams.henry')}</a></li>
+                    <li><a href="/teams/dembele" on:click={close}>{$_('teams.dembele')}</a></li>
                   </ul>
                 {/if}
               </li>
@@ -433,7 +434,6 @@
           {/if}
         </li>
 
-        <li><a href="/fondation-stevens" on:click={close}>Fondation Stevens</a></li>
         <li><a href="/camps" on:click={close}>{$_('nav.camps')}</a></li>
         <li><a href="/contact" on:click={close}>{$_('nav.contact')}</a></li>
         <li>
@@ -1271,20 +1271,24 @@
 
 .mobile-fourth-list a:hover { background: rgba(212, 175, 55, 0.12); color: #d4af37; }
 
-  /* Shop glow - lueur dorée sur le texte */
+  /* Shop glow - couleur dorée */
   .shop-glow {
-    text-shadow: 0 0 8px rgba(212, 175, 55, 0.8), 0 0 16px rgba(212, 175, 55, 0.4) !important;
     color: #d4af37 !important;
+    font-weight: 700 !important;
   }
 
   .shop-glow:hover {
-    text-shadow: 0 0 12px rgba(212, 175, 55, 1), 0 0 24px rgba(212, 175, 55, 0.6) !important;
     color: #f0cc6a !important;
   }
 
   .shop-glow-mobile {
-    text-shadow: 0 0 8px rgba(212, 175, 55, 0.7), 0 0 16px rgba(212, 175, 55, 0.3);
     color: #d4af37 !important;
+    font-weight: 700 !important;
+  }
+
+  .shop-glow-mobile:hover {
+    color: #f0cc6a !important;
+    background: rgba(212, 175, 55, 0.15) !important;
   }
 
   /* Badge inline sur item dropdown */
@@ -1296,7 +1300,7 @@
   }
 
   .scholarship-mobile-item {
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: space-between;
     gap: 0.5rem;
@@ -1307,7 +1311,8 @@
     top: auto !important;
     right: auto !important;
     flex-shrink: 0;
-    font-size: 0.6rem !important;
-    padding: 0.2rem 0.4rem !important;
+    font-size: 0.65rem;
+    padding: 0.25rem 0.5rem;
+    animation: badgePulse 2s ease-in-out infinite, gradientShift 4s ease infinite;
   }
 </style>
