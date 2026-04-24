@@ -4,10 +4,11 @@
 </svelte:head>
 
 <script>
-  import { _ } from 'svelte-i18n';
+  import { _, locale } from 'svelte-i18n';
   import { enhance } from '$app/forms';
   import Navigation2 from '$lib/components/ui/Navigation2.svelte';
   import HeroSlider from '$lib/components/HeroSlider.svelte';
+  import DonationTab from '$lib/components/ui/DonationTab.svelte';
   import Footer from '$lib/components/ui/Footer.svelte';
   import { Heart, User, Users, Mail, MessageSquare, Send } from 'lucide-svelte';
 
@@ -34,6 +35,7 @@
 </script>
 
 <Navigation2 {data} />
+<DonationTab />
 
 <HeroSlider
   images={heroSlides}
@@ -117,6 +119,7 @@
           };
         }}
       >
+      <input type="hidden" name="locale" value={$locale} />
 
         <!-- Enfant -->
         <fieldset>

@@ -6,7 +6,6 @@
 <script>
   import Hero from '$lib/components/ui/Hero.svelte';
   import Footer from '$lib/components/ui/Footer.svelte';
-  import SectionTeams from '$lib/components/SectionTeams.svelte';
   import BanniereCamp from '$lib/components/BanniereCamp.svelte';
   import Navigation from '$lib/components/ui/Navigation.svelte';
   import Externe from '$lib/components/Externe.svelte';

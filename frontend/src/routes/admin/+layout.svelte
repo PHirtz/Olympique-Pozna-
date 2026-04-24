@@ -108,7 +108,7 @@
   .user-avatar {
     width: 80px;
     height: 80px;
-    background: url('/img-communes/profil.png') no-repeat center center;
+    background: url('/logo.png') no-repeat center center;
     background-size: cover;
     border-radius: 50%;
   }

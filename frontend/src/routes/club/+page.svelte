@@ -57,8 +57,12 @@
 <Navigation2 />
 
 <section class="hero-club">
+  <div class="hero-overlay"></div>
   <div class="hero-content">
+    <img src="../logo.png" alt="Olympique Poznań" class="hero-logo" />
     <h1>{$_('club.title')}</h1>
+    <div class="hero-divider"></div>
+    <p class="hero-subtitle">{$_('club.subtitle') || 'Olympique Poznań'}</p>
   </div>
 </section>
 
@@ -93,18 +97,84 @@
 <style>
   /* Hero Section */
   .hero-club {
-    background: linear-gradient(135deg, #1a4d7a 0%, #0f2d4a 100%);
+    position: relative;
+    background-image: url('/club/about.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    background-color: #0f2d4a;
     color: white;
-    padding: 8rem 2rem 4rem;
+    padding: 10rem 2rem 10rem;
     text-align: center;
+    overflow: hidden;
+    min-height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(15, 45, 74, 0.88) 0%,
+      rgba(26, 77, 122, 0.75) 100%
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: -120px;
+  }
+
+  .hero-logo {
+    height: 90px;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+    margin-bottom: 0.5rem;
+    animation: fadeInDown 0.8s ease-out;
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
   .hero-content h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 700;
-    margin-bottom: 1rem;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 800;
     color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    margin: 0;
+    letter-spacing: 1px;
+    animation: fadeInUp 0.8s ease-out 0.2s backwards;
+  }
+
+  .hero-divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #c9a961, #ddc184);
+    border-radius: 2px;
+    animation: fadeInUp 0.8s ease-out 0.3s backwards;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.7);
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0;
+    animation: fadeInUp 0.8s ease-out 0.4s backwards;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
   /* Section club */
