@@ -74,7 +74,7 @@
   .hero {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 200vh;
     margin-top: -140px;
     padding-top: 120px;
     display: flex;
@@ -148,6 +148,7 @@
     text-align: center;
     color: white;
     padding: 2rem;
+    margin-top: -80px;
     max-width: 800px;
     animation: fadeInUp 1s ease-out;
  }
@@ -178,7 +179,7 @@
   /* Indicateurs */
   .hero-indicators {
     position: absolute;
-    bottom: 2rem;
+    bottom: 6rem;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -221,7 +222,7 @@
   /* Responsive */
   @media (max-width: 768px) {
     .hero {
-      margin-top: -100px; /* Ajusté pour mobile */
+      margin-top: -100px; 
       padding-top: 80px;
     }
 
