@@ -16,6 +16,83 @@
     "mainNavigation": "Główna nawigacja mobilna"
   },
 
+"scholarship": {
+  "title": "Stypendium Michaela Stevensa",
+  "metaDescription": "Wesprzyj Stypendium Stevensa, aby dać szanse młodym talentom piłkarskim w Poznaniu",
+  "hero": {
+    "title": "Stypendium Michaela Stevensa",
+    "subtitle": "Pamięci Michaela Stevensa — aby każdy młody pasjonat piłki nożnej miał swoją szansę"
+  },
+  "Michael": {
+    "title": "Kim był Michael?",
+    "text1": "Michael Stevens był częścią rodziny Olympique Poznań. Był naszym zawodnikiem (drużyna Les Bleus), ale przede wszystkim osobą, która zawsze była obecna przy boisku. Uwielbiał spędzać czas z dziećmi, pomagać — był trenerem piłki nożnej w Anglii."
+  },
+  "objectif": {
+    "title": "Cel Stypendium Stevensa",
+    "text": "Stypendium im. Michaela Stevensa powstało, aby wspierać dzieci, których sytuacja finansowa nie pozwala na udział w obozach i turniejach sportowych. To sposób, by pamięć o Michaelu przekuć w coś trwałego i realnego – pomoc dla kolejnych pokoleń młodych zawodników."
+  },
+  "désignation": {
+    "title": "Zgłoś dziecko",
+    "text1": "Jeśli znasz dziecko, które potrzebuje wsparcia, wypełnij poniższy formularz.",
+    "text2": "Razem dajmy każdemu młodemu zawodnikowi możliwość napisania swojej historii z Olympique Poznań.",
+    "text": "Jeśli znasz dziecko, które potrzebuje wsparcia, wypełnij poniższy formularz."
+  },
+  "cta": {
+    "text": "Wspierając Stypendium Stevensa, bezpośrednio przyczyniasz się do kształcenia i rozwoju naszych młodych zawodników. Twoja darowizna pozwala sfinansować opłaty za obozy, zakup sprzętu oraz organizację zajęć edukacyjnych i sportowych. Dołącz do nas w tej pasjonującej przygodzie i pomóż nam zmienić życie tych młodych talentów!",
+    "button": "Wpłać darowiznę"
+  },
+  "donation": {
+    "title": "Jak pomóc?",
+    "explication": {
+      "bank": "Możesz wesprzeć stypendium poprzez przelew:",
+      "bank1": "Numer konta: 52 1090 1463 0000 0001 5483 3793",
+      "bank2": "Tytuł przelewu: MICHAEL",
+      "text": "Każda wpłata trafia bezpośrednio do funduszu i pomaga dzieciom wyjechać na obozy oraz turnieje. Dzięki Twojej pomocy możemy pomagać w sposób trwały i zgodny z wartościami, które były bliskie Michaelowi."
+    }
+  },
+  "labels": {
+    "camps": "Dostępne obozy w 2026 roku",
+    "dons": "Darowizn trafia bezpośrednio do dzieci",
+    "childs": "Dzieci pojadą z nami dzięki Waszemu wsparciu"
+  },
+  "form": {
+    "childInfo": "Informacje o dziecku",
+    "childFirstName": "Imię dziecka *",
+    "childFirstNamePlaceholder": "Imię",
+    "childLastName": "Nazwisko dziecka *",
+    "childLastNamePlaceholder": "Nazwisko",
+    "childAge": "Wiek dziecka *",
+    "childAgePlaceholder": "Np. 10",
+    "memberQuestion": "Czy jest członkiem Olympique Poznań? *",
+    "memberYes": "Tak",
+    "memberNo": "Nie",
+    "clubName": "Nazwa obecnego klubu",
+    "clubNamePlaceholder": "Np. FC Warszawa",
+    "parentInfo": "Informacje o rodzicach (opcjonalnie)",
+    "parentFirstName": "Imię rodzica",
+    "parentFirstNamePlaceholder": "Imię",
+    "parentLastName": "Nazwisko rodzica",
+    "parentLastNamePlaceholder": "Nazwisko",
+    "contactCamp": "Kontakt i wybrany obóz",
+    "email": "Twój e-mail *",
+    "emailPlaceholder": "twoj@email.com",
+    "camp": "Wybrany obóz *",
+    "campOpalenica": "Obóz Opalenica — 2-7 sierpnia 2026",
+    "campJanuszkowo": "Obóz Januszkowo — 23-28 sierpnia 2026",
+    "campOther": "Inne / Do ustalenia",
+    "messageSection": "Twoja wiadomość",
+    "messageLabel": "Dlaczego to dziecko zasługuje na wsparcie? *",
+    "messagePlaceholder": "Opisz sytuację dziecka, jego poziom sportowy, motywację, powód prośby o wsparcie finansowe...",
+    "charCount": "znaków minimum",
+    "submit": "Wyślij zgłoszenie",
+    "submitting": "Wysyłanie...",
+    "successTitle": "Zgłoszenie wysłane!",
+    "successText": "Otrzymaliśmy Twoje zgłoszenie. Nasz zespół skontaktuje się z Tobą wkrótce.",
+    "errorTitle": "Błąd",
+    "optional": "opcjonalnie"
+  }
+},
+
   "coach": {
     "intro": {
       "title": "Nasz Zespół Trenerski",

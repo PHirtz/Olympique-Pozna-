@@ -1,108 +1,33 @@
 <svelte:head>
-  <title>{$_('contact.title')}</title>
-  <meta name="description" content={$_('contact.metaDescription')} />
+  <title>Contact - Olympique Poznań</title>
+  <meta name="description" content="Contactez le club Olympique Poznań" />
 </svelte:head>
 
 <script>
-  import { _ } from 'svelte-i18n';
+  import { enhance } from '$app/forms';
   import Navigation2 from '$lib/components/ui/Navigation2.svelte';
   import Footer from '$lib/components/ui/Footer.svelte';
   import { Mail, User, Phone, MessageSquare, Send } from 'lucide-svelte';
-  import { onMount } from 'svelte';
-  import { sendContactForm } from '$lib/api/contact';
-  
-  export let data;
 
-  let mounted = false;
-  
-  // Champs du formulaire (adaptés au backend)
-  let firstName = '';
-  let lastName = '';
-  let email = '';
-  let phone = '';
-  let subject = '';
-  let message = '';
-  let isSubmitting = false;
-  let successMessage = false;
-  let errorMessage = '';
-  let fieldErrors = {}; // ← AJOUTE CETTE LIGNE ICI
+  let { data, form } = $props();
 
-  onMount(() => {
-    mounted = true;
+  let isSubmitting = $state(false);
+  let message = $state(form?.values?.message ?? '');
+
+  $effect(() => {
+    if (form?.success) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   });
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    if (!firstName || !lastName || !email || !subject || !message) {
-      errorMessage = $_('contact.form.errorRequired');
-      return;
-    }
-    
-    isSubmitting = true;
-    errorMessage = '';
-    fieldErrors = {}; // Reset des erreurs
-    successMessage = false;
-    
-    try {
-      const contactData = {
-        firstName,
-        lastName,
-        email,
-        phone: phone || undefined, 
-        subject,
-        message
-      };
-      
-      const response = await sendContactForm(contactData);
-      
-      if (response.success) {
-        successMessage = true;
-        
-        // Reset du formulaire
-        firstName = '';
-        lastName = '';
-        email = '';
-        phone = '';
-        subject = '';
-        message = '';
-        
-        // Scroll vers le haut pour voir le message
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        
-        // Masquer le message après 5 secondes
-        setTimeout(() => {
-          successMessage = false;
-        }, 5000);
-      } else {
-        // Gérer les erreurs de validation du backend
-        if (response.errors && Array.isArray(response.errors)) {
-          fieldErrors = response.errors.reduce((acc, err) => {
-            acc[err.field] = err.message;
-            return acc;
-          }, {});
-          errorMessage = 'Veuillez corriger les erreurs ci-dessous';
-        } else {
-          errorMessage = response.message || $_('contact.form.error');
-        }
-      }
-    } catch (error) {
-      console.error("Erreur lors de l'envoi :", error);
-      errorMessage = $_('contact.form.error');
-    } finally {
-      isSubmitting = false;
-    }
-  };
 </script>
 
 <Navigation2 {data} />
 
 <div class="contact-page">
-  <!-- Hero Section -->
   <section class="hero-contact">
     <div class="hero-content">
-      <h1>{$_('contact.hero.title')}</h1>
-      <p class="hero-subtitle">{$_('contact.hero.subtitle')}</p>
+      <h1>Contactez-nous</h1>
+      <p class="hero-subtitle">Une question ? N'hésitez pas à nous écrire</p>
     </div>
   </section>
 
@@ -110,76 +35,88 @@
     <section class="contact-section">
       <div class="container">
         <div class="contact-intro">
-          <h2>{$_('contact.intro.title')}</h2>
-          <p>{$_('contact.intro.text')}</p>
+          <h2>Nous sommes à votre écoute</h2>
+          <p>Pour toute demande concernant le club, les inscriptions ou les stages, utilisez le formulaire ci-dessous.</p>
         </div>
 
-        <!-- Messages de succès et d'erreur -->
-        {#if successMessage}
+        {#if form?.success}
           <div class="alert alert-success">
             <div class="alert-icon">✓</div>
             <div class="alert-content">
-              <strong>{$_('contact.form.success').split('!')[0]}!</strong>
-              <p>{$_('contact.form.success').split('!')[1]}</p>
+              <strong>Message envoyé !</strong>
+              <p>Nous vous répondrons dans les plus brefs délais.</p>
             </div>
           </div>
         {/if}
 
-        {#if errorMessage}
+        {#if form?.error}
           <div class="alert alert-error">
             <div class="alert-icon">⚠</div>
             <div class="alert-content">
               <strong>Erreur</strong>
-              <p>{errorMessage}</p>
+              <p>{form.error}</p>
             </div>
           </div>
         {/if}
 
         <div class="form-container">
-          <form class="contact-form" on:submit={handleSubmit}>
+          <form
+            method="POST"
+            class="contact-form"
+            use:enhance={() => {
+              isSubmitting = true;
+              return async ({ update }) => {
+                await update();
+                isSubmitting = false;
+              };
+            }}
+          >
             <div class="form-row">
-            <div class="form-group">
+              <div class="form-group">
                 <label for="firstName">
                   <User size={20} />
-                  {$_('contact.form.firstName')} *
+                  Prénom *
                 </label>
-                <input 
-                  type="text" 
-                  id="firstName" 
-                  bind:value={firstName}
-                  placeholder={$_('contact.form.firstNamePlaceholder')}
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  value={form?.values?.firstName ?? ''}
+                  placeholder="Votre prénom"
                   required
                   disabled={isSubmitting}
                 />
-            </div>
+              </div>
 
-            <div class="form-group">
+              <div class="form-group">
                 <label for="lastName">
                   <User size={20} />
-                  {$_('contact.form.lastName')} *
+                  Nom *
                 </label>
-                <input 
-                  type="text" 
-                  id="lastName" 
-                  bind:value={lastName}
-                  placeholder={$_('contact.form.lastNamePlaceholder')}
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  value={form?.values?.lastName ?? ''}
+                  placeholder="Votre nom"
                   required
                   disabled={isSubmitting}
                 />
-            </div>
+              </div>
             </div>
 
             <div class="form-row">
               <div class="form-group">
                 <label for="email">
                   <Mail size={20} />
-                  {$_('contact.form.email')} *
+                  Email *
                 </label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  bind:value={email}
-                  placeholder={$_('contact.form.emailPlaceholder')}
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={form?.values?.email ?? ''}
+                  placeholder="votre@email.com"
                   required
                   disabled={isSubmitting}
                 />
@@ -188,13 +125,14 @@
               <div class="form-group">
                 <label for="phone">
                   <Phone size={20} />
-                  {$_('contact.form.phone')}
+                  Téléphone
                 </label>
-                <input 
-                  type="tel" 
-                  id="phone" 
-                  bind:value={phone}
-                  placeholder={$_('contact.form.phonePlaceholder')}
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={form?.values?.phone ?? ''}
+                  placeholder="+33 6 00 00 00 00"
                   disabled={isSubmitting}
                 />
               </div>
@@ -203,50 +141,45 @@
             <div class="form-group">
               <label for="subject">
                 <MessageSquare size={20} />
-                {$_('contact.form.subject')} *
+                Sujet *
               </label>
-              <input 
-                type="text" 
-                id="subject" 
-                bind:value={subject}
-                placeholder={$_('contact.form.subjectPlaceholder')}
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                value={form?.values?.subject ?? ''}
+                placeholder="Objet de votre message"
                 required
                 disabled={isSubmitting}
               />
             </div>
 
-            <div class="form-group" class:has-error={fieldErrors.message}>
+            <div class="form-group">
               <label for="message">
                 <MessageSquare size={20} />
-                {$_('contact.form.message')} *
+                Message *
               </label>
-              <textarea 
-                id="message" 
-                bind:value={message}
+              <textarea
+                id="message"
+                name="message"
                 rows="6"
-                placeholder={$_('contact.form.messagePlaceholder')}
+                placeholder="Votre message (10 caractères minimum)"
                 required
                 disabled={isSubmitting}
+                bind:value={message}
               ></textarea>
               <small class="char-count">
-                {message.length} / 10 {$_('contact.form.charCountMin')}
+                {message.length} / 10 caractères minimum
               </small>
-              {#if fieldErrors.message}
-                <span class="error-text">{fieldErrors.message}</span>
-              {/if}
             </div>
 
-            <button 
-              type="submit" 
-              class="submit-btn"
-              disabled={isSubmitting}
-            >
+            <button type="submit" class="submit-btn" disabled={isSubmitting}>
               {#if isSubmitting}
                 <span class="spinner"></span>
-                {$_('contact.form.sending')}
+                Envoi en cours...
               {:else}
                 <Send size={20} />
-                {$_('contact.form.submit')}
+                Envoyer le message
               {/if}
             </button>
           </form>
@@ -254,13 +187,15 @@
           <div class="contact-info">
             <div class="info-card">
               <Mail size={32} />
-              <h3>{$_('contact.info.email.title')}</h3>
-              <a href="mailto:olympique.poznan@wielkopolskizpn.pl">olympique.poznan@wielkopolskizpn.pl</a>
+              <h3>Email</h3>
+              <a href="mailto:olympique.poznan@wielkopolskizpn.pl">
+                olympique.poznan@wielkopolskizpn.pl
+              </a>
             </div>
 
             <div class="info-card">
               <MessageSquare size={32} />
-              <h3>{$_('contact.info.social.title')}</h3>
+              <h3>Réseaux sociaux</h3>
               <div class="social-links">
                 <a href="https://www.facebook.com/OlympiquePoz" target="_blank" rel="noopener noreferrer">Facebook</a>
                 <a href="https://www.instagram.com/olympiquepoznan/" target="_blank" rel="noopener noreferrer">Instagram</a>
@@ -282,7 +217,6 @@
     background: #ffffff;
   }
 
-  /* Hero Section */
   .hero-contact {
     background: linear-gradient(135deg, #1a4d7a 0%, #0f2d4a 100%);
     color: white;
@@ -304,7 +238,6 @@
     font-weight: 300;
   }
 
-  /* Main Content */
   .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -330,7 +263,6 @@
     line-height: 1.8;
   }
 
-  /* Alerts */
   .alert {
     display: flex;
     gap: 1rem;
@@ -381,7 +313,6 @@
     margin-top: 0.25rem;
   }
 
-  /* Form Container */
   .form-container {
     display: grid;
     grid-template-columns: 1fr;
@@ -396,7 +327,6 @@
     }
   }
 
-  /* Contact Form */
   .contact-form {
     background: white;
     padding: 2.5rem;
@@ -459,7 +389,6 @@
     min-height: 120px;
   }
 
-  /* Submit Button */
   .submit-btn {
     width: 100%;
     display: flex;
@@ -501,7 +430,6 @@
     to { transform: rotate(360deg); }
   }
 
-  /* Contact Info */
   .contact-info {
     display: flex;
     flex-direction: column;
@@ -543,7 +471,6 @@
     gap: 0.5rem;
   }
 
-  /* Responsive */
   @media (max-width: 768px) {
     .contact-form {
       padding: 1.5rem;

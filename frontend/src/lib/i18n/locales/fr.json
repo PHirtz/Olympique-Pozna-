@@ -148,6 +148,83 @@
     "mainNavigation": "Navigation principale mobile"
   },
 
+"scholarship": {
+  "title": "Bourse Michael Stevens",
+  "metaDescription": "Soutenez la Bourse Stevens pour offrir des opportunités aux jeunes talents du football à Poznań",
+  "hero": {
+    "title": "Bourse Michael Stevens",
+    "subtitle": "À la mémoire de Michael Stevens — pour que chaque jeune passionné de football ait sa chance"
+  },
+  "Michael": {
+    "title": "Qui était Michael ?",
+    "text1": "Michael Stevens faisait partie de la famille Olympique Poznań. Il était l'un de nos joueurs (équipe Les Bleus), mais surtout quelqu'un qui était toujours présent au bord du terrain. Il adorait passer du temps avec les enfants, les aider — il était entraîneur de football en Angleterre."
+  },
+  "objectif": {
+    "title": "Objectif de la Bourse Stevens",
+    "text": "La Bourse Michael Stevens a été créée pour soutenir les enfants dont la situation financière ne leur permet pas de participer aux camps et tournois sportifs. C'est une façon de transformer la mémoire de Michael en quelque chose de durable et de concret — une aide pour les prochaines générations de jeunes joueurs."
+  },
+  "désignation": {
+    "title": "Désigner un enfant",
+    "text1": "Si vous connaissez un enfant qui a besoin de soutien, remplissez le formulaire ci-dessous.",
+    "text2": "Ensemble, donnons à chaque jeune la possibilité d'écrire son histoire avec Olympique Poznań.",
+    "text": "Si vous connaissez un enfant qui a besoin de soutien, remplissez le formulaire ci-dessous."
+  },
+  "cta": {
+    "text": "En soutenant la Bourse Stevens, vous contribuez directement à la formation et au développement de nos jeunes joueurs. Votre don permet de financer les frais d'inscription aux camps, l'achat d'équipement, et l'organisation d'activités éducatives et sportives. Rejoignez-nous dans cette aventure passionnante et aidez-nous à faire une différence dans la vie de ces jeunes talents !",
+    "button": "Faire un don"
+  },
+  "donation": {
+    "title": "Comment aider ?",
+    "explication": {
+      "bank": "Vous pouvez soutenir la bourse par virement :",
+      "bank1": "Numéro de compte : 52 1090 1463 0000 0001 5483 3793",
+      "bank2": "Intitulé du virement : MICHAEL",
+      "text": "Chaque versement va directement au fonds et aide les enfants à partir en camps et en tournois. Grâce à votre aide, nous pouvons agir de manière durable et fidèle aux valeurs qui étaient chères à Michael."
+    }
+  },
+  "labels": {
+    "camps": "Camps disponibles en 2026",
+    "dons": "Des dons vont aux jeunes",
+    "childs": "Enfants partiront avec nous, grâce à votre soutien"
+  },
+  "form": {
+    "childInfo": "Informations sur l'enfant",
+    "childFirstName": "Prénom de l'enfant *",
+    "childFirstNamePlaceholder": "Prénom",
+    "childLastName": "Nom de l'enfant *",
+    "childLastNamePlaceholder": "Nom",
+    "childAge": "Âge de l'enfant *",
+    "childAgePlaceholder": "Ex: 10",
+    "memberQuestion": "Membre d'Olympique Poznań ? *",
+    "memberYes": "Oui",
+    "memberNo": "Non",
+    "clubName": "Nom du club actuel",
+    "clubNamePlaceholder": "Ex: FC Varsovie",
+    "parentInfo": "Informations sur les parents",
+    "parentFirstName": "Prénom d'un parent",
+    "parentFirstNamePlaceholder": "Prénom",
+    "parentLastName": "Nom d'un parent",
+    "parentLastNamePlaceholder": "Nom",
+    "contactCamp": "Contact & camp souhaité",
+    "email": "Votre email *",
+    "emailPlaceholder": "votre@email.com",
+    "camp": "Camp souhaité *",
+    "campOpalenica": "Camp Opalenica — 2-7 Août 2026",
+    "campJanuszkowo": "Camp Januszkowo — 23-28 Août 2026",
+    "campOther": "Autre / À préciser",
+    "messageSection": "Votre message",
+    "messageLabel": "Pourquoi cet enfant mérite-t-il ce soutien ? *",
+    "messagePlaceholder": "Décrivez la situation de l'enfant, son niveau sportif, sa motivation, la raison de la demande de soutien financier...",
+    "charCount": "caractères minimum",
+    "submit": "Envoyer la demande",
+    "submitting": "Envoi en cours...",
+    "successTitle": "Demande envoyée !",
+    "successText": "Nous avons bien reçu votre demande. Notre équipe vous contactera rapidement.",
+    "errorTitle": "Erreur",
+    "optional": "facultatif"
+  }
+},
+
   "coach": {
     "intro": {
       "title": "Notre Équipe d'Entraîneurs",

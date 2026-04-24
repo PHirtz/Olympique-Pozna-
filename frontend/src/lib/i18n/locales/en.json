@@ -1,4 +1,80 @@
 {
+"scholarship": {
+  "title": "The Michael Stevens Scholarship",
+  "metaDescription": "Support the Stevens Scholarship to give opportunities to young football talents in Poznań",
+  "hero": {
+    "title": "The Michael Stevens Scholarship",
+    "subtitle": "In memory of Michael Stevens — so that every young football enthusiast gets their chance"
+  },
+  "Michael": {
+    "title": "Who was Michael?",
+    "text1": "Michael Stevens was part of the Olympique Poznań family. He was one of our players (Les Bleus squad), but above all someone who was always present on the sidelines. He loved spending time with children and helping them — he was a football coach in England."
+  },
+  "objectif": {
+    "title": "Goal of the Stevens Scholarship",
+    "text": "The Michael Stevens Scholarship was created to support children whose financial situation prevents them from taking part in sports camps and tournaments. It is a way of turning Michael's memory into something lasting and tangible — help for the next generations of young players."
+  },
+  "désignation": {
+    "title": "Nominate a child",
+    "text1": "If you know a child who needs support, fill in the form below.",
+    "text2": "Together, let's give every young player the chance to write their story with Olympique Poznań.",
+    "text": "If you know a child who needs support, fill in the form below."
+  },
+  "cta": {
+    "text": "By supporting the Stevens Scholarship, you directly contribute to the training and development of our young players. Your donation helps cover camp registration fees, equipment purchases, and the organisation of educational and sporting activities. Join us in this exciting adventure and help us make a difference in the lives of these young talents!",
+    "button": "Make a donation"
+  },
+  "donation": {
+    "title": "How to help?",
+    "explication": {
+      "bank": "You can support the scholarship by bank transfer:",
+      "bank1": "Account number: 52 1090 1463 0000 0001 5483 3793",
+      "bank2": "Transfer reference: MICHAEL",
+      "text": "Every payment goes directly to the fund and helps children attend camps and tournaments. Thanks to your support, we can help in a lasting way, true to the values that were dear to Michael."
+    }
+  },
+  "labels": {
+    "camps": "Camps available in 2026",
+    "dons": "Of donations go directly to children",
+    "childs": "Children will travel with us thanks to your support"
+  },
+  "form": {
+    "childInfo": "Child's information",
+    "childFirstName": "Child's first name *",
+    "childFirstNamePlaceholder": "First name",
+    "childLastName": "Child's last name *",
+    "childLastNamePlaceholder": "Last name",
+    "childAge": "Child's age *",
+    "childAgePlaceholder": "E.g. 10",
+    "memberQuestion": "Member of Olympique Poznań? *",
+    "memberYes": "Yes",
+    "memberNo": "No",
+    "clubName": "Current club name",
+    "clubNamePlaceholder": "E.g. FC Warsaw",
+    "parentInfo": "Parent information (optional)",
+    "parentFirstName": "Parent's first name",
+    "parentFirstNamePlaceholder": "First name",
+    "parentLastName": "Parent's last name",
+    "parentLastNamePlaceholder": "Last name",
+    "contactCamp": "Contact & preferred camp",
+    "email": "Your email *",
+    "emailPlaceholder": "your@email.com",
+    "camp": "Preferred camp *",
+    "campOpalenica": "Camp Opalenica — 2-7 August 2026",
+    "campJanuszkowo": "Camp Januszkowo — 23-28 August 2026",
+    "campOther": "Other / To be specified",
+    "messageSection": "Your message",
+    "messageLabel": "Why does this child deserve support? *",
+    "messagePlaceholder": "Describe the child's situation, their sporting level, motivation, and the reason for the financial support request...",
+    "charCount": "characters minimum",
+    "submit": "Send application",
+    "submitting": "Sending...",
+    "successTitle": "Application sent!",
+    "successText": "We have received your application. Our team will contact you shortly.",
+    "errorTitle": "Error",
+    "optional": "optional"
+  }
+},
   "teams": {
     "noPlayers": "No players in this team at the moment.",
     "noTeams": "No teams at the moment.",

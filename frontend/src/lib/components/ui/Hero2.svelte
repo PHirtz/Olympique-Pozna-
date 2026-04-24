@@ -61,7 +61,7 @@
       {#each images as _, index}
         <button
           class="indicator"
-          class:active={currentIndex === index}
+           class:active={currentIndex === index}
           on:click={() => goToSlide(index)}
           aria-label="Voir image {index + 1}"
         ></button>

@@ -1,10 +1,13 @@
 import Joi from 'joi';
 
+const nameRegex = /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻàâéèêëîïôùûüçÀÂÉÈÊËÎÏÔÙÛÜÇ\s\-']+$/;
+const usernameRegex = /^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ0-9_\-]+$/;
+
 export const userCreateSchema = Joi.object({
-  lastName: Joi.string().max(100).required(),
-  firstName: Joi.string().max(100).required(),
+  lastName: Joi.string().max(100).pattern(nameRegex).required(),
+  firstName: Joi.string().max(100).pattern(nameRegex).required(),
   email: Joi.string().email().max(150).required(),
-  username: Joi.string().alphanum().min(3).max(20).required(),
+  username: Joi.string().pattern(usernameRegex).min(3).max(20).required(),
   password: Joi.string().min(8).max(100).required(),
   role: Joi.string().valid('admin', 'coach', 'player', 'member').default('member'),
   bio: Joi.string().allow('', null),
@@ -22,10 +25,10 @@ export const userCreateSchema = Joi.object({
 });
 
 export const userUpdateSchema = Joi.object({
-  lastName: Joi.string().max(100),
-  firstName: Joi.string().max(100),
+  lastName: Joi.string().max(100).pattern(nameRegex),
+  firstName: Joi.string().max(100).pattern(nameRegex),
   email: Joi.string().email().max(150),
-  username: Joi.string().alphanum().min(3).max(20),
+  username: Joi.string().pattern(usernameRegex).min(3).max(20),
   password: Joi.string().min(8).max(100),
   role: Joi.string().valid('admin', 'coach', 'player', 'member'),
   bio: Joi.string().allow('', null),

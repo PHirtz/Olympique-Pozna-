@@ -40,12 +40,13 @@
 <section class="hero-slider">
   <!-- Slider Background -->
   <div class="slider-wrapper">
-    {#each images as image, index}
-      <div 
-        class="slide" 
+    {#each images as image, index (index)}
+      <figure
+        class="slide"
         class:active={index === currentSlide}
         style="background-image: url({image})"
-      ></div>
+        aria-hidden="true"
+      ></figure>
     {/each}
     
     <!-- Dark Overlay -->
@@ -68,7 +69,7 @@
     on:click={prevSlide} 
     aria-label="Image précédente"
   >
-    <ChevronLeft size={32} />
+    <ChevronLeft size={22} />
   </button>
   
   <button 
@@ -76,12 +77,12 @@
     on:click={nextSlide} 
     aria-label="Image suivante"
   >
-    <ChevronRight size={32} />
+    <ChevronRight size={22} />
   </button>
 
   <!-- Dots Indicator -->
   <div class="slider-dots">
-    {#each images as _, index}
+    {#each images as _, index (index)}
       <button 
         class="dot" 
         class:active={index === currentSlide}
@@ -95,15 +96,15 @@
 <style>
   .hero-slider {
     position: relative;
-    height: 85vh;
-    min-height: 950px;
-    max-height: none;
+    height: 80vh;
+    min-height: 820px;
+    max-height: 900px;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: -130px;
-    padding-top: 500px;
+    padding-top: 130px;
   }
 
   /* Slider Wrapper */
@@ -120,7 +121,7 @@
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
-    top : 3rem;
+    top: 3rem;
     opacity: 0;
     transition: opacity 1s ease-in-out;
     z-index: 0;
@@ -152,7 +153,7 @@
     padding: 2rem;
     max-width: 900px;
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 10px;
   }
 
   .hero-content h1 {
@@ -174,14 +175,8 @@
   }
 
   @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
   /* Navigation Arrows */
@@ -189,10 +184,10 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.85);
     border: none;
-    width: 50px;
-    height: 50px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -200,7 +195,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     z-index: 10;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
 
   .nav-arrow:hover {
@@ -208,18 +203,13 @@
     transform: translateY(-50%) scale(1.1);
   }
 
-  .nav-arrow.prev {
-    left: 2rem;
-  }
-
-  .nav-arrow.next {
-    right: 2rem;
-  }
+  .nav-arrow.prev { left: 1.5rem; }
+  .nav-arrow.next { right: 1.5rem; }
 
   /* Slider Dots */
   .slider-dots {
     position: absolute;
-    bottom: 2rem;
+    bottom: 1.25rem;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -229,8 +219,8 @@
   }
 
   .dot {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.5);
     border: 2px solid rgba(255, 255, 255, 0.8);
@@ -239,49 +229,23 @@
     padding: 0;
   }
 
-  .dot:hover {
-    background: rgba(255, 255, 255, 0.8);
-  }
-
-  .dot.active {
-    background: white;
-    transform: scale(1.3);
-  }
+  .dot:hover { background: rgba(255, 255, 255, 0.8); }
+  .dot.active { background: white; transform: scale(1.3); }
 
   /* Responsive */
   @media (max-width: 768px) {
     .hero-slider {
-      height: 70vh;
-      min-height: 500px;
+      height: 50vh;
+      min-height: 320px;
+      max-height: 420px;
       margin-top: -80px;
       padding-top: 80px;
     }
 
-    .hero-content {
-      margin-top: 30px;
-    }
+    .hero-content { margin-top: -30px; }
 
-    .nav-arrow {
-      width: 40px;
-      height: 40px;
-    }
-
-    .nav-arrow.prev {
-      left: 1rem;
-    }
-
-    .nav-arrow.next {
-      right: 1rem;
-    }
-
-    .slider-dots {
-      bottom: 1.5rem;
-      gap: 0.5rem;
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-    }
+    .nav-arrow { width: 32px; height: 32px; }
+    .nav-arrow.prev { left: 1rem; }
+    .nav-arrow.next { right: 1rem; }
   }
 </style>

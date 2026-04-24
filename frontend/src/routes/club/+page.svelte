@@ -6,7 +6,6 @@
 <script>
   import { _ } from 'svelte-i18n';
   import Navigation2 from '$lib/components/ui/Navigation2.svelte';
-  import Footer from '$lib/components/ui/Footer.svelte';
   import Copyright from '$lib/components/ui/copyright.svelte';
 
   const club = [
@@ -32,21 +31,21 @@
       external: false
     },
     {
-      slug: 'partners.title',
+      slug: 'partners',
       titleKey: 'club.partners.title',  
       image: '../club/part.jpg',
       link: '/club/partners',
       external: false
     },
     {      
-      slug: 'status',
-      titleKey: 'club.status',
-      image: '../club/statut.png',
-      link: "https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit?tab=t.0",
-      external: true
+      slug: 'scholarship',
+      titleKey: 'scholarship.title',
+      image: '../slides/stevens4.jpg',
+      link: '/club/scholarship',
+      external: false
     },
     {
-      slug: 'documents.title',
+      slug: 'documents',
       titleKey: 'club.documents.title',
       image: '../logo.svg',
       link: "https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit?tab=t.0",
@@ -65,24 +64,24 @@
 
 <section class="club-section">
   <div class="club-cards">
-    {#each club as team}
+    {#each club as team (team.slug)}
       <a 
         href={team.link} 
         class="team-card"
-        aria-label={$_(`club.${team.slug}`)}
+        aria-label={$_(team.titleKey)}
         target={team.external ? '_blank' : '_self'}
         rel={team.external ? 'noopener noreferrer' : ''}
       >
         <div class="team-image">
           <img 
             src={team.image} 
-            alt={$_(`club.${team.slug}`)}
+            alt={$_(team.titleKey)}
             loading="lazy"
           />
           <div class="overlay"></div>
         </div>
         <div class="team-content">
-          <h3>{$_(`club.${team.slug}`)}</h3>
+          <h3>{$_(team.titleKey)}</h3>
         </div>
       </a>
     {/each}

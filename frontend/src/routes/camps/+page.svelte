@@ -164,7 +164,6 @@
               <MapPin size={32} />
               <h3>{$_('camps.lieu')}</h3>
               <p><strong>{$_('camps.info.location')}</strong></p>
-              <p class="detail">{$_('camps.info.hotel')}</p>
             </div>
             <div class="photo-card photo-2">
               <img src="/3.jpg" alt="Activités Opalenica" on:error={(e) => { e.target.src = '/logo.png'; }} />
@@ -212,7 +211,6 @@
               <MapPin size={32} />
               <h3>{$_('camps.lieu')}</h3>
               <p><strong>{$_('camps.info2.location2')}</strong></p>
-              <p class="detail">{$_('camps.info2.hotel2')}</p>
             </div>
             <div class="photo-card photo-2">
               <img src="/5.jpg" alt="Activités Januszkowo" on:error={(e) => { e.target.src = '/logo.png'; }} />
