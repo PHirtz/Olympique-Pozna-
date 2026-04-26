@@ -41,7 +41,7 @@
       slug: 'scholarship',
       titleKey: 'scholarship.title',
       image: '../slides/stevens4.jpg',
-      link: '/club/scholarship',
+      link: '/club/scholarship-stevens',
       external: false
     },
     {
