@@ -91,7 +91,7 @@
         </div>
       {:else if sponsors.length > 0}
         <div class="sponsors-grid">
-          {#each sponsors as sponsor}
+          {#each sponsors as sponsor (sponsor.id)}
             {#if sponsor.websiteUrl}
               <a 
                 href={sponsor.websiteUrl} 

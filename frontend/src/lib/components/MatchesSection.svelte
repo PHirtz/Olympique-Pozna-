@@ -8,7 +8,7 @@
   
   {#if matches.length > 0}
     <div class="matches-list">
-      {#each matches as match}
+      {#each matches as match (match.id)}
         <div class="match-card">
           <time datetime={match.matchDate}>
             {new Date(match.matchDate).toLocaleDateString('fr-FR', {

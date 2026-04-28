@@ -120,7 +120,7 @@
       <!-- Slider en dessous -->
       <div class="slider">
         <div class="slides" style="transform: translateX(-{currentSlide * 100}%)">
-          {#each shopImages as product, index}
+          {#each shopImages as product, index (index)}
             {#if product.link}
               <!-- Si le produit a un lien, utilise un bouton -->
               <button 
@@ -160,7 +160,7 @@
 
         <!-- Indicateurs -->
         <div class="indicators">
-          {#each shopImages as _, index}
+          {#each shopImages as _, index (index)}
             <button
               class="indicator"
               class:active={currentSlide === index}

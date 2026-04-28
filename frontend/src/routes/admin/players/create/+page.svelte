@@ -355,7 +355,7 @@
               class:error={errors.teamId}
             >
               <option value="">Sélectionner une équipe</option>
-              {#each teams as team}
+              {#each teams as team (team.id)}
                 <option value={team.id}>{team.name}</option>
               {/each}
             </select>
@@ -496,7 +496,7 @@
       <h3 class="section-title">DISTINCTIONS</h3>
       
       <div class="form-grid">
-        {#each [1, 2, 3, 4, 5] as i}
+        {#each [1, 2, 3, 4, 5] as i (i)}
           <div class="form-field">
             <label for="distinction{i}">Distinction {i}</label>
             <input

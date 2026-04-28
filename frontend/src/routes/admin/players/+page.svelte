@@ -173,7 +173,7 @@
           </tr>
         </thead>
         <tbody>
-          {#each players as player, i}
+          {#each players as player, i (player.id)}
             <tr class:row-alt={i % 2 === 1}>
               <td class="photo-cell">
                 <PlayerPhoto 

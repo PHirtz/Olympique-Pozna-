@@ -98,7 +98,7 @@
       </section>
 
       <div class="coaches-grid">
-        {#each coaches as coach}
+        {#each coaches as coach (coach.id)}
           <a 
             href={`/club/coaches/${coach.id}`} 
             class="coach-card"

@@ -468,7 +468,7 @@
               class:error={errors.category}
               disabled={saving}
             >
-              {#each categories as cat}
+              {#each categories as cat (cat)}
                 <option value={cat.value}>{cat.label}</option>
               {/each}
             </select>

@@ -8,7 +8,7 @@
   
   {#if news.length > 0}
     <div class="news-grid">
-      {#each news as article}
+      {#each news as article (article.id)}
         <article class="news-card">
           {#if article.imageUrl}
             <img src={article.imageUrl} alt={article.title} />

@@ -28,7 +28,6 @@
   let playersPerPage = 10;
   let totalPlayers = 0;
   
-  // États des sections dépliables
   let sections = {
     sponsors: true,
     teams: true,
@@ -46,12 +45,10 @@
     try {
       loading = true;
       
-      // Charger les sponsors
       const partnersResponse = await adminPartners.getAll();
       sponsors = partnersResponse.data?.partners || partnersResponse.data || [];
       stats.sponsors = sponsors.length;
       
-      // Charger les joueurs AVEC pagination
       const playersResponse = await adminPlayers.getAll({
         page: playersCurrentPage,
         limit: playersPerPage
@@ -64,12 +61,11 @@
       console.log('🔍 totalPlayers:', totalPlayers);
       console.log('🔍 stats.users:', stats.users);
       
-      // Charger le nombre d'équipes
       const teamsCountResponse = await adminTeams.getCount();
       stats.teams = teamsCountResponse.data?.count || 0;
       
     } catch (error) {
-      console.error('Erreur chargement:', error);
+      console.error('Błąd ładowania:', error);
     } finally {
       loading = false;
     }
@@ -80,45 +76,44 @@
   }
 
   async function deleteSponsor(id, name) {
-    if (!confirm(`Supprimer "${name}" ?`)) return;
+    if (!confirm(`Usunąć "${name}"?`)) return;
     try {
       await adminPartners.deletePartner(id);
       await loadData();
     } catch (err) {
-      alert('Erreur: ' + err.message);
+      alert('Błąd: ' + err.message);
     }
   }
 
   async function deletePlayer(id, firstName, lastName) {
-    if (!confirm(`Supprimer "${firstName} ${lastName}" ?`)) return;
+    if (!confirm(`Usunąć "${firstName} ${lastName}"?`)) return;
     try {
       await adminPlayers.deletePlayer(id);
       
-      // Ajuster la page si on supprime le dernier joueur d'une page
       if (players.length === 1 && playersCurrentPage > 1) {
         playersCurrentPage--;
       }
       
       await loadData();
     } catch (err) {
-      alert('Erreur: ' + err.message);
+      alert('Błąd: ' + err.message);
     }
   }
 
   function getCategoryLabel(cat) {
     const labels = {
-      main_sponsor: 'Principal',
-      supplier: 'Fournisseur'
+      main_sponsor: 'Główny',
+      supplier: 'Dostawca'
     };
     return labels[cat] || cat;
   }
 
   function getPositionLabel(pos) {
     const positions = {
-      goalkeeper: 'Gardien',
-      defender: 'Défenseur',
-      midfielder: 'Milieu',
-      forward: 'Attaquant'
+      goalkeeper: 'Bramkarz',
+      defender: 'Obrońca',
+      midfielder: 'Pomocnik',
+      forward: 'Napastnik'
     };
     return positions[pos] || pos;
   }
@@ -133,29 +128,29 @@
   {#if loading}
     <div class="fm-loading">
       <div class="loading-spinner"></div>
-      <p>Chargement des données...</p>
+      <p>Ładowanie danych...</p>
     </div>
   {:else}
-    <!-- Stats toujours visibles -->
+    <!-- Statystyki -->
     <div class="fm-stats">
       <div class="fm-stat-item">
         <Handshake size={20} />
-        <span class="fm-stat-label">Sponsors</span>
+        <span class="fm-stat-label">Sponsorzy</span>
         <span class="fm-stat-value">{stats.sponsors}</span>
       </div>
       <div class="fm-stat-item">
         <Trophy size={20} />
-        <span class="fm-stat-label">Équipes</span>
+        <span class="fm-stat-label">Drużyny</span>
         <span class="fm-stat-value">{stats.teams}</span>
       </div>
       <div class="fm-stat-item">
         <Users size={20} />
-        <span class="fm-stat-label">Joueurs</span>
+        <span class="fm-stat-label">Zawodnicy</span>
         <span class="fm-stat-value">{stats.users}</span>
       </div>
     </div>
 
-    <!-- Section Équipes & Joueurs -->
+    <!-- Sekcja Drużyny & Zawodnicy -->
     <div class="fm-section">
       <button class="fm-section-header" on:click={() => toggleSection('teams')}>
         {#if sections.teams}
@@ -164,7 +159,7 @@
           <ChevronRight size={20} />
         {/if}
         <Trophy size={20} />
-        <span>ÉQUIPES & JOUEURS ({stats.users})</span>
+        <span>DRUŻYNY & ZAWODNICY ({stats.users})</span>
       </button>
 
       {#if sections.teams}
@@ -172,32 +167,32 @@
           <div class="fm-actions">
             <a href="/admin/players/create" class="fm-btn fm-btn-primary">
               <Plus size={16} />
-              Nouveau joueur
+              Nowy zawodnik
             </a>
             <a href="/admin/players" class="fm-btn">
               <Users size={16} />
-              Tous les joueurs
+              Wszyscy zawodnicy
             </a>
           </div>
 
           {#if players.length === 0}
-            <p class="fm-empty">Aucun joueur</p>
+            <p class="fm-empty">Brak zawodników</p>
           {:else}
             <div class="fm-table-wrapper">
               <table class="fm-table">
                 <thead>
                   <tr>
-                    <th>Photo</th>
-                    <th>Nom</th>
-                    <th>Numéro</th>
-                    <th>Poste</th>
-                    <th>Équipe</th>
-                    <th>Statut</th>
-                    <th class="fm-actions-col">Actions</th>
+                    <th>Zdjęcie</th>
+                    <th>Nazwisko</th>
+                    <th>Numer</th>
+                    <th>Pozycja</th>
+                    <th>Drużyna</th>
+                    <th>Status</th>
+                    <th class="fm-actions-col">Akcje</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {#each players as player, i}
+                  {#each players as player, i (player.id)}
                     <tr class:fm-row-alt={i % 2 === 1}>
                       <td>
                         {#if player.photoUrl}
@@ -223,22 +218,22 @@
                         {#if player.teamName}
                           {player.teamName}
                         {:else}
-                          <span class="fm-text-muted">Non assigné</span>
+                          <span class="fm-text-muted">Nieprzypisany</span>
                         {/if}
                       </td>
                       <td>
                         <span class="fm-badge {player.isActive ? 'fm-badge-active' : 'fm-badge-inactive'}">
-                          {player.isActive ? 'Actif' : 'Inactif'}
+                          {player.isActive ? 'Aktywny' : 'Nieaktywny'}
                         </span>
                       </td>
                       <td class="fm-actions-col">
-                        <a href="/admin/players/{player.id}/edit" class="fm-icon-btn" title="Modifier">
+                        <a href="/admin/players/{player.id}/edit" class="fm-icon-btn" title="Edytuj">
                           <Pencil size={14} />
                         </a>
                         <button 
                           on:click={() => deletePlayer(player.id, player.firstName, player.lastName)}
                           class="fm-icon-btn fm-icon-btn-danger"
-                          title="Supprimer"
+                          title="Usuń"
                         >
                           <Trash2 size={14} />
                         </button>
@@ -249,22 +244,22 @@
               </table>
             </div>
 
-            <!-- Pagination -->
+            <!-- Paginacja -->
             {#if totalPlayersPages > 1}
               <div class="fm-pagination">
                 <button 
                   class="fm-pagination-btn"
                   disabled={playersCurrentPage === 1}
                   on:click={() => goToPlayersPage(playersCurrentPage - 1)}
-                  title="Page précédente"
+                  title="Poprzednia strona"
                 >
                   <ChevronLeft size={16} />
                 </button>
 
                 <div class="fm-pagination-info">
-                  Page {playersCurrentPage} / {totalPlayersPages}
+                  Strona {playersCurrentPage} / {totalPlayersPages}
                   <span class="fm-pagination-total">
-                    ({totalPlayers} joueur{totalPlayers > 1 ? 's' : ''})
+                    ({totalPlayers} {totalPlayers === 1 ? 'zawodnik' : 'zawodników'})
                   </span>
                 </div>
 
@@ -272,7 +267,7 @@
                   class="fm-pagination-btn"
                   disabled={playersCurrentPage === totalPlayersPages}
                   on:click={() => goToPlayersPage(playersCurrentPage + 1)}
-                  title="Page suivante"
+                  title="Następna strona"
                 >
                   <ChevronRight size={16} />
                 </button>
@@ -283,7 +278,7 @@
       {/if}
     </div>
 
-    <!-- Section Sponsors -->
+    <!-- Sekcja Sponsorzy -->
     <div class="fm-section">
       <button class="fm-section-header" on:click={() => toggleSection('sponsors')}>
         {#if sections.sponsors}
@@ -292,7 +287,7 @@
           <ChevronRight size={20} />
         {/if}
         <Handshake size={20} />
-        <span>SPONSORS ({stats.sponsors})</span>
+        <span>SPONSORZY ({stats.sponsors})</span>
       </button>
 
       {#if sections.sponsors}
@@ -300,26 +295,26 @@
           <div class="fm-actions">
             <a href="/admin/sponsors/create" class="fm-btn fm-btn-primary">
               <Plus size={16} />
-              Nouveau sponsor
+              Nowy sponsor
             </a>
           </div>
 
           {#if sponsors.length === 0}
-            <p class="fm-empty">Aucun sponsor</p>
+            <p class="fm-empty">Brak sponsorów</p>
           {:else}
             <div class="fm-table-wrapper">
               <table class="fm-table">
                 <thead>
                   <tr>
-                    <th>Nom</th>
-                    <th>Catégorie</th>
-                    <th>Site web</th>
-                    <th>Statut</th>
-                    <th class="fm-actions-col">Actions</th>
+                    <th>Nazwa</th>
+                    <th>Kategoria</th>
+                    <th>Strona WWW</th>
+                    <th>Status</th>
+                    <th class="fm-actions-col">Akcje</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {#each sponsors as sponsor, i}
+                  {#each sponsors as sponsor, i (sponsor.id)}
                     <tr class:fm-row-alt={i % 2 === 1}>
                       <td class="fm-text-bold">{sponsor.name}</td>
                       <td>{getCategoryLabel(sponsor.category)}</td>
@@ -334,17 +329,17 @@
                       </td>
                       <td>
                         <span class="fm-badge {sponsor.isActive ? 'fm-badge-active' : 'fm-badge-inactive'}">
-                          {sponsor.isActive ? 'Actif' : 'Inactif'}
+                          {sponsor.isActive ? 'Aktywny' : 'Nieaktywny'}
                         </span>
                       </td>
                       <td class="fm-actions-col">
-                        <a href="/admin/sponsors/{sponsor.id}/edit" class="fm-icon-btn" title="Modifier">
+                        <a href="/admin/sponsors/{sponsor.id}/edit" class="fm-icon-btn" title="Edytuj">
                           <Pencil size={14} />
                         </a>
                         <button 
                           on:click={() => deleteSponsor(sponsor.id, sponsor.name)}
                           class="fm-icon-btn fm-icon-btn-danger"
-                          title="Supprimer"
+                          title="Usuń"
                         >
                           <Trash2 size={14} />
                         </button>
@@ -659,7 +654,7 @@
     color: #d32f2f;
   }
 
-  /* Pagination */
+  /* Paginacja */
   .fm-pagination {
     display: flex;
     align-items: center;

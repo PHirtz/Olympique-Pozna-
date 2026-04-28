@@ -137,7 +137,7 @@
           style="transform: translateX(-{currentSlide * 100}%)"
         >
 
-          {#each shopImages as product}
+          {#each shopImages as product, i (i)}
 
             {#if product.link}
 
@@ -205,7 +205,7 @@
 
         <div class="indicators">
 
-          {#each shopImages as _, i}
+          {#each shopImages as _, i (i)}
 
             <button
               class="indicator"

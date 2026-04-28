@@ -86,7 +86,7 @@
 
     <div class="slider">
       <div class="slides" style="transform: translateX(-{currentSlide * 100}%)">
-        {#each campImages as image, index}
+        {#each campImages as image, index (index)}
           <div class="slide">
             <img src={image.src} alt={image.alt} loading="lazy" />
           </div>
@@ -108,7 +108,7 @@
 
         <!-- Indicateurs -->
         <div class="indicators">
-        {#each campImages as _, index}
+        {#each campImages as _, index (index)}
             <button
             class="indicator"
             class:active={currentSlide === index}

@@ -113,7 +113,7 @@
               {$_('teams.distinctions')}
             </h3>
             <ul class="distinctions-list">
-              {#each player.distinctions as distinction}
+              {#each player.distinctions as distinction (distinction)}
                 <li class="distinction-item">
                   <span class="distinction-icon">🏆</span>
                   {distinction}
