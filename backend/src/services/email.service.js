@@ -148,6 +148,69 @@ class EmailService {
       throw error;
     }
   }
+
+  /**
+   * Email de réinitialisation de mot de passe
+   */
+  async sendPasswordReset(user, resetUrl) {
+    if (!this.transporter) {
+      console.warn('Email transporter non configuré');
+      return;
+    }
+
+    const lang = user.preferredLanguage || 'fr';
+
+    const content = {
+      fr: {
+        subject: 'Réinitialisation de votre mot de passe - Olympique Poznan',
+        title: 'Réinitialisation du mot de passe',
+        intro: `Bonjour ${user.firstName},`,
+        body: 'Vous avez demandé à réinitialiser votre mot de passe. Cliquez sur le bouton ci-dessous. Ce lien est valable <strong>1 heure</strong>.',
+        btn: 'Réinitialiser mon mot de passe',
+        ignore: 'Si vous n\'avez pas fait cette demande, ignorez cet email.',
+      },
+      pl: {
+        subject: 'Resetowanie hasła - Olympique Poznan',
+        title: 'Resetowanie hasła',
+        intro: `Cześć ${user.firstName},`,
+        body: 'Poprosiłeś o zresetowanie hasła. Kliknij poniższy przycisk. Link jest ważny przez <strong>1 godzinę</strong>.',
+        btn: 'Zresetuj hasło',
+        ignore: 'Jeśli nie wysłałeś tej prośby, zignoruj ten email.',
+      },
+    };
+
+    const t = content[lang] || content.fr;
+
+    try {
+      await this.transporter.sendMail({
+        from: process.env.SMTP_FROM || '"Olympique Poznan" <noreply@olympiquepoznan.com>',
+        to: user.email,
+        subject: t.subject,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background:#ffffff; padding:20px;">
+            <div style="text-align: center; margin-bottom: 25px;">
+              <img src="https://olympiquepoznan.pl/logo.png" alt="Olympique Poznan" width="80" style="display:block;margin:auto;" />
+            </div>
+            <h2 style="color: #667eea; text-align:center;">${t.title}</h2>
+            <p>${t.intro}</p>
+            <p>${t.body}</p>
+            <div style="text-align:center; margin: 30px 0;">
+              <a href="${resetUrl}" style="background:#667eea; color:#ffffff; padding:14px 28px; border-radius:6px; text-decoration:none; font-weight:bold; display:inline-block;">
+                ${t.btn}
+              </a>
+            </div>
+            <p style="color:#999; font-size:0.85em;">${t.ignore}</p>
+            <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
+            <p style="color: #999; font-size: 0.85em; text-align:center;">Olympique Poznan</p>
+          </div>
+        `,
+      });
+      console.log(`✅ Email reset password envoyé à ${user.email}`);
+    } catch (error) {
+      console.error('❌ Erreur envoi email reset:', error.message);
+      throw error;
+    }
+  }
 }
 
 export default new EmailService();

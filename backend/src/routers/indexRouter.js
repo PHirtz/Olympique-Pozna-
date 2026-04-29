@@ -20,6 +20,7 @@ import {
   statisticsController
 } from '../controllers/index.controller.js';
 import contactController from '../controllers/contact.controller.js';
+import authRouter from './authRouter.js';
 
 // Import schemas
 import { userCreateSchema, userUpdateSchema, userLoginSchema, userQuerySchema } from '../schemas/user.schema.js';
@@ -253,6 +254,7 @@ router.use('/statistics', statisticsRouter);
 router.use('/camps', campRouter);
 router.use('/camp-registrations', campRegistrationRouter);
 router.use('/contact', contactRouter);
+router.use('/auth', authRouter);
 
 // Routes admin protégées (avec auth + role)
 router.use('/admin', adminRouter);

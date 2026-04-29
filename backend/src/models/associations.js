@@ -9,6 +9,7 @@ import Partner from './partner.model.js';
 import Statistics from './statistics.model.js';
 import Camp from './camp.model.js';
 import CampRegistration from './camp-registration.model.js';
+import PasswordResetToken from "./passwordResetToken.model.js";
 
 // User - Team (joueurs)
 User.belongsTo(Team, { foreignKey: 'teamId', as: 'team' });
@@ -58,6 +59,10 @@ Statistics.belongsTo(User, { foreignKey: 'userId', as: 'player' });
 Camp.hasMany(CampRegistration, { foreignKey: 'campId', as: 'registrations' });
 CampRegistration.belongsTo(Camp, { foreignKey: 'campId', as: 'camp' });
 
+// User - PasswordResetToken
+User.hasMany(PasswordResetToken, { foreignKey: 'userId', as: 'resetTokens' });
+PasswordResetToken.belongsTo(User, { foreignKey: 'userId', as: 'user' });
+
 export {
   User,
   Team,
@@ -69,5 +74,6 @@ export {
   Partner,
   Statistics,
   Camp,
-  CampRegistration
+  CampRegistration,
+  PasswordResetToken
 };
