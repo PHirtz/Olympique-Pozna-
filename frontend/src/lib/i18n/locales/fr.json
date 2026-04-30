@@ -387,6 +387,7 @@
       "identifier": "Pseudo ou Email",
       "identifierPlaceholder": "Entrez votre pseudo ou email",
       "passwordPlaceholder": "Votre mot de passe",
+      "forgotPassword": "Mot de passe oublié ?",
       "submit": "Se connecter",
       "loading": "Connexion...",
       "error": "Pseudo ou mot de passe incorrect",
@@ -429,7 +430,29 @@
         "passwordMin8": "Le mot de passe doit contenir au moins 8 caractères",
         "validationError": "Erreur de validation des données"
       }
-    }
+    },
+    "forgotPassword": {
+    "title": "Mot de passe oublié",
+    "subtitle": "Entrez votre email pour recevoir un lien de réinitialisation.",
+    "submit": "Envoyer le lien",
+    "loading": "Envoi en cours...",
+    "success": "Si cet email existe, un lien vous a été envoyé. Vérifiez votre boîte mail.",
+    "backToLogin": "← Retour à la connexion",
+    "errorGeneral": "Une erreur est survenue."
+  },
+    "resetPassword": {
+    "title": "Nouveau mot de passe",
+    "newPassword": "Nouveau mot de passe",
+    "samePassword": "Le nouveau mot de passe doit être différent de l'ancien.",
+    "confirmPassword": "Confirmer le mot de passe",
+    "submit": "Confirmer le nouveau mot de passe",
+    "loading": "Enregistrement...",
+    "success": "Mot de passe modifié avec succès ! Redirection en cours...",
+    "invalidLink": "Lien invalide. Veuillez refaire une demande.",
+    "requestNew": "Faire une nouvelle demande",
+    "errorMatch": "Les mots de passe ne correspondent pas.",
+    "errorGeneral": "Une erreur est survenue."
+  }
   },
 
   "club": {

@@ -1,12 +1,13 @@
 <script>
   import { _ } from 'svelte-i18n';
   import { locale } from 'svelte-i18n';
+  import { resolve } from '$app/paths';
   import { goto } from '$app/navigation';
   import { auth } from '$lib/api';
   import { onMount } from 'svelte';
   import { Eye, EyeOff } from 'lucide-svelte';
 
-  let identifier = ''; // ✅ Renommé de username en identifier
+  let identifier = '';
   let password = '';
   let loading = false;
   let error = '';
@@ -17,9 +18,9 @@
     if (auth.isAuthenticated()) {
       const user = auth.getCurrentUser();
       if (user?.role === 'admin') {
-        goto('/admin');
+        goto(resolve('/admin'));
       } else {
-        goto('/');
+        goto(resolve('/'));
       }
     }
   });
@@ -42,15 +43,15 @@
     error = '';
 
     try {
-      // ✅ Envoie identifier au lieu de username
+      // Envoie identifier au lieu de username
       const response = await auth.login(identifier, password);
       if (response.success) {
         const user = auth.getCurrentUser();
         // Rediriger selon le rôle
         if (user?.role === 'admin') {
-          goto('/admin');
+          goto(resolve('/admin'));
         } else {
-          goto('/');
+          goto(resolve('/'));
         }
       }
     } catch (err) {
@@ -67,7 +68,7 @@
 </script>
 
 <div class='menu-logo'>
-  <a href="/">
+  <a href={resolve('/')}>
     <img src="/home.png" alt="Logo home" class="logo" />
   </a>
 </div>
@@ -101,10 +102,10 @@
     EN
   </button>
 </div>
-
+{#key $locale}
 <section class="login-page">
   <div class="login-card">
-    <a href="/" class="logo-container">
+    <a href={resolve('/')} class="logo-container">
       <img src="/logo.png" alt="Logo Olympique Poznań" class="logo-op" />
     </a>
     <h1>{$_('auth.login.title')}</h1>
@@ -118,7 +119,7 @@
           bind:value={identifier} 
           placeholder={$_('auth.login.identifierPlaceholder', { default: 'Entrez votre pseudo ou email' })}
           required 
-          autocomplete="username email"
+          autocomplete="username"
         />
       </label>
 
@@ -150,6 +151,9 @@
       {#if error}
         <p class="error">{$_('auth.login.error')}</p>
       {/if}
+      <p class="forgot-password">
+        <a href={resolve('/forgot-password')}>{$_('auth.login.forgotPassword', { default: 'Mot de passe oublié ?' })}</a>
+      </p>
 
       <button type="submit" disabled={loading}>
         {loading ? $_('auth.login.loading') : $_('auth.login.submit')}
@@ -157,10 +161,11 @@
     </form>
 
     <p class="register-link">
-      {$_('auth.login.noAccount')} <a href="/register">{$_('auth.login.createAccount')}</a>
+      {$_('auth.login.noAccount')} <a href={resolve('/register')}>{$_('auth.login.createAccount')}</a>
     </p>
   </div>
 </section>
+{/key}
 
 <!-- Le CSS reste identique -->
 <style>
@@ -282,6 +287,23 @@
   .toggle-password:hover {
     color: #1a4d7a;
     background: none;
+  }
+
+  .forgot-password {
+    text-align: right;
+    margin: -0.5rem 0 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .forgot-password a {
+    color: #1a4d7a;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .forgot-password a:hover {
+    text-decoration: underline;
+    color: #e6c334;
   }
 
   button[type="submit"] {

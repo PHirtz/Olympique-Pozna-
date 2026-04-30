@@ -386,6 +386,7 @@
       "submit": "Sign in",
       "loading": "Logging in...",
       "error": "Incorrect username or password",
+      "forgotPassword": "Forgot password?",
       "noAccount": "Don't have an account?",
       "createAccount": "Create an account",
       "identifier": "Username or Email",
@@ -427,7 +428,29 @@
         "passwordMin8": "Password must be at least 8 characters long",
         "validationError": "Data validation error"
       }
-    }
+    },
+    "forgotPassword": {
+  "title": "Forgot password",
+  "subtitle": "Enter your email to receive a password reset link.",
+  "submit": "Send link",
+  "loading": "Sending...",
+  "success": "If this email exists, a link has been sent. Check your inbox.",
+  "backToLogin": "← Back to login",
+  "errorGeneral": "An error occurred."
+},
+"resetPassword": {
+  "title": "New password",
+  "newPassword": "New password",
+  "samePassword": "New password must be different from the old one.",
+  "confirmPassword": "Confirm password",
+  "submit": "Confirm new password",
+  "loading": "Saving...",
+  "success": "Password successfully changed! Redirecting...",
+  "invalidLink": "Invalid link. Please make a new request.",
+  "requestNew": "Make a new request",
+  "errorMatch": "Passwords do not match.",
+  "errorGeneral": "An error occurred."
+}
   },
 
   "club": {

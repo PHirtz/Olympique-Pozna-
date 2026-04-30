@@ -68,3 +68,38 @@ export function isAdmin() {
 export function getCurrentUser() {
   return get(user);
 }
+
+/**
+ * Mot de passe oublié
+ * @param {string} email
+ */
+export async function forgotPassword(email, locale = 'pl') {
+  return await apiRequest('/auth/forgot-password', {
+    method: 'POST',
+    body: { email, locale },
+  });
+}
+
+/**
+ * Réinitialiser le mot de passe
+ * @param {string} token
+ * @param {string} newPassword
+ */
+export async function resetPassword(token, newPassword) {
+  return await apiRequest('/auth/reset-password', {
+    method: 'POST',
+    body: { token, newPassword },
+  });
+}
+
+/**
+ * Changer le mot de passe (connecté)
+ * @param {string} currentPassword
+ * @param {string} newPassword
+ */
+export async function changePassword(currentPassword, newPassword) {
+  return await apiRequest('/auth/change-password', {
+    method: 'PUT',
+    body: { currentPassword, newPassword },
+  });
+}

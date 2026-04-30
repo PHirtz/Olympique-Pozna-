@@ -67,7 +67,7 @@
         formData.teamId = teams[0].id.toString();
       }
     } catch (error) {
-      console.error('❌ Erreur chargement équipes:', error);
+      console.error('❌ Błąd ładowania drużyn:', error);
     } finally {
       loadingTeams = false;
     }
@@ -89,12 +89,12 @@
     if (!file) return;
 
     if (!file.type.startsWith('image/')) {
-      errors.photo = 'Veuillez sélectionner une image';
+      errors.photo = 'Proszę wybrać plik graficzny';
       return;
     }
 
     if (file.size > 15 * 1024 * 1024) {
-      errors.photo = 'L\'image ne doit pas dépasser 15MB';
+      errors.photo = 'Obraz nie może przekraczać 15MB';
       return;
     }
 
@@ -132,7 +132,7 @@
       photoPreview = formData.photoUrl;
       errors.photoUrl = null;
     } catch {
-      errors.photoUrl = 'URL invalide';
+      errors.photoUrl = 'Nieprawidłowy URL';
       photoPreview = null;
     }
   }
@@ -146,29 +146,29 @@
   function validateForm() {
     errors = {};
 
-    if (!formData.teamId) errors.teamId = 'Équipe requise';
-    if (!formData.firstName.trim()) errors.firstName = 'Prénom requis';
-    if (!formData.lastName.trim()) errors.lastName = 'Nom requis';
-    if (!formData.position) errors.position = 'Poste requis';
-    if (!formData.positionPl.trim()) errors.positionPl = 'Poste en polonais requis';
-    if (!formData.birthYear) errors.birthYear = 'Année de naissance requise';
-    if (!formData.nationality.trim()) errors.nationality = 'Nationalité requise';
-    if (!formData.nationalityPl.trim()) errors.nationalityPl = 'Nationalité en polonais requise';
+    if (!formData.teamId) errors.teamId = 'Drużyna jest wymagana';
+    if (!formData.firstName.trim()) errors.firstName = 'Imię jest wymagane';
+    if (!formData.lastName.trim()) errors.lastName = 'Nazwisko jest wymagane';
+    if (!formData.position) errors.position = 'Pozycja jest wymagana';
+    if (!formData.positionPl.trim()) errors.positionPl = 'Pozycja po polsku jest wymagana';
+    if (!formData.birthYear) errors.birthYear = 'Rok urodzenia jest wymagany';
+    if (!formData.nationality.trim()) errors.nationality = 'Narodowość jest wymagana';
+    if (!formData.nationalityPl.trim()) errors.nationalityPl = 'Narodowość po polsku jest wymagana';
 
     if (formData.jerseyNumber && (formData.jerseyNumber < 0 || formData.jerseyNumber > 99)) {
-      errors.jerseyNumber = 'Numéro entre 0 et 99';
+      errors.jerseyNumber = 'Numer między 0 a 99';
     }
 
     const currentYear = new Date().getFullYear();
     if (formData.birthYear < 1950 || formData.birthYear > currentYear) {
-      errors.birthYear = `Année entre 1950 et ${currentYear}`;
+      errors.birthYear = `Rok między 1950 a ${currentYear}`;
     }
 
     if (uploadMode === 'url' && formData.photoUrl) {
       try {
         new URL(formData.photoUrl);
       } catch {
-        errors.photoUrl = 'URL invalide';
+        errors.photoUrl = 'Nieprawidłowy URL';
       }
     }
 
@@ -177,7 +177,7 @@
 
   async function handleSubmit() {
     if (!validateForm()) {
-      alert('Veuillez corriger les erreurs du formulaire');
+      alert('Proszę poprawić błędy w formularzu');
       return;
     }
 
@@ -206,18 +206,18 @@
       }
 
       await adminPlayers.create(requestData);
-      alert('Joueur créé avec succès !');
+      alert('Zawodnik został utworzony!');
       goto('/admin/');
     } catch (error) {
-      console.error('Erreur sauvegarde:', error);
-      alert('Erreur: ' + error.message);
+      console.error('Błąd zapisu:', error);
+      alert('Błąd: ' + error.message);
     } finally {
       saving = false;
     }
   }
 
   function handleCancel() {
-    if (confirm('Annuler la création ?')) {
+    if (confirm('Anulować tworzenie?')) {
       goto('/admin/');
     }
   }
@@ -227,15 +227,15 @@
   <div class="admin-header-section">
     <div class="admin-title">
       <Users size={24} />
-      <h1>NOUVEAU JOUEUR</h1>
+      <h1>NOWY ZAWODNIK</h1>
     </div>
   </div>
 
   <form on:submit|preventDefault={handleSubmit} class="admin-form">
     
-    <!-- Photo -->
+    <!-- Zdjęcie -->
     <div class="form-section">
-      <h3 class="section-title">Photo du joueur</h3>
+      <h3 class="section-title">Zdjęcie zawodnika</h3>
       
       <div class="upload-mode-selector">
         <label class="mode-option">
@@ -248,7 +248,7 @@
           />
           <div class="mode-content">
             <Upload size={20} />
-            <span>Uploader un fichier</span>
+            <span>Prześlij plik</span>
           </div>
         </label>
         
@@ -262,7 +262,7 @@
           />
           <div class="mode-content">
             <Link size={20} />
-            <span>Utiliser une URL</span>
+            <span>Użyj URL</span>
           </div>
         </label>
       </div>
@@ -270,12 +270,12 @@
       <div class="photo-upload">
         {#if photoPreview}
           <div class="photo-preview">
-            <img src={photoPreview} alt="Prévisualisation" />
+            <img src={photoPreview} alt="Podgląd" />
             <button
               type="button"
               class="photo-remove"
               on:click={uploadMode === 'file' ? removePhoto : () => { formData.photoUrl = ''; photoPreview = null; }}
-              title="Supprimer"
+              title="Usuń"
             >
               <Trash2 size={16} />
             </button>
@@ -283,14 +283,14 @@
         {:else}
           <div class="photo-placeholder">
             <Users size={60} />
-            <p>Aucune photo</p>
+            <p>Brak zdjęcia</p>
           </div>
         {/if}
 
         {#if uploadMode === 'file'}
           <label for="photo" class="btn-secondary">
             <Upload size={16} />
-            {photoPreview ? 'Changer la photo' : 'Sélectionner un fichier'}
+            {photoPreview ? 'Zmień zdjęcie' : 'Wybierz plik'}
           </label>
           <input
             type="file"
@@ -299,7 +299,7 @@
             on:change={handlePhotoChange}
             style="display: none;"
           />
-          <p class="help-text">JPEG, PNG, GIF, WebP - Max 15MB</p>
+          <p class="help-text">JPEG, PNG, GIF, WebP – maks. 15MB</p>
           {#if errors.photo}
             <span class="error-text">{errors.photo}</span>
           {/if}
@@ -321,10 +321,10 @@
               on:click={handlePhotoUrlChange}
               disabled={!formData.photoUrl}
             >
-              Prévisualiser
+              Podgląd
             </button>
           </div>
-          <p class="help-text">URL de l'image (https://...)</p>
+          <p class="help-text">URL zdjęcia (https://...)</p>
           {#if errors.photoUrl}
             <span class="error-text">{errors.photoUrl}</span>
           {/if}
@@ -332,29 +332,29 @@
       </div>
     </div>
 
-    <!-- Informations principales -->
+    <!-- Informacje główne -->
     <div class="form-section">
-      <h3 class="section-title">INFORMATIONS PRINCIPALES</h3>
+      <h3 class="section-title">INFORMACJE GŁÓWNE</h3>
       
       <div class="form-grid">
         <div class="form-field">
-          <label for="teamId">Équipe <span class="required">*</span></label>
+          <label for="teamId">Drużyna <span class="required">*</span></label>
           {#if loadingTeams}
             <select disabled class="loading-select">
-              <option>Chargement des équipes...</option>
+              <option>Ładowanie drużyn...</option>
             </select>
           {:else if teams.length === 0}
             <select disabled class="error-select">
-              <option>Aucune équipe disponible</option>
+              <option>Brak dostępnych drużyn</option>
             </select>
-            <span class="error-text">Veuillez d'abord créer une équipe</span>
+            <span class="error-text">Najpierw utwórz drużynę</span>
           {:else}
             <select
               id="teamId"
               bind:value={formData.teamId}
               class:error={errors.teamId}
             >
-              <option value="">Sélectionner une équipe</option>
+              <option value="">Wybierz drużynę</option>
               {#each teams as team (team.id)}
                 <option value={team.id}>{team.name}</option>
               {/each}
@@ -366,7 +366,7 @@
         </div>
 
         <div class="form-field">
-          <label for="firstName">Prénom <span class="required">*</span></label>
+          <label for="firstName">Imię <span class="required">*</span></label>
           <input
             id="firstName"
             type="text"
@@ -379,7 +379,7 @@
         </div>
 
         <div class="form-field">
-          <label for="lastName">Nom <span class="required">*</span></label>
+          <label for="lastName">Nazwisko <span class="required">*</span></label>
           <input
             id="lastName"
             type="text"
@@ -392,17 +392,17 @@
         </div>
 
         <div class="form-field">
-          <label for="nickname">Surnom</label>
+          <label for="nickname">Pseudonim</label>
           <input
             id="nickname"
             type="text"
             bind:value={formData.nickname}
-            placeholder="Ex: Ozzy, Guti..."
+            placeholder="Np. Ozzy, Guti..."
           />
         </div>
 
         <div class="form-field">
-          <label for="jerseyNumber">Numéro de maillot</label>
+          <label for="jerseyNumber">Numer koszulki</label>
           <input
             id="jerseyNumber"
             type="number"
@@ -417,7 +417,7 @@
         </div>
 
         <div class="form-field">
-          <label for="birthYear">Année de naissance <span class="required">*</span></label>
+          <label for="birthYear">Rok urodzenia <span class="required">*</span></label>
           <input
             id="birthYear"
             type="number"
@@ -433,21 +433,21 @@
       </div>
     </div>
 
-    <!-- Poste -->
+    <!-- Pozycja -->
     <div class="form-section">
-      <h3 class="section-title">POSTE</h3>
+      <h3 class="section-title">POZYCJA</h3>
       
       <div class="form-grid">
         <div class="form-field">
-          <label for="position">Poste (EN) <span class="required">*</span></label>
+          <label for="position">Pozycja (EN) <span class="required">*</span></label>
           <select
             id="position"
             bind:value={formData.position}
             on:change={handlePositionChange}
             class:error={errors.position}
           >
-            <option value="">Sélectionner</option>
-            {#each Object.keys(positions) as pos}
+            <option value="">Wybierz</option>
+            {#each Object.keys(positions) as pos (pos)}
               <option value={pos}>{pos}</option>
             {/each}
           </select>
@@ -457,7 +457,7 @@
         </div>
 
         <div class="form-field">
-          <label for="positionPl">Poste (PL) <span class="required">*</span></label>
+          <label for="positionPl">Pozycja (PL) <span class="required">*</span></label>
           <input
             id="positionPl"
             type="text"
@@ -471,9 +471,9 @@
       </div>
     </div>
 
-    <!-- Nationalité -->
+    <!-- Narodowość -->
     <div class="form-section">
-      <h3 class="section-title">NATIONALITÉ</h3>
+      <h3 class="section-title">NARODOWOŚĆ</h3>
       
       <NationalitySelectAdmin
         bind:valueEN={formData.nationality}
@@ -491,19 +491,19 @@
       {/if}
     </div>
 
-    <!-- Distinctions -->
+    <!-- Osiągnięcia -->
     <div class="form-section">
-      <h3 class="section-title">DISTINCTIONS</h3>
+      <h3 class="section-title">OSIĄGNIĘCIA</h3>
       
       <div class="form-grid">
         {#each [1, 2, 3, 4, 5] as i (i)}
           <div class="form-field">
-            <label for="distinction{i}">Distinction {i}</label>
+            <label for="distinction{i}">Osiągnięcie {i}</label>
             <input
               id="distinction{i}"
               type="text"
               bind:value={formData[`distinction${i}`]}
-              placeholder="Ex: Cadre WZPN U13..."
+              placeholder="Np. Kadra WZPN U13..."
             />
           </div>
         {/each}
@@ -517,11 +517,11 @@
           type="checkbox"
           bind:checked={formData.isActive}
         />
-        <span>Joueur actif</span>
+        <span>Zawodnik aktywny</span>
       </label>
     </div>
 
-    <!-- Actions -->
+    <!-- Akcje -->
     <div class="form-actions">
       <button
         type="button"
@@ -530,7 +530,7 @@
         disabled={saving}
       >
         <X size={16} />
-        Annuler
+        Anuluj
       </button>
       <button
         type="submit"
@@ -538,10 +538,10 @@
         disabled={saving}
       >
         {#if saving}
-          Création...
+          Tworzenie...
         {:else}
           <Save size={16} />
-          Créer le joueur
+          Utwórz zawodnika
         {/if}
       </button>
     </div>

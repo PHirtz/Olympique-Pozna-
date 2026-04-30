@@ -2,23 +2,18 @@
   import { page } from '$app/stores';
   import SponsorForm from '$lib/components/admin/SponsorForm.svelte';
   import { ArrowLeft } from 'lucide-svelte';
-
   $: sponsorId = $page.params.id;
 </script>
 
 <div class="fm-container">
-  <!-- Breadcrumb -->
   <div class="fm-breadcrumb">
     <a href="/admin" class="fm-breadcrumb-link">
       <ArrowLeft size={16} />
-      <span>Retour au tableau de bord</span>
+      <span>Powrót do panelu</span>
     </a>
   </div>
-
-  <!-- Form -->
   <SponsorForm mode="edit" {sponsorId} />
 </div>
-
 <style>
   .fm-container {
     max-width: 1400px;

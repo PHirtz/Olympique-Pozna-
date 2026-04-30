@@ -25,10 +25,13 @@ router.put('/change-password', jsonParser, authMiddleware, async (req, res) => {
     const valid = await argon2.verify(user.password, currentPassword);
     if (!valid) return res.status(401).json({ message: 'Mot de passe actuel incorrect.' });
 
+    const isSame = await argon2.verify(user.password, newPassword);
+    if (isSame) return res.status(400).json({ message: 'Le nouveau mot de passe doit être différent de l\'ancien.' });
+
     user.password = await argon2.hash(newPassword);
     await user.save();
 
-    res.json({ message: 'Mot de passe mis à jour avec succès.' });
+    res.json({ success: true, message: 'Mot de passe mis à jour avec succès.' });
   } catch (error) {
     console.error('Erreur change-password:', error);
     res.status(500).json({ message: 'Erreur serveur.' });
@@ -38,28 +41,26 @@ router.put('/change-password', jsonParser, authMiddleware, async (req, res) => {
 // POST /api/auth/forgot-password (public)
 router.post('/forgot-password', jsonParser, async (req, res) => {
   try {
-    const { email } = req.body;
+    const { email, locale } = req.body; // ← ajoute locale
     if (!email) return res.status(400).json({ message: 'Email requis.' });
 
     const user = await User.findOne({ where: { email } });
-
-    // Réponse identique que l'email existe ou non (sécurité)
     if (!user) {
-      return res.json({ message: 'Si cet email existe, un lien vous a été envoyé.' });
+      return res.json({ success: true, message: 'Si cet email existe, un lien vous a été envoyé.' });
     }
 
-    // Supprimer les anciens tokens
     await PasswordResetToken.destroy({ where: { userId: user.id } });
-
     const token = crypto.randomBytes(32).toString('hex');
-    const expiresAt = new Date(Date.now() + 60 * 60 * 1000); // 1h
-
+    const expiresAt = new Date(Date.now() + 60 * 60 * 1000);
     await PasswordResetToken.create({ token, userId: user.id, expiresAt });
 
     const resetUrl = `${process.env.FRONTEND_URL}/reset-password?token=${token}`;
-    await emailService.sendPasswordReset(user, resetUrl);
 
-    res.json({ message: 'Si cet email existe, un lien vous a été envoyé.' });
+    // ← utilise la locale du frontend
+    const userWithLocale = { ...user.toJSON(), preferredLanguage: locale || user.preferredLanguage || 'pl' };
+    await emailService.sendPasswordReset(userWithLocale, resetUrl);
+
+    res.json({ success: true, message: 'Si cet email existe, un lien vous a été envoyé.' });
   } catch (error) {
     console.error('Erreur forgot-password:', error);
     res.status(500).json({ message: 'Erreur serveur.' });
@@ -89,13 +90,16 @@ router.post('/reset-password', jsonParser, async (req, res) => {
     const user = await User.findByPk(resetToken.userId);
     if (!user) return res.status(404).json({ message: 'Utilisateur introuvable.' });
 
+    const isSame = await argon2.verify(user.password, newPassword);
+    if (isSame) return res.status(400).json({ message: 'Le nouveau mot de passe doit être différent de l\'ancien.' });
+
     user.password = await argon2.hash(newPassword);
     await user.save();
 
     resetToken.used = true;
     await resetToken.save();
 
-    res.json({ message: 'Mot de passe réinitialisé avec succès.' });
+    res.json({ success: true, message: 'Mot de passe réinitialisé avec succès.' });
   } catch (error) {
     console.error('Erreur reset-password:', error);
     res.status(500).json({ message: 'Erreur serveur.' });

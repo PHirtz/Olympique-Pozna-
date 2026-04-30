@@ -26,27 +26,22 @@
   let saving = false;
   let errors = {};
 
-  // Mode upload : 'file', 'url' ou 'path'
   let logoMode = 'file';
   let logoFile = null;
   let logoPreview = null;
 
-  // Catégories disponibles
   const categories = [
-    { value: 'main_sponsor', label: 'Sponsor Principal' },
-    { value: 'official_partner', label: 'Partenaire Officiel' },
-    { value: 'supplier', label: 'Fournisseur' },
-    { value: 'media_partner', label: 'Partenaire Média' },
+    { value: 'main_sponsor', label: 'Sponsor Główny' },
+    { value: 'official_partner', label: 'Oficjalny Partner' },
+    { value: 'supplier', label: 'Dostawca' },
+    { value: 'media_partner', label: 'Partner Medialny' },
   ];
 
-  // Fonction pour construire l'URL complète des images
   function getImageUrl(path) {
     if (!path) return null;
-    // Si c'est déjà une URL complète, on la retourne telle quelle
     if (path.startsWith('http://') || path.startsWith('https://')) {
       return path;
     }
-    // Sinon, on ajoute l'URL du backend
     return `${API_URL}${path}`;
   }
 
@@ -62,7 +57,6 @@
       const response = await adminPartners.getById(sponsorId);
       formData = { ...formData, ...response.data };
       
-      // Déterminer le mode selon ce qui est rempli
       if (formData.logoUrl) {
         logoMode = 'url';
         logoPreview = formData.logoUrl;
@@ -71,7 +65,7 @@
         logoPreview = getImageUrl(formData.logoPath);
       }
     } catch (err) {
-      alert('Erreur lors du chargement du sponsor');
+      alert('Błąd podczas ładowania sponsora');
       console.error(err);
     } finally {
       loading = false;
@@ -79,7 +73,6 @@
   }
 
   function handleLogoModeChange() {
-    // Réinitialiser quand on change de mode
     logoFile = null;
     formData.logoUrl = '';
     formData.logoPath = '';
@@ -92,21 +85,17 @@
     if (fileInput) fileInput.value = '';
   }
 
-  // ======================================
-  // GESTION FICHIER
-  // ======================================
-
   function handleLogoChange(event) {
     const file = event.target.files[0];
     if (!file) return;
 
     if (!file.type.startsWith('image/')) {
-      errors.logo = 'Veuillez sélectionner une image';
+      errors.logo = 'Proszę wybrać plik graficzny';
       return;
     }
 
     if (file.size > 15 * 1024 * 1024) {
-      errors.logo = 'L\'image ne doit pas dépasser 15MB';
+      errors.logo = 'Obraz nie może przekraczać 15MB';
       return;
     }
 
@@ -131,10 +120,6 @@
     if (fileInput) fileInput.value = '';
   }
 
-  // ======================================
-  // GESTION URL
-  // ======================================
-
   function handleLogoUrlChange() {
     errors.logoUrl = null;
     
@@ -148,14 +133,10 @@
       logoPreview = formData.logoUrl;
       errors.logoUrl = null;
     } catch {
-      errors.logoUrl = 'URL invalide';
+      errors.logoUrl = 'Nieprawidłowy URL';
       logoPreview = null;
     }
   }
-
-  // ======================================
-  // GESTION PATH
-  // ======================================
 
   function handleLogoPathChange() {
     errors.logoPath = null;
@@ -165,9 +146,8 @@
       return;
     }
 
-    // Vérifier que le chemin commence par /
     if (!formData.logoPath.startsWith('/')) {
-      errors.logoPath = 'Le chemin doit commencer par /';
+      errors.logoPath = 'Ścieżka musi zaczynać się od /';
       logoPreview = null;
       return;
     }
@@ -175,26 +155,22 @@
     logoPreview = getImageUrl(formData.logoPath);
   }
 
-  // ======================================
-  // VALIDATION
-  // ======================================
-
   function validateForm() {
     errors = {};
 
     if (!formData.name.trim()) {
-      errors.name = 'Nom requis';
+      errors.name = 'Nazwa jest wymagana';
     }
 
     if (!formData.category) {
-      errors.category = 'Catégorie requise';
+      errors.category = 'Kategoria jest wymagana';
     }
 
     if (formData.websiteUrl && formData.websiteUrl.trim()) {
       try {
         new URL(formData.websiteUrl);
       } catch {
-        errors.websiteUrl = 'URL invalide';
+        errors.websiteUrl = 'Nieprawidłowy URL';
       }
     }
 
@@ -202,24 +178,20 @@
       try {
         new URL(formData.logoUrl);
       } catch {
-        errors.logoUrl = 'URL invalide';
+        errors.logoUrl = 'Nieprawidłowy URL';
       }
     }
 
     if (formData.displayOrder < 0) {
-      errors.displayOrder = 'L\'ordre doit être ≥ 0';
+      errors.displayOrder = 'Kolejność musi być ≥ 0';
     }
 
     return Object.keys(errors).length === 0;
   }
 
-  // ======================================
-  // SUBMIT
-  // ======================================
-
   async function handleSubmit() {
     if (!validateForm()) {
-      alert('Veuillez corriger les erreurs du formulaire');
+      alert('Proszę poprawić błędy w formularzu');
       return;
     }
 
@@ -228,7 +200,6 @@
 
       const data = new FormData();
       
-      // Ajouter les champs de base
       data.append('name', formData.name);
       data.append('category', formData.category);
       data.append('website_url', formData.websiteUrl || '');
@@ -238,7 +209,6 @@
       data.append('display_order', formData.displayOrder || 0);
       data.append('is_active', formData.isActive);
 
-      // Gestion du logo selon le mode
       if (logoMode === 'file' && logoFile) {
         data.append('logo', logoFile);
       } else if (logoMode === 'url' && formData.logoUrl) {
@@ -247,31 +217,30 @@
         data.append('logo_path', formData.logoPath);
       }
 
-      // Debug
-      console.log('📤 Envoi FormData:');
+      console.log('📤 Wysyłanie FormData:');
       for (let [key, value] of data.entries()) {
         console.log(`  ${key}:`, value);
       }
 
       if (mode === 'create') {
         await adminPartners.create(data);
-        alert('Sponsor créé avec succès !');
+        alert('Sponsor został utworzony!');
       } else {
         await adminPartners.update(sponsorId, data);
-        alert('Sponsor mis à jour avec succès !');
+        alert('Sponsor został zaktualizowany!');
       }
 
       goto('/admin/');
     } catch (error) {
-      console.error('Erreur sauvegarde:', error);
-      alert('Erreur: ' + error.message);
+      console.error('Błąd zapisu:', error);
+      alert('Błąd: ' + error.message);
     } finally {
       saving = false;
     }
   }
 
   function handleCancel() {
-    if (confirm('Annuler les modifications ?')) {
+    if (confirm('Anulować zmiany?')) {
       goto('/admin/');
     }
   }
@@ -281,7 +250,7 @@
   <div class="admin-container">
     <div class="loading-container">
       <div class="spinner"></div>
-      <p>Chargement...</p>
+      <p>Ładowanie...</p>
     </div>
   </div>
 {:else}
@@ -289,7 +258,7 @@
     <div class="admin-header-section">
       <div class="admin-title">
         <Upload size={24} />
-        <h1>{mode === 'create' ? 'NOUVEAU SPONSOR' : 'MODIFIER LE SPONSOR'}</h1>
+        <h1>{mode === 'create' ? 'NOWY SPONSOR' : 'EDYTUJ SPONSORA'}</h1>
       </div>
     </div>
 
@@ -297,9 +266,8 @@
       
       <!-- Logo -->
       <div class="form-section">
-        <h3 class="section-title">Logo du sponsor</h3>
+        <h3 class="section-title">Logo sponsora</h3>
         
-        <!-- Mode selection -->
         <div class="upload-mode-selector">
           <label class="mode-option">
             <input
@@ -311,7 +279,7 @@
             />
             <div class="mode-content">
               <Upload size={20} />
-              <span>Uploader un fichier</span>
+              <span>Prześlij plik</span>
             </div>
           </label>
           
@@ -325,7 +293,7 @@
             />
             <div class="mode-content">
               <Link size={20} />
-              <span>URL externe</span>
+              <span>Zewnętrzny URL</span>
             </div>
           </label>
 
@@ -339,12 +307,11 @@
             />
             <div class="mode-content">
               <Upload size={20} />
-              <span>Chemin local</span>
+              <span>Ścieżka lokalna</span>
             </div>
           </label>
         </div>
 
-        <!-- Preview -->
         <div class="photo-upload">
           {#if logoPreview}
             <div class="photo-preview">
@@ -353,7 +320,7 @@
                 type="button"
                 class="photo-remove"
                 on:click={removeLogo}
-                title="Supprimer"
+                title="Usuń"
               >
                 <Trash2 size={16} />
               </button>
@@ -361,15 +328,14 @@
           {:else}
             <div class="photo-placeholder">
               <Upload size={60} />
-              <p>Aucun logo</p>
+              <p>Brak logo</p>
             </div>
           {/if}
 
-          <!-- Mode FICHIER -->
           {#if logoMode === 'file'}
             <label for="logo" class="btn-secondary">
               <Upload size={16} />
-              {logoPreview ? 'Changer le logo' : 'Sélectionner un fichier'}
+              {logoPreview ? 'Zmień logo' : 'Wybierz plik'}
             </label>
             <input
               type="file"
@@ -378,13 +344,12 @@
               on:change={handleLogoChange}
               style="display: none;"
             />
-            <p class="help-text">JPEG, PNG, GIF, SVG, WebP - Max 15MB</p>
+            <p class="help-text">JPEG, PNG, GIF, SVG, WebP – maks. 15MB</p>
             {#if errors.logo}
               <span class="error-text">{errors.logo}</span>
             {/if}
           {/if}
 
-          <!-- Mode URL -->
           {#if logoMode === 'url'}
             <div class="url-input-group">
               <input
@@ -401,16 +366,15 @@
                 on:click={handleLogoUrlChange}
                 disabled={!formData.logoUrl}
               >
-                Prévisualiser
+                Podgląd
               </button>
             </div>
-            <p class="help-text">URL du logo (https://...)</p>
+            <p class="help-text">URL logo (https://...)</p>
             {#if errors.logoUrl}
               <span class="error-text">{errors.logoUrl}</span>
             {/if}
           {/if}
 
-          <!-- Mode Path -->
           {#if logoMode === 'path'}
             <div class="url-input-group">
               <input
@@ -427,10 +391,10 @@
                 on:click={handleLogoPathChange}
                 disabled={!formData.logoPath}
               >
-                Prévisualiser
+                Podgląd
               </button>
             </div>
-            <p class="help-text">Chemin local du logo (commence par /)</p>
+            <p class="help-text">Lokalna ścieżka logo (zaczyna się od /)</p>
             {#if errors.logoPath}
               <span class="error-text">{errors.logoPath}</span>
             {/if}
@@ -440,17 +404,16 @@
 
       <!-- Informations principales -->
       <div class="form-section">
-        <h3 class="section-title">INFORMATIONS PRINCIPALES</h3>
+        <h3 class="section-title">INFORMACJE GŁÓWNE</h3>
         
         <div class="form-grid">
-          <!-- Nom -->
           <div class="form-field">
-            <label for="name">Nom du sponsor <span class="required">*</span></label>
+            <label for="name">Nazwa sponsora <span class="required">*</span></label>
             <input
               id="name"
               type="text"
               bind:value={formData.name}
-              placeholder="Ex: Le Petit Paris"
+              placeholder="Np. Le Petit Paris"
               class:error={errors.name}
               disabled={saving}
             />
@@ -459,16 +422,15 @@
             {/if}
           </div>
 
-          <!-- Catégorie -->
           <div class="form-field">
-            <label for="category">Catégorie <span class="required">*</span></label>
+            <label for="category">Kategoria <span class="required">*</span></label>
             <select
               id="category"
               bind:value={formData.category}
               class:error={errors.category}
               disabled={saving}
             >
-              {#each categories as cat (cat)}
+              {#each categories as cat (cat.value)}
                 <option value={cat.value}>{cat.label}</option>
               {/each}
             </select>
@@ -477,14 +439,13 @@
             {/if}
           </div>
 
-          <!-- Site web -->
           <div class="form-field">
-            <label for="websiteUrl">Site web</label>
+            <label for="websiteUrl">Strona WWW</label>
             <input
               id="websiteUrl"
               type="url"
               bind:value={formData.websiteUrl}
-              placeholder="https://exemple.com"
+              placeholder="https://przykład.com"
               class:error={errors.websiteUrl}
               disabled={saving}
             />
@@ -493,9 +454,8 @@
             {/if}
           </div>
 
-          <!-- Ordre d'affichage -->
           <div class="form-field">
-            <label for="displayOrder">Ordre d'affichage</label>
+            <label for="displayOrder">Kolejność wyświetlania</label>
             <input
               id="displayOrder"
               type="number"
@@ -504,7 +464,7 @@
               class:error={errors.displayOrder}
               disabled={saving}
             />
-            <p class="help-text">Plus petit = apparaît en premier</p>
+            <p class="help-text">Mniejsza wartość = wyświetlany wcześniej</p>
             {#if errors.displayOrder}
               <span class="error-text">{errors.displayOrder}</span>
             {/if}
@@ -514,24 +474,22 @@
 
       <!-- Descriptions -->
       <div class="form-section">
-        <h3 class="section-title">DESCRIPTIONS</h3>
+        <h3 class="section-title">OPISY</h3>
         
         <div class="form-grid">
-          <!-- Description FR -->
           <div class="form-field">
-            <label for="description_fr">Description (Français)</label>
+            <label for="description_fr">Opis (Français)</label>
             <textarea
               id="description_fr"
               bind:value={formData.description_fr}
               rows="3"
-              placeholder="Description du sponsor en français..."
+              placeholder="Opis sponsora po francusku..."
               disabled={saving}
             ></textarea>
           </div>
 
-          <!-- Description EN -->
           <div class="form-field">
-            <label for="description_en">Description (English)</label>
+            <label for="description_en">Opis (English)</label>
             <textarea
               id="description_en"
               bind:value={formData.description_en}
@@ -541,9 +499,8 @@
             ></textarea>
           </div>
 
-          <!-- Description PL -->
           <div class="form-field">
-            <label for="description_pl">Description (Polonais)</label>
+            <label for="description_pl">Opis (Polski)</label>
             <textarea
               id="description_pl"
               bind:value={formData.description_pl}
@@ -563,7 +520,7 @@
             bind:checked={formData.isActive}
             disabled={saving}
           />
-          <span>Sponsor actif (visible sur le site)</span>
+          <span>Sponsor aktywny (widoczny na stronie)</span>
         </label>
       </div>
 
@@ -576,7 +533,7 @@
           disabled={saving}
         >
           <X size={16} />
-          Annuler
+          Anuluj
         </button>
         <button
           type="submit"
@@ -584,10 +541,10 @@
           disabled={saving}
         >
           {#if saving}
-            Enregistrement...
+            Zapisywanie...
           {:else}
             <Save size={16} />
-            {mode === 'create' ? 'Créer le sponsor' : 'Enregistrer'}
+            {mode === 'create' ? 'Utwórz sponsora' : 'Zapisz'}
           {/if}
         </button>
       </div>
@@ -721,7 +678,6 @@
     margin-top: 0.25rem;
   }
 
-  /* Upload mode selector */
   .upload-mode-selector {
     display: flex;
     gap: 1rem;
@@ -762,7 +718,6 @@
     border-color: #1976d2;
   }
 
-  /* Photo upload */
   .photo-upload {
     display: flex;
     flex-direction: column;
@@ -823,7 +778,6 @@
     margin: 0 auto;
   }
 
-  /* URL input */
   .url-input-group {
     display: flex;
     gap: 0.5rem;

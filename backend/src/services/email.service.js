@@ -160,24 +160,32 @@ class EmailService {
 
     const lang = user.preferredLanguage || 'fr';
 
-    const content = {
-      fr: {
-        subject: 'Réinitialisation de votre mot de passe - Olympique Poznan',
-        title: 'Réinitialisation du mot de passe',
-        intro: `Bonjour ${user.firstName},`,
-        body: 'Vous avez demandé à réinitialiser votre mot de passe. Cliquez sur le bouton ci-dessous. Ce lien est valable <strong>1 heure</strong>.',
-        btn: 'Réinitialiser mon mot de passe',
-        ignore: 'Si vous n\'avez pas fait cette demande, ignorez cet email.',
-      },
-      pl: {
-        subject: 'Resetowanie hasła - Olympique Poznan',
-        title: 'Resetowanie hasła',
-        intro: `Cześć ${user.firstName},`,
-        body: 'Poprosiłeś o zresetowanie hasła. Kliknij poniższy przycisk. Link jest ważny przez <strong>1 godzinę</strong>.',
-        btn: 'Zresetuj hasło',
-        ignore: 'Jeśli nie wysłałeś tej prośby, zignoruj ten email.',
-      },
-    };
+  const content = {
+    fr: {
+      subject: 'Réinitialisation de votre mot de passe - Olympique Poznan',
+      title: 'Réinitialisation du mot de passe',
+      intro: `Bonjour ${user.firstName},`,
+      body: 'Vous avez demandé à réinitialiser votre mot de passe. Cliquez sur le bouton ci-dessous. Ce lien est valable <strong>1 heure</strong>.',
+      btn: 'Réinitialiser mon mot de passe',
+      ignore: 'Si vous n\'avez pas fait cette demande, ignorez cet email.',
+    },
+    pl: {
+      subject: 'Resetowanie hasła - Olympique Poznan',
+      title: 'Resetowanie hasła',
+      intro: `Cześć ${user.firstName},`,
+      body: 'Poprosiłeś o zresetowanie hasła. Kliknij poniższy przycisk. Link jest ważny przez <strong>1 godzinę</strong>.',
+      btn: 'Zresetuj hasło',
+      ignore: 'Jeśli nie wysłałeś tej prośby, zignoruj ten email.',
+    },
+    en: {
+      subject: 'Password reset - Olympique Poznan',
+      title: 'Password Reset',
+      intro: `Hello ${user.firstName},`,
+      body: 'You requested a password reset. Click the button below. This link is valid for <strong>1 hour</strong>.',
+      btn: 'Reset my password',
+      ignore: 'If you did not make this request, ignore this email.',
+    },
+  };
 
     const t = content[lang] || content.fr;
 

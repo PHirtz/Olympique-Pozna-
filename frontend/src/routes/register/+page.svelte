@@ -4,14 +4,14 @@
   import { goto } from '$app/navigation';
   import { register } from '$lib/api/auth';
   import { Eye, EyeOff } from 'lucide-svelte';
-  import NationalitySelect from '$lib/components/ui/NationalitySelect.svelte'; // ✅ Import
+  import NationalitySelect from '$lib/components/ui/NationalitySelect.svelte';
   
   let firstName = '';
   let lastName = '';
   let username = '';
   let email = '';
   let password = '';
-  let nationality = ''; // ✅ Ajoute cette ligne
+  let nationality = '';
   let loading = false;
   let errors = {};
   let showPassword = false;

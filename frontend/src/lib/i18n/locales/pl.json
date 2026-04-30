@@ -305,6 +305,7 @@
       "usernamePlaceholder": "Twoja nazwa użytkownika",
       "password": "Hasło",
       "passwordPlaceholder": "Twoje hasło",
+      "forgotPassword": "Zapomniałem hasła?",
       "submit": "Zaloguj się",
       "loading": "Logowanie...",
       "error": "Nieprawidłowa nazwa użytkownika lub hasło",
@@ -349,7 +350,29 @@
         "passwordMin8": "Hasło musi zawierać co najmniej 8 znaków",
         "validationError": "Błąd walidacji danych"
       }
-    }
+    },
+    "forgotPassword": {
+  "title": "Zapomniałem hasła",
+  "subtitle": "Podaj swój email, aby otrzymać link do resetowania hasła.",
+  "submit": "Wyślij link",
+  "loading": "Wysyłanie...",
+  "success": "Jeśli ten email istnieje, link został wysłany. Sprawdź swoją skrzynkę.",
+  "backToLogin": "← Powrót do logowania",
+  "errorGeneral": "Wystąpił błąd."
+},
+"resetPassword": {
+  "title": "Nowe hasło",
+  "newPassword": "Nowe hasło",
+  "samePassword": "Nowe hasło musi być inne niż poprzednie.",
+  "confirmPassword": "Potwierdź hasło",
+  "submit": "Potwierdź nowe hasło",
+  "loading": "Zapisywanie...",
+  "success": "Hasło zostało zmienione! Trwa przekierowanie...",
+  "invalidLink": "Nieprawidłowy link. Złóż nowe żądanie.",
+  "requestNew": "Złóż nowe żądanie",
+  "errorMatch": "Hasła nie są zgodne.",
+  "errorGeneral": "Wystąpił błąd."
+}
   },
 
   "club": {
