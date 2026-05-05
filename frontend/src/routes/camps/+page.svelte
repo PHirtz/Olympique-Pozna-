@@ -1,3 +1,12 @@
+<svelte:head>
+  <title>Obozy piłkarskie Poznań 2026 – Le Camp Olympique</title>
+  <meta name="description" content="Zapisz się na obóz piłkarski Olympique Poznań 2026 – Opalenica 2-7 sierpnia i Januszkowo 23-28 sierpnia. 3 treningi dziennie, zakwaterowanie, integracja." />
+  <meta property="og:title" content="Obozy piłkarskie Poznań 2026 – Le Camp Olympique" />
+  <meta property="og:description" content="Opalenica 2-7 sierpnia i Januszkowo 23-28 sierpnia 2026. Zapisz się teraz!" />
+  <meta property="og:url" content="https://olympiquepoznan.pl/camps" />
+  <meta property="og:image" content="https://olympiquepoznan.pl/Opalenica2026.jpg" />
+</svelte:head>
+
 <script>
   import { _, json } from 'svelte-i18n';
   import { Send, Calendar, MapPin, Users, Phone, Mail } from 'lucide-svelte';

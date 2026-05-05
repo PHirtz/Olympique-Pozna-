@@ -22,8 +22,12 @@
 
 <svelte:head>
   {#if team}
-    <title>{team.name} - Olympique Poznań</title>
-    <meta name="description" content={team.description} />
+    <title>{team.name} – Olympique Poznań</title>
+    <meta name="description" content={$locale === 'pl' && team.descriptionPl ? team.descriptionPl : team.description} />
+    <meta property="og:title" content="{team.name} – Olympique Poznań" />
+    <meta property="og:description" content={$locale === 'pl' && team.descriptionPl ? team.descriptionPl : team.description} />
+    <meta property="og:url" content="https://olympiquepoznan.pl/teams/{team.slug}" />
+    <meta property="og:image" content={team.imagePath ? `https://olympiquepoznan.pl${team.imagePath}` : 'https://olympiquepoznan.pl/logo.png'} />
   {/if}
 </svelte:head>
 

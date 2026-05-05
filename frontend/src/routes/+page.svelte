@@ -1,6 +1,10 @@
 <svelte:head>
-  <title>Home - Olympique Poznań</title>
-  <meta name="description" content="Olympique Poznań - Club de football" />
+  <title>Olympique Poznań – Klub piłkarski z Poznania</title>
+  <meta name="description" content="Olympique Poznań to klub piłkarski dla dzieci i dorosłych w Poznaniu. Akademia, drużyny kobiece i obozy sportowe." />
+  <meta property="og:title" content="Olympique Poznań – Klub piłkarski z Poznania" />
+  <meta property="og:description" content="Akademia, drużyny kobiece i obozy sportowe w Poznaniu." />
+  <meta property="og:url" content="https://olympiquepoznan.pl/" />
+  <meta property="og:image" content="https://olympiquepoznan.pl/victory.jpg" />
 </svelte:head>
 
 <script>

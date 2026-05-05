@@ -1,3 +1,12 @@
+<svelte:head>
+  <title>Nasze drużyny – Olympique Poznań</title>
+  <meta name="description" content="Odkryj drużyny Olympique Poznań: Les Dames (piłka kobieca), Akademia (dzieci i młodzież) oraz Les Bleus (seniorzy). Dołącz do nas w Poznaniu!" />
+  <meta property="og:title" content="Nasze drużyny – Olympique Poznań" />
+  <meta property="og:description" content="Les Dames, Akademia, Les Bleus – drużyny piłkarskie dla każdego wieku w Poznaniu." />
+  <meta property="og:url" content="https://olympiquepoznan.pl/teams" />
+  <meta property="og:image" content="https://olympiquepoznan.pl/img-communes/fondteam.jpeg" />
+</svelte:head>
+
 <script>
   import { _ } from 'svelte-i18n';
   import Navigation2 from "$lib/components/ui/Navigation2.svelte";

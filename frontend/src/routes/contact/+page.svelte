@@ -1,6 +1,9 @@
 <svelte:head>
-  <title>Contact - Olympique Poznań</title>
-  <meta name="description" content="Contactez le club Olympique Poznań" />
+  <title>Kontakt – Olympique Poznań</title>
+  <meta name="description" content="Skontaktuj się z Olympique Poznań – klubem piłkarskim z Poznania. Telefon: +48 669 091 910. Napisz do nas lub odwiedź nas na boisku!" />
+  <meta property="og:title" content="Kontakt – Olympique Poznań" />
+  <meta property="og:description" content="Skontaktuj się z nami: +48 669 091 910 lub olympique.poznan@wielkopolskizpn.pl" />
+  <meta property="og:url" content="https://olympiquepoznan.pl/contact" />
 </svelte:head>
 
 <script>

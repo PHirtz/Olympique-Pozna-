@@ -1,3 +1,11 @@
+<svelte:head>
+  <title>Akademia – Szkolenie dzieci i młodzieży Olympique Poznań</title>
+  <meta name="description" content="Akademia Olympique Poznań to program szkoleniowy dla dzieci od 4 lat. Certyfikowani trenerzy UEFA, treningi dostosowane do każdego wieku w Poznaniu." />
+  <meta property="og:title" content="Akademia – Olympique Poznań" />
+  <meta property="og:description" content="Program szkoleniowy dla dzieci od 4 lat. Certyfikowani trenerzy UEFA w Poznaniu." />
+  <meta property="og:url" content="https://olympiquepoznan.pl/teams/academy" />
+</svelte:head>
+
 <script>
   import { onMount } from 'svelte';
   import { _, locale } from 'svelte-i18n';
