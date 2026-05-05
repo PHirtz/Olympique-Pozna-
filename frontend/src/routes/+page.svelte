@@ -46,11 +46,11 @@
   // Tableau d'images pour le slider Hero
   const heroImages = [
     '/victory.jpg',
-    '/480253574_519592814503843_155183674564057428_n.jpg',
+    '/victoire-psg.jpg',
     '/img-communes/fondteam.jpeg',
-    '/img-communes/515983768_627785960351194_4348364861543239483_n.jpg',
-    '/480550232_520175491112242_6056627001798457656_n.jpg',
-    '/480451313_519582431171548_3309691283841879797_n.jpg'
+    '/img-communes/filles-pelouse.jpg',
+    '/poignee-victoire.jpg',
+    '/dab-drapeau.jpg'
   ];
 </script>
 

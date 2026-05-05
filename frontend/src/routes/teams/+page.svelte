@@ -31,7 +31,7 @@
 <style>
   .hero-teams {
     position: relative;
-    background-image: url('/seniorsf/561102658_709701402159649_1053392351238307688_n.jpg');
+    background-image: url('/seniorsf/ronde-dames.jpg');
     background-size: cover;
     background-position: center 30%;
     background-color: #0f2d4a;

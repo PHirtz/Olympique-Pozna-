@@ -5,17 +5,17 @@
   const teams = [
     {
       slug: 'feminine',
-      image: '../seniorsf/548748092_685055974624192_8235511687039625110_n.jpg',
+      image: '../seniorsf/seniorsf-hola.jpg',
       link: '/teams/dames'
     },
     {
       slug: 'junior',
-      image: '../juniors/535057118_663522866777503_4651670088385010660_n.jpg',
+      image: '../juniors/juniors-ronde.jpg',
       link: '/teams/academy'
     },
     {   
       slug: 'senior',
-      image: '../seniorsh/565694409_714234655039657_3240198854373276417_n.jpg',
+      image: '../seniorsh/seniorsh-clap.jpg',
       link: '/teams/bleus'
     }
   ];
@@ -73,7 +73,7 @@
   <div class="performance-container">
     <div class="performance-image">
       <img 
-        src="../img-communes/570370526_720083157788140_3459994557698679766_n.jpg" 
+        src="../img-communes/dom-team-medaillee.jpg" 
         alt="Équipe avec médailles" 
         loading="lazy" 
       />

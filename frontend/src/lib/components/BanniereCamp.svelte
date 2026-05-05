@@ -4,43 +4,43 @@
 
   const campImages = [
     {
-      src: '../camps/537378575_666839196445870_7205819773690376839_n.jpg',
+      src: '../camps/groupe-gare.jpg',
       alt: 'Camp Olympique - Entraînement'
     },
     {
-      src: '../camps/538546293_666839159779207_5349435575611989785_n.jpg',
+      src: '../camps/groupe-plage.jpg',
       alt: 'Camp Olympique - Activités'
     },
     {
-      src: '../camps/565101131_710263548770101_4822435177271192086_n.jpg',
+      src: '../camps/groupe-fun-lunettes.jpg',
       alt: 'Camp Olympique - Groupe'
     },
     {
-      src: '../camps/511562436_618032664659857_2760144674956014663_n.jpg',
+      src: '../camps/filles-victoire.jpg',
       alt: 'Camp Olympique - Match'
     },
     {
-      src: '../camps/510558630_616454818150975_2848625339731913587_n.jpg',
+      src: '../camps/groupe-stade.jpg',
       alt: 'Camp Olympique - Fun'
     },
     {
-      src: '../camps/485693359_545062581956866_8217956033877381566_n.jpg',
+      src: '../camps/groupe-stade-ext.jpg',
       alt: 'Camp Olympique - Amis'
     },
     {
-      src: '../camps/480541685_525020913961033_7575004528192900917_n.jpg',
+      src: '../camps/ping-pong.jpg',
       alt: 'Camp Olympique - Sourires'
     },
     {
-      src: '../camps/480828745_525012433961881_1776206399951794533_n.jpg',
+      src: '../camps/bus.jpg',
       alt: 'Camp Olympique - Entraîneurs'
     },
     {
-      src: '../camps/478278206_518114947984963_3727456241404200799_n.jpg',
+      src: '../camps/poteaux-plage.jpg',
       alt: 'Camp Olympique - Terrain'
     },
     {
-      src: '../camps/479544477_516514228145035_3370660487461680180_n.jpg',
+      src: '../camps/filles-sofa.jpg',
       alt: 'Camp Olympique - Équipe'
     }
   ];
