@@ -114,11 +114,6 @@
   }
 </script>
 
-<svelte:head>
-  <title>Le Camp Olympique - Olympique Poznań</title>
-  <meta name="description" content="Rejoignez le Camp Olympique ! Stage de football intensif avec hébergement et activités." />
-</svelte:head>
-
 <Navigation2 {data} />
 
 <div class="camps-page">

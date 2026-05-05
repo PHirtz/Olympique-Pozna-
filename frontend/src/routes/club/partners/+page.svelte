@@ -1,6 +1,6 @@
 <svelte:head>
   <title>{$_('club.partners.hero.subtitle')} – Olympique Poznań</title>
-  <meta name="description" content={$_('club.partners.metaDescription')} />
+  <meta name="description" content="{$_('club.partners.metaDescription')}" />
   <meta property="og:title" content="{$_('club.partners.hero.subtitle')} – Olympique Poznań" />
   <meta property="og:description" content={$_('club.partners.metaDescription')} />
   <meta property="og:url" content="https://olympiquepoznan.pl/club/partners" />
@@ -68,13 +68,13 @@
     }
   };
 
-  $: getCategoryLabel = (category) => {
+function getCategoryLabel(category) {
     const locale = $currentLocale;
     return categoryLabels[category]?.[locale] || categoryLabels[category]?.fr || category;
   };
 
   // Obtenir la bonne description selon la langue
-  $: getDescription = (partner) => {
+function getDescription(partner) {
     const locale = $currentLocale;
     if (locale === 'pl') return partner.descriptionPl || partner.description || partner.descriptionEn;
     if (locale === 'en') return partner.descriptionEn || partner.description || partner.descriptionPl;
@@ -96,11 +96,6 @@
     return `${BASE_URL}${path}`;
   }
 </script>
-
-<svelte:head>
-  <title>{$_('club.partners.hero.subtitle')}</title>
-  <meta name="description" content="{$_('club.partners.metaDescription')}" />
-</svelte:head>
 
 <Navigation2 {data} />
 
