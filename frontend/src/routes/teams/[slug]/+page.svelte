@@ -28,6 +28,21 @@
     <meta property="og:description" content={$locale === 'pl' && team.descriptionPl ? team.descriptionPl : team.description} />
     <meta property="og:url" content="https://olympiquepoznan.pl/teams/{team.slug}" />
     <meta property="og:image" content={team.imagePath ? `https://olympiquepoznan.pl${team.imagePath}` : 'https://olympiquepoznan.pl/logo.png'} />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SportsTeam",
+      "name": "{team.name}",
+      "sport": "Football",
+      "url": "https://olympiquepoznan.pl/teams/{team.slug}",
+      "memberOf": {
+        "@type": "SportsOrganization",
+        "name": "Olympique Poznań",
+        "url": "https://olympiquepoznan.pl"
+      },
+      "logo": "https://olympiquepoznan.pl/logo.png"
+    }
+    </script>
   {/if}
 </svelte:head>
 

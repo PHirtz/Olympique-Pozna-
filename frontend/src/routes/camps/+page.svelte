@@ -5,6 +5,60 @@
   <meta property="og:description" content="Opalenica 2-7 sierpnia i Januszkowo 23-28 sierpnia 2026. Zapisz się teraz!" />
   <meta property="og:url" content="https://olympiquepoznan.pl/camps" />
   <meta property="og:image" content="https://olympiquepoznan.pl/Opalenica2026.jpg" />
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "Camp Olympique Opalenica 2026",
+      "description": "Obóz piłkarski dla chłopców 2009-2014. 3 treningi dziennie, zakwaterowanie z wyżywieniem, Soccer Bot 360.",
+      "startDate": "2026-08-02",
+      "endDate": "2026-08-07",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Opalenica",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Opalenica",
+          "addressCountry": "PL"
+        }
+      },
+      "organizer": {
+        "@type": "SportsOrganization",
+        "name": "Olympique Poznań",
+        "url": "https://olympiquepoznan.pl"
+      },
+      "url": "https://olympiquepoznan.pl/camps"
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "Camp Olympique Januszkowo 2026",
+      "description": "Obóz piłkarski Le Camp Olympique – Januszkowo. Intensywne treningi i integracja.",
+      "startDate": "2026-08-23",
+      "endDate": "2026-08-28",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Januszkowo",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Januszkowo",
+          "addressCountry": "PL"
+        }
+      },
+      "organizer": {
+        "@type": "SportsOrganization",
+        "name": "Olympique Poznań",
+        "url": "https://olympiquepoznan.pl"
+      },
+      "url": "https://olympiquepoznan.pl/camps"
+    }
+  ]
+  </script>
 </svelte:head>
 
 <script>

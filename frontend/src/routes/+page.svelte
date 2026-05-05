@@ -5,6 +5,34 @@
   <meta property="og:description" content="Akademia, drużyny kobiece i obozy sportowe w Poznaniu." />
   <meta property="og:url" content="https://olympiquepoznan.pl/" />
   <meta property="og:image" content="https://olympiquepoznan.pl/victory.jpg" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SportsOrganization",
+      "name": "Olympique Poznań",
+      "url": "https://olympiquepoznan.pl",
+      "logo": "https://olympiquepoznan.pl/logo.png",
+      "description": "Olympique Poznań to klub piłkarski dla dzieci i dorosłych w Poznaniu. Akademia, drużyny kobiece i obozy sportowe.",
+      "sport": "Football",
+      "foundingDate": "2023",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Poznań",
+        "addressCountry": "PL"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+48-669-091-910",
+        "email": "olympique.poznan@wielkopolskizpn.pl",
+        "contactType": "customer service"
+      },
+      "sameAs": [
+        "https://www.facebook.com/OlympiquePoz",
+        "https://www.instagram.com/olympiquepoznan/",
+        "https://www.tiktok.com/tag/olympiquepoznań"
+      ]
+    }
+  </script>
 </svelte:head>
 
 <script>

@@ -4,6 +4,27 @@
   <meta property="og:title" content="Kontakt – Olympique Poznań" />
   <meta property="og:description" content="Skontaktuj się z nami: +48 669 091 910 lub olympique.poznan@wielkopolskizpn.pl" />
   <meta property="og:url" content="https://olympiquepoznan.pl/contact" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SportsActivityLocation",
+    "name": "Olympique Poznań",
+    "url": "https://olympiquepoznan.pl",
+    "logo": "https://olympiquepoznan.pl/logo.png",
+    "telephone": "+48-669-091-910",
+    "email": "olympique.poznan@wielkopolskizpn.pl",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Poznań",
+      "addressRegion": "Wielkopolska",
+      "addressCountry": "PL"
+    },
+    "sameAs": [
+      "https://www.facebook.com/OlympiquePoz",
+      "https://www.instagram.com/olympiquepoznan/"
+    ]
+  }
+  </script>
 </svelte:head>
 
 <script>

@@ -1,9 +1,20 @@
 <svelte:head>
   <title>{$_('club.partners.hero.subtitle')} – Olympique Poznań</title>
-  <meta name="description" content="{$_('club.partners.metaDescription')}" />
+  <meta name="description" content={$_('club.partners.metaDescription')} />
   <meta property="og:title" content="{$_('club.partners.hero.subtitle')} – Olympique Poznań" />
   <meta property="og:description" content={$_('club.partners.metaDescription')} />
   <meta property="og:url" content="https://olympiquepoznan.pl/club/partners" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Partnerzy Olympique Poznań",
+    "url": "https://olympiquepoznan.pl/club/partners",
+    "description": "Oficjalni partnerzy i sponsorzy klubu piłkarskiego Olympique Poznań.",
+    "itemListOrder": "https://schema.org/ItemListOrderAscending",
+    "numberOfItems": 0
+  }
+  </script>
 </svelte:head>
 
 <script>

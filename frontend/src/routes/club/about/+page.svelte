@@ -4,6 +4,21 @@
   <meta property="og:title" content="{$_('about.title')} – Olympique Poznań" />
   <meta property="og:description" content={$_('about.metaDescription')} />
   <meta property="og:url" content="https://olympiquepoznan.pl/club/about" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "O nas – Olympique Poznań",
+    "url": "https://olympiquepoznan.pl/club/about",
+    "description": "Poznaj historię i wartości Olympique Poznań – klubu piłkarskiego z Poznania założonego w 2023 roku.",
+    "mainEntity": {
+      "@type": "SportsOrganization",
+      "name": "Olympique Poznań",
+      "foundingDate": "2023",
+      "sport": "Football"
+    }
+  }
+  </script>
 </svelte:head>
 
 <script>
@@ -22,11 +37,6 @@
     ? $_('club.partners.cta.button')
     : $_('about.community.cta.button');
 </script>
-
-<svelte:head>
-  <title>{$_('about.title')}</title>
-  <meta name="description" content={$_('about.metaDescription')} />
-</svelte:head>
 
 <Navigation2 {data} />
 
