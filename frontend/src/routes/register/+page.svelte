@@ -97,7 +97,10 @@
   }
 </script>
 
-<!-- ... Menu logo et language selector inchangés ... -->
+<svelte:head>
+  <title>Rejestracja – Olympique Poznań</title>
+  <meta name="robots" content="noindex, nofollow" />
+</svelte:head>
 
 <div class="register-page">
   <div class="register-card">

@@ -1,8 +1,8 @@
 <svelte:head>
-  <title>O nas – Olympique Poznań</title>
-  <meta name="description" content="Poznaj historię i wartości Olympique Poznań – klubu piłkarskiego z Poznania założonego w 2023 roku, z 15 narodowościami i certyfikowanymi trenerami UEFA." />
-  <meta property="og:title" content="O nas – Olympique Poznań" />
-  <meta property="og:description" content="Klub piłkarski z Poznania założony w 2023. Certyfikowani trenerzy UEFA, 15 narodowości, drużyny kobiece i akademia." />
+  <title>{$_('about.title')} – Olympique Poznań</title>
+  <meta name="description" content={$_('about.metaDescription')} />
+  <meta property="og:title" content="{$_('about.title')} – Olympique Poznań" />
+  <meta property="og:description" content={$_('about.metaDescription')} />
   <meta property="og:url" content="https://olympiquepoznan.pl/club/about" />
 </svelte:head>
 

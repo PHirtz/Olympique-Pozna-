@@ -1,3 +1,8 @@
+<svelte:head>
+  <title>Resetowanie hasła – Olympique Poznań</title>
+  <meta name="robots" content="noindex, nofollow" />
+</svelte:head>
+
 <script>
   import { onMount } from 'svelte';
   import { _ } from 'svelte-i18n';

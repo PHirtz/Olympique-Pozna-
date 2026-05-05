@@ -1,3 +1,11 @@
+<svelte:head>
+  <title>{$_('club.partners.hero.subtitle')} – Olympique Poznań</title>
+  <meta name="description" content={$_('club.partners.metaDescription')} />
+  <meta property="og:title" content="{$_('club.partners.hero.subtitle')} – Olympique Poznań" />
+  <meta property="og:description" content={$_('club.partners.metaDescription')} />
+  <meta property="og:url" content="https://olympiquepoznan.pl/club/partners" />
+</svelte:head>
+
 <script>
   import { onMount } from 'svelte';
   import { partners as partnersAPI } from '$lib/api';

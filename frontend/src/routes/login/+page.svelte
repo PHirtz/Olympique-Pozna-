@@ -67,6 +67,11 @@
   }
 </script>
 
+<svelte:head>
+  <title>Logowanie – Olympique Poznań</title>
+  <meta name="robots" content="noindex, nofollow" />
+</svelte:head>
+
 <div class='menu-logo'>
   <a href={resolve('/')}>
     <img src="/home.png" alt="Logo home" class="logo" />
