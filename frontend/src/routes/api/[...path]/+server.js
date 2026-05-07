@@ -1,3 +1,4 @@
+import { error } from '@sveltejs/kit';
 import { PUBLIC_BACKEND_URL } from '$env/static/public';
 
 // Utilise PUBLIC_BACKEND_URL depuis les variables d'environnement

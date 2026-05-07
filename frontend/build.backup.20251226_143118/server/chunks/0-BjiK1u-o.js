@@ -1,0 +1,33 @@
+import { r as registerLocaleLoader, i as init, g as getLocaleFromNavigator, w as waitLocale } from './runtime-BvgGssNx.js';
+import './index-BEapQtpA.js';
+import './utils2-Bf5dtsip.js';
+
+registerLocaleLoader("fr", () => import('./fr-aNjIqhmZ.js'));
+registerLocaleLoader("pl", () => import('./pl-BnW8dX78.js'));
+init({
+  fallbackLocale: "pl",
+  // Si la langue détectée n'existe pas, utilise le polonais
+  initialLocale: getLocaleFromNavigator() || "pl"
+  // Détecte le navigateur, sinon polonais par défaut
+});
+
+const load = async () => {
+  await waitLocale();
+  return {};
+};
+
+var _layout = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  load: load
+});
+
+const index = 0;
+let component_cache;
+const component = async () => component_cache ??= (await import('./_layout.svelte-DR4gsf7V.js')).default;
+const universal_id = "src/routes/+layout.js";
+const imports = ["_app/immutable/nodes/0.BLSGeM3M.js","_app/immutable/chunks/PPVm8Dsz.js","_app/immutable/chunks/CoNcDfu4.js","_app/immutable/chunks/DCkW3Mu1.js","_app/immutable/chunks/DIeogL5L.js","_app/immutable/chunks/DsnmJJEf.js","_app/immutable/chunks/69_IOA4Y.js","_app/immutable/chunks/CpWiCzCL.js","_app/immutable/chunks/BOH49W78.js","_app/immutable/chunks/DwbAyKq7.js","_app/immutable/chunks/Dm1SwslI.js"];
+const stylesheets = ["_app/immutable/assets/0.CqYmwLOr.css"];
+const fonts = ["_app/immutable/assets/fira-mono-cyrillic-ext-400-normal.FAIU8e3o.woff2","_app/immutable/assets/fira-mono-cyrillic-ext-400-normal.Co4MVjrD.woff","_app/immutable/assets/fira-mono-cyrillic-400-normal.BJkDdjbt.woff2","_app/immutable/assets/fira-mono-cyrillic-400-normal.DUd3efVn.woff","_app/immutable/assets/fira-mono-greek-ext-400-normal.Be4g_LSk.woff2","_app/immutable/assets/fira-mono-greek-ext-400-normal.BQ5yw6bY.woff","_app/immutable/assets/fira-mono-greek-400-normal.ftNhKy_S.woff2","_app/immutable/assets/fira-mono-greek-400-normal.B_0AmgK7.woff","_app/immutable/assets/fira-mono-symbols2-400-normal.C6JptOil.woff2","_app/immutable/assets/fira-mono-symbols2-400-normal.CpeG9ob9.woff","_app/immutable/assets/fira-mono-latin-ext-400-normal.B2gPvaNr.woff2","_app/immutable/assets/fira-mono-latin-ext-400-normal.CbD3vWRE.woff","_app/immutable/assets/fira-mono-latin-400-normal.DVTTRLHv.woff2","_app/immutable/assets/fira-mono-latin-400-normal.C3FQ26ho.woff"];
+
+export { component, fonts, imports, index, stylesheets, _layout as universal, universal_id };
+//# sourceMappingURL=0-BjiK1u-o.js.map

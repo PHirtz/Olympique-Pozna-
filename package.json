@@ -1,0 +1,9 @@
+{
+  "name": "olympique-poznan-production",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "cd frontend && npx pm2 start build/index.js --name frontend && cd ../backend && npx pm2 start src/server.js --name backend && npx pm2 logs",
+    "stop": "cd frontend && npx pm2 stop all"
+  },
+  "dependencies": {}
+}

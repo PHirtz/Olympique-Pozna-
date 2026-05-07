@@ -1,0 +1,72 @@
+import Joi from 'joi';
+
+export const campCreateSchema = Joi.object({
+  title: Joi.string().max(200).required(),
+  titlePl: Joi.string().max(200).allow('', null),
+  description: Joi.string().required(),
+  descriptionPl: Joi.string().allow('', null),
+  startDate: Joi.date().iso().required(),
+  endDate: Joi.date().iso().min(Joi.ref('startDate')).required(),
+  location: Joi.string().max(200).required(),
+  locationPl: Joi.string().max(200).allow('', null),
+  latitude: Joi.number().min(-90).max(90).allow(null),
+  longitude: Joi.number().min(-180).max(180).allow(null),
+  price: Joi.number().precision(2).min(0).required(),
+  currency: Joi.string().length(3).default('EUR'),
+  ageMin: Joi.number().integer().min(3).max(99).allow(null),
+  ageMax: Joi.number().integer().min(Joi.ref('ageMin')).max(99).allow(null),
+  maxParticipants: Joi.number().integer().min(1).default(30),
+  type: Joi.string().valid('summer', 'winter', 'spring', 'autumn', 'special').default('summer'),
+  level: Joi.string().valid('beginner', 'intermediate', 'advanced', 'all').default('all'),
+  activities: Joi.array().items(Joi.string()).allow(null),
+  includedServices: Joi.array().items(Joi.string()).allow(null),
+  requirements: Joi.string().allow('', null),
+  requirementsPl: Joi.string().allow('', null),
+  contactEmail: Joi.string().email().max(150).allow('', null),
+  contactPhone: Joi.string().max(20).allow('', null),
+  registrationDeadline: Joi.date().iso().allow(null),
+  status: Joi.string().valid('draft', 'open', 'full', 'closed', 'cancelled').default('draft'),
+  isActive: Joi.boolean().default(true)
+});
+
+export const campUpdateSchema = Joi.object({
+  title: Joi.string().max(200),
+  titlePl: Joi.string().max(200).allow('', null),
+  description: Joi.string(),
+  descriptionPl: Joi.string().allow('', null),
+  startDate: Joi.date().iso(),
+  endDate: Joi.date().iso(),
+  location: Joi.string().max(200),
+  locationPl: Joi.string().max(200).allow('', null),
+  latitude: Joi.number().min(-90).max(90).allow(null),
+  longitude: Joi.number().min(-180).max(180).allow(null),
+  price: Joi.number().precision(2).min(0),
+  currency: Joi.string().length(3),
+  ageMin: Joi.number().integer().min(3).max(99).allow(null),
+  ageMax: Joi.number().integer().min(3).max(99).allow(null),
+  maxParticipants: Joi.number().integer().min(1),
+  currentParticipants: Joi.number().integer().min(0),
+  type: Joi.string().valid('summer', 'winter', 'spring', 'autumn', 'special'),
+  level: Joi.string().valid('beginner', 'intermediate', 'advanced', 'all'),
+  activities: Joi.array().items(Joi.string()).allow(null),
+  includedServices: Joi.array().items(Joi.string()).allow(null),
+  requirements: Joi.string().allow('', null),
+  requirementsPl: Joi.string().allow('', null),
+  contactEmail: Joi.string().email().max(150).allow('', null),
+  contactPhone: Joi.string().max(20).allow('', null),
+  registrationDeadline: Joi.date().iso().allow(null),
+  status: Joi.string().valid('draft', 'open', 'full', 'closed', 'cancelled'),
+  isActive: Joi.boolean(),
+  imageUrl: Joi.string().uri().max(255).allow('', null),
+  imagePath: Joi.string().max(255).allow('', null)
+}).min(1);
+
+export const campQuerySchema = Joi.object({
+  type: Joi.string().valid('summer', 'winter', 'spring', 'autumn', 'special'),
+  status: Joi.string().valid('draft', 'open', 'full', 'closed', 'cancelled'),
+  level: Joi.string().valid('beginner', 'intermediate', 'advanced', 'all'),
+  year: Joi.number().integer().min(2020).max(2100),
+  upcoming: Joi.boolean(),
+  page: Joi.number().integer().min(1).default(1),
+  limit: Joi.number().integer().min(1).max(100).default(20)
+});

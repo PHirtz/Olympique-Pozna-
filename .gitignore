@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 frontend/deploy.tar.gz
 *.tar.gz
 frontend/.svelte-kit/
@@ -20,3 +21,21 @@ uploads/
 ecosystem.config.cjs
 deploy.sh
 *.env
+=======
+# Secrets
+ecosystem.config.cjs
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+>>>>>>> Stashed changes
