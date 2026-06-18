@@ -473,6 +473,58 @@
         "subtitle": "Our Partners"
       }
     },
+    "womenFootballProgram": {
+      "title": "Football for Women of Poznań",
+      "metaDescription": "Free football training sessions for women thanks to the support of the City of Poznań through the Poznań Civic Budget 2026.",
+      "hero": {
+        "title": "FOOTBALL FOR WOMEN OF POZNAŃ",
+        "subtitle": "Free football training sessions for women thanks to the support of the City of Poznań through the Poznań Civic Budget 2026."
+      },
+      "intro": {
+        "text1": "Olympique Poznań is proud to run the project “Football for Women of Poznań”, aimed at promoting physical activity, a healthy lifestyle and social integration through football.",
+        "text2": "We invite all women, regardless of age, experience or sporting level. No previous football experience is required. What matters most is the willingness to be active, have fun and develop together."
+      },
+      "stats": {
+        "free": "Free training sessions",
+        "daysPerWeek": "Training days per week",
+        "locations": "Training locations"
+      },
+      "benefits": {
+        "title": "What do we offer?",
+        "item1": "Free training sessions led by qualified coaches",
+        "item2": "A friendly and supportive atmosphere",
+        "item3": "Development of physical fitness and football skills",
+        "item4": "The opportunity to meet new people and stay active",
+        "item5": "Becoming part of the unique Olympique Poznań community"
+      },
+      "schedule": {
+        "daysLabel": "Training schedule",
+        "days": "Tuesday, Wednesday, Thursday, Friday and Saturday (evenings)",
+        "locationsLabel": "Locations",
+        "location1": "Strzeszyn",
+        "location2": "Grunwald",
+        "location3": "Smochowice"
+      },
+      "audience": {
+        "title": "Who is this project for?",
+        "intro": "The project is open to all women in Poznań who would like to:",
+        "item1": "start their football journey,",
+        "item2": "return to physical activity after a break,",
+        "item3": "improve their fitness,",
+        "item4": "train in a friendly environment without pressure for results."
+      },
+      "funding": {
+        "title": "Project funded by the City of Poznań",
+        "text": "The “Football for Women of Poznań” project is financed through the Poznań Civic Budget 2026."
+      },
+      "contact": {
+        "title": "Registration and information"
+      },
+      "cta": {
+        "text": "Join Olympique Poznań and discover that football is for every woman!"
+      }
+    },
+
     "status": "Club statutes",
     "documents": {
       "title": "Important documents",

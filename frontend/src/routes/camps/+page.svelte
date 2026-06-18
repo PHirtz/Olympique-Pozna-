@@ -485,10 +485,6 @@
     color: white;
   }
 
-  .tab-icon {
-    font-size: 1.5rem;
-  }
-
   .tab-label {
     font-weight: 700;
     font-size: 0.95rem;

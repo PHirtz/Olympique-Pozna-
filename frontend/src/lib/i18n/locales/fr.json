@@ -476,6 +476,57 @@
         "subtitle": "Nos Partenaires"
       }
     },
+    "womenFootballProgram": {
+      "title": "Football pour les femmes de Poznań",
+      "metaDescription": "Entraînements de football gratuits pour les femmes de Poznań, soutenus par la Ville dans le cadre du Budget Citoyen 2026.",
+      "hero": {
+        "title": "FOOTBALL POUR LES FEMMES DE POZNAŃ",
+        "subtitle": "Entraînements de football gratuits pour les femmes grâce au soutien de la Ville de Poznań dans le cadre du Budget Citoyen de Poznań 2026."
+      },
+      "intro": {
+        "text1": "Olympique Poznań est fier de mettre en œuvre le projet « Football pour Poznaniennes », dont l'objectif est de promouvoir l'activité physique, un mode de vie sain et l'intégration sociale à travers le football.",
+        "text2": "Nous invitons toutes les femmes, quel que soit leur âge, leur expérience ou leur niveau sportif. Aucune expérience préalable du football n'est nécessaire. L'essentiel est d'avoir envie de bouger, de s'amuser et de progresser ensemble."
+      },
+      "stats": {
+        "free": "Entraînements gratuits",
+        "daysPerWeek": "Jours d'entraînement par semaine",
+        "locations": "Lieux d'entraînement"
+      },
+      "benefits": {
+        "title": "Ce que nous proposons",
+        "item1": "Des entraînements gratuits encadrés par des entraîneurs qualifiés",
+        "item2": "Une ambiance conviviale et bienveillante",
+        "item3": "Le développement de la condition physique et des compétences footballistiques",
+        "item4": "La possibilité de rencontrer de nouvelles personnes et de pratiquer une activité physique régulière",
+        "item5": "L'intégration à la communauté unique d'Olympique Poznań"
+      },
+      "schedule": {
+        "daysLabel": "Horaires des entraînements",
+        "days": "Mardi, mercredi, jeudi, vendredi et samedi (en soirée)",
+        "locationsLabel": "Lieux",
+        "location1": "Strzeszyn",
+        "location2": "Grunwald",
+        "location3": "Smochowice"
+      },
+      "audience": {
+        "title": "Pour qui ?",
+        "intro": "Le projet s'adresse à toutes les femmes de Poznań qui souhaitent :",
+        "item1": "découvrir le football,",
+        "item2": "reprendre une activité physique après une pause,",
+        "item3": "améliorer leur condition physique,",
+        "item4": "s'entraîner dans un environnement convivial et sans pression de résultat."
+      },
+      "funding": {
+        "title": "Projet financé par la Ville de Poznań",
+        "text": "Le projet « Football pour les Poznaniennes » est réalisé grâce aux fonds accordés dans le cadre du Budget Citoyen de Poznań 2026."
+      },
+      "contact": {
+        "title": "Inscriptions et informations"
+      },
+      "cta": {
+        "text": "Rejoignez Olympique Poznań et découvrez que le football est fait pour toutes les femmes !"
+      }
+    },
     "status": "Statuts du club",
     "documents": {
       "title": "Documents importants",

@@ -10,7 +10,6 @@
   let open = false;
   let visible = false;
   let scrollY = 0;
-  let navOpacity = 0.1;
   
   /** @type {string | null} */
   let openDropdown = null;
@@ -191,6 +190,8 @@
                 <span class="badge-text">NEW</span>
                 <span class="shine"></span>
               </span>
+            </a>
+            <a href="/club/women-football-program" class="dropdown-item" role="menuitem">{$_('club.womenFootballProgram.title')}
             </a>
             <a href="/club/partners" class="dropdown-item" role="menuitem">{$_('club.partners.title')}</a>
 
@@ -383,6 +384,7 @@
                   </span>
                 </a>
               </li>
+              <li><a href="/club/women-football-program" on:click={close}>{$_('club.womenFootballProgram.title')}</a></li>
               <li><a href="/club/partners" on:click={close}>{$_('club.partners.title')}</a></li>
               </ul>
           {/if}

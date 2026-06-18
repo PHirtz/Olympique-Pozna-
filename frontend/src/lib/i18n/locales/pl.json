@@ -396,6 +396,57 @@
         "subtitle": "Nasi partnerzy"
       }
     },
+    "womenFootballProgram": {
+      "title": "Piłka nożna dla Poznanianek",
+      "metaDescription": "Bezpłatne treningi piłki nożnej dla kobiet dzięki wsparciu Miasta Poznania w ramach Poznańskiego Budżetu Obywatelskiego 2026.",
+      "hero": {
+        "title": "PIŁKA NOŻNA DLA POZNANIANEK",
+        "subtitle": "Bezpłatne treningi piłki nożnej dla kobiet dzięki wsparciu Miasta Poznania w ramach Poznańskiego Budżetu Obywatelskiego 2026."
+      },
+      "intro": {
+        "text1": "Olympique Poznań z dumą realizuje projekt „Piłka Nożna dla Poznanianek”, którego celem jest promowanie aktywności fizycznej, zdrowego stylu życia oraz integracji społecznej poprzez piłkę nożną.",
+        "text2": "Zapraszamy wszystkie kobiety – niezależnie od wieku, doświadczenia czy poziomu sportowego. Nie musisz mieć wcześniejszego doświadczenia piłkarskiego. Liczy się chęć do ruchu, dobrej zabawy i wspólnego rozwoju."
+      },
+      "stats": {
+        "free": "Bezpłatne treningi",
+        "daysPerWeek": "Dni treningowe w tygodniu",
+        "locations": "Lokalizacje treningowe"
+      },
+      "benefits": {
+        "title": "Co oferujemy?",
+        "item1": "Bezpłatne treningi prowadzone przez wykwalifikowanych trenerów",
+        "item2": "Przyjazną i wspierającą atmosferę",
+        "item3": "Rozwój sprawności fizycznej i umiejętności piłkarskich",
+        "item4": "Możliwość poznania nowych osób i aktywnego spędzania czasu",
+        "item5": "Udział w wyjątkowej społeczności Olympique Poznań"
+      },
+      "schedule": {
+        "daysLabel": "Harmonogram treningów",
+        "days": "Wtorek, Środa, Czwartek, Piątek oraz Sobota (wieczorem)",
+        "locationsLabel": "Lokalizacje",
+        "location1": "Strzeszyn",
+        "location2": "Grunwald",
+        "location3": "Smochowice"
+      },
+      "audience": {
+        "title": "Dla kogo?",
+        "intro": "Projekt skierowany jest do wszystkich kobiet z Poznania, które chcą:",
+        "item1": "rozpocząć swoją przygodę z piłką nożną,",
+        "item2": "wrócić do aktywności fizycznej po przerwie,",
+        "item3": "poprawić swoją kondycję,",
+        "item4": "trenować w przyjaznym środowisku bez presji wyniku."
+      },
+      "funding": {
+        "title": "Projekt finansowany przez Miasto Poznań",
+        "text": "Projekt „Piłka Nożna dla Poznanianek” jest realizowany dzięki środkom przyznanym w ramach Poznańskiego Budżetu Obywatelskiego 2026."
+      },
+      "contact": {
+        "title": "Zapisy i informacje"
+      },
+      "cta": {
+        "text": "Dołącz do Olympique Poznań i przekonaj się, że piłka nożna jest dla każdej Poznanianki!"
+      }
+    },
     "status": "Statut klubu",
     "documents": {
       "title": "Ważne dokumenty",

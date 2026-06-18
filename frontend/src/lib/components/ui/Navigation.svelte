@@ -146,7 +146,7 @@
 
 <svelte:window on:click={handleClickOutside} />
 
-<nav class="nav" class:visible>
+<nav class="nav" class:visible style="--nav-opacity: {navOpacity}">
   <div class="nav-container">
     <a href="/" class="logo-container">
       <img src="/logo.png" alt="Logo Olympique Poznań" class="logo-olympique-poznan" />
@@ -191,6 +191,9 @@
                 <span class="badge-text">NEW</span>
                 <span class="shine"></span>
               </span>
+            </a>
+            <a href="/club/women-football-program" class="dropdown-item" role="menuitem">{$_('club.womenFootballProgram.title')}
+
             </a>
             <a href="/club/partners" class="dropdown-item" role="menuitem">{$_('club.partners.title')}</a>
 
@@ -383,6 +386,7 @@
                   </span>
                 </a>
               </li>
+              <li><a href="/club/women-football-program" on:click={close}>{$_('club.womenFootballProgram.title')}</a></li>
               <li><a href="/club/partners" on:click={close}>{$_('club.partners.title')}</a></li>
               </ul>
           {/if}
