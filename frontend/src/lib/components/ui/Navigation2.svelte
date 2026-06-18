@@ -10,6 +10,7 @@
   let open = false;
   let visible = false;
   let scrollY = 0;
+  let navOpacity = 0.1;
   
   /** @type {string | null} */
   let openDropdown = null;
@@ -184,17 +185,17 @@
           >
             <a href="/club/about" class="dropdown-item" role="menuitem">{$_('club.about')}</a>
             <a href="/club/coaches" class="dropdown-item" role="menuitem">{$_('club.coaches')}</a>
-            <a href="/club/scholarship-stevens" class="dropdown-item scholarship-item" role="menuitem">
+            <a href="/club/scholarship-stevens" class="dropdown-item" role="menuitem">
               {$_('scholarship.title')}
+            </a>
+            <a href="/club/women-football-program" class="dropdown-item scholarship-item" role="menuitem">
+              {$_('club.womenFootballProgram.title')}
               <span class="new-badge badge-inline">
                 <span class="badge-text">NEW</span>
                 <span class="shine"></span>
               </span>
             </a>
-            <a href="/club/women-football-program" class="dropdown-item" role="menuitem">{$_('club.womenFootballProgram.title')}
-            </a>
             <a href="/club/partners" class="dropdown-item" role="menuitem">{$_('club.partners.title')}</a>
-
             <a 
               href="https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit?tab=t.0" 
               target="_blank" rel="noopener noreferrer" class="dropdown-item"
@@ -376,15 +377,19 @@
               <li><a href="/club/about" on:click={close}>{$_('club.about')}</a></li>
               <li><a href="/club/coaches" on:click={close}>{$_('club.coaches')}</a></li>
               <li>
-                <a href="/club/scholarship-stevens" on:click={close} class="scholarship-mobile-item">
+                <a href="/club/scholarship-stevens" on:click={close}>
                   {$_('scholarship.title')}
+                </a>
+              </li>
+              <li>
+                <a href="/club/women-football-program" on:click={close} class="scholarship-mobile-item">
+                  {$_('club.womenFootballProgram.title')}
                   <span class="new-badge badge-inline">
                     <span class="badge-text">NEW</span>
                     <span class="shine"></span>
                   </span>
                 </a>
               </li>
-              <li><a href="/club/women-football-program" on:click={close}>{$_('club.womenFootballProgram.title')}</a></li>
               <li><a href="/club/partners" on:click={close}>{$_('club.partners.title')}</a></li>
               </ul>
           {/if}
