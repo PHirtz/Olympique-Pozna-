@@ -45,11 +45,11 @@
       external: false
     },
     {
-      slug: 'documents',
-      titleKey: 'club.documents.title',
-      image: '../logo.svg',
-      link: "https://docs.google.com/document/d/1GDOQUc8G9FQZjQTDuLBw_grxg1bKWg1a2V8GhbsnGU0/edit?tab=t.0",
-      external: true
+      slug: 'WomenFootballProgram',
+      titleKey: 'club.womenFootballProgram.title',
+      image: '/slides/equipestephane.jpeg',
+      link: "/club/women-football-program",
+      external: false
     }
   ];
 </script>
