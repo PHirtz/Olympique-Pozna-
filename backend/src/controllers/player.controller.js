@@ -362,6 +362,33 @@ async getAll(req, res) {
       });
     }
   }
+
+  // ==============================================
+  // GET /api/academy/export - Export des joueurs pour l'académie
+  // ==============================================
+  async getAcademyExport(req, res) {
+    try {
+      const result = await playerService.getAllPlayers({ 
+        isActive: 'true', 
+        limit: 1000
+      });
+      
+      res.status(200).json({
+        success: true,
+        data: {
+          players: result.players,
+          total: result.pagination.total
+        }
+      });
+    } catch (error) {
+      console.error('Erreur export académie:', error);
+      res.status(500).json({ 
+        success: false, 
+        message: 'Erreur serveur',
+        error: error.message 
+      });
+    }
+  }
 }
 
 export const playerController = new PlayerController();

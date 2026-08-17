@@ -3,6 +3,7 @@ import { param, query, validationResult } from 'express-validator';
 import { upload } from '../config/upload.js';
 import { authMiddleware as authenticateToken, requireRole } from '../middlewares/auth.middleware.js';
 import { playerController } from '../controllers/player.controller.js';
+import { verifyApiKey } from '../middlewares/apiKey.middleware.js';
 
 const router = express.Router();
 
@@ -15,9 +16,9 @@ const validate = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     console.log('❌ Erreurs de validation:', errors.array());
-    return res.status(400).json({ 
-      success: false, 
-      errors: errors.array() 
+    return res.status(400).json({
+      success: false,
+      errors: errors.array()
     });
   }
   next();
@@ -75,7 +76,24 @@ router.delete('/admin/:id',
 );
 
 // ==============================================
-// ROUTES PUBLIQUES (APRÈS LES ROUTES ADMIN)
+// ROUTES PUBLIQUES SPÉCIFIQUES (DOIVENT ÊTRE AVANT /:id)
+// ==============================================
+
+// GET /api/players/search - Recherche par nom ou prénom (public)
+router.get('/search',
+  [query('name').optional().isString(), query('surname').optional().isString()],
+  validate,
+  playerController.search.bind(playerController)
+);
+
+// GET /api/players/academy - Liste des joueurs pour l'académie (API Key)
+router.get('/academy',
+  verifyApiKey, // Middleware de vérification de la clé API
+  playerController.getAcademyExport.bind(playerController)
+);
+
+// ==============================================
+// ROUTES PUBLIQUES GÉNÉRIQUES (EN DERNIER)
 // ==============================================
 
 // GET /api/players - Liste tous les joueurs (public)
