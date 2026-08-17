@@ -80,11 +80,11 @@ router.delete('/admin/:id',
 // ==============================================
 
 // GET /api/players/search - Recherche par nom ou prénom (public)
-router.get('/search',
-  [query('name').optional().isString(), query('surname').optional().isString()],
-  validate,
-  playerController.search.bind(playerController)
-);
+//router.get('/search',
+  //[query('name').optional().isString(), query('surname').optional().isString()],
+  //validate,
+  //playerController.search.bind(playerController)
+//);
 
 // GET /api/players/academy - Liste des joueurs pour l'académie (API Key)
 router.get('/academy',
